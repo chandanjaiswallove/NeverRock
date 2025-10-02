@@ -1,0 +1,48 @@
+<?php
+
+defined('BASEPATH') or exit('no direct script access allowed');
+
+/**
+ * 
+ */
+class InstructorDashboardControllers extends CI_Controller
+{
+
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+
+    //// dashboard/dInstructor pages loading here////
+
+    public function loaDinstructor_dashboard()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_dashboard');
+    }
+
+    public function loaDinstructor_message()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_message');
+    }
+
+    public function loaDinstructor_myCourse()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_myCourse');
+    }
+
+    public function loaDinstructor_profile()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_profile');
+    }
+
+    public function loaDinstructor_setting()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_setting');
+    }
+
+}
+
+
+
+?>

@@ -1,0 +1,117 @@
+#lvideo-wrap {
+  position: fixed;
+  height: 100vh;
+  z-index: 999999;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+}
+#lvideo-wrap,
+#lvideo-wrap:after,
+.lvideo-overlay {
+  left: 0;
+  top: 0;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+}
+
+#lvideo-wrap:after,
+.lvideo-overlay {
+  height: 100%;
+  position: absolute;
+}
+
+#lvideo-wrap:after {
+  content: "";
+  display: block;
+  background-color: black;
+  opacity: 0;
+  z-index: -1;
+}
+
+#lvideo-wrap .lvideo-container {
+  width: 100%;
+  max-width: 900px;
+  justify-self: center;
+
+  position: relative;
+}
+#lvideo-wrap video,
+#lvideo-wrap iframe {
+  position: relative;
+  box-sizing: border-box;
+  background-color: #000;
+
+  z-index: 10;
+  box-shadow: 0 0 19px rgba(0, 0, 0, 0.16);
+  display: block;
+  max-width: 900px;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+#lvideo-wrap video {
+  object-fit: cover;
+}
+
+#lvideo-wrap .lvideo-close {
+  color: gainsboro;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: -15px;
+  top: -30px;
+  font-size: 22px;
+  font-weight: bold;
+  width: 42px;
+  height: 42;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 150;
+  transition: 0.3s;
+}
+#lvideo-wrap .lvideo-close:before,
+#lvideo-wrap .lvideo-close:after {
+  content: "";
+  width: 60%;
+  height: 3px;
+  transition: 0.3s;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+}
+#lvideo-wrap .lvideo-close:before {
+  transform: rotate(42deg);
+}
+#lvideo-wrap .lvideo-close:after {
+  transform: rotate(-42deg);
+}
+#lvideo-wrap .lvideo-close:focus {
+  outline: none;
+}
+
+#lvideo-wrap .lvideo-close:hover {
+  color: white;
+}
+#lvideo-wrap .lvideo-close:hover :before,
+#lvideo-wrap .lvideo-close:hover :after {
+  color: white;
+}
+#lvideo-wrap.active {
+  opacity: 1;
+  visibility: visible;
+}
+#lvideo-wrap.active:after {
+  opacity: 0.75;
+}
