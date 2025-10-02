@@ -130,7 +130,7 @@
           <a href="<?php echo base_url('admin_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
         </div>
 
-        <button class="btn btn-primary w-100 mb-3" name="adminLOGIN" type="submit">Login</button>
+        <button class="btn btn-primary w-100 mb-3" name="git branch -M main" type="submit">Login</button>
       </form>
 
     </div>
