@@ -210,6 +210,8 @@ class Developer_Model extends CI_Model
         session_unset();
         unset($_SESSION['activeDeveloper']);
         session_destroy();
+        // redirect(base_url('deve_loper'));
+
         echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
         echo '<script>
         setTimeout(function () {
@@ -219,8 +221,10 @@ class Developer_Model extends CI_Model
             });
         }, 100);
     </script>';
+
     }
 
-
+    
 }
+
 ?>

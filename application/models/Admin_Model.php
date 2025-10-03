@@ -107,15 +107,10 @@ class Admin_Model extends CI_Model
         session_unset();
         unset($_SESSION['activeAdmin']);
         session_destroy();
-        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-        echo '<script>
-        setTimeout(function () {
-            swal("Logged Out", "You have successfully logged out.", "success")
-            .then(function() {
-                window.location.href = "' . base_url('admin_login') . '";
-            });
-        }, 100);
-    </script>';
+        redirect(base_url('admin_login'));
+
     }
+
 }
+
 ?>

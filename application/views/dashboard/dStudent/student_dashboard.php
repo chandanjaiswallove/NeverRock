@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 if (!$this->session->userdata('activeStudent')) {
     redirect(base_url('student_login'));
