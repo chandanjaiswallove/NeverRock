@@ -143,53 +143,58 @@
 
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
-          alt="Logo">
+        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
         <h4 class="title">Create Your Account 🚀</h4>
       </div>
 
-      <form id="signupFormEl">
+      <form id="studentFormEl" action="<?php echo base_url('add_student') ?> " method="POST">
         <div class="mb-3">
           <label class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="signupName" placeholder="Enter full name" required>
+          <input type="text" class="form-control" id="studentName" name="studentName" maxlength="50"  placeholder="Enter full name"
+            required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="signupEmail" placeholder="Enter email" required>
+          <input type="email" class="form-control" id="studentEmail" name="studentEmail" maxlength="35"   placeholder="Enter email"
+            required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="signupPhone" placeholder="Enter phone number" required>
+          <input type="tel" class="form-control" id="studentPhone" name="studentPhone" maxlength="10"  placeholder="Enter phone number"
+            required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="signupPassword" placeholder="Create password" required>
+            <input type="password" class="form-control" id="studentPassword" maxlength="25"  name="studentPassword"
+              placeholder="Create password" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
-              onclick="togglePassword('signupPassword', this)">Show</button>
+              onclick="togglePassword('studentPassword', this)">Show</button>
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Confirm Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="signupConfirm" placeholder="Confirm password" required>
+            <input type="password" class="form-control" id="studentConfirm" name="studentConfirm"
+              placeholder="Confirm password" maxlength="25"  required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
-              onclick="togglePassword('signupConfirm', this)">Show</button>
+              onclick="togglePassword('studentConfirm', this)">Show</button>
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Username</label>
-          <input type="text" class="form-control" id="signupUsername" placeholder="Choose a username" required>
+          <input type="text" class="form-control" id="studentUsername" name="studentUsername" maxlength="25" 
+            placeholder="Enter an username" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">State</label>
-          <select class="form-select" id="signupState" required>
+          <select class="form-select" id="studentState" name="studentState" required>
             <option value="" disabled selected>Select your state</option>
             <option>Andhra Pradesh</option>
             <option>Arunachal Pradesh</option>
@@ -222,7 +227,8 @@
           </select>
         </div>
 
-        <button class="btn btn-primary w-100" type="submit">Sign Up</button>
+        <button class="btn btn-primary w-100" type="submit" name="studentSignupData">Sign
+          Up</button>
 
         <!-- Already have an account -->
         <div class="login-link">
@@ -240,4 +246,5 @@
     }
   </script>
 </body>
+
 </html>

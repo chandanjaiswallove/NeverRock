@@ -30,7 +30,8 @@ class StudentDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dStudent/student_message');
     }
 
-    public function loaDstudent_profile(){
+    public function loaDstudent_profile()
+    {
         $this->load->view('dashboard/dStudent/student_profile');
     }
 
@@ -39,7 +40,24 @@ class StudentDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dStudent/student_setting');
     }
 
-    
+
+    //// Student_Model loading here /////
+
+    public function loaDloginStudent()
+    {
+        $this->load->model('Student_Model');
+        $this->Student_Model->loginStudent();
+    }
+
+
+    public function loaDstudent_logout()
+    {
+        $this->load->model('Student_Model');
+        $this->Student_Model->student_logout();
+    }
+
+
+
 }
 
 

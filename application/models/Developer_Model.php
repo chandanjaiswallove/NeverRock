@@ -210,7 +210,15 @@ class Developer_Model extends CI_Model
         session_unset();
         unset($_SESSION['activeDeveloper']);
         session_destroy();
-        redirect(base_url('deve_loper'));
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo '<script>
+        setTimeout(function () {
+            swal("Logged Out", "You have successfully logged out.", "success")
+            .then(function() {
+                window.location.href = "' . base_url('deve_loper') . '";
+            });
+        }, 100);
+    </script>';
     }
 
 

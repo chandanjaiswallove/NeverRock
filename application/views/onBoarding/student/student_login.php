@@ -115,22 +115,22 @@
         <h4 class="title">Login to Your Account 👋</h4>
       </div>
 
-      <form id="loginFormEl">
+      <form id="loginFormEl" action="<?php echo base_url('studentAuth'); ?>" method="POST" >
         <div class="mb-3">
           <label class="form-label">Username</label>
-          <input type="text" class="form-control" id="username" placeholder="Enter Username" maxlength="13" required
+          <input type="text" class="form-control" id="stUsername" name="stUsername" placeholder="Enter Username" maxlength="25" required
             oninput="this.value = this.value.toUpperCase()">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+          <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="Enter email" maxlength="35"  required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required>
+            <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" maxlength="25"  required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('loginPassword', this)">Show</button>
           </div>
@@ -144,7 +144,7 @@
           <a href="<?php echo base_url('student_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password</a>
         </div>
 
-        <button class="btn btn-primary w-100 mb-3" type="submit">Login</button>
+        <button class="btn btn-primary w-100 mb-3" type="submit" name="studentLOGIN">Login</button>
       </form>
 
       <!-- Extra text -->

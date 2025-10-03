@@ -95,6 +95,8 @@ $route['student_login'] = 'StudentOnBoardingControllers/loaDstudent_login';
 $route['student_forgot'] = 'StudentOnBoardingControllers/loaDstudent_forgot';
 $route['student_verify'] = 'StudentOnBoardingControllers/loaDstudent_verify';
 $route['student_reset'] = 'StudentOnBoardingControllers/loaDstudent_reset';
+//// Student Signup Data from StudentOnBoardingControllers from Student_Model 
+$route['add_student'] = 'StudentOnBoardingControllers/loaDregisterStudent';
 
 
 ////Dashboards routing here ////
@@ -142,3 +144,7 @@ $route['student_enrollCourse'] = 'StudentDashboardControllers/loaDstudent_enroll
 $route['student_message'] = 'StudentDashboardControllers/loaDstudent_message';
 $route['student_profile'] = 'StudentDashboardControllers/loaDstudent_profile';
 $route['student_setting'] = 'StudentDashboardControllers/loaDstudent_setting';
+//// Student_Model  logout and  login student routing here /////
+$route['studentAuth'] = 'StudentDashboardControllers/loaDloginStudent';
+$route['logoutStudent'] = 'StudentDashboardControllers/loaDstudent_logout';
+

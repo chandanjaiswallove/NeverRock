@@ -17,17 +17,14 @@ class Admin_Model extends CI_Model
 
         $findFirstTimeUser = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '$adminUniqueID' AND admin_email = '$adminEmail'");
 
-        foreach ($findFirstTimeUser->result() as $row)
-        {
-           $passwordStatus = $row->password_update_status;
-           $systemPassword = $row->system_generated_password;
-           $portalCredentials = $row->portal_credentials;
+        foreach ($findFirstTimeUser->result() as $row) {
+            $passwordStatus = $row->password_update_status;
+            $systemPassword = $row->system_generated_password;
+            $portalCredentials = $row->portal_credentials;
         }
 
-        if(isset($_POST['adminLOGIN']))
-        {
-            if($findFirstTimeUser->num_rows()>0 AND $passwordStatus = 'To be Updated' AND $adminPassword == $systemPassword)
-            {
+        if (isset($_POST['adminLOGIN'])) {
+            if ($findFirstTimeUser->num_rows() > 0 and $passwordStatus = 'To be Updated' and $adminPassword == $systemPassword) {
 
                 $_SESSION['acitveAdmin'] = $adminUniqueID;
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
@@ -43,9 +40,7 @@ class Admin_Model extends CI_Model
                 echo '});';
                 echo '</script>';
 
-            }
-            else if($findFirstTimeUser->num_rows()>0 AND $passwordStatus = 'Updated By User' AND $adminPassword == password_verify($adminPassword, $portalCredentials ))
-            {
+            } else if ($findFirstTimeUser->num_rows() > 0 and $passwordStatus = 'Updated By User' and $adminPassword == password_verify($adminPassword, $portalCredentials)) {
                 $_SESSION['acitveAdmin'] = $adminUniqueID;
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo '<script>';
@@ -61,10 +56,7 @@ class Admin_Model extends CI_Model
                 echo '</script>';
 
                 // echo "Logged in through Hashed Password";
-            }
-
-            else
-            {
+            } else {
                 echo "Wrong Credentials";
             }
         }
@@ -77,10 +69,8 @@ class Admin_Model extends CI_Model
 
         $hashedPassword = password_hash($portalPassword, PASSWORD_DEFAULT);
 
-        if(isset($_POST['updatePassword']))
-        {
-            if($cnfPassword === $portalPassword)
-            {
+        if (isset($_POST['updatePassword'])) {
+            if ($cnfPassword === $portalPassword) {
                 $this->db->query("UPDATE admin_directory SET password_update_status = 'Updated By User',portal_credentials = '$hashedPassword' WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo '<script>';
@@ -94,9 +84,7 @@ class Admin_Model extends CI_Model
                 echo '  });';
                 echo '});';
                 echo '</script>';
-            }
-            else
-            {
+            } else {
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo '<script>';
                 echo 'document.addEventListener("DOMContentLoaded", function() {';
@@ -119,7 +107,15 @@ class Admin_Model extends CI_Model
         session_unset();
         unset($_SESSION['activeAdmin']);
         session_destroy();
-        redirect(base_url('admin_login'));
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo '<script>
+        setTimeout(function () {
+            swal("Logged Out", "You have successfully logged out.", "success")
+            .then(function() {
+                window.location.href = "' . base_url('admin_login') . '";
+            });
+        }, 100);
+    </script>';
     }
 }
 ?>

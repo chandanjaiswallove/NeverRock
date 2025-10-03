@@ -41,6 +41,13 @@ class StudentOnBoardingControllers extends CI_Controller
     }
 
 
+    //// Student_Model loading here /////
+    public function loaDregisterStudent()
+    {
+        $this->load->model('Student_Model');
+        $this->Student_Model->registerStudent();
+    }
+
 
 }
 
