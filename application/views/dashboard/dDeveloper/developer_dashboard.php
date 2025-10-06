@@ -123,8 +123,8 @@ class="p-5 md:px-10 md:py-50px bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2
 <div>
 <p
         class="text-size-34 leading-[1.1] text-blackColor font-bold font-hind dark:text-blackColor-dark">
-        <span
-                data-countup-number="30">30</span><span>k</span>
+        <span data-countup-number="<?php echo $this->db->count_all('student_directory'); ?>">
+                <?php echo $this->db->count_all('student_directory'); ?></span><span>+</span>
 </p>
 <p
         class="text-blackColor font-medium leading-[18px] dark:text-blackColor-dark">
