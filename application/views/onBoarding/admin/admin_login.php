@@ -92,7 +92,7 @@
     <!-- Left: Image -->
     <div class="auth-left">
       <img class="auth-illustration"
-        src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
+        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
 
@@ -130,7 +130,7 @@
           <a href="<?php echo base_url('admin_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
         </div>
 
-        <button class="btn btn-primary w-100 mb-3" name="git branch -M main" type="submit">Login</button>
+        <button class="btn btn-primary w-100 mb-3" name="adminLOGIN" type="submit">Login</button>
       </form>
 
     </div>

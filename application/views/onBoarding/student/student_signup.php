@@ -136,10 +136,10 @@
 <body>
   <div class="auth-container">
     <div class="auth-left">
-      <img class="auth-illustration"
-        src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
+      <img class="auth-illustration" src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
+
 
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
@@ -150,26 +150,26 @@
       <form id="studentFormEl" action="<?php echo base_url('add_student') ?> " method="POST">
         <div class="mb-3">
           <label class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="studentName" name="studentName" maxlength="50"  placeholder="Enter full name"
-            required>
+          <input type="text" class="form-control" id="studentName" name="studentName" maxlength="50"
+            placeholder="Enter full name" onkeyup="generateInstructorCredentials()" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="studentEmail" name="studentEmail" maxlength="35"   placeholder="Enter email"
-            required>
+          <input type="email" class="form-control" id="studentEmail" name="studentEmail" maxlength="35"
+            placeholder="Enter email" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="studentPhone" name="studentPhone" maxlength="10"  placeholder="Enter phone number"
-            required>
+          <input type="tel" class="form-control" id="studentPhone" name="studentPhone" maxlength="10"
+            placeholder="Enter phone number" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="studentPassword" maxlength="25"  name="studentPassword"
+            <input type="password" class="form-control" id="studentPassword" maxlength="25" name="studentPassword"
               placeholder="Create password" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('studentPassword', this)">Show</button>
@@ -180,16 +180,16 @@
           <label class="form-label">Confirm Password</label>
           <div class="input-group">
             <input type="password" class="form-control" id="studentConfirm" name="studentConfirm"
-              placeholder="Confirm password" maxlength="25"  required>
+              placeholder="Confirm password" maxlength="25" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('studentConfirm', this)">Show</button>
           </div>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Username</label>
-          <input type="text" class="form-control" id="studentUsername" name="studentUsername" maxlength="25" 
-            placeholder="Enter an username" required>
+          <label class="form-label">Student UID</label>
+          <input type="text" class="form-control" id="studentUsername" name="studentUsername" maxlength="9"
+            placeholder="Student UID" required readonly>
         </div>
 
         <div class="mb-3">
@@ -244,6 +244,26 @@
       if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'Hide'; }
       else { inp.type = 'password'; btn.textContent = 'Show'; }
     }
+
+    function generateInstructorCredentials() {
+      const studentNameInput = document.getElementById('studentName');
+      const studentUsername = document.getElementById('studentUsername');
+
+      // Auto-capitalize name input
+      studentNameInput.value = studentNameInput.value.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+
+      // UID generation
+      const uidChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const shuffledUID = uidChars.split('').sort(() => Math.random() - 0.5).join('');
+      const namePart = studentNameInput.value.replace(/\s+/g, '').substr(0, 3).toUpperCase();
+      const uniqueCode = shuffledUID.substr(0, 3);
+      studentUsername.value = "EDU" + namePart + uniqueCode;
+
+    }
+
+
   </script>
 </body>
 

@@ -9,10 +9,10 @@ class Student_Model extends CI_Model
         parent::__construct();
     }
 
-    // Register student
+    // =================== Signup Student ===================
     public function registerStudent()
     {
-
+        
         if (isset($_POST['studentSignupData'])) {
 
             // Collect form data
@@ -24,145 +24,110 @@ class Student_Model extends CI_Model
             $username = $this->input->post('studentUsername', true);
             $state = $this->input->post('studentState', true);
 
-            // Password match check
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+
+            // 1️⃣ Password Match Check
             if ($password !== $confirmPass) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            swal({
-                                title: "Password Mismatch!",
-                                text: "Password and Confirm Password do not match.",
-                                icon: "error"
-                            }).then(function(){ window.location.href = "' . base_url('student_signup') . '"; });
-                        });
-                      </script>';
+                $this->swalRedirect("Password Mismatch!", "Password and Confirm Password do not match.", "error", "student_signup");
                 return;
             }
 
-            // Check for duplicate email or phone
-            $this->db->where('student_email', $email);
-            $this->db->or_where('student_phone', $phone);
-            $existing = $this->db->get('student_directory');
+            // 2️⃣ Duplicate Email & Phone Check Separately
+            $emailExists = $this->db->where('student_email', $email)->get('student_directory')->num_rows() > 0;
+            $phoneExists = $this->db->where('student_phone', $phone)->get('student_directory')->num_rows() > 0;
 
-            if ($existing->num_rows() > 0) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            swal({
-                                title: "Registration Failed",
-                                text: "Email or Phone already registered.",
-                                icon: "error"
-                            }).then(function(){ window.location.href = "' . base_url('student_login') . '"; });
-                        });
-                      </script>';
+            if ($emailExists && $phoneExists) {
+                $this->swalRedirect("Registration Failed", "Email and Phone already registered.", "error", "student_login");
+                return;
+            } elseif ($emailExists) {
+                $this->swalRedirect("Registration Failed", "Email already registered.", "error", "student_login");
+                return;
+            } elseif ($phoneExists) {
+                $this->swalRedirect("Registration Failed", "Phone already registered.", "error", "student_login");
                 return;
             }
 
-            // Hash password
+            // 3️⃣ Hash Password & Insert
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-
-
-            // Prepare data array
-            $studentData = array(
+            $studentData = [
                 'student_fullname' => $fullName,
                 'student_email' => $email,
                 'student_phone' => $phone,
                 'student_password' => $hashedPassword,
                 'student_username' => $username,
                 'student_state' => $state,
-            );
+            ];
 
-            // Insert into database
+
+
             $this->db->insert('student_directory', $studentData);
 
-            // Success alert
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        swal({
-                            title: "Registration Successful!",
-                            text: "Student registered successfully. You can now login.",
-                            icon: "success"
-                        }).then(function(){ window.location.href = "' . base_url('student_login') . '"; });
-                    });
-                  </script>';
-
+            $this->swalRedirect("Registration Successful!", "Student registered successfully. You can now login.", "success", "student_login");
         }
     }
 
+    // =================== Login Student ===================
     public function loginStudent()
     {
         if (isset($_POST['studentLOGIN'])) {
 
-            // Load SweetAlert
+
             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
 
-            // Collect form data
+
             $username = $this->input->post('stUsername', true);
             $email = $this->input->post('loginEmail', true);
             $password = $this->input->post('loginPassword', true);
 
-            // Check username + email in DB
-            $this->db->where('student_username', $username);
-            $this->db->where('student_email', $email);
-            $query = $this->db->get('student_directory');
+            // Check username
+            $userByUsername = $this->db->where('student_username', $username)->get('student_directory')->row();
+            $userByEmail = $this->db->where('student_email', $email)->get('student_directory')->row();
 
-            if ($query->num_rows() == 0) {
-                echo '<script>
-            setTimeout(function () {
-                swal("Login Failed", "Username or Email not registered", "error")
-                .then(function() {
-                    window.location.href = "' . base_url('student_login') . '";
-                });
-            }, 100);
-            </script>';
+            if (!$userByUsername && !$userByEmail) {
+                $this->swalRedirect("Login Failed", "Username and Email not registered.", "error", "student_login");
+                return;
+            } elseif (!$userByUsername) {
+                $this->swalRedirect("Login Failed", "Username not registered.", "error", "student_login");
+                return;
+            } elseif (!$userByEmail) {
+                $this->swalRedirect("Login Failed", "Email not registered.", "error", "student_login");
                 return;
             }
 
-            $student = $query->row();
-
-            // Verify password
-            if (!password_verify($password, $student->student_password)) {
-                echo '<script>
-            setTimeout(function () {
-                swal("Login Failed", "Incorrect Password", "error")
-                .then(function() {
-                    window.location.href = "' . base_url('student_login') . '";
-                });
-            }, 100);
-            </script>';
+            // Now check password
+            $student = $this->db->where('student_username', $username)->where('student_email', $email)->get('student_directory')->row();
+            if (!$student || !password_verify($password, $student->student_password)) {
+                $this->swalRedirect("Login Failed", "Incorrect Password.", "error", "student_login");
                 return;
             }
 
-            // ✅ Successful Login — Set session with email only
+            // ✅ Successful Login
             $this->session->set_userdata('activeStudent', $student->student_email);
-
-            echo '<script>
-        setTimeout(function () {
-            swal("Login Success", "Welcome ' . $student->student_fullname . '!", "success")
-            .then(function() {
-                window.location.href = "' . base_url('student_dashboard') . '";
-            });
-        }, 100);
-        </script>';
+            $this->swalRedirect("Login Success", "Welcome " . $student->student_fullname . "!", "success", "student_dashboard");
         }
     }
 
-
-    public function student_logout()
-    {
-        // Unset the activeStudent session
-        $this->session->unset_userdata('activeStudent');
-
-        // Destroy entire session (optional)
-        $this->session->sess_destroy();
-
-        // Redirect to login page
-        redirect(base_url('student_login'));
-
-    }
-
+    // =================== Logout Student ===================
+ public function student_logout()
+{
+    $this->session->unset_userdata('activeStudent');
+    $this->session->sess_destroy();
+    redirect(base_url('student_login'));
 }
 
+
+    // =================== Helper: SweetAlert + Redirect ===================
+    private function swalRedirect($title, $text, $icon, $redirectPage)
+    {
+        echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                swal({
+                    title: '$title',
+                    text: '$text',
+                    icon: '$icon'
+                }).then(function(){ window.location.href = '" . base_url($redirectPage) . "'; });
+            });
+        </script>";
+    }
+}
 ?>

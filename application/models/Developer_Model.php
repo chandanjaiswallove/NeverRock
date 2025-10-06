@@ -115,6 +115,7 @@ class Developer_Model extends CI_Model
         }
     }
 
+    //// Register Institute ////
     public function registerInstitute()
     {
         $instituteName = $_POST['instituteName'];
@@ -204,7 +205,7 @@ class Developer_Model extends CI_Model
     }
 
 
-
+     // ✅ Logout
     public function logoutUser()
     {
         session_unset();
@@ -224,7 +225,7 @@ class Developer_Model extends CI_Model
 
     }
 
-    
+
 }
 
 ?>

@@ -52,14 +52,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                     <div>
                                         <label class="mb-3 block font-semibold">Instructor Contact</label>
-                                        <input type="text" placeholder="Enter Instructor Contact" required
+                                        <input type="text" placeholder="Enter Instructor Contact"   required
                                             maxlength="10"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             id="instructorContact" name="instructorContact">
                                     </div>
                                     <div>
-                                        <label class="mb-3 block font-semibold">Portal UID</label>
-                                        <input type="text" placeholder="Portal UID" style="text-transform: uppercase;"
+                                        <label class="mb-3 block font-semibold">Unique UID</label>
+                                        <input type="text" placeholder="Unique UID" style="text-transform: uppercase;"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             readonly id="portalUID" name="portalUID">
                                     </div>
@@ -67,14 +67,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <label class="mb-3 block font-semibold">Portal Password</label>
                                         <input type="text" placeholder="Portal Password"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                            readonly id="systemPassword" name="systemPassword">
+                                            readonly id="instructorPassword" name="instructorPassword">
                                     </div>
                                 </div>
 
                                 <div class="mt-15px">
                                     <button type="submit"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
-                                        name="registerInstructor">
+                                        name="instructorData">
                                         Submit
                                     </button>
                                 </div>
@@ -97,7 +97,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     function generateInstructorCredentials() {
         const instructorNameInput = document.getElementById('instructorName');
         const portalUID = document.getElementById('portalUID');
-        const passwordTxt = document.getElementById('systemPassword');
+        const passwordTxt = document.getElementById('instructorPassword');
 
         // Auto-capitalize name input
         instructorNameInput.value = instructorNameInput.value.replace(/\w\S*/g, function (txt) {

@@ -92,7 +92,7 @@
     <!-- Left: Image -->
     <div class="auth-left">
       <img class="auth-illustration"
-        src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
+        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
 
@@ -103,20 +103,20 @@
         <h4 class="title">Login to Your Account 👋</h4>
       </div>
 
-      <form id="loginFormEl">
+      <form id="loginFormEl" action="<?php echo base_url('instructorAuth'); ?>" method="POST" >
         <div class="mb-3">
           <label class="form-label">Unique ID</label>
-          <input type="text" class="form-control" id="uniqueID" placeholder="Enter unique ID" required
+          <input type="text" class="form-control" id="loginUniqueID" name="loginUniqueID" placeholder="Enter unique ID" required
             oninput="this.value = this.value.toUpperCase()">
         </div>
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+          <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="Enter email" required>
         </div>
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required>
+            <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('loginPassword', this)">Show</button>
           </div>
@@ -130,7 +130,7 @@
           <a href="<?php echo base_url('instructor_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
         </div>
 
-        <button class="btn btn-primary w-100 mb-3" type="submit">Login</button>
+        <button class="btn btn-primary w-100 mb-3" type="submit" name="instructorLOGIN" >Login</button>
       </form>
 
     </div>

@@ -17,9 +17,9 @@
                         </div>
 
                         <div>
-                                <a href="<?php echo base_url('developer_createInstitue'); ?>"
+                                <a href="<?php echo base_url('instructor_dashboard'); ?>"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor rounded group text-nowrap flex gap-1 items-center">
-                                        Create a New Institute
+                                        Create a New Course
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"

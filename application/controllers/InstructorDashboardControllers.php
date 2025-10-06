@@ -41,6 +41,20 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/instructor_setting');
     }
 
+       //// Instructor_Model loading here /////
+
+    public function loaDloginINSTRUCTOR()
+    {
+        $this->load->model('Instructor_Model');
+        $this->Instructor_Model->loginINSTRUCTOR();
+    }
+
+    public function loaDinstructor_logout()
+    {
+        $this->load->model('Instructor_Model');
+        $this->Instructor_Model->instructor_logout();
+    }
+
 }
 
 

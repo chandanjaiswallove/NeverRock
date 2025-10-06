@@ -1,8 +1,4 @@
-<?php
-if (!isset($_SESSION['activeDeveloper'])) {
-redirect(base_url('admin_login'));
-}
-?>
+
 
 <!-- Developer Dashboard Header section developer_header  -->
 <?php

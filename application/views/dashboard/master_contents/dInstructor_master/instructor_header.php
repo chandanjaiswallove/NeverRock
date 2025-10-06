@@ -1,3 +1,12 @@
+
+
+<?php
+
+if (!$this->session->userdata('activeInstructor')) {
+    redirect(base_url('instructor_login'));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -302,7 +311,7 @@
 
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="<?php echo base_url('developerLogout'); ?>"
+                                                    <a href="<?php echo base_url('logoutInstructor'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"

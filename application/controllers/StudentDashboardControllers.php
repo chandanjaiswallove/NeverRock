@@ -1,9 +1,11 @@
 <?php
-
-defined('BASEPATH') or exit('no direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
+ * StudentDashboardControllers
  * 
+ * Purpose: Handles **all pages after student login**
+ * Dashboard pages, enrolled courses, profile, logout
  */
 class StudentDashboardControllers extends CI_Controller
 {
@@ -11,10 +13,10 @@ class StudentDashboardControllers extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        // $this->load->model('Student_Model'); // Load model for login/logout and other DB actions
     }
 
-
-    //// dashboard/dStudent pages loading here ////
+    // ----- Dashboard pages ----
     public function loaDstudent_dashboard()
     {
         $this->load->view('dashboard/dStudent/student_dashboard');
@@ -40,24 +42,23 @@ class StudentDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dStudent/student_setting');
     }
 
+    // ----- Login / Logout actions -----
 
-    //// Student_Model loading here /////
-
+    // Handle login form submit
     public function loaDloginStudent()
     {
         $this->load->model('Student_Model');
-        $this->Student_Model->loginStudent();
+        $this->Student_Model->loginStudent(); // Calls model to validate login credentials
     }
 
-
+    // Handle logout
     public function loaDstudent_logout()
     {
         $this->load->model('Student_Model');
-        $this->Student_Model->student_logout();
+        $this->Student_Model->student_logout(); // Calls model to destroy session
     }
 
-
-
+    
 }
 
 

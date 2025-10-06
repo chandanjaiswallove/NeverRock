@@ -83,8 +83,8 @@
   <!-- Left: Image -->
   <div class="auth-left">
     <img id="sideImage" class="auth-illustration"
-         src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
-         alt="Illustration"/>
+         src="<?php echo base_url('modules/assets/images/giphy.gif'); ?>"
+         alt="giphy.gif"/>
   </div>
 
   <!-- Right: Login Form -->

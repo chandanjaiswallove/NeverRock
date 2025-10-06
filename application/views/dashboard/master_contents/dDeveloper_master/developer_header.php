@@ -1,3 +1,11 @@
+
+<?php
+if (!isset($_SESSION['activeDeveloper'])) {
+redirect(base_url('deve_loper'));
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

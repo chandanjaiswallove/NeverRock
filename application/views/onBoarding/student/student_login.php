@@ -104,7 +104,7 @@
     <!-- Left: Image -->
     <div class="auth-left">
       <img class="auth-illustration"
-        src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
+        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
 
@@ -117,8 +117,8 @@
 
       <form id="loginFormEl" action="<?php echo base_url('studentAuth'); ?>" method="POST" >
         <div class="mb-3">
-          <label class="form-label">Username</label>
-          <input type="text" class="form-control" id="stUsername" name="stUsername" placeholder="Enter Username" maxlength="25" required
+          <label class="form-label">Student UID</label>
+          <input type="text" class="form-control" id="stUsername" name="stUsername" placeholder="Enter Student UID" maxlength="9" required
             oninput="this.value = this.value.toUpperCase()">
         </div>
 

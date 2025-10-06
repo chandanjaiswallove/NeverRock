@@ -77,6 +77,12 @@ class AdminDashboardControllers extends CI_Controller
         $this->Admin_Model->changeProfilePassword();
     }
 
+    //// RegisterInstitute Admin_Model and Fuction loading here ////
+    public function loaDregisterInstructor()
+    {
+        $this->load->model('Admin_Model');
+        $this->Admin_Model->registerInstructor();
+    }
 
 }
 

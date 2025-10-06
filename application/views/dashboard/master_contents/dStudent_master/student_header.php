@@ -1,3 +1,11 @@
+
+<?php
+
+if (!$this->session->userdata('activeStudent')) {
+    redirect(base_url('student_login'));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -179,12 +187,12 @@
 
                                             <h5
                                                 class="text-sm leading-1 font-semibold uppercase text-contentColor dark:text-contentColor-dark bg-lightGrey5 dark:bg-whiteColor-dark p-10px pb-7px mt-5 mb-10px">
-                                                DEVELOPER DASHBOARD
+                                                STUDENT DASHBOARD
                                             </h5>
                                             <ul>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="<?php echo base_url('developer_dashboard'); ?>"
+                                                    <a href="<?php echo base_url('student_dashboard'); ?>"
                                                         class="text-primaryColor hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -199,7 +207,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-profile.html"
+                                                    <a href="<?php echo base_url('student_profile'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -215,7 +223,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark flex justify-between items-center">
-                                                    <a href="admin-message.html"
+                                                    <a href="<?php echo base_url('student_message'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -233,7 +241,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-course.html"
+                                                    <a href="<?php echo base_url('student_enrollCourse'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -246,7 +254,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-reviews.html"
+                                                    <a href="<?php echo base_url('student_setting'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -260,7 +268,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-quiz-attempts.html"
+                                                    <a href="<?php echo base_url('student_setting'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -285,7 +293,7 @@
                                             <ul>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-settings.html"
+                                                    <a href="<?php echo base_url('student_setting'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
