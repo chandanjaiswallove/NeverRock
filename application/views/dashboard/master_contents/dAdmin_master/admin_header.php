@@ -1,5 +1,5 @@
 <?php 
- if(!isset($_SESSION['acitveAdmin']))
+ if(!isset($_SESSION['activeAdmin']))
  {
     redirect(base_url('logoutAdmin'));
  }

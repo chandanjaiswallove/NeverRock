@@ -1,6 +1,5 @@
 
 
-
 <!-- Admin Dashboard Header section admin_header  -->
 <?php
 $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');

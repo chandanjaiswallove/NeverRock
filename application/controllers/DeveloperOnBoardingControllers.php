@@ -15,7 +15,7 @@ class DeveloperOnBoardingControllers extends CI_Controller
 
 
     ///// OnBoarding developer  loading here /////
-    public function loadDevelopers()
+    public function loaDdevelopers()
     {
         $this->load->view('onBoarding/developer/developers');
     }

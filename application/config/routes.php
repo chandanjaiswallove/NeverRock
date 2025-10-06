@@ -14,104 +14,104 @@ $route['translate_uri_dashes'] = FALSE;
 
 //// ==================== UI Pages ==================== ////  
 // Controller: UiPagesControllers
-$route['academics_results'] = 'UiPagesControllers/loadAcademics_results'; // Load academics results page
-$route['contact_us'] = 'UiPagesControllers/loadContact_us'; // Contact us page
-$route['courses_all'] = 'UiPagesControllers/loadCourses_all'; // Courses listing page
-$route['curriculums'] = 'UiPagesControllers/loadCurriculums'; // Curriculum page
-$route['gallerys'] = 'UiPagesControllers/loadGallerys'; // Gallery page
-$route['instructors'] = 'UiPagesControllers/loadInstructors'; // Instructors listing
-$route['principal_message'] = 'UiPagesControllers/loadPrincipal_message'; // Principal message page
-$route['success_stories'] = 'UiPagesControllers/loadSuccess_stories'; // Success stories page
+$route['academics_results'] = 'UiPagesControllers/loaDacademics_results'; // Load academics results page
+$route['contact_us'] = 'UiPagesControllers/loaDcontact_us'; // Contact us page
+$route['courses_all'] = 'UiPagesControllers/loaDcourses_all'; // Courses listing page
+$route['curriculums'] = 'UiPagesControllers/loaDcurriculums'; // Curriculum page
+$route['gallerys'] = 'UiPagesControllers/loaDgallerys'; // Gallery page
+$route['instructors'] = 'UiPagesControllers/loaDinstructors'; // Instructors listing
+$route['principal_message'] = 'UiPagesControllers/loaDprincipal_message'; // Principal message page
+$route['success_stories'] = 'UiPagesControllers/loaDsuccess_stories'; // Success stories page
 
 
 
 //// ==================== E-Commerce ==================== ////  
 // Controller: ECommerceControllers
-$route['our_products'] = 'ECommerceControllers/loadOur_products'; // Products listing page
+$route['our_products'] = 'ECommerceControllers/loaDour_products'; // Products listing page
 
 
 
 //// ==================== Developer Section ==================== ////  
 // Controller: DeveloperOnBoardingControllers
-$route['deve_loper'] = 'DeveloperOnBoardingControllers/loadDevelopers'; // Developer onboarding page
+$route['deve_loper'] = 'DeveloperOnBoardingControllers/loaDdevelopers'; // Developer onboarding page
 
 // Controller: DeveloperDashboardControllers
-$route['developer_dashboard'] = 'DeveloperDashboardControllers/loadDeveloper_dashboard'; // Developer main dashboard
-$route['developer_createInstitue'] = 'DeveloperDashboardControllers/loadDeveloper_createInstitue'; // Create new institute
-$route['developer_enrollInstitues'] = 'DeveloperDashboardControllers/loadDeveloper_enrollInstitues'; // Enroll institutes page
-$route['developer_message'] = 'DeveloperDashboardControllers/loadDeveloper_message'; // Developer messages
-$route['developer_profile'] = 'DeveloperDashboardControllers/loadDeveloper_profile'; // Developer profile page
-$route['developer_setting'] = 'DeveloperDashboardControllers/loadDeveloper_setting'; // Developer settings page
+$route['developer_dashboard'] = 'DeveloperDashboardControllers/loaDdeveloper_dashboard'; // Developer main dashboard
+$route['developer_createInstitue'] = 'DeveloperDashboardControllers/loaDdeveloper_createInstitue'; // Create new institute
+$route['developer_enrollInstitues'] = 'DeveloperDashboardControllers/loaDdeveloper_enrollInstitues'; // Enroll institutes page
+$route['developer_message'] = 'DeveloperDashboardControllers/loaDdeveloper_message'; // Developer messages
+$route['developer_profile'] = 'DeveloperDashboardControllers/loaDdeveloper_profile'; // Developer profile page
+$route['developer_setting'] = 'DeveloperDashboardControllers/loaDdeveloper_setting'; // Developer settings page
 
 // Developer_Model/Auth Methods for Developer
-$route['developerLogin'] = 'DeveloperDashboardControllers/developerLogin'; // Developer login action (calls model)
-$route['developerLogout'] = 'DeveloperDashboardControllers/developerLogout'; // Developer logout
-$route['add_institute'] = 'DeveloperDashboardControllers/registerAdmin'; // Register new admin (developer action)
+$route['developerLogin'] = 'DeveloperDashboardControllers/modeLdeveloperAuth'; // Developer login action (calls model)
+$route['developerLogout'] = 'DeveloperDashboardControllers/modeLlogoutUser'; // Developer logout
+$route['add_institute'] = 'DeveloperDashboardControllers/modeLregisterInstitute'; // Register new admin (developer action)
 
 
 
 //// ==================== Admin Section ==================== ////  
 // Controller: AdminOnBoardingControllers
-$route['admin_login'] = 'AdminOnBoardingControllers/loadAdmin_login'; // Admin login page
-$route['admin_forgot'] = 'AdminOnBoardingControllers/loadAdmin_forgot'; // Admin forgot password
-$route['admin_verify'] = 'AdminOnBoardingControllers/loadAdmin_verify'; // Verify OTP / code
-$route['admin_reset'] = 'AdminOnBoardingControllers/loadAdmin_reset'; // Reset password page
+$route['admin_login'] = 'AdminOnBoardingControllers/loaDadmin_login'; // Admin login page
+$route['admin_forgot'] = 'AdminOnBoardingControllers/loaDadmin_forgot'; // Admin forgot password
+$route['admin_verify'] = 'AdminOnBoardingControllers/loaDadmin_verify'; // Verify OTP / code
+$route['admin_reset'] = 'AdminOnBoardingControllers/loaDadmin_reset'; // Reset password page
 
 // Controller: AdminDashboardControllers
-$route['admin_announcement'] = 'AdminDashboardControllers/loadAdmin_announcement'; // Announcements page
-$route['admin_course'] = 'AdminDashboardControllers/loadAdmin_course'; // Course management
-$route['admin_createInstructors'] = 'AdminDashboardControllers/loadAdmin_createInstructors'; // Create instructors
-$route['admin_dashboard'] = 'AdminDashboardControllers/loadAdmin_dashboard'; // Main admin dashboard
-$route['admin_message'] = 'AdminDashboardControllers/loadAdmin_message'; // Admin messages
-$route['admin_profile'] = 'AdminDashboardControllers/loadAdmin_profile'; // Admin profile
-$route['admin_setting'] = 'AdminDashboardControllers/loadAdmin_setting'; // Admin settings
+$route['admin_announcement'] = 'AdminDashboardControllers/loaDadmin_announcement'; // Announcements page
+$route['admin_course'] = 'AdminDashboardControllers/loaDadmin_courses'; // Course management
+$route['admin_createInstructors'] = 'AdminDashboardControllers/loaDadmin_createInstructors'; // Create instructors
+$route['admin_dashboard'] = 'AdminDashboardControllers/loaDadmin_dashboard'; // Main admin dashboard
+$route['admin_message'] = 'AdminDashboardControllers/loaDadmin_message'; // Admin messages
+$route['admin_profile'] = 'AdminDashboardControllers/loaDadmin_profile'; // Admin profile
+$route['admin_setting'] = 'AdminDashboardControllers/loaDadmin_setting'; // Admin settings
 
 // Admin_Model/Auth Methods for Admin
-$route['adminAuth'] = 'AdminDashboardControllers/loadAdminAuth'; // Login authentication (calls Admin_Model)
-$route['set_new_password'] = 'AdminDashboardControllers/updateAdminPassword'; // Update password (form action)
-$route['passwordUpdate'] = 'AdminDashboardControllers/updateNewPassword'; // Update password in database
-$route['logoutAdmin'] = 'AdminDashboardControllers/loadLogoutAdmin'; // Logout admin
-$route['add_instructor'] = 'AdminDashboardControllers/loadRegisterInstructor'; // Register instructor (calls model)
+$route['adminAuth'] = 'AdminDashboardControllers/modeLadminAuth'; // Login authentication (calls Admin_Model)
+$route['set_new_password'] = 'AdminDashboardControllers/loaDupdatePassword_Dashboard'; // Update password (form action)
+$route['passwordUpdate'] = 'AdminDashboardControllers/modeLchangeProfilePassword'; // Update password in database
+$route['logoutAdmin'] = 'AdminDashboardControllers/modeLlogoutAdmin'; // Logout admin
+$route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor (calls model)
 
 
 
 //// ==================== Instructor Section ==================== ////  
 // Controller: InstructorOnBoardingControllers
-$route['instructor_login'] = 'InstructorOnBoardingControllers/loadInstructor_login'; // Instructor login page
-$route['instructor_forgot'] = 'InstructorOnBoardingControllers/loadInstructor_forgot'; // Forgot password
-$route['instructor_verify'] = 'InstructorOnBoardingControllers/loadInstructor_verify'; // Verify OTP / code
-$route['instructor_reset'] = 'InstructorOnBoardingControllers/loadInstructor_reset'; // Reset password
+$route['instructor_login'] = 'InstructorOnBoardingControllers/loaDinstructor_login'; // Instructor login page
+$route['instructor_forgot'] = 'InstructorOnBoardingControllers/loaDinstructor_forgot'; // Forgot password
+$route['instructor_verify'] = 'InstructorOnBoardingControllers/loaDinstructor_verify'; // Verify OTP / code
+$route['instructor_reset'] = 'InstructorOnBoardingControllers/loaDinstructor_reset'; // Reset password
 
 // Controller: InstructorDashboardControllers
-$route['instructor_dashboard'] = 'InstructorDashboardControllers/loadInstructor_dashboard'; // Instructor dashboard
-$route['instructor_message'] = 'InstructorDashboardControllers/loadInstructor_message'; // Messages
-$route['instructor_myCourse'] = 'InstructorDashboardControllers/loadInstructor_myCourse'; // Instructor courses
-$route['instructor_profile'] = 'InstructorDashboardControllers/loadInstructor_profile'; // Profile page
-$route['instructor_setting'] = 'InstructorDashboardControllers/loadInstructor_setting'; // Settings page
+$route['instructor_dashboard'] = 'InstructorDashboardControllers/loaDinstructor_dashboard'; // Instructor dashboard
+$route['instructor_message'] = 'InstructorDashboardControllers/loaDinstructor_message'; // Messages
+$route['instructor_myCourse'] = 'InstructorDashboardControllers/loaDinstructor_myCourse'; // Instructor courses
+$route['instructor_profile'] = 'InstructorDashboardControllers/loaDinstructor_profile'; // Profile page
+$route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_setting'; // Settings page
 
 // Instructor_Model/Auth Methods for Instructor
-$route['instructorAuth'] = 'InstructorDashboardControllers/loadLoginInstructor'; // Instructor login (calls model)
-$route['logoutInstructor'] = 'InstructorDashboardControllers/loadInstructor_logout'; // Logout instructor
+$route['instructorAuth'] = 'InstructorDashboardControllers/modeLloginINSTRUCTOR'; // Instructor login (calls model)
+$route['logoutInstructor'] = 'InstructorDashboardControllers/modeLinstructor_logout'; // Logout instructor
 
 
 
 //// ==================== Student Section ==================== ////  
 // Controller: StudentOnBoardingControllers
-$route['student_signup'] = 'StudentOnBoardingControllers/loadStudent_signup'; // Signup page
-$route['student_login'] = 'StudentOnBoardingControllers/loadStudent_login'; // Login page
-$route['student_forgot'] = 'StudentOnBoardingControllers/loadStudent_forgot'; // Forgot password
-$route['student_verify'] = 'StudentOnBoardingControllers/loadStudent_verify'; // Verify OTP / code
-$route['student_reset'] = 'StudentOnBoardingControllers/loadStudent_reset'; // Reset password
+$route['student_signup'] = 'StudentOnBoardingControllers/loaDstudent_signup'; // Signup page
+$route['student_login'] = 'StudentOnBoardingControllers/loaDstudent_login'; // Login page
+$route['student_forgot'] = 'StudentOnBoardingControllers/loaDstudent_forgot'; // Forgot password
+$route['student_verify'] = 'StudentOnBoardingControllers/loaDstudent_verify'; // Verify OTP / code
+$route['student_reset'] = 'StudentOnBoardingControllers/loaDstudent_reset'; // Reset password
 /// Student_Model for add student
-$route['add_student'] = 'StudentOnBoardingControllers/loaDregisterStudent'; // Signup action (calls model)
+$route['add_student'] = 'StudentOnBoardingControllers/modeLregisterStudent'; // Signup action (calls model)
 
 // Controller: StudentDashboardControllers
-$route['student_dashboard'] = 'StudentDashboardControllers/loadStudent_dashboard'; // Student dashboard
-$route['student_enrollCourse'] = 'StudentDashboardControllers/loadStudent_enrollCourse'; // Enroll course page
-$route['student_message'] = 'StudentDashboardControllers/loadStudent_message'; // Messages page
-$route['student_profile'] = 'StudentDashboardControllers/loadStudent_profile'; // Profile page
-$route['student_setting'] = 'StudentDashboardControllers/loadStudent_setting'; // Settings page
+$route['student_dashboard'] = 'StudentDashboardControllers/loaDstudent_dashboard'; // Student dashboard
+$route['student_enrollCourse'] = 'StudentDashboardControllers/loaDstudent_enrollCourse'; // Enroll course page
+$route['student_message'] = 'StudentDashboardControllers/loaDstudent_message'; // Messages page
+$route['student_profile'] = 'StudentDashboardControllers/loaDstudent_profile'; // Profile page
+$route['student_setting'] = 'StudentDashboardControllers/loaDstudent_setting'; // Settings page
 
 // Student_Model/Auth Methods for Student
-$route['studentAuth'] = 'StudentDashboardControllers/loaDloginStudent'; // Student login (calls model)
-$route['logoutStudent'] = 'StudentDashboardControllers/loaDstudent_logout'; // Logout student
+$route['studentAuth'] = 'StudentDashboardControllers/modeLloginStudent'; // Student login (calls model)
+$route['logoutStudent'] = 'StudentDashboardControllers/modeLstudent_logout'; // Logout student

@@ -16,7 +16,7 @@ class ECommerceControllers extends CI_Controller
 
     //// eCommerce/Product pages loading here////
 
-    public function loadOur_products()
+    public function loaDour_products()
     {
         $this->load->view('eCommerce/our_products');
     }

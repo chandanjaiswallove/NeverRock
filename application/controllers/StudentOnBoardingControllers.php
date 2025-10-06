@@ -51,7 +51,7 @@ class StudentOnBoardingControllers extends CI_Controller
     // ----- Form submission handlers -----
 
     // Handle signup form submit
-    public function loaDregisterStudent()
+    public function modeLregisterStudent()
     {
         $this->Student_Model->registerStudent(); // call model to insert student into DB
     }

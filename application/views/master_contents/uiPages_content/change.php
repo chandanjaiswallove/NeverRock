@@ -358,3 +358,69 @@ class Student_Model extends CI_Model
 
 
 
+
+    //// Create an Instructor 
+    public function registerInstructor()
+    {
+        if (isset($_POST['instructorData'])) {
+
+            // Collect form data
+            $fullName = $this->input->post('instructorName', true);
+            $email = $this->input->post('instructorEmail', true);
+            $contact = $this->input->post('instructorContact', true);
+            $password = $this->input->post('instructorPassword', true);
+            $uidPortal = $this->input->post('portalUID', true);
+
+            // ✅ Check for duplicate email or phone
+            $this->db->group_start();
+            $this->db->where('instructor_email', $email);
+            $this->db->or_where('instructor_phone', $contact);
+            $this->db->group_end();
+            $existing = $this->db->get('instructor_directory'); // ✅ correct table name
+
+            if ($existing->num_rows() > 0) {
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo '<script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        swal({
+                            title: "Registration Failed",
+                            text: "Email or Phone already registered.",
+                            icon: "error"
+                        }).then(function(){ 
+                            window.location.href = "' . base_url('admin_createInstructors') . '"; 
+                        });
+                    });
+                  </script>';
+                return;
+            }
+
+            // ✅ Hash password
+            // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Prepare data array
+            $instructorData = array(
+                'instructor_name' => $fullName,
+                'instructor_email' => $email,
+                'instructor_phone' => $contact,
+                'instructor_uid' => $uidPortal,
+                'instructor_password' => $password,
+            );
+
+            // ✅ Insert into database
+            $this->db->insert('instructor_directory', $instructorData);
+
+            // Success alert
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    swal({
+                        title: "Registration Successful!",
+                        text: "Instructor registered successfully.",
+                        icon: "success"
+                    }).then(function(){ 
+                        window.location.href = "' . base_url('admin_dashboard') . '"; 
+                    });
+                });
+              </script>';
+        }
+    }

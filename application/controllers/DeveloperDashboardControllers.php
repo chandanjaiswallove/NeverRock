@@ -47,19 +47,19 @@ class DeveloperDashboardControllers extends CI_Controller
     }
 
     //// Developer_Model loading here /////
-    public function developerLogin()
+    public function modeLdeveloperAuth()
     {
         $this->load->model('Developer_Model');
         $this->Developer_Model->developerAuth();
     }
 
-    public function developerLogout()
+    public function modeLlogoutUser()
     {
         $this->load->model('Developer_Model');
         $this->Developer_Model->logoutUser();
     }
 
-    public function registerAdmin()
+    public function modeLregisterInstitute()
     {
         $this->load->model('Developer_Model');
         $this->Developer_Model->registerInstitute();

@@ -45,14 +45,14 @@ class StudentDashboardControllers extends CI_Controller
     // ----- Login / Logout actions -----
 
     // Handle login form submit
-    public function loaDloginStudent()
+    public function modeLloginStudent()
     {
         $this->load->model('Student_Model');
         $this->Student_Model->loginStudent(); // Calls model to validate login credentials
     }
 
     // Handle logout
-    public function loaDstudent_logout()
+    public function modeLstudent_logout()
     {
         $this->load->model('Student_Model');
         $this->Student_Model->student_logout(); // Calls model to destroy session

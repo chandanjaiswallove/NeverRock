@@ -54,31 +54,31 @@ class AdminDashboardControllers extends CI_Controller
 
 
     //// Admin_Model loading here /////
-    public function loaDadminAuth()
+    public function modeLadminAuth()
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->adminAuth();
     }
 
-    public function loaDlogoutAdmin()
+    public function modeLlogoutAdmin()
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->logoutAdmin();
     }
 
-    public function updateAdminPassword()
+    public function loaDupdatePassword_Dashboard()
     {
         $this->load->view('dashboard/dAdmin/updatePassword_Dashboard');
     }
 
-    public function updateNewPassword()
+    public function modeLchangeProfilePassword()
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->changeProfilePassword();
     }
 
     //// RegisterInstitute Admin_Model and Fuction loading here ////
-    public function loaDregisterInstructor()
+    public function modeLregisterInstructor()
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->registerInstructor();

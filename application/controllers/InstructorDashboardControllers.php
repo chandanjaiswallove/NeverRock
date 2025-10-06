@@ -43,13 +43,13 @@ class InstructorDashboardControllers extends CI_Controller
 
        //// Instructor_Model loading here /////
 
-    public function loaDloginINSTRUCTOR()
+    public function modeLloginINSTRUCTOR()
     {
         $this->load->model('Instructor_Model');
         $this->Instructor_Model->loginINSTRUCTOR();
     }
 
-    public function loaDinstructor_logout()
+    public function modeLinstructor_logout()
     {
         $this->load->model('Instructor_Model');
         $this->Instructor_Model->instructor_logout();

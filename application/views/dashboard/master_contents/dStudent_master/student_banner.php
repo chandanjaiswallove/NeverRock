@@ -8,8 +8,17 @@
                                         <img src="modules/assets/images/dashbord/dashbord__2.jpg" alt=""
                                                 class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                                 </div>
+
+                                <?php
+                                 $fetchStudent = $this->db->query("SELECT * FROM student_directory WHERE student_email = '{$_SESSION['activeStudent']}'");
+                                 foreach($fetchStudent->result() as $row)
+                                 {
+                                        $studentName = $row->student_fullname;
+                                 }
+
+                                ?>
                                 <div class="text-whiteColor font-bold text-center sm:text-start">
-                                        <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome Back</h5>
+                                        <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor "><?php echo "Welcome ".$studentName ;?></h5>
                                         <h2 class="text-2xl leading-1.24">Student Dashboard</h2>
 
                                 </div>

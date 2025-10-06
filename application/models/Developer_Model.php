@@ -205,7 +205,7 @@ class Developer_Model extends CI_Model
     }
 
 
-     // ✅ Logout
+    // ✅ Logout
     public function logoutUser()
     {
         session_unset();
