@@ -114,7 +114,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         portalUID.value = "INS" + month + year + namePart + uniqueCode;
 
         // Password generation
-        const passChars = 'ABCDEFWXYZ012789abcdefGHIJKLMNOPQRSTUVghijklmnopqrstuvwxyz!@3456#$%';
+        const passChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
         const shuffledPass = passChars.split('').sort(() => Math.random() - 0.5).join('');
         passwordTxt.value = shuffledPass.substr(0, 8);
     }

@@ -115,7 +115,6 @@ class Developer_Model extends CI_Model
         }
     }
 
-    //// Register Institute ////
     public function registerInstitute()
     {
         $instituteName = $_POST['instituteName'];
@@ -127,6 +126,8 @@ class Developer_Model extends CI_Model
         $dummyData = 'To be Updated';
         $emailOTP = strtoupper(random_string('alnum', 6));
         $mobileOTP = random_string('numeric', 6);
+
+        $portalHashedPswd = password_hash($portalPassword, PASSWORD_DEFAULT);
 
         $adminAvatar = array('avatar1.png', 'avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png');
 
@@ -184,7 +185,7 @@ class Developer_Model extends CI_Model
                     'profile_completion_percent' => $dummyData,
                     'system_generated_password' => $portalPassword,
                     'password_update_status' => $dummyData,
-                    'portal_credentials' => $dummyData,
+                    'portal_credentials' => $portalHashedPswd,
                     'profile_active_status' => 'Active'
                 );
                 $this->db->insert('admin_directory', $instituteData);
@@ -205,27 +206,15 @@ class Developer_Model extends CI_Model
     }
 
 
-    // ✅ Logout
+
     public function logoutUser()
     {
         session_unset();
         unset($_SESSION['activeDeveloper']);
         session_destroy();
-        // redirect(base_url('deve_loper'));
-
-        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-        echo '<script>
-        setTimeout(function () {
-            swal("Logged Out", "You have successfully logged out.", "success")
-            .then(function() {
-                window.location.href = "' . base_url('deve_loper') . '";
-            });
-        }, 100);
-    </script>';
-
+        redirect(base_url('deve_loper'));
     }
 
 
 }
-
 ?>

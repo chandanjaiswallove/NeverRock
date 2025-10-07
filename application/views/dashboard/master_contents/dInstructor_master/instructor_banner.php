@@ -10,7 +10,14 @@
                                 </div>
                                 <div class="text-whiteColor font-bold text-center sm:text-start">
                                         <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome Back</h5>
-                                        <h2 class="text-2xl leading-1.24">Instructor Dashboard</h2>
+                                                <?php
+                                        $fetchInstructor = $this->db->query("SELECT * FROM instructor_directory WHERE instructor_email = '{$_SESSION['activeInstructor']}'");
+                                        foreach ($fetchInstructor->result() as $row) {
+                                                $instructorName = $row->instructor_name;
+                                        }
+
+                                        ?>
+                                        <h2 class="text-2xl leading-1.24"><?php echo $instructorName; ?></h2>
 
                                 </div>
 

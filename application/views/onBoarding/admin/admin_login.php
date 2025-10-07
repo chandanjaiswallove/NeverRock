@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +13,7 @@
       background: #f9f9ff;
       color: #000;
       min-height: 100vh;
-      display: flex;
+      display: flex; 
       align-items: center;
       justify-content: center;
       padding: 16px;
@@ -94,7 +92,7 @@
     <!-- Left: Image -->
     <div class="auth-left">
       <img class="auth-illustration"
-        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
+        src="https://st2.depositphotos.com/2171279/9264/i/450/depositphotos_92644432-stock-photo-businesswoman-typing-on-laptop-at.jpg"
         alt="Illustration" />
     </div>
 
@@ -108,8 +106,7 @@
       <form id="loginFormEl" action="<?php echo base_url('adminAuth'); ?>" method="POST" >
         <div class="mb-3">
           <label class="form-label">Unique ID</label>
-          <input type="text" class="form-control" id="adminUID" name="adminUID" placeholder="Enter unique ID" maxlength="16" required
-            oninput="this.value = this.value.toUpperCase()">
+          <input type="text" class="form-control" id="adminUID" name="adminUID" placeholder="Enter unique ID" maxlength="16" required oninput="this.value = this.value.toUpperCase()">
         </div>
         <div class="mb-3">
           <label class="form-label">Email</label>
