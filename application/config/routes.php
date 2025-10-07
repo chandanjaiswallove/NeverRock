@@ -68,7 +68,7 @@ $route['admin_setting'] = 'AdminDashboardControllers/loaDadmin_setting'; // Admi
 
 // Admin_Model/Auth Methods for Admin
 $route['adminAuth'] = 'AdminDashboardControllers/modeLadminAuth'; // Login authentication (calls Admin_Model)
-$route['set_new_password'] = 'AdminDashboardControllers/loaDupdatePassword_Dashboard'; // Update password (form action)
+
 $route['passwordUpdate'] = 'AdminDashboardControllers/modeLchangeProfilePassword'; // Update password in database
 $route['logoutAdmin'] = 'AdminDashboardControllers/modeLlogoutAdmin'; // Logout admin
 $route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor (calls model)
@@ -91,6 +91,7 @@ $route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_se
 
 // Instructor_Model/Auth Methods for Instructor
 $route['instructorAuth'] = 'InstructorDashboardControllers/modeLloginINSTRUCTOR'; // Instructor login (calls model)
+$route['instPasswordUpdate'] = 'InstructorDashboardControllers/modeLchangeProfilePassword';// update passowrd funciton 
 $route['logoutInstructor'] = 'InstructorDashboardControllers/modeLinstructor_logout'; // Logout instructor
 
 

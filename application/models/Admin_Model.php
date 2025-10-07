@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admn_Model extends CI_Model
+class Admin_Model extends CI_Model
 {
     public function __construct()
     {
@@ -19,16 +19,6 @@ class Admn_Model extends CI_Model
             $adminEmail = trim($this->input->post('adminEMAIL', true));
             $adminPassword = trim($this->input->post('adminPASSWORD', true));
 
-            // ---- Empty field validation ----
-            if (empty($adminUID)) {
-                return $this->sweetAlert('Missing UID!', 'Please enter your Admin UID.', 'warning', base_url('admin_login'));
-            }
-            if (empty($adminEmail)) {
-                return $this->sweetAlert('Missing Email!', 'Please enter your registered Email.', 'warning', base_url('admin_login'));
-            }
-            if (empty($adminPassword)) {
-                return $this->sweetAlert('Missing Password!', 'Please enter your password.', 'warning', base_url('admin_login'));
-            }
 
             // ---- Check UID existence ----
             $uidCheck = $this->db->get_where('admin_directory', ['portal_uid' => $adminUID]);
@@ -69,7 +59,7 @@ class Admn_Model extends CI_Model
             if ($passwordStatus == 'To be Updated') {
                 return $this->sweetAlert(
                     'Password Verified!',
-                    'We have verified your credentials. Please update your password now.',
+                    'We have verified your credentials. Please update your password & Complete Your Profile now.',
                     'warning',
                     base_url('admin_setting')
                 );
@@ -99,16 +89,7 @@ class Admn_Model extends CI_Model
             $confirmPassword = trim($this->input->post('retypePassword', true));
             $adminUID = $_SESSION['activeAdmin'];
 
-            // ---- Empty fields check ----
-            if (empty($currentPassword)) {
-                return $this->sweetAlert('Missing Field!', 'Please enter your current password.', 'warning', base_url('admin_setting'));
-            }
-            if (empty($newPassword)) {
-                return $this->sweetAlert('Missing Field!', 'Please enter a new password.', 'warning', base_url('admin_setting'));
-            }
-            if (empty($confirmPassword)) {
-                return $this->sweetAlert('Missing Field!', 'Please confirm your new password.', 'warning', base_url('admin_setting'));
-            }
+
 
             // ---- Fetch record ----
             $query = $this->db->get_where('admin_directory', ['portal_uid' => $adminUID]);
@@ -160,6 +141,97 @@ class Admn_Model extends CI_Model
         session_destroy();
         redirect(base_url('admin_login'));
     }
+
+
+    // ================= Create an Instructor =================
+    public function registerInstructor()
+    {
+        if (isset($_POST['instructorData'])) {
+
+            // Collect form data
+            $fullName = trim($this->input->post('instructorName', true));
+            $email = trim($this->input->post('instructorEmail', true));
+            $contact = trim($this->input->post('instructorContact', true));
+            $password = trim($this->input->post('instructorPassword', true));
+            $uidPortal = trim($this->input->post('portalUID', true));
+            $dummyData = 'To be Updated';
+
+            // ✅ 1. Check empty fields
+            if (empty($fullName) || empty($email) || empty($contact) || empty($password) || empty($uidPortal)) {
+                return $this->sweetAlert(
+                    'Missing Fields!',
+                    'Please fill all required fields before submitting.',
+                    'warning',
+                    base_url('admin_createInstructors')
+                );
+            }
+
+            // ✅ 2. Check duplicate email
+            $checkEmail = $this->db->get_where('instructor_directory', ['instructor_email' => $email]);
+            if ($checkEmail->num_rows() > 0) {
+                return $this->sweetAlert(
+                    'Duplicate Email!',
+                    'This email is already registered. Please use another email address.',
+                    'error',
+                    base_url('admin_createInstructors')
+                );
+            }
+
+            // ✅ 3. Check duplicate phone
+            $checkPhone = $this->db->get_where('instructor_directory', ['instructor_phone' => $contact]);
+            if ($checkPhone->num_rows() > 0) {
+                return $this->sweetAlert(
+                    'Duplicate Phone!',
+                    'This phone number is already registered. Please use another contact number.',
+                    'error',
+                    base_url('admin_createInstructors')
+                );
+            }
+
+            // ✅ 4. Hash password
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // ✅ 5. Prepare data
+            $instructorData = array(
+                'instructor_name' => $fullName,
+                'instructor_email' => $email,
+                'instructor_phone' => $contact,
+                'instructor_uid' => $uidPortal,
+                'instructor_SystemPassword' => $password,
+                'portal_credentials' => $hashedPassword,
+                'password_update_status' => $dummyData,
+                'profile_active_status' => 'Active',
+            );
+
+            // ✅ 6. Insert into database
+            $insert = $this->db->insert('instructor_directory', $instructorData);
+
+            if ($insert) {
+                return $this->sweetAlert(
+                    'Registration Successful!',
+                    'Instructor has been registered successfully.',
+                    'success',
+                    base_url('admin_dashboard')
+                );
+            } else {
+                return $this->sweetAlert(
+                    'Database Error!',
+                    'Something went wrong while registering the instructor. Please try again.',
+                    'error',
+                    base_url('admin_createInstructors')
+                );
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     // ============================================================
     // ✅ SWEETALERT HELPER FUNCTION

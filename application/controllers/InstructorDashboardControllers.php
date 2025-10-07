@@ -41,7 +41,7 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/instructor_setting');
     }
 
-       //// Instructor_Model loading here /////
+    //// Instructor_Model loading here /////
 
     public function modeLloginINSTRUCTOR()
     {
@@ -49,6 +49,11 @@ class InstructorDashboardControllers extends CI_Controller
         $this->Instructor_Model->loginINSTRUCTOR();
     }
 
+    public function modeLchangeProfilePassword()
+    {
+        $this->load->model('Instructor_Model');
+        $this->Instructor_Model->changeProfilePassword();
+    }
     public function modeLinstructor_logout()
     {
         $this->load->model('Instructor_Model');

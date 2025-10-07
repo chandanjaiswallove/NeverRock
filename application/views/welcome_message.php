@@ -883,6 +883,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
         </div>
         <!-- course cards -->
 
+
         <div class="container p-0 filter-contents flex flex-wrap sm:-mx-15px" data-aos="fade-up">
           <!-- card 1 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter1 filter3">
@@ -891,7 +892,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                 <!-- card image -->
                 <div class="relative mb-4">
                   <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_1.png" alt=""
+                    <img src="modules/assets/images/grid/images.jpeg" alt=""
                       class="w-full transition-all duration-300 group-hover:scale-110">
                   </a>
                   <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
@@ -958,6 +959,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             </div>
           </div>
 
+
+
           <!-- card 2 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter3">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
@@ -965,7 +968,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                 <!-- card image -->
                 <div class="relative mb-4">
                   <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_2.png" alt=""
+                    <img src="modules/assets/images/grid/bundle.png" alt=""
                       class="w-full transition-all duration-300 group-hover:scale-110">
                   </a>
                   <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">

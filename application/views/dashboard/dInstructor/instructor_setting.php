@@ -96,7 +96,7 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                         </div>
 
                         <div class="hidden transition-all duration-300">
-                            <form
+                            <form method="POST" action="<?php echo base_url('instPasswordUpdate'); ?>"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
                                 data-aos="fade-up">
 
@@ -140,7 +140,7 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                 </div>
 
                                 <div class="mt-15px">
-                                    <button type="submit"
+                                    <button type="submit" name="updatePassword"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
                                         Update Password
                                     </button>

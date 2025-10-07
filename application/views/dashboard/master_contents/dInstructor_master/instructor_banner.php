@@ -9,9 +9,9 @@
                                                 class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                                 </div>
                                 <div class="text-whiteColor font-bold text-center sm:text-start">
-                                        <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome Back</h5>
-                                                <?php
-                                        $fetchInstructor = $this->db->query("SELECT * FROM instructor_directory WHERE instructor_email = '{$_SESSION['activeInstructor']}'");
+                                        <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome </h5>
+                                        <?php
+                                        $fetchInstructor = $this->db->query("SELECT * FROM instructor_directory WHERE instructor_uid = '{$_SESSION['activeInstructor']}'");
                                         foreach ($fetchInstructor->result() as $row) {
                                                 $instructorName = $row->instructor_name;
                                         }

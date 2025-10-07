@@ -9,8 +9,15 @@
                         class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                 </div>
                 <div class="text-whiteColor font-bold text-center sm:text-start">
-                    <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome Back</h5>
-                    <h2 class="text-2xl leading-1.24">Admin Dashboard</h2>
+                    <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome </h5>
+                    <?php
+                    $fetchStudent = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
+                    foreach ($fetchStudent->result() as $row) {
+                        $directorName = $row->director_name;
+                    }
+
+                    ?>
+                    <h2 class="text-2xl leading-1.24"><?php echo $directorName; ?></h2>
 
                 </div>
 

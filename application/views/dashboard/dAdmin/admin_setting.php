@@ -7,12 +7,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 <!-- main body -->
 <main class="bg-transparent">
 
-    <?php
-    $fetchMyAdminData = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['acitveAdmin']}'");
-    foreach ($fetchMyAdminData->result() as $row) {
-        $portalUID = $row->portal_uid;
-    }
-    ?>
+
 
     <!-- Admin Dashboard  section admin_banner  -->
     <?php

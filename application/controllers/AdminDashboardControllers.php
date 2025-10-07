@@ -11,7 +11,7 @@ class AdminDashboardControllers extends CI_Controller
     function __construct()
     {
         parent::__construct();
- 
+
     }
 
 
@@ -66,10 +66,6 @@ class AdminDashboardControllers extends CI_Controller
         $this->Admin_Model->logoutAdmin();
     }
 
-    public function loaDupdatePassword_Dashboard()
-    {
-        $this->load->view('dashboard/dAdmin/updatePassword_Dashboard');
-    }
 
     public function modeLchangeProfilePassword()
     {

@@ -238,7 +238,7 @@
                                                 </li>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-course.html"
+                                                    <a href="<?php echo site_url('admin_course'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -290,7 +290,7 @@
                                             <ul>
                                                 <li
                                                     class="py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                    <a href="admin-settings.html"
+                                                    <a href="<?php echo site_url('admin_setting'); ?>"
                                                         class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor leading-1.8 flex gap-3 text-nowrap"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="16" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"

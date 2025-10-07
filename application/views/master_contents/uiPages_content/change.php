@@ -112,6 +112,7 @@ class Admin_Model extends CI_Model
             $contact = $this->input->post('instructorContact', true);
             $password = $this->input->post('instructorPassword', true);
             $uidPortal = $this->input->post('portalUID', true);
+            $dummyData = 'To be Updated';
 
             // ✅ Check for duplicate email or phone
             $this->db->group_start();
@@ -137,7 +138,7 @@ class Admin_Model extends CI_Model
             }
 
             // ✅ Hash password
-            // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             // Prepare data array
             $instructorData = array(
@@ -145,7 +146,12 @@ class Admin_Model extends CI_Model
                 'instructor_email' => $email,
                 'instructor_phone' => $contact,
                 'instructor_uid' => $uidPortal,
-                'instructor_password' => $password,
+                'instructor_SystemPassword' => $password,
+                'portal_credentials' => $hashedPassword,
+                'password_update_status' => $dummyData,
+                'profile_active_status' => 'Active',
+               
+
             );
 
             // ✅ Insert into database
@@ -424,3 +430,87 @@ class Student_Model extends CI_Model
               </script>';
         }
     }
+
+
+    // ================= Create an Instructor =================
+public function registerInstructor()
+{
+    if (isset($_POST['instructorData'])) {
+
+        // Collect form data
+        $fullName = $this->input->post('instructorName', true);
+        $email = $this->input->post('instructorEmail', true);
+        $contact = $this->input->post('instructorContact', true);
+        $password = $this->input->post('instructorPassword', true);
+        $uidPortal = $this->input->post('portalUID', true);
+        $dummyData = 'To be Updated';
+
+        // ✅ Check for duplicate email
+        $checkEmail = $this->db->get_where('instructor_directory', ['instructor_email' => $email]);
+        if ($checkEmail->num_rows() > 0) {
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    swal({
+                        title: "Registration Failed",
+                        text: "Email already registered. Please use another email.",
+                        icon: "error"
+                    }).then(function(){ 
+                        window.location.href = "' . base_url('admin_createInstructors') . '"; 
+                    });
+                });
+              </script>';
+            return;
+        }
+
+        // ✅ Check for duplicate phone
+        $checkPhone = $this->db->get_where('instructor_directory', ['instructor_phone' => $contact]);
+        if ($checkPhone->num_rows() > 0) {
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    swal({
+                        title: "Registration Failed",
+                        text: "Phone number already registered. Please use another contact number.",
+                        icon: "error"
+                    }).then(function(){ 
+                        window.location.href = "' . base_url('admin_createInstructors') . '"; 
+                    });
+                });
+              </script>';
+            return;
+        }
+
+        // ✅ Hash password
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // Prepare data
+        $instructorData = array(
+            'instructor_name' => $fullName,
+            'instructor_email' => $email,
+            'instructor_phone' => $contact,
+            'instructor_uid' => $uidPortal,
+            'instructor_SystemPassword' => $password,
+            'portal_credentials' => $hashedPassword,
+            'password_update_status' => $dummyData,
+            'profile_active_status' => 'Active',
+        );
+
+        // ✅ Insert into database
+        $this->db->insert('instructor_directory', $instructorData);
+
+        // ✅ Success alert
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                swal({
+                    title: "Registration Successful!",
+                    text: "Instructor registered successfully.",
+                    icon: "success"
+                }).then(function(){ 
+                    window.location.href = "' . base_url('admin_dashboard') . '"; 
+                });
+            });
+          </script>';
+    }
+}
