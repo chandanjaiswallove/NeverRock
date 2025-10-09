@@ -54,7 +54,10 @@ class UiPagesControllers extends CI_Controller
 		$this->load->view('uiPages/success_stories');
 	}
 
-
+	public function loaDcourse_details()
+	{
+		$this->load->view('uiPages/course_details');
+	}
 }
 
 ?>

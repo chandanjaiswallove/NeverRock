@@ -1,4 +1,4 @@
-    <!-- Header section uiHeader  -->
+<!-- Header section uiHeader  -->
 <?php
 $this->load->view('master_contents/uiPages_content/uiHeader');
 ?>
@@ -103,11 +103,11 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                           <div class="mt-30px">
                             <a href="<?php echo site_url('welcome'); ?>"
-                              class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-25px py-15px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                              class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                               View Courses
                             </a>
                             <a href="<?php echo site_url('welcome'); ?>"
-                              class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-25px py-15px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
+                              class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
                               Explore More
                             </a>
                           </div>
@@ -158,11 +158,11 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                           <div class="mt-30px">
                             <a href="<?php echo site_url('welcome'); ?>"
-                              class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-25px py-15px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                              class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                               View Courses
                             </a>
                             <a href="<?php echo site_url('welcome'); ?>"
-                              class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-25px py-15px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
+                              class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
                               Explore More
                             </a>
                           </div>
@@ -786,7 +786,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   View Courses
                 </a>
                 <a href="<?php echo site_url('welcome'); ?>"
-                  class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-25px py-15px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
+                  class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-secondaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-secondaryColor">
                   Explore More
                 </a>
               </div>
@@ -886,75 +886,97 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
         <div class="container p-0 filter-contents flex flex-wrap sm:-mx-15px" data-aos="fade-up">
           <!-- card 1 -->
-          <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter1 filter3">
+          <div class="w-full md:w-1/2 lg:w-1/3  group grid-item filter1 filter3">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
+              <div
+                class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark rounded-standard">
                 <!-- card image -->
                 <div class="relative mb-4">
                   <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/images.jpeg" alt=""
+                    <img src="modules/assets/images/grid/bundle_11.jpg" alt=""
                       class="w-full transition-all duration-300 group-hover:scale-110">
                   </a>
                   <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                     <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                        Data & Tech
+                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-primaryColor rounded font-semibold">
+                        Paid
                       </p>
                     </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
+                    <!-- <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
+                      href="<?php echo site_url('welcome'); ?>"><i
+                        class="icofont-heart-alt text-base py-1 px-2"></i></a> -->
+                  </div> 
                 </div>
                 <!-- card content -->
                 <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">23 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">1 hr 30 min</span>
-                      </div>
-                    </div>
-                  </div>
+
                   <a href="course-details.html"
                     class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                     Foundation course to under stand about softwere
                   </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $32.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-secondaryColor3">Free</del></span>
+
+
+                  <!-- Online and offline medium  -->
+                  <div class="text-lg font-semibold text-primaryColor font-inter">
+                    <span class="text-sm text-black dark:text-blackColor-dark"> <i
+                        class="icofont-calendar  text-primaryColor text-lg"></i>
+                      Start On 07/10/25</span>
+                    &nbsp;
+                    <span class="text-sm text-black dark:text-blackColor-dark"> <i
+                        class="icofont-clock-time text-primaryColor text-lg"></i>
+                      Ends On 31/10/202</span>
+
                   </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_1.jpg" alt="">
-                        <span class="flex">Micle john</span>
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
+
+
+
+                  <!-- Online and offline medium  -->
+                  <div class="text-lg font-semibold text-primaryColor font-inter mb-3">
+                    <span class="text-sm text-black dark:text-blackColor-dark"><i
+                        class="icofont-badge pr-5px text-primaryColor text-lg"></i>Online</span>
+                    &nbsp;
+                    <span class="text-sm text-black dark:text-blackColor-dark">
+                      <i class="icofont-globe-alt pr-5px text-primaryColor text-lg"></i>Hindi Medium</span>
+
+                  </div>
+
+
+
+
+                  <!-- Price -->
+            <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
+                    &#8377;99/- &nbsp;
+                    <del class="text-sm text-lightGrey4 font-semibold"> &#8377; 199</del>
+                    <span class="ml-6 text-base font-semibold text-primaryColor">Discount applied 10%</span>
+                  </div>   
+
+                  <!-- free course -->
+
+                  <!-- <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
+                    <span class=" text-base font-semibold text-primaryColor">Free Courses</span>
+                  </div>  -->
+
+
+                  <!-- buttons  and buy and explore-->
+                  <div class="grid grid-cols-1 md:grid-cols-2  text-center gap-2 ">
+
+
+                    <a href="http://localhost/NeverRock/welcome"
+                      class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                      Explore Now
+                    </a>
+
+
+                    <a href="http://localhost/NeverRock/welcome"
+                      class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                      Buy Now
+                    </a>
+
+
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
@@ -964,373 +986,37 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
           <!-- card 2 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter3">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                <!-- card image -->
-                <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/bundle.png" alt=""
-                      class="w-full transition-all duration-300 group-hover:scale-110">
-                  </a>
-                  <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                    <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                        Mechanical
-                      </p>
-                    </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
-                </div>
-                <!-- card content -->
-                <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">29 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">2 hr 10 min</span>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="course-details.html"
-                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Nidnies course to under stand about softwere
-                  </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $32.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-greencolor">Free</del></span>
-                  </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_2.jpg" alt="">Rinis Jhon
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
 
           <!-- card 3 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter4 filter5">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                <!-- card image -->
-                <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_3.png" alt=""
-                      class="w-full transition-all duration-300 group-hover:scale-110">
-                  </a>
-                  <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                    <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor2 rounded font-semibold">
-                        Development
-                      </p>
-                    </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
-                </div>
-                <!-- card content -->
-                <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">
-                          25 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">
-                          1 hr 40 min</span>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="course-details.html"
-                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Minws course to under stand about solution
-                  </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $40.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                  </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_3.jpg" alt="">Micle John
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
 
           <!-- card 4 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter4">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                <!-- card image -->
-                <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_4.png" alt=""
-                      class="w-full transition-all duration-300 group-hover:scale-110">
-                  </a>
-                  <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                    <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-greencolor2 rounded font-semibold">
-                        Ui & UX Design
-                      </p>
-                    </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
-                </div>
-                <!-- card content -->
-                <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">
-                          36 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">3 hr 40 min</span>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="course-details.html"
-                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Design course to under stand about solution
-                  </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $40.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                  </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_4.jpg" alt="">
-                        <span class="flex flex-shrink-0">Micle Robin</span>
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
           </div>
 
           <!-- card 5 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group group grid-item filter1 filter3">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                <!-- card image -->
-                <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_5.png" alt=""
-                      class="w-full transition-all duration-300 group-hover:scale-110">
-                  </a>
-                  <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                    <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-orange rounded font-semibold">
-                        Data & Tech
-                      </p>
-                    </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
-                </div>
-                <!-- card content -->
-                <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">36 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">3 hr 40 min</span>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="course-details.html"
-                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Data course to under stand about solution
-                  </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $40.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                  </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_1.jpg" alt="">
-                        <span class="flex flex-shrink-0">Micle Robin</span>
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
 
           <!-- card 6 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter5">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
-              <div class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                <!-- card image -->
-                <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/grid_6.png" alt=""
-                      class="w-full transition-all duration-300 group-hover:scale-110">
-                  </a>
-                  <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                    <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-yellow rounded font-semibold">
-                        Big Data
-                      </p>
-                    </div>
-                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor" href="<?php echo site_url('welcome'); ?>"><i
-                        class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                  </div>
-                </div>
-                <!-- card content -->
-                <div>
-                  <div class="grid grid-cols-2 mb-15px">
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">
-                          30 Lesson</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <div>
-                        <i class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                      </div>
-                      <div>
-                        <span class="text-sm text-black dark:text-blackColor-dark">3 hr 40 min</span>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="course-details.html"
-                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Big data to under stand about solution pacage
-                  </a>
-                  <!-- price -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    $40.00
-                    <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
-                    <span class="ml-6"><del class="text-base font-semibold text-secondaryColor3">
-                        Free</del></span>
-                  </div>
-                  <!-- author and rating-->
-                  <div class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                    <div>
-                      <a href="instructor-details.html"
-                        class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                          class="w-[30px] h-[30px] rounded-full mr-15px"
-                          src="modules/assets/images/grid/grid_small_1.jpg" alt="">
-                        <span class="flex flex-shrink-0">Micle Robin</span>
-                      </a>
-                    </div>
-                    <div class="text-start md:text-end">
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <i class="icofont-star text-size-15 text-yellow"></i>
-                      <span class="text-xs text-lightGrey6">(44)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -1748,7 +1434,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -1843,7 +1530,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -1938,7 +1626,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2033,7 +1722,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2128,7 +1818,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2223,7 +1914,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2318,7 +2010,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2413,7 +2106,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
                         <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                          href="<?php echo site_url('welcome'); ?>"><i class="icofont-heart-alt text-base py-1 px-2"></i></a>
+                          href="<?php echo site_url('welcome'); ?>"><i
+                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
                       </div>
 
                       <div
@@ -2734,7 +2428,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             <div class="text-center">
               <span
                 class="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block">
-                News &  Blogs
+                News & Blogs
               </span>
             </div>
           </div>
@@ -2743,7 +2437,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             Leatest News &
             <span
               class="relative after:w-full after:h-[7px] z-0 after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-5 after:z-[-1]">
-              Blogs</span> 
+              Blogs</span>
           </h3>
 
         </div>
@@ -2876,25 +2570,25 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
     <div class="container pb-70px">
       <!-- heading -->
       <div class="mb-5 md:mb-10" data-aos="fade-up">
-      <div class="relative">
-        <div>
-          <div class="text-center">
-            <span
-              class="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block">
-              Upcoming Events
-            </span>
+        <div class="relative">
+          <div>
+            <div class="text-center">
+              <span
+                class="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-full inline-block">
+                Upcoming Events
+              </span>
+            </div>
           </div>
-        </div>
           <h3
             class="text-3xl md:text-[35px] lg:text-size-38 3xl:text-size-42 leading-10 mf:leading-45px 2xl:leading-50px 3xl:leading-2xl font-bold text-blackColor dark:text-blackColor-dark text-center">
             Leatest Upcoming
             <span
               class="relative after:w-full after:h-[7px] z-0 after:bg-secondaryColor after:absolute after:left-0 after:bottom-3 md:after:bottom-5 after:z-[-1]">Events
-              </span> 
+            </span>
           </h3>
+        </div>
       </div>
-    </div> 
-    
+
 
       <!-- blogs -->
 
@@ -2970,9 +2664,9 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
 
         <!-- Event -->
-         
+
         <div class="lg:col-start-9 lg:col-span-4">
-  
+
           <div class="flex flex-col gap-y-30px">
             <!-- blog 2 -->
             <div class="group shadow-blog" data-aos="fade-up">
@@ -3048,7 +2742,9 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
         </h3>
       </div> -->
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10px text-center border border p-5 transition-all rounded duration-300 border border-borderColor dark:border-borderColor-dark shadow-address hover:shadow-address-hover hover:-translate-y-5px "data-aos="fade-up"  >
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10px text-center border border p-5 transition-all rounded duration-300 border border-borderColor dark:border-borderColor-dark shadow-address hover:shadow-address-hover hover:-translate-y-5px "
+        data-aos="fade-up">
         <!-- firsr card -->
 
         <div class=" flex items-center " data-aos="fade-up">
@@ -3199,7 +2895,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 </main>
 <!-- section for body End here -->
 
- <!-- Footer uiFooter section -->
+<!-- Footer uiFooter section -->
 <?php
 $this->load->view('master_contents/uiPages_content/uiFooter');
 ?>
