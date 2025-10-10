@@ -129,19 +129,7 @@ class Admin_Model extends CI_Model
                 base_url('logoutAdmin')
             );
         }
-    }
-
-
-
-    // ============================================================
-    // ✅ ADMIN LOGOUT FUNCTION
-    // ============================================================
-    public function logoutAdmin()
-    {
-        session_unset();
-        unset($_SESSION['activeAdmin']);
-        session_destroy();
-        redirect(base_url('admin_login'));
+        
     }
 
 
@@ -250,14 +238,12 @@ class Admin_Model extends CI_Model
         $config['max_width'] = 1200;
         $config['remove_spaces'] = TRUE;
         $config['file_ext_tolower'] = TRUE;
-        $config['file_name'] = uniqid()."_".preg_replace('/\s+/', '_', $_FILES['courseImage']['name']);
+        $config['file_name'] = uniqid() . "_" . preg_replace('/\s+/', '_', $_FILES['courseImage']['name']);
 
-        $this->load->library('upload',$config);
+        $this->load->library('upload', $config);
 
-        if(isset($_POST['registerCourse']))
-        {
-            if(is_uploaded_file($_FILES['file_name']['tmp_name']))
-            {
+        if (isset($_POST['registerCourse'])) {
+            if (is_uploaded_file($_FILES['file_name']['tmp_name'])) {
                 echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
                 echo '<script>';
                 echo 'document.addEventListener("DOMContentLoaded", function() {';
@@ -270,41 +256,39 @@ class Admin_Model extends CI_Model
                 echo '  });';
                 echo '});';
                 echo '</script>';
-            }
-            else
-            {
+            } else {
 
-            $this->upload->do_upload('courseImage');
+                $this->upload->do_upload('courseImage');
 
-            $courseData = array(
-                'course_name' => $courseTitle,
-                'course_type' => $CourseType,
-                'course_thumbnail' => $config['file_name'],
-                'starting_date' => $startDate,
-                'ending_date' => $finishDate,
-                'course_mode' => $courseAvailability,
-                'course_language' => $languageMedium,
-                'course_description' => 'To be Updated',
-                'course_actual_cost' => $regularPrice,
-                'course_selling_cost' => $finalPrice,
-                'discount_applied' => $discountPrice,
-                'course_large_description' => 'To be Updated',
-                'course_preview_video' => 'To be Updated'
-            );
-            $this->db->insert('course_directory',$courseData);
+                $courseData = array(
+                    'course_name' => $courseTitle,
+                    'course_type' => $CourseType,
+                    'course_thumbnail' => $config['file_name'],
+                    'starting_date' => $startDate,
+                    'ending_date' => $finishDate,
+                    'course_mode' => $courseAvailability,
+                    'course_language' => $languageMedium,
+                    'course_description' => 'To be Updated',
+                    'course_actual_cost' => $regularPrice,
+                    'course_selling_cost' => $finalPrice,
+                    'discount_applied' => $discountPrice,
+                    'course_large_description' => 'To be Updated',
+                    'course_preview_video' => 'To be Updated'
+                );
+                $this->db->insert('course_directory', $courseData);
 
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>';
-            echo 'document.addEventListener("DOMContentLoaded", function() {';
-            echo '  swal({';
-            echo '    title: "Course Created!",';
-            echo '    text: "You have successfully created a course.",';
-            echo '    icon: "success",';
-            echo '  }).then(function() {';
-            echo '    window.location.href = "' . base_url('admin_course') . '";';
-            echo '  });';
-            echo '});';
-            echo '</script>';
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo '<script>';
+                echo 'document.addEventListener("DOMContentLoaded", function() {';
+                echo '  swal({';
+                echo '    title: "Course Created!",';
+                echo '    text: "You have successfully created a course.",';
+                echo '    icon: "success",';
+                echo '  }).then(function() {';
+                echo '    window.location.href = "' . base_url('admin_course') . '";';
+                echo '  });';
+                echo '});';
+                echo '</script>';
             }
         }
 
@@ -314,6 +298,20 @@ class Admin_Model extends CI_Model
 
 
 
+
+
+
+
+    // ============================================================
+    // ✅ ADMIN LOGOUT FUNCTION
+    // ============================================================
+    public function logoutAdmin()
+    {
+        session_unset();
+        unset($_SESSION['activeAdmin']);
+        session_destroy();
+        redirect(base_url('admin_login'));
+    }
 
 
 

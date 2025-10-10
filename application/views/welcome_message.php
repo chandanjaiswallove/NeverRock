@@ -902,7 +902,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   </a>
                   <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                     <div>
-                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-primaryColor rounded font-semibold">
+                      <p class="text-xs text-whiteColor px-4 py-[3px] bg-primaryColor rounded font-semibold capitalize  ">
                         <?php echo $row->course_type; ?>
                       </p>
                     </div>
@@ -935,7 +935,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
 
                   <!-- Online and offline medium  -->
-                  <div class="text-lg font-semibold text-primaryColor font-inter mb-3">
+                  <div class="text-lg font-semibold text-primaryColor font-inter mb-3 capitalize ">
                     <span class="text-sm text-black dark:text-blackColor-dark"><i
                         class="icofont-badge pr-5px text-primaryColor text-lg"></i><?php echo $row->course_mode; ?></span>
                     &nbsp;
@@ -951,7 +951,12 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
                     <?php echo $this->config->item('indianRupee').$row->course_selling_cost; ?>
                     <del class="text-sm text-lightGrey4 font-semibold"> <?php echo  $this->config->item('indianRupee').$row->course_actual_cost; ?></del>
-                    <span class="ml-6 text-base font-semibold text-primaryColor">Discount applied 10%</span>
+
+                    <!-- <div>
+                                    <a href="course-details.html#" class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">68%
+                                        OFF</a>
+                                </div> -->
+                    <span class="ml-6 text-base font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark"><?php echo  $this->config->item('discountPercent').$row->discount_applied; ?>% OFF </span>
                   </div>   
 
                   <!-- free course -->

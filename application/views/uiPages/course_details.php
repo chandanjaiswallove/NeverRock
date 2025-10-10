@@ -72,7 +72,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                                     <button
                                         class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center before:w-full active">
-                                        <i class="icofont-star mr-2"></i> Reviews
+                                        <i class="icofont-star mr-2"></i> Faqs
                                     </button>
                                     <button
                                         class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
@@ -487,238 +487,60 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                                     </div>
                                     <!-- reviews  -->
-                                    <div class="block opacity-100">
-                                        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-x-30px gap-y-5">
-                                            <div
-                                                class="lg:col-start-1 lg:col-span-4 px-10px py-30px bg-whiteColor dark:bg-whiteColor-dark shadow-review text-center">
-                                                <p
-                                                    class="text-7xl font-extrabold text-blackColor dark:text-blackColor-dark leading-90px">
-                                                    5.0
-                                                </p>
-                                                <div class="text-secondaryColor">
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
-                                                    <i class="icofont-star"></i>
+                                    <div class="hidden">
+                                        <ul class="accordion-container curriculum">
+                                            <!-- accordion  Curriulum-->
+                                            <li class="accordion mb-25px overflow-hidden">
+                                                <div
+                                                    class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md ">
+                                                    <!-- controller -->
+                                                    <div>
+                                                        <div
+                                                            class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                                            <div class="flex items-center">
+                                                                <span>What do you know about this Foundation course to
+                                                                    stnad under sector?</span>
+                                                            </div>
+                                                            <svg class="transition-all duration-500 rotate-0" width="20"
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                                fill="#212529">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                                                </path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <!-- content -->
+                                                    <div class="accordion-content transition-all duration-500 h-0">
+                                                        <div class="content-wrapper p-10px md:px-30px">
+                                                            <ul>
+                                                                <p class="text-sm md:text-lg text-contentColor dark:contentColor-dark mb-25px !leading-30px aos-init aos-animate"
+                                                                    data-aos="fade-up">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                    elit.
+                                                                    Curabitur vulputate vestibulum rhoncus, dolor eget
+                                                                    viverra
+                                                                    pretium, dolor tellus aliquet nunc, vitae ultricies
+                                                                    erat
+                                                                    elit eu lacus. Vestibulum non justo consectetur,
+                                                                    cursus
+                                                                    ante, tincidunt sapien. Nulla quis diam sit amet
+                                                                    turpis
+                                                                    interd enim. Vivamus faucibus ex sed nibh egestas
+                                                                    elementum.
+                                                                    Mauris et bibendum dui. Aenean consequat pulvinar
+                                                                    luctus.
+                                                                    Suspendisse consectetur tristique
+                                                                </p>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <p
-                                                    class="text-blackColor dark:text-blackColor-dark leading-26px font-medium">
-                                                    (17 Reviews)
-                                                </p>
-                                            </div>
-                                            <!-- progress bar -->
-                                            <div class="lg:col-start-5 lg:col-span-8 px-15px">
-                                                <ul class="flex flex-col gap-y-3">
-                                                    <li
-                                                        class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div>
-                                                            <span>5</span>
-                                                            <span><i
-                                                                    class="icofont-star text-secondaryColor"></i></span>
-                                                        </div>
-                                                        <div class="flex-grow relative mx-10px md:mr-10 lg:mr-10px">
-                                                            <span
-                                                                class="h-10px w-full bg-borderColor dark:bg-borderColor-dark rounded-full block"></span>
-                                                            <span
-                                                                class="absolute left-0 top-0 h-10px w-full bg-secondaryColor rounded-full"></span>
-                                                        </div>
-                                                        <div><span>10</span></div>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div>
-                                                            <span>4</span>
-                                                            <span><i
-                                                                    class="icofont-star text-secondaryColor"></i></span>
-                                                        </div>
-                                                        <div class="flex-grow relative mx-10px md:mr-10 lg:mr-10px">
-                                                            <span
-                                                                class="h-10px w-full bg-borderColor dark:bg-borderColor-dark rounded-full block"></span>
-                                                            <span
-                                                                class="absolute left-0 top-0 h-10px w-4/5 bg-secondaryColor rounded-full"></span>
-                                                        </div>
-                                                        <div><span>5</span></div>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div>
-                                                            <span>3</span>
-                                                            <span><i
-                                                                    class="icofont-star text-secondaryColor"></i></span>
-                                                        </div>
-                                                        <div class="flex-grow relative mx-10px md:mr-10 lg:mr-10px">
-                                                            <span
-                                                                class="h-10px w-full bg-borderColor dark:bg-borderColor-dark rounded-full block"></span>
-                                                            <span
-                                                                class="absolute left-0 top-0 h-10px w-60% bg-secondaryColor rounded-full"></span>
-                                                        </div>
-                                                        <div><span>3</span></div>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div>
-                                                            <span>2</span>
-                                                            <span><i
-                                                                    class="icofont-star text-secondaryColor"></i></span>
-                                                        </div>
-                                                        <div class="flex-grow relative mx-10px md:mr-10 lg:mr-10px">
-                                                            <span
-                                                                class="h-10px w-full bg-borderColor dark:bg-borderColor-dark rounded-full block"></span>
-                                                            <span
-                                                                class="absolute left-0 top-0 h-10px w-30% bg-secondaryColor rounded-full"></span>
-                                                        </div>
-                                                        <div><span>2</span></div>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center text-blackColor dark:text-blackColor-dark">
-                                                        <div>
-                                                            <span>1</span>
-                                                            <span><i
-                                                                    class="icofont-star text-secondaryColor"></i></span>
-                                                        </div>
-                                                        <div class="flex-grow relative mx-10px md:mr-10 lg:mr-10px">
-                                                            <span
-                                                                class="h-10px w-full bg-borderColor dark:bg-borderColor-dark rounded-full block"></span>
-                                                            <span
-                                                                class="absolute left-0 top-0 h-10px w-10% bg-secondaryColor rounded-full"></span>
-                                                        </div>
-                                                        <div><span>1</span></div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- client reviews -->
-                                        <div class="mt-60px mb-10">
-                                            <h4
-                                                class="text-lg text-blackColor dark:text-blackColor-dark font-bold pl-2 before:w-0.5 relative before:h-[21px] before:bg-secondaryColor before:absolute before:bottom-[5px] before:left-0 leading-1.2 mb-25px">
-                                                Student Reviews
-                                            </h4>
-                                            <ul>
-                                                <li
-                                                    class="flex gap-30px pt-35px border-t border-borderColor2 dark:border-borderColor2-dark">
-                                                    <div class="flex-shrink-0">
-                                                        <div>
-                                                            <img src="modules/assets/images/teacher/teacher__2.png"
-                                                                alt="" class="w-25 h-25 rounded-full">
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow">
-                                                        <div class="flex justify-between">
-                                                            <div>
-                                                                <h4>
-                                                                    <a href="course-details.html#"
-                                                                        class="text-lg font-semibold text-blackColor hover:text-secondaryColor dark:text-blackColor-dark dark:hover:text-condaryColor leading-1.2">
-                                                                        Adam Smit</a>
-                                                                </h4>
-                                                                <div class="text-secondaryColor leading-1.8">
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="author__icon">
-                                                                <p
-                                                                    class="text-sm font-bold text-blackColor dark:text-blackColor-dark leading-9 px-25px mb-5px border-2 border-borderColor2 dark:border-borderColo2-dark hover:border-secondaryColor dark:hover:border-secondaryColor rounded-full transition-all duration-300">
-                                                                    September 2, 2024
-                                                                </p>
-                                                            </div>
-                                                        </div>
+                                            </li>
+                                            <!-- accordion  Curriulum-->
 
-                                                        <p
-                                                            class="text-sm text-contentColor dark:text-contentColor-dark leading-23px mb-15px">
-                                                            Lorem ipsum dolor sit amet, consectetur
-                                                            adipisicing elit. Doloribus, omnis fugit
-                                                            corporis iste magnam ratione.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li
-                                                    class="flex gap-30px pt-35px border-t border-borderColor2 dark:border-borderColor2-dark">
-                                                    <div class="flex-shrink-0">
-                                                        <div>
-                                                            <img src="modules/assets/images/teacher/teacher__1.png"
-                                                                alt="" class="w-25 h-25 rounded-full">
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow">
-                                                        <div class="flex justify-between">
-                                                            <div>
-                                                                <h4>
-                                                                    <a href="course-details.html#"
-                                                                        class="text-lg font-semibold text-blackColor hover:text-secondaryColor dark:text-blackColor-dark dark:hover:text-condaryColor leading-1.2">
-                                                                        Adam Smit</a>
-                                                                </h4>
-                                                                <div class="text-secondaryColor leading-1.8">
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="author__icon">
-                                                                <p
-                                                                    class="text-sm font-bold text-blackColor dark:text-blackColor-dark leading-9 px-25px mb-5px border-2 border-borderColor2 dark:border-borderColo2-dark hover:border-secondaryColor dark:hover:border-secondaryColor rounded-full transition-all duration-300">
-                                                                    September 2, 2024
-                                                                </p>
-                                                            </div>
-                                                        </div>
-
-                                                        <p
-                                                            class="text-sm text-contentColor dark:text-contentColor-dark leading-23px mb-15px">
-                                                            Lorem ipsum dolor sit amet, consectetur
-                                                            adipisicing elit. Doloribus, omnis fugit
-                                                            corporis iste magnam ratione.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li
-                                                    class="flex gap-30px pt-35px border-t border-borderColor2 dark:border-borderColor2-dark">
-                                                    <div class="flex-shrink-0">
-                                                        <div>
-                                                            <img src="modules/assets/images/teacher/teacher__3.png"
-                                                                alt="" class="w-25 h-25 rounded-full">
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow">
-                                                        <div class="flex justify-between">
-                                                            <div>
-                                                                <h4>
-                                                                    <a href="course-details.html#"
-                                                                        class="text-lg font-semibold text-blackColor hover:text-secondaryColor dark:text-blackColor-dark dark:hover:text-condaryColor leading-1.2">
-                                                                        Adam Smit</a>
-                                                                </h4>
-                                                                <div class="text-secondaryColor leading-1.8">
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                    <i class="icofont-star"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="author__icon">
-                                                                <p
-                                                                    class="text-sm font-bold text-blackColor dark:text-blackColor-dark leading-9 px-25px mb-5px border-2 border-borderColor2 dark:border-borderColo2-dark hover:border-secondaryColor dark:hover:border-secondaryColor rounded-full transition-all duration-300">
-                                                                    September 2, 2024
-                                                                </p>
-                                                            </div>
-                                                        </div>
-
-                                                        <p
-                                                            class="text-sm text-contentColor dark:text-contentColor-dark leading-23px mb-15px">
-                                                            Lorem ipsum dolor sit amet, consectetur
-                                                            adipisicing elit. Doloribus, omnis fugit
-                                                            corporis iste magnam ratione.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-
+                                        </ul>
                                     </div>
 
                                     <!-- instructor-details -->
@@ -782,228 +604,6 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                             </div>
 
-
-                            <!-- other courses -->
-                            <div class="mt-50px mb-30px aos-init aos-animate" data-aos="fade-up">
-                                <!-- other courses heading -->
-                                <div class="flex items-center justify-between mb-10px">
-                                    <h4
-                                        class="text-3xl font-bold text-blackColor dark:text-blackColor-dark leading-1.2">
-                                        More Courses
-                                    </h4>
-                                    <a href="course.html" class="text-contentColor dark:text-contentColor-dark">More
-                                        Courses...</a>
-                                </div>
-                                <div data-aos="fade-up" class="sm:-mx-15px aos-init aos-animate">
-                                    <!-- Swiper -->
-                                    <div
-                                        class="swiper other-courses swiper-initialized swiper-horizontal swiper-backface-hidden">
-                                        <div class="swiper-wrapper" id="swiper-wrapper-9953e13515a973d7"
-                                            aria-live="polite" style="cursor: grab;">
-                                            <!-- card 1 -->
-                                            <div class="swiper-slide swiper-slide-active" role="group"
-                                                aria-label="1 / 6" data-swiper-slide-index="0" style="width: 320px;">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_1.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                            Data &amp; Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- card 2 -->
-                                            <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 6"
-                                                data-swiper-slide-index="1" style="width: 320px;">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_2.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-yellow rounded font-semibold">
-                                                                            Data &amp; Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="swiper-notification" aria-live="assertive"
-                                            aria-atomic="true"></span>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                     </div>

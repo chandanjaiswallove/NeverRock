@@ -80,6 +80,12 @@ class AdminDashboardControllers extends CI_Controller
         $this->Admin_Model->registerInstructor();
     }
 
+        public function modeLcreateCourse() /// Create Course Bundle 
+    {
+        $this->load->model('Admin_Model');
+        $this->Admin_Model->createCourse();
+    }
+
 }
 
 

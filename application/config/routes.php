@@ -23,7 +23,7 @@ $route['instructors'] = 'UiPagesControllers/loaDinstructors'; // Instructors lis
 $route['principal_message'] = 'UiPagesControllers/loaDprincipal_message'; // Principal message page
 $route['success_stories'] = 'UiPagesControllers/loaDsuccess_stories'; // Success stories page
 $route['course_details'] = 'UiPagesControllers/loaDcourse_details'; // course_details page
-$route['registerCourse'] = 'AdminDashboardControllers/createNewCourse';
+
 
 
 
@@ -70,11 +70,12 @@ $route['admin_profile'] = 'AdminDashboardControllers/loaDadmin_profile'; // Admi
 $route['admin_setting'] = 'AdminDashboardControllers/loaDadmin_setting'; // Admin settings
 
 // Admin_Model/Auth Methods for Admin
-$route['adminAuth'] = 'AdminDashboardControllers/modeLadminAuth'; // Login authentication (calls Admin_Model)
-
+$route['adminAuth'] = 'AdminDashboardControllers/modeLadminAuth'; // Login authentication 
 $route['passwordUpdate'] = 'AdminDashboardControllers/modeLchangeProfilePassword'; // Update password in database
 $route['logoutAdmin'] = 'AdminDashboardControllers/modeLlogoutAdmin'; // Logout admin
-$route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor (calls model)
+$route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor 
+$route['createCourse'] = 'AdminDashboardControllers/modeLcreateCourse'; // Create Course Bundle
+
 
 
 
