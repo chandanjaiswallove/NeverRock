@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://localhost/NeverRock/';
 
+$config['indianRupee'] = '&#8377;';
+
 
 /*
 |--------------------------------------------------------------------------

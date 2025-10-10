@@ -23,6 +23,7 @@ $route['instructors'] = 'UiPagesControllers/loaDinstructors'; // Instructors lis
 $route['principal_message'] = 'UiPagesControllers/loaDprincipal_message'; // Principal message page
 $route['success_stories'] = 'UiPagesControllers/loaDsuccess_stories'; // Success stories page
 $route['course_details'] = 'UiPagesControllers/loaDcourse_details'; // course_details page
+$route['registerCourse'] = 'AdminDashboardControllers/createNewCourse';
 
 
 

@@ -231,7 +231,85 @@ class Admin_Model extends CI_Model
     // ✅ COURSE ENROLLMENT MODEL
     // ============================================================
 
+    public function createCourse()
+    {
+        $courseTitle = $_POST['courseTitle'];
+        $CourseType = $_POST['courseType'];
+        $startDate = $_POST['startDate'];
+        $finishDate = $_POST['finishDate'];
+        $courseAvailability = $_POST['avilability'];
+        $languageMedium = $_POST['language'];
+        $regularPrice = $_POST['regularPrice'];
+        $discountPrice = $_POST['discountPercent'];
+        $finalPrice = $_POST['finalPrice'];
 
+        // image Configuration for uploading course
+        $config['upload_path'] = 'modules/courseThumbnail/';
+        $config['allowed_types'] = 'jpg|png|jpeg|webp';
+        $config['max_height'] = 650;
+        $config['max_width'] = 1200;
+        $config['remove_spaces'] = TRUE;
+        $config['file_ext_tolower'] = TRUE;
+        $config['file_name'] = uniqid()."_".preg_replace('/\s+/', '_', $_FILES['courseImage']['name']);
+
+        $this->load->library('upload',$config);
+
+        if(isset($_POST['registerCourse']))
+        {
+            if(is_uploaded_file($_FILES['file_name']['tmp_name']))
+            {
+                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+                echo '<script>';
+                echo 'document.addEventListener("DOMContentLoaded", function() {';
+                echo '  swal({';
+                echo '    title: "No Image Uploaded!",';
+                echo '    text: "Please Try again.",';
+                echo '    icon: "success",';
+                echo '  }).then(function() {';
+                echo '    window.location.href = "' . base_url('admin_course') . '";';
+                echo '  });';
+                echo '});';
+                echo '</script>';
+            }
+            else
+            {
+
+            $this->upload->do_upload('courseImage');
+
+            $courseData = array(
+                'course_name' => $courseTitle,
+                'course_type' => $CourseType,
+                'course_thumbnail' => $config['file_name'],
+                'starting_date' => $startDate,
+                'ending_date' => $finishDate,
+                'course_mode' => $courseAvailability,
+                'course_language' => $languageMedium,
+                'course_description' => 'To be Updated',
+                'course_actual_cost' => $regularPrice,
+                'course_selling_cost' => $finalPrice,
+                'discount_applied' => $discountPrice,
+                'course_large_description' => 'To be Updated',
+                'course_preview_video' => 'To be Updated'
+            );
+            $this->db->insert('course_directory',$courseData);
+
+            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+            echo '<script>';
+            echo 'document.addEventListener("DOMContentLoaded", function() {';
+            echo '  swal({';
+            echo '    title: "Course Created!",';
+            echo '    text: "You have successfully created a course.",';
+            echo '    icon: "success",';
+            echo '  }).then(function() {';
+            echo '    window.location.href = "' . base_url('admin_course') . '";';
+            echo '  });';
+            echo '});';
+            echo '</script>';
+            }
+        }
+
+
+    }
 
 
 

@@ -886,20 +886,24 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
         <div class="container p-0 filter-contents flex flex-wrap sm:-mx-15px" data-aos="fade-up">
           <!-- card 1 -->
+          <?php 
+             $fetchEnrolledCourse = $this->db->query("SELECT * FROM course_directory");
+             foreach ($fetchEnrolledCourse->result() as $row) { ?>
+
           <div class="w-full md:w-1/2 lg:w-1/3  group grid-item filter1 filter3">
             <div class="tab-content-wrapper sm:px-15px mb-30px">
               <div
                 class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark rounded-standard">
                 <!-- card image -->
                 <div class="relative mb-4">
-                  <a href="course-details.html" class="w-full overflow-hidden rounded">
-                    <img src="modules/assets/images/grid/bundle_11.jpg" alt=""
+                  <a href="#" class="w-full overflow-hidden rounded">
+                    <img src="<?php echo base_url()."modules/courseThumbnail/".$row->course_thumbnail; ?>" alt=""
                       class="w-full transition-all duration-300 group-hover:scale-110">
                   </a>
                   <div class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
                     <div>
                       <p class="text-xs text-whiteColor px-4 py-[3px] bg-primaryColor rounded font-semibold">
-                        Paid
+                        <?php echo $row->course_type; ?>
                       </p>
                     </div>
                     <!-- <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
@@ -910,9 +914,9 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                 <!-- card content -->
                 <div>
 
-                  <a href="course-details.html"
+                  <a href=""
                     class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                    Foundation course to under stand about softwere
+                    <?php echo $row->course_name; ?>
                   </a>
 
 
@@ -920,11 +924,11 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   <div class="text-lg font-semibold text-primaryColor font-inter">
                     <span class="text-sm text-black dark:text-blackColor-dark"> <i
                         class="icofont-calendar  text-primaryColor text-lg"></i>
-                      Start On 07/10/25</span>
+                      Start On <?php echo date('d-m-y',strtotime($row->starting_date)); ?></span>
                     &nbsp;
                     <span class="text-sm text-black dark:text-blackColor-dark"> <i
                         class="icofont-clock-time text-primaryColor text-lg"></i>
-                      Ends On 31/10/202</span>
+                      Ends On <?php echo date('d-m-y',strtotime($row->ending_date)); ?></span>
 
                   </div>
 
@@ -933,10 +937,10 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   <!-- Online and offline medium  -->
                   <div class="text-lg font-semibold text-primaryColor font-inter mb-3">
                     <span class="text-sm text-black dark:text-blackColor-dark"><i
-                        class="icofont-badge pr-5px text-primaryColor text-lg"></i>Online</span>
+                        class="icofont-badge pr-5px text-primaryColor text-lg"></i><?php echo $row->course_mode; ?></span>
                     &nbsp;
                     <span class="text-sm text-black dark:text-blackColor-dark">
-                      <i class="icofont-globe-alt pr-5px text-primaryColor text-lg"></i>Hindi Medium</span>
+                      <i class="icofont-globe-alt pr-5px text-primaryColor text-lg"></i><?php echo $row->course_language; ?></span>
 
                   </div>
 
@@ -945,8 +949,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                   <!-- Price -->
             <div class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                    &#8377;99/- &nbsp;
-                    <del class="text-sm text-lightGrey4 font-semibold"> &#8377; 199</del>
+                    <?php echo $this->config->item('indianRupee').$row->course_selling_cost; ?>
+                    <del class="text-sm text-lightGrey4 font-semibold"> <?php echo  $this->config->item('indianRupee').$row->course_actual_cost; ?></del>
                     <span class="ml-6 text-base font-semibold text-primaryColor">Discount applied 10%</span>
                   </div>   
 
@@ -981,7 +985,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             </div>
           </div>
 
-
+        <?php } ?>
 
           <!-- card 2 -->
           <div class="w-full sm:w-1/2 lg:w-1/3 group grid-item filter2 filter3">
