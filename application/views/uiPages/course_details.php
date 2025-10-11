@@ -658,17 +658,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                             </div>
                             <ul>
-                                <li
-                                    class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                    <p
-                                        class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                        Instructor:
-                                    </p>
-                                    <p
-                                        class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                        D. Willaim
-                                    </p>
-                                </li>
+                             
                                 <li
                                     class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
                                     <p
@@ -680,28 +670,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                         05 Dec 2024
                                     </p>
                                 </li>
-                                <li
-                                    class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                    <p
-                                        class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                        Total Duration
-                                    </p>
-                                    <p
-                                        class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                        08Hrs 32Min
-                                    </p>
-                                </li>
-                                <li
-                                    class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                    <p
-                                        class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                        Enrolled
-                                    </p>
-                                    <p
-                                        class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                        100
-                                    </p>
-                                </li>
+                             
+                        
                                 <li
                                     class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
                                     <p

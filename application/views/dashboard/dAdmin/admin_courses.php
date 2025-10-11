@@ -1,4 +1,3 @@
-
 <!-- Admin Dashboard Header section admin_header  -->
 
 <?php
@@ -67,12 +66,32 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </div>
 
                                 <div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30px mb-15px">
                                         <!-- Upload Image -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Upload Image</label>
                                             <input type="file" id="courseImage" name="courseImage" accept="image/*"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        </div>
+
+                                        <!-- Category Choose by Class Dropdown -->
+                                        <!-- Category Choose by Class Dropdown -->
+                                        <div>
+                                            <label for="courseCategory" class="mb-3 block font-semibold leading-1.8">Course
+                                                Category</label>
+                                            <div class="bg-whiteColor relative rounded-md">
+                                                <select id="courseCategory" name="courseCategory"
+                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
+                                                    <option selected>--- Select Course Category ---</option>
+                                                    <option value="filter1">Class 8th</option>
+                                                    <option value="filter2">Class 9th</option>
+                                                    <option value="filter3">Class 10th</option>
+                                                    <option value="filter4">Class 11th</option>
+                                                    <option value="filter5">Class 12th</option>
+                                                </select>
+                                                <i
+                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                            </div>
                                         </div>
 
                                         <!-- Paid/Free Dropdown -->

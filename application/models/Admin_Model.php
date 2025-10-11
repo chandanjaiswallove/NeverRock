@@ -223,6 +223,7 @@ class Admin_Model extends CI_Model
     {
         $courseTitle = $_POST['courseTitle'];
         $CourseType = $_POST['courseType'];
+        $courseBycategory = $_POST['courseCategory'];
         $startDate = $_POST['startDate'];
         $finishDate = $_POST['finishDate'];
         $courseAvailability = $_POST['avilability'];
@@ -263,6 +264,7 @@ class Admin_Model extends CI_Model
                 $courseData = array(
                     'course_name' => $courseTitle,
                     'course_type' => $CourseType,
+                    'course_category' => $courseBycategory,
                     'course_thumbnail' => $config['file_name'],
                     'starting_date' => $startDate,
                     'ending_date' => $finishDate,
