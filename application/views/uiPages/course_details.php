@@ -4,26 +4,28 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 ?>
 
 <main class="">
+
+    <!--course details section -->
     <section>
         <div class="container py-10 md:py-50px lg:py-60px 2xl:py-100px">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-30px">
                 <div class="lg:col-start-1 lg:col-span-8 space-y-[35px]">
                     <!-- course 1 -->
-                    <div data-aos="fade-up" class="aos-init aos-animate">
+                    <div data-aos="fade-up">
                         <!-- course thumbnail -->
                         <div class="overflow-hidden relative mb-5">
-                            <img src="modules/assets/images/blog/blog_8.png" alt="" class="w-full">
+                            <img src="modules/assets/images/blog/courseDetails.jpg" alt="" class="w-full">
                         </div>
                         <!-- course content -->
                         <div>
+
                             <!-- titile -->
-                            <h4 class="text-size-32 md:text-4xl font-bold text-blackColor dark:text-blackColor-dark mb-15px leading-43px md:leading-14.5 aos-init aos-animate"
+                            <h4 class="text-size-32 md:text-4xl font-bold text-blackColor dark:text-blackColor-dark mb-15px leading-43px md:leading-14.5"
                                 data-aos="fade-up">
                                 Making Music with Other People
                             </h4>
                             <!-- price and rating -->
-                            <div class="flex gap-5 flex-wrap items-center mb-30px aos-init aos-animate"
-                                data-aos="fade-up">
+                            <div class="flex gap-5 flex-wrap items-center mb-30px" data-aos="fade-up">
                                 <div class="text-size-21 font-medium text-primaryColor font-inter leading-25px">
                                     $32.00
                                     <del class="text-sm text-lightGrey4 font-semibold">/ $67.00</del>
@@ -33,19 +35,12 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                         <i class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
                                     </div>
                                     <div>
-                                        <span class="text-sm text-black dark:text-blackColor-dark">23 Lesson</span>
+                                        <span class="text-sm text-black dark:text-blackColor-dark">7 Subject</span>
                                     </div>
                                 </div>
-                                <div class="text-start md:text-end">
-                                    <i class="icofont-star text-size-15 text-yellow"></i>
-                                    <i class="icofont-star text-size-15 text-yellow"></i>
-                                    <i class="icofont-star text-size-15 text-yellow"></i>
-                                    <i class="icofont-star text-size-15 text-yellow"></i>
 
-                                    <span class="text-xs text-lightGrey6">(44)</span>
-                                </div>
                             </div>
-                            <p class="text-sm md:text-lg text-contentColor dark:contentColor-dark mb-25px !leading-30px aos-init aos-animate"
+                            <p class="text-sm md:text-lg text-contentColor dark:contentColor-dark mb-25px !leading-30px"
                                 data-aos="fade-up">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Curabitur vulputate vestibulum rhoncus, dolor eget viverra
@@ -57,34 +52,33 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                 Suspendisse consectetur tristique
                             </p>
 
-
-                            <!-- course tab -->
-                            <div data-aos="fade-up" class="tab course-details-tab aos-init aos-animate">
+                            <div data-aos="fade-up" class="tab course-details-tab">
                                 <div class="tab-links flex flex-wrap md:flex-nowrap mb-30px rounded gap-0.5">
                                     <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-book-alt mr-2"></i> Curriculum
+                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center active">
+                                        <i class="icofont-book-alt mr-2"></i> CURRICULUM
                                     </button>
                                     <button
                                         class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-paper mr-2"></i> Description
+                                        <i class="icofont-paper mr-2"></i> DESCRIPTION
                                     </button>
 
                                     <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center before:w-full active">
-                                        <i class="icofont-star mr-2"></i> Faqs
+                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
+                                        <i class="icofont-star mr-2"></i> FAQ
                                     </button>
                                     <button
                                         class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-teacher mr-2"></i> Instructor
+                                        <i class="icofont-teacher mr-2"></i> INSTRUCTOR
                                     </button>
                                 </div>
 
+
                                 <div class="tab-contents">
                                     <!-- curriculum -->
-                                    <div class="hidden">
+                                    <div>
                                         <ul class="accordion-container curriculum">
-                                            <!-- accordion  curriculum-->
+                                            <!-- accordion -->
                                             <li class="accordion mb-25px overflow-hidden active">
                                                 <div
                                                     class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md">
@@ -93,7 +87,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         <div
                                                             class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
                                                             <div class="flex items-center">
-                                                                <span>Intro Course first tab</span>
+                                                                <span>Intro Course content</span>
                                                                 <p
                                                                     class="text-xs text-headingColor dark:text-headingColor-dark px-10px py-0.5 ml-10px bg-borderColor dark:bg-borderColor-dark rounded-full">
                                                                     02hr 35min
@@ -109,8 +103,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         </div>
                                                     </div>
                                                     <!-- content -->
-                                                    <div class="accordion-content transition-all duration-500"
-                                                        style="height: 343px;">
+                                                    <div class="accordion-content transition-all duration-500">
                                                         <div class="content-wrapper p-10px md:px-30px">
                                                             <ul>
                                                                 <li
@@ -245,7 +238,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                     </div>
                                                 </div>
                                             </li>
-                                            <!-- accordion  Curriulum-->
+
+                                            <!-- accordion -->
                                             <li class="accordion mb-25px overflow-hidden">
                                                 <div
                                                     class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark">
@@ -254,7 +248,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         <div
                                                             class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
                                                             <div class="flex items-center">
-                                                                <span>Course continue</span>
+                                                                <span>Course Fundamentals</span>
                                                                 <p
                                                                     class="text-xs text-headingColor dark:text-headingColor-dark px-10px py-0.5 ml-10px bg-borderColor dark:bg-borderColor-dark rounded-full">
                                                                     1hr 35min
@@ -391,7 +385,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                     </div>
                                                 </div>
                                             </li>
-                                            <!-- accordion  Curriulum-->
+
 
                                         </ul>
                                     </div>
@@ -399,12 +393,11 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                                     <!-- description -->
                                     <div class="hidden">
-                                        <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14 aos-init aos-animate"
+                                        <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14"
                                             data-aos="fade-up">
                                             Experience is over the world visit
                                         </h4>
-                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px aos-init aos-animate"
-                                            data-aos="fade-up">
+                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing
                                             elit. Curabitur vulputate vestibulum Phasellus
                                             rhoncus, dolor eget viverra pretium, dolor tellus
@@ -415,15 +408,13 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             sed nibh egestas elementum. Mauris et bibendum dui.
                                             Aenean consequat pulvinar luctus
                                         </p>
-                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px aos-init aos-animate"
-                                            data-aos="fade-up">
+                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
                                             We have covered many special events such as fireworks,
                                             fairs, parades, races, walks, awards ceremonies,
                                             fashion shows, sporting events, and even a memorial
                                             service.
                                         </p>
-                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px aos-init aos-animate"
-                                            data-aos="fade-up">
+                                        <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing
                                             elit. Curabitur vulputate vestibulum Phasellus
                                             rhoncus, dolor eget viverra pretium, dolor tellus
@@ -435,15 +426,21 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Aenean consequat pulvinar luctus.
                                         </p>
 
+
+
+
+
+
+
+
                                         <div class="md:col-start-5 md:col-span-8">
-                                            <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px aos-init aos-animate"
+                                            <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px"
                                                 data-aos="fade-up">
                                                 Why search Is Important ?
                                             </h4>
                                             <ul class="space-y-[15px] max-w-127">
 
-                                                <li class="flex items-center group aos-init aos-animate"
-                                                    data-aos="fade-up">
+                                                <li class="flex items-center group" data-aos="fade-up">
                                                     <i
                                                         class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                                     <p
@@ -452,8 +449,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         andtypesetting industry most of the standard.
                                                     </p>
                                                 </li>
-                                                <li class="flex items-center group aos-init aos-animate"
-                                                    data-aos="fade-up">
+                                                <li class="flex items-center group" data-aos="fade-up">
                                                     <i
                                                         class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                                     <p
@@ -462,8 +458,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         andtypesetting industry most of the standard.
                                                     </p>
                                                 </li>
-                                                <li class="flex items-center group aos-init aos-animate"
-                                                    data-aos="fade-up">
+                                                <li class="flex items-center group" data-aos="fade-up">
                                                     <i
                                                         class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                                     <p
@@ -472,8 +467,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                         andtypesetting industry most of the standard.
                                                     </p>
                                                 </li>
-                                                <li class="flex items-center group aos-init aos-animate"
-                                                    data-aos="fade-up">
+                                                <li class="flex items-center group" data-aos="fade-up">
                                                     <i
                                                         class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
                                                     <p
@@ -485,21 +479,37 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             </ul>
                                         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     </div>
-                                    <!-- reviews  -->
+
+
+                                    <!-- Faqus Questions  -->
                                     <div class="hidden">
                                         <ul class="accordion-container curriculum">
-                                            <!-- accordion  Curriulum-->
+                                            <!-- accordion -->
                                             <li class="accordion mb-25px overflow-hidden">
                                                 <div
                                                     class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md ">
                                                     <!-- controller -->
                                                     <div>
                                                         <div
-                                                            class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                                            class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]  ">
                                                             <div class="flex items-center">
-                                                                <span>What do you know about this Foundation course to
-                                                                    stnad under sector?</span>
+                                                                <span>इस Batch को कौन- कौन Join कर सकता है ? </span>
                                                             </div>
                                                             <svg class="transition-all duration-500 rotate-0" width="20"
                                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
@@ -514,38 +524,33 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                     <div class="accordion-content transition-all duration-500 h-0">
                                                         <div class="content-wrapper p-10px md:px-30px">
                                                             <ul>
-                                                                <p class="text-sm md:text-lg text-contentColor dark:contentColor-dark mb-25px !leading-30px aos-init aos-animate"
-                                                                    data-aos="fade-up">
-                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                    elit.
-                                                                    Curabitur vulputate vestibulum rhoncus, dolor eget
-                                                                    viverra
-                                                                    pretium, dolor tellus aliquet nunc, vitae ultricies
-                                                                    erat
-                                                                    elit eu lacus. Vestibulum non justo consectetur,
-                                                                    cursus
-                                                                    ante, tincidunt sapien. Nulla quis diam sit amet
-                                                                    turpis
-                                                                    interd enim. Vivamus faucibus ex sed nibh egestas
-                                                                    elementum.
-                                                                    Mauris et bibendum dui. Aenean consequat pulvinar
-                                                                    luctus.
-                                                                    Suspendisse consectetur tristique
-                                                                </p>
-
+                                                                <li
+                                                                    class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                                                    <div>
+                                                                        <h4
+                                                                            class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                                            <i class="icofont-video-alt mr-10px"></i>
+                                                                            <span class="font-medium">
+                                                                                जो भी छात्र Bihar SSC (10+2) Inter Level
+                                                                                2025 परीक्षा की तैयारी करना चाहते हैं |
+                                                                            </span>
+                                                                        </h4>
+                                                                    </div>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <!-- accordion  Curriulum-->
+
+
 
                                         </ul>
                                     </div>
 
-                                    <!-- instructor-details -->
+                                    <!-- Instructor  -->
                                     <div class="hidden">
-                                        <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                                        <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor"
                                             data-aos="fade-up">
                                             <!-- athor avatar -->
                                             <div class="flex mb-30px mr-5 flex-shrink-0">
@@ -600,11 +605,9 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -614,7 +617,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                 <div class="lg:col-start-9 lg:col-span-4">
                     <div class="flex flex-col">
                         <!-- enroll section -->
-                        <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md aos-init aos-animate"
+                        <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md"
                             data-aos="fade-up">
                             <!-- meeting thumbnail -->
                             <div class="overflow-hidden relative mb-5">
@@ -643,7 +646,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                         OFF</a>
                                 </div>
                             </div>
-                            <div class="mb-5 aos-init aos-animate" data-aos="fade-up">
+                            <div class="mb-5" data-aos="fade-up">
                                 <button type="submit"
                                     class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
                                     Add To Cart
@@ -755,7 +758,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                     </p>
                                 </li>
                             </ul>
-                            <div class="mt-5 aos-init aos-animate" data-aos="fade-up">
+                            <div class="mt-5" data-aos="fade-up">
                                 <p
                                     class="text-sm text-contentColor dark:text-contentColor-dark leading-1.8 text-center mb-5px">
                                     More inquery about course
@@ -766,8 +769,10 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                 </button>
                             </div>
                         </div>
+
+
                         <!-- social area -->
-                        <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark aos-init aos-animate"
+                        <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark"
                             data-aos="fade-up">
                             <h4
                                 class="text-size-22 text-blackColor dark:text-blackColor-dark font-bold pl-2 before:w-0.5 relative before:h-[21px] before:bg-primaryColor before:absolute before:bottom-[5px] before:left-0 leading-30px mb-25px">
@@ -805,8 +810,9 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         </div>
 
 
+
                         <!-- contact form -->
-                        <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark aos-init aos-animate"
+                        <!-- <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark"
                             data-aos="fade-up">
                             <h4
                                 class="text-size-22 text-blackColor dark:text-blackColor-dark font-bold pl-2 before:w-0.5 relative before:h-[21px] before:bg-primaryColor before:absolute before:bottom-[5px] before:left-0 leading-30px mb-25px">
@@ -824,7 +830,21 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                     Send Message
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     </div>
