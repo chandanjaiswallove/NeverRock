@@ -340,7 +340,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </div>
                             </div>
 
-                             <!-- Description Accordion -->
+                            <!-- Description Accordion -->
+                            <!-- Description Accordion -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -357,21 +358,32 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <form
                                         class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                        <!-- Subjects Container (inputs go here) -->
-                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
-                                            <!-- Existing First Input -->
-                                            <label class="mb-3 block font-semibold">Subject Name</label>
+                                        <!-- About Course Short Description -->
+                                        <div class="mb-4">
+                                            <label class="mb-2 block font-semibold">About Course (Short
+                                                Description)</label>
+                                            <textarea name="courseShortDescription"
+                                                placeholder="Enter short description"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                                required></textarea>
+                                        </div>
+
+                                        <!-- Important Fields Container -->
+                                        <div id="importantFieldsWrapper" class="space-y-3">
+                                            <label class="mb-2 block font-semibold">Important Field</label>
                                             <div class="flex gap-2 items-center">
-                                                <input type="text" name="subjectName[]" placeholder="Enter subject name"
-                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                <input type="text" name="importantField[]"
+                                                    placeholder="Enter important field"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                                    required>
                                             </div>
                                         </div>
 
-                                        <!-- Add New Subject Button (always at bottom) -->
+                                        <!-- Add New Important Field Button (always at bottom) -->
                                         <div class="mt-15px">
-                                            <button type="button" onclick="addNewSubject()"
+                                            <button type="button" onclick="addNewImportantField()"
                                                 class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
-                                                Add New Subject
+                                                Add New Important
                                             </button>
                                         </div>
 
@@ -379,39 +391,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </div>
                             </div>
 
+
+
+
                         </div>
 
-                        <script>
-                            function addNewSubject() {
-                                const wrapper = document.getElementById('subjectsWrapper');
-
-                                // Create new input + remove button
-                                const newDiv = document.createElement('div');
-                                newDiv.classList.add('flex', 'gap-2', 'items-center');
-
-                                newDiv.innerHTML = `
-                                    <input type="text" name="subjectName[]" placeholder="Enter subject name"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    <button type="button" onclick="this.parentElement.remove()"
-                                            class="px-3 py-2 bg-transparent text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">
-                                        Remove
-                                    </button>
-                                    `;
-
-                                // Append new input
-                                wrapper.appendChild(newDiv);
-                            }
-                        </script>
-
-
-
-
-
-
-
-
-                            
-                            <!-- third tab  -->
+                        <!-- third tab  -->
                         <div class="hidden transition-all duration-300">
                             <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
@@ -536,10 +521,47 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
+    <!-- add new improtant topic from description -->
+    <script>
+        function addNewImportantField() {
+            const wrapper = document.getElementById('importantFieldsWrapper');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2 items-center';
+            div.innerHTML = `
+        <input type="text" name="importantField[]" placeholder="Enter important field"
+            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" required>
+        <button type="button" onclick="this.parentElement.remove()" 
+            class="px-3 py-2 bg-red-500 text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">
+            Remove
+        </button>
+    `;
+            wrapper.appendChild(div);
+        }
+    </script>
 
 
+    <!-- add new subject script -->
+    <script>
+        function addNewSubject() {
+            const wrapper = document.getElementById('subjectsWrapper');
 
+            // Create new input + remove button
+            const newDiv = document.createElement('div');
+            newDiv.classList.add('flex', 'gap-2', 'items-center');
 
+            newDiv.innerHTML = `
+                                    <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    <button type="button" onclick="this.parentElement.remove()"
+                                            class="px-3 py-2 bg-transparent text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">
+                                        Remove
+                                    </button>
+                                    `;
+
+            // Append new input
+            wrapper.appendChild(newDiv);
+        }
+    </script>
 
 
     <!-- Pricing and Disocun Sell cost -->
