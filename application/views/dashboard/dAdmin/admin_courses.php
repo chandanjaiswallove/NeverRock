@@ -61,7 +61,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <label class="mb-3 block font-semibold">Course Title</label>
                                         <input type="text" placeholder="Course Title"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                            id="courseTitle" name="courseTitle">
+                                            id="courseTitle" name="courseTitle" required>
                                     </div>
                                 </div>
 
@@ -77,12 +77,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <!-- Category Choose by Class Dropdown -->
                                         <!-- Category Choose by Class Dropdown -->
                                         <div>
-                                            <label for="courseCategory" class="mb-3 block font-semibold leading-1.8">Course
+                                            <label for="courseCategory"
+                                                class="mb-3 block font-semibold leading-1.8">Course
                                                 Category</label>
                                             <div class="bg-whiteColor relative rounded-md">
-                                                <select id="courseCategory" name="courseCategory"
+                                                <select id="courseCategory" name="courseCategory" required
                                                     class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option selected>--- Select Course Category ---</option>
+                                                    <option value="" disabled selected>--- Select Course Category ---
+                                                    </option>
                                                     <option value="filter1">Class 8th</option>
                                                     <option value="filter2">Class 9th</option>
                                                     <option value="filter3">Class 10th</option>
@@ -90,8 +92,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     <option value="filter5">Class 12th</option>
                                                 </select>
                                                 <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+
                                         </div>
 
                                         <!-- Paid/Free Dropdown -->
@@ -100,14 +103,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="courseType" class="mb-3 block font-semibold leading-1.8">Course
                                                 Type</label>
                                             <div class="bg-whiteColor relative rounded-md">
-                                                <select id="courseType" name="courseType"
+                                                <select id="courseType" name="courseType" required
                                                     class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option selected>--- Select Course Type ---</option>
+                                                    <option value="" disabled selected>--- Select Course Type ---
+                                                    </option>
                                                     <option value="paid">Paid</option>
                                                     <option value="free">Free</option>
                                                 </select>
                                                 <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
                                         </div>
 
@@ -124,13 +128,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="startDate" class="mb-3 block font-semibold leading-1.8">Start
                                                 Date</label>
                                             <input type="date" id="startDate" name="startDate"
-                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select" />
+                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
+                                                required />
                                         </div>
                                         <div>
                                             <label for="finishDate" class="mb-3 block font-semibold leading-1.8">Finish
                                                 Date</label>
                                             <input type="date" id="finishDate" name="finishDate"
-                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select" />
+                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
+                                                required />
                                         </div>
                                     </div>
                                 </div>
@@ -146,14 +152,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="available"
                                                 class="mb-3 block font-semibold leading-1.8">Available</label>
                                             <div class="bg-whiteColor relative rounded-md">
-                                                <select id="available" name="avilability"
+                                                <select id="available" name="avilability" required
                                                     class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="online" selected>Online</option>
+                                                    <option value="" disabled selected>Select Available </option>
+                                                    <option value="online">Online</option>
                                                     <option value="offline">Offline</option>
                                                     <option value="online + offline">Online + Offline</option>
                                                 </select>
                                                 <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
                                         </div>
 
@@ -162,15 +169,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="language"
                                                 class="mb-3 block font-semibold leading-1.8">Language/Medium</label>
                                             <div class="bg-whiteColor relative rounded-md">
-                                                <select id="language" name="language"
+                                                <select id="language" name="language" required
                                                     class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="hindi" selected>Hindi Medium</option>
+                                                    <option value="" disabled selected>Select Language/Medium</option>
+                                                    <option value="hindi">Hindi Medium</option>
                                                     <option value="english">English Medium</option>
                                                     <option value="hinglish">Hinglish</option>
                                                 </select>
                                                 <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +212,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
                                                 placeholder="Regular Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no " required>
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -213,7 +222,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
                                                 placeholder="Discount (%)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" required>
                                         </div>
 
                                         <!-- Final Price -->
@@ -246,208 +255,163 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-
-
-
-
-
-
-                        <!-- course Details -->
+                        <!-- Course Details Tab Content -->
                         <div class="hidden transition-all duration-300">
 
-                            <form
-                                class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
-                                data-aos="fade-up">
-                                <div class="grid grid-cols-1 mb-15px gap-15px">
-                                    <div>
-                                        <label class="mb-3 block font-semibold">Course Title</label>
-                                        <input type="text" placeholder="Course Title"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-                                    <!-- <div>
-                                    <label class="mb-3 block font-semibold">Course Slug</label>
-                                    <input type="text" placeholder="Course Slug"
-                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                </div> -->
-                                    <div>
-                                        <label class="mb-3 block font-semibold">Free Regular Price ($)</label>
-                                        <input type="text" placeholder="Free Regular Price ($)"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-                                    <div>
-                                        <p class="flex items-center gap-0.5">
-                                            <svg class="feather feather-info w-14px h-14px"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                            </svg>
-                                            The Course Price Includes Your Author Fee.
-                                        </p>
-                                        <label class="mb-3 block font-semibold">Discounted Price ($)</label>
-                                        <input type="text" placeholder="Discounted Price ($)"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md">
-                                    </div>
-
-                                    <div>
-                                        <p class="flex items-center gap-0.5">
-                                            <svg class="feather feather-info w-14px h-14px"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <line x1="12" y1="16" x2="12" y2="12"></line>
-                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                            </svg>
-                                            The Course Price Includes Your Author Fee.
-                                        </p>
-
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-30px">
-                                            <div>
-                                                <label
-                                                    class="text-xs uppercase text-placeholder block font-semibold text-opacity-50 leading-1.8">COURSES</label>
-                                                <div class="bg-whiteColor relative rounded-md">
-                                                    <select
-                                                        class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                        <option selected="">All</option>
-                                                        <option value="1">Web Design</option>
-                                                        <option value="2">Graphic</option>
-                                                        <option value="3">English</option>
-                                                        <option value="4">
-                                                            Spoken English
-                                                        </option>
-                                                        <option value="5">Art Painting</option>
-                                                        <option value="6">
-                                                            App Development
-                                                        </option>
-                                                        <option value="7">
-                                                            Web Application
-                                                        </option>
-                                                        <option value="7">
-                                                            Php Development
-                                                        </option>
-                                                    </select>
-                                                    <i
-                                                        class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label
-                                                    class="text-xs uppercase text-placeholder block font-semibold text-opacity-50 leading-1.8">SHORT
-                                                    BY OFFER</label>
-                                                <div class="bg-whiteColor relative rounded-md">
-                                                    <select
-                                                        class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                        <option selected="">premium</option>
-                                                        <option value="1">Free</option>
-                                                        <option value="2">paid</option>
-                                                    </select>
-                                                    <i
-                                                        class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                            <!-- Basic Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Basic</span>
+                                    <svg class="transition-all duration-500 rotate-0  " width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
                                 </div>
 
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-
-
-
-
-
-
-                                <!-- start and finish date -->
-                                <div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <!-- Course Title -->
                                         <div>
-                                            <label class="mb-3  block font-semibold  leading-1.8">Start Date</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                    <option selected="">Date</option>
-
-                                                </select>
-                                                <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
+                                            <label class="mb-3 block font-semibold">Course Title</label>
+                                            <input type="text" placeholder="Course Title" name="courseTitle"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
+
+                                        <!-- Upload Image -->
                                         <div>
-                                            <label class="mb-3  block font-semibold  leading-1.8">
-                                                Finish Date </label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                    <option selected="">date</option>
-                                                </select>
-                                                <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
+                                            <label class="mb-3 block font-semibold">Upload Image</label>
+                                            <input type="file" accept="image/*" name="courseImage"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
                                         </div>
-                                    </div>
-                                </div>
 
-
-
-
-
-                                <!-- online and offline medium -->
-                                <div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <!-- Short Description -->
                                         <div>
-                                            <label class="mb-3  block font-semibold  leading-1.8">Available</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                    <option selected="">Online</option>
-                                                    <option value="1">Offline</option>
-                                                    <option value="2">Online/Offline</option>
+                                            <label class="mb-3 block font-semibold">Short Description</label>
+                                            <textarea rows="3" placeholder="Write short course description..."
+                                                name="shortDesc"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no placeholder:text-placeholder placeholder:opacity-80 leading-23px"></textarea>
+                                        </div>
 
-                                                </select>
-                                                <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Curriculum Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Curriculum</span>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <!-- Subjects Container (inputs go here) -->
+                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
+                                            <!-- Existing First Input -->
+                                            <label class="mb-3 block font-semibold">Subject Name</label>
+                                            <div class="flex gap-2 items-center">
+                                                <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                             </div>
                                         </div>
-                                        <div>
-                                            <label class="mb-3  block font-semibold  leading-1.8">
-                                                Language/Medium </label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px focus:outline-none block appearance-none relative z-20 focus:shadow-select rounded-md">
-                                                    <option selected="">Hindi Medium</option>
-                                                    <option value="1">English Medium</option>
-                                                    <option value="2">Hinglish</option>
-                                                </select>
-                                                <i
-                                                    class="icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+
+                                        <!-- Add New Subject Button (always at bottom) -->
+                                        <div class="mt-15px">
+                                            <button type="button" onclick="addNewSubject()"
+                                                class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                                Add New Subject
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                             <!-- Description Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Description</span>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <!-- Subjects Container (inputs go here) -->
+                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
+                                            <!-- Existing First Input -->
+                                            <label class="mb-3 block font-semibold">Subject Name</label>
+                                            <div class="flex gap-2 items-center">
+                                                <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <!-- Add New Subject Button (always at bottom) -->
+                                        <div class="mt-15px">
+                                            <button type="button" onclick="addNewSubject()"
+                                                class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                                Add New Subject
+                                            </button>
+                                        </div>
+
+                                    </form>
                                 </div>
+                            </div>
 
-
-
-
-                                <div class="mb-15px">
-                                    <label class="mb-3 block font-semibold">About Course</label>
-                                    <textarea
-                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md"
-                                        cols="30" rows="10">                              </textarea>
-                                </div>
-
-                                <div class="mt-15px">
-                                    <button type="submit"
-                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                        Update Info
-                                    </button>
-                                </div>
-                            </form>
                         </div>
 
+                        <script>
+                            function addNewSubject() {
+                                const wrapper = document.getElementById('subjectsWrapper');
 
+                                // Create new input + remove button
+                                const newDiv = document.createElement('div');
+                                newDiv.classList.add('flex', 'gap-2', 'items-center');
+
+                                newDiv.innerHTML = `
+                                    <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    <button type="button" onclick="this.parentElement.remove()"
+                                            class="px-3 py-2 bg-transparent text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">
+                                        Remove
+                                    </button>
+                                    `;
+
+                                // Append new input
+                                wrapper.appendChild(newDiv);
+                            }
+                        </script>
+
+
+
+
+
+
+
+
+                            
+                            <!-- third tab  -->
                         <div class="hidden transition-all duration-300">
                             <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
@@ -551,6 +515,34 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Pricing and Disocun Sell cost -->
     <script>
         const regularPriceInput = document.getElementById('regularPrice');
         const discountInput = document.getElementById('discountPercent');
@@ -630,6 +622,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 </main>
 
 
+<!-- color dark ligh mode for clicking
+text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor
+ -->
+<!-- 
+ background color
+  bg-darkdeep3 dark:bg-transparent  text-blackColor dark:text-blackColor-dark -->
 
 <!-- Admin Dashboard Footer section admin_footer  -->
 <?php

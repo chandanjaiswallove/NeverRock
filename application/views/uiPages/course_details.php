@@ -621,7 +621,14 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             data-aos="fade-up">
                             <!-- meeting thumbnail -->
                             <div class="overflow-hidden relative mb-5">
-                                <img src="modules/assets/images/blog/blog_7.png" alt="" class="w-full">
+<?php if (!empty($row->course_preview_video)) { ?>
+    <video controls class="w-full rounded-md">
+        <source src="<?php echo base_url('uploads/videos/' . $row->course_preview_video); ?>" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+<?php } else { ?>
+    <img src="modules/assets/images/blog/courseDetails.jpg" alt="" class="w-full">
+<?php } ?>
                                 <div
                                     class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center z-10">
                                     <div>
