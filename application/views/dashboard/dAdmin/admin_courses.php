@@ -65,13 +65,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <!-- Course Description -->
-                                    <div>
+                                    <!-- <div>
                                         <label class="mb-3 block font-semibold">Course Description</label>
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             id="courseDescription" name="courseDescription" rows="4"
                                             required></textarea>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -194,11 +194,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
 
-
-
-                                <div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
                                         <!-- Enquiry Number -->
+                                        <!-- Upload Intro Video -->
+                                <!-- <div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
                                         <div>
                                             <label for="enquiryNumber"
                                                 class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
@@ -207,7 +206,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
-                                        <!-- Upload Intro Video -->
                                         <div>
                                             <label for="courseVideo" class="mb-3 block font-semibold leading-1.8">Upload
                                                 Intro Video <span class="text-red-500">*</span></label>
@@ -216,7 +214,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
@@ -245,7 +243,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
                                                 placeholder="Regular Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no " required>
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no " >
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -255,7 +253,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
                                                 placeholder="Discount (%)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" required>
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" >
                                         </div>
 
                                         <!-- Final Price -->
@@ -286,7 +284,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <div class="hidden transition-all duration-300">
 
                             <!-- Basic Accordion -->
-                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                            <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
                                     <span class="text-blackColor dark:text-whiteColor">Basic</span>
@@ -302,21 +300,18 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <form
                                         class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                        <!-- Course Title -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Course Title</label>
                                             <input type="text" placeholder="Course Title" name="courseTitle"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
-                                        <!-- Upload Image -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Upload Image</label>
                                             <input type="file" accept="image/*" name="courseImage"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
                                         </div>
 
-                                        <!-- Short Description -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Short Description</label>
                                             <textarea rows="3" placeholder="Write short course description..."
@@ -326,7 +321,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     </form>
                                 </div>
-                            </div>
+                            </div>  -->
 
                             <!-- Curriculum Accordion -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
@@ -535,90 +530,150 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </div>
                             </div>
 
-                            
+
                             <!-- Instructor  -->
                             <!-- Instructor  -->
-                           <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
-    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-        onclick="this.nextElementSibling.classList.toggle('hidden')">
-        <span class="text-blackColor dark:text-whiteColor">Instructors</span>
-        <svg class="transition-all duration-500 rotate-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
-            <path fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
-        </svg>
-    </div>
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Instructors</span>
+                                    <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
 
-    <div class="hidden px-6 pb-6">
-        <form class="p-4 md:p-5 lg:p-6 2xl:p-8 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-4">
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-4 md:p-5 lg:p-6 2xl:p-8 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-4">
 
-            <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
-                Select Instructors for this Course
-            </h3>
+                                        <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
+                                            Select Instructors for this Course
+                                        </h3>
 
-            <!-- Multi-select Dropdown -->
-            <div class="relative mb-4">
-        <div class="relative mb-4">
-    <select id="instructorDropdown" multiple
-        class="w-full py-3 px-4 text-sm text-blackColor dark:text-blackColor bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
-        <option value="1">Rosalina D. Willaim</option>
-        <option value="2">John Doe</option>
-        <option value="3">Mary Smith</option>
-        <option value="4">James Bond</option>
-        <option value="5">Anna Johnson</option>
-        <option value="6">Robert Brown</option>
-        <option value="7">Lucy Liu</option>
-        <option value="8">David Miller</option>
-        <option value="9">Sophia Lee</option>
-        <option value="10">Michael Scott</option>
-        <option value="11">Emma Watson</option>
-    </select>
-</div>
+                                        <!-- Multi-select Dropdown -->
+                                        <div class="relative mb-4">
+                                            <div class="relative mb-4">
+                                                <select id="instructorDropdown" multiple
+                                                    class="w-full py-3 px-4 text-sm text-blackColor dark:text-blackColor bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
+                                                    <option value="1">Rosalina D. Willaim</option>
+                                                    <option value="2">John Doe</option>
+                                                    <option value="3">Mary Smith</option>
+                                                    <option value="4">James Bond</option>
+                                                    <option value="5">Anna Johnson</option>
+                                                    <option value="6">Robert Brown</option>
+                                                    <option value="7">Lucy Liu</option>
+                                                    <option value="8">David Miller</option>
+                                                    <option value="9">Sophia Lee</option>
+                                                    <option value="10">Michael Scott</option>
+                                                    <option value="11">Emma Watson</option>
+                                                </select>
+                                            </div>
 
-            </div>
+                                        </div>
 
-            <!-- Selected Instructors List -->
-            <div id="selectedInstructors" class="space-y-3"></div>
+                                        <!-- Selected Instructors List -->
+                                        <div id="selectedInstructors" class="space-y-3"></div>
 
-        </form>
-    </div>
-</div>
+                                    </form>
+                                </div>
+                            </div>
 
-<script>
-const dropdown = document.getElementById("instructorDropdown");
-const selectedDiv = document.getElementById("selectedInstructors");
+                            <!-- Instructor Add More Instrucotr script -->
+                            <script>
+                                const dropdown = document.getElementById("instructorDropdown");
+                                const selectedDiv = document.getElementById("selectedInstructors");
 
-let selectedInstructors = [];
+                                let selectedInstructors = [];
 
-dropdown.addEventListener("change", () => {
-    Array.from(dropdown.selectedOptions).forEach(option => {
-        if(!selectedInstructors.find(i => i.id === option.value)) {
-            selectedInstructors.push({id: option.value, name: option.text});
-        }
-    });
-    renderSelected();
-});
+                                dropdown.addEventListener("change", () => {
+                                    Array.from(dropdown.selectedOptions).forEach(option => {
+                                        if (!selectedInstructors.find(i => i.id === option.value)) {
+                                            selectedInstructors.push({ id: option.value, name: option.text });
+                                        }
+                                    });
+                                    renderSelected();
+                                });
 
-function renderSelected() {
-    selectedDiv.innerHTML = "";
-    selectedInstructors.forEach(instr => {
-        const div = document.createElement("div");
-        div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
-        div.style.marginBottom = "10px"; // gap between blocks
-        div.innerHTML = `
-            <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
-            <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
-        `;
-        selectedDiv.appendChild(div);
-    });
-}
+                                function renderSelected() {
+                                    selectedDiv.innerHTML = "";
+                                    selectedInstructors.forEach(instr => {
+                                        const div = document.createElement("div");
+                                        div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
+                                        div.style.marginBottom = "10px"; // gap between blocks
+                                        div.innerHTML = `
+<span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
+<button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
+`;
+                                        selectedDiv.appendChild(div);
+                                    });
+                                }
 
-function removeInstructor(id) {
-    selectedInstructors = selectedInstructors.filter(i => i.id !== id);
-    const option = Array.from(dropdown.options).find(opt => opt.value === id);
-    if(option) option.selected = false;
-    renderSelected();
-}
-</script>
+                                function removeInstructor(id) {
+                                    selectedInstructors = selectedInstructors.filter(i => i.id !== id);
+                                    const option = Array.from(dropdown.options).find(opt => opt.value === id);
+                                    if (option) option.selected = false;
+                                    renderSelected();
+                                }
+                            </script>
+
+                                         <!-- Feautes  -->
+                                         <!-- Feautes  -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Features</span>
+                                    <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
+                                            Add Features
+                                        </h3>
+
+                                        <!-- Fixed First Feature -->
+                                        <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                            <div class="mb-3">
+                                                <label class="block font-semibold">Feature Heading</label>
+                                                <input type="text" name="featureHeading[0]"
+                                                    placeholder="Enter feature heading"
+                                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="block font-semibold">Feature Value (Yes / No /
+                                                    Write)</label>
+                                                <input type="text" name="featureValue[0]"
+                                                    placeholder="Enter feature value"
+                                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Dynamic Features container -->
+                                        <div id="dynamicFeatures" class="space-y-4"></div>
+
+                                        <!-- Add More Button -->
+                                        <div class="mt-3">
+                                            <button type="button" onclick="addNewFeature()"
+                                                class="px-5 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark">
+                                                + Add More Features
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
 
 
 
@@ -758,7 +813,42 @@ function removeInstructor(id) {
 
 
 
+    <!-- Add Feautes Script add more feautres -->
 
+    <script>
+        let featureCounter = 1; // Start from 1 because first feature is fixed
+
+        function addNewFeature() {
+            const container = document.getElementById("dynamicFeatures");
+
+            // Create a new dynamic feature block
+            const group = document.createElement("div");
+            group.className = "group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border-t border-borderColor dark:border-borderColor-dark";
+
+            group.innerHTML = `
+            <div class="mb-3">
+                <label class="block font-semibold">Feature Heading</label>
+                <input type="text" name="featureHeading[${featureCounter}]" placeholder="Enter feature heading"
+                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label class="block font-semibold">Feature Value (Yes / No / Write)</label>
+                <input type="text" name="featureValue[${featureCounter}]" placeholder="Enter feature value"
+                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                    required>
+            </div>
+            <div class="text-right">
+                <button type="button" 
+                    class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor text-sm font-semibold"
+                    onclick="this.closest('.group').remove()">Remove</button>
+            </div>
+        `;
+
+            container.appendChild(group);
+            featureCounter++; // Increment counter for next dynamic feature
+        }
+    </script>
 
 
     <!-- faq question & answer  -->

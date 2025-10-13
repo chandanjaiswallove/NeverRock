@@ -1,637 +1,544 @@
+<!-- lesson section -->
+<section>
+    <div class="container-fluid-2 pt-50px pb-100px">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-30px">
+            <!-- lesson left -->
+            <div class="xl:col-start-1 xl:col-span-4" data-aos="fade-up">
+                <!-- curriculum -->
+                <ul class="accordion-container curriculum">
+                    <!-- accordion -->
+                    <li class="accordion mb-25px overflow-hidden active">
+                        <div
+                            class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md">
+                            <!-- controller -->
+                            <div>
+                                <button
+                                    class="accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                    <span>Lesson #01</span>
 
-                 <div class="md:col-start-5 md:col-span-8">
-                                <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px"
-                                    data-aos="fade-up">
-                                    Why search Is Important ?
-                                </h4>
-                                <ul class="space-y-[15px] max-w-127">
-
-                                    <li class="flex items-center group" data-aos="fade-up">
-                                        <i
-                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                        <p
-                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                            Lorem Ipsum is simply dummying text of the printing
-                                            andtypesetting industry most of the standard.
-                                        </p>
-                                    </li>
-                                    <li class="flex items-center group" data-aos="fade-up">
-                                        <i
-                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                        <p
-                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                            Lorem Ipsum is simply dummying text of the printing
-                                            andtypesetting industry most of the standard.
-                                        </p>
-                                    </li>
-                                    <li class="flex items-center group" data-aos="fade-up">
-                                        <i
-                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                        <p
-                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                            Lorem Ipsum is simply dummying text of the printing
-                                            andtypesetting industry most of the standard.
-                                        </p>
-                                    </li>
-                                    <li class="flex items-center group" data-aos="fade-up">
-                                        <i
-                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                        <p
-                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                            Lorem Ipsum is simply dummying text of the printing
-                                            andtypesetting industry most of the standard.
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div> 
-                 
-
-
-
-
-
-
-
-
-
-                            <!-- other courses -->
-                            <div class="mt-50px mb-30px" data-aos="fade-up">
-                                <!-- other courses heading -->
-                                <div class="flex items-center justify-between mb-10px">
-                                    <h4
-                                        class="text-3xl font-bold text-blackColor dark:text-blackColor-dark leading-1.2">
-                                        Author More Courses
-                                    </h4>
-                                    <a href="course.html" class="text-contentColor dark:text-contentColor-dark">More
-                                        Courses...</a>
-                                </div>
-                                <div data-aos="fade-up" class="sm:-mx-15px">
-                                    <!-- Swiper -->
-                                    <div class="swiper other-courses">
-                                        <div class="swiper-wrapper">
-                                            <!-- card 1 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_1.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                            Data & Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- content -->
+                            <div class="accordion-content transition-all duration-500">
+                                <div class="content-wrapper p-10px md:px-30px">
+                                    <ul>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Intro
+                                                    </a>
+                                                </h4>
                                             </div>
-                                            <!-- card 2 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_2.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-yellow rounded font-semibold">
-                                                                            Data & Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">3.27</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
                                             </div>
-                                            <!-- card 3 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_3.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor rounded font-semibold">
-                                                                            Data & Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
                                             </div>
-                                            <!-- card 4 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/grid_4.png"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-greencolor2 rounded font-semibold">
-                                                                            Data & Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">5.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
                                             </div>
-                                            <!-- card 5 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/kid_5.jpg"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-secondaryColor2 rounded font-semibold">
-                                                                            Data & Tech
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                          
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-course-materials.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Materials
+                                                    </a>
+                                                </h4>
                                             </div>
-                                            <!-- card 6 -->
-                                            <div class="swiper-slide">
-                                                <div class="w-full group grid-item filter1 filter3">
-                                                    <div class="tab-content-wrapper sm:px-15px mb-30px">
-                                                        <div
-                                                            class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark">
-                                                            <!-- card image -->
-                                                            <div class="relative mb-4 overflow-hidden">
-                                                                <a href="course.html" class="w-full">
-                                                                    <img src="modules/assets/images/grid/kid_6.jpg"
-                                                                        alt=""
-                                                                        class="w-full transition-all duration-300 group-hover:scale-110">
-                                                                </a>
-                                                                <div
-                                                                    class="absolute left-0 top-1 flex justify-between w-full items-center px-2">
-                                                                    <div>
-                                                                        <p
-                                                                            class="text-xs text-whiteColor px-4 py-[3px] bg-blue rounded font-semibold">
-                                                                            Mnided
-                                                                        </p>
-                                                                    </div>
-                                                                    <a class="text-white bg-black bg-opacity-15 rounded hover:bg-primaryColor"
-                                                                        href="course-details.html#"><i
-                                                                            class="icofont-heart-alt text-base py-1 px-2"></i></a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- card content -->
-                                                            <div>
-                                                                <div class="grid grid-cols-2 mb-15px">
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-book-alt pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">23
-                                                                                Lesson</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex items-center">
-                                                                        <div>
-                                                                            <i
-                                                                                class="icofont-clock-time pr-5px text-primaryColor text-lg"></i>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="text-sm text-black dark:text-blackColor-dark">1
-                                                                                hr 30 min</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="course-details.html"
-                                                                    class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                                                    Foundation course to under stand about
-                                                                    softwere
-                                                                </a>
-                                                                <!-- price -->
-                                                                <div
-                                                                    class="text-lg font-semibold text-primaryColor font-inter mb-4">
-                                                                    $32.00
-                                                                    <del class="text-sm text-lightGrey4 font-semibold">/
-                                                                        $67.00</del>
-                                                                    <span class="ml-6"><del
-                                                                            class="text-base font-semibold text-secondaryColor3">Free</del></span>
-                                                                </div>
-                                                                <!-- author and rating-->
-                                                                <div
-                                                                    class="grid grid-cols-1 md:grid-cols-2 pt-15px border-t border-borderColor">
-                                                                    <div>
-                                                                        <a href="instructor-details.html"
-                                                                            class="text-base font-bold font-hind flex items-center hover:text-primaryColor dark:text-blackColor-dark dark:hover:text-primaryColor"><img
-                                                                                class="w-[30px] h-[30px] rounded-full mr-15px"
-                                                                                src="modules/assets/images/grid/grid_small_1.jpg"
-                                                                                alt="">
-                                                                            <span class="flex">Micle john</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="text-start md:text-end">
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <i
-                                                                            class="icofont-star text-size-15 text-yellow"></i>
-                                                                        <span
-                                                                            class="text-xs text-lightGrey6">(44)</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-audio mr-10px"></i>
+                                                    <a href="lesson-quiz.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
+                                                        Summer Quiz
+                                                    </a>
+                                                </h4>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </li>
+                                        <li class="py-4 flex items-center justify-between flex-wrap">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-assignment.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Assignment
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
+                        </div>
+                    </li>
+                    <li class="accordion mb-25px overflow-hidden">
+                        <div
+                            class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark">
+                            <!-- controller -->
+                            <div>
+                                <button
+                                    class="accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                    <span>Lesson #02</span>
+
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- content -->
+                            <div class="accordion-content transition-all duration-500 h-0">
+                                <div class="content-wrapper p-10px md:px-30px">
+                                    <ul>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Intro
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">3.27</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">5.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">7.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-course-materials.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Materials
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-audio mr-10px"></i>
+                                                    <a href="lesson-quiz.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
+                                                        Summer Quiz
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li class="py-4 flex items-center justify-between flex-wrap">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-assignment.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Assignment
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion mb-25px overflow-hidden">
+                        <div
+                            class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark">
+                            <!-- controller -->
+                            <div>
+                                <button
+                                    class="accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                    <span>Lesson #03</span>
+
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- content -->
+                            <div class="accordion-content transition-all duration-500 h-0">
+                                <div class="content-wrapper p-10px md:px-30px">
+                                    <ul>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Intro
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">3.27</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">5.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">7.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-course-materials.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Materials
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-audio mr-10px"></i>
+                                                    <a href="lesson-quiz.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
+                                                        Summer Quiz
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li class="py-4 flex items-center justify-between flex-wrap">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-assignment.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Assignment
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="accordion mb-25px overflow-hidden">
+                        <div
+                            class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-b-md">
+                            <!-- controller -->
+                            <div>
+                                <button
+                                    class="accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                    <span>Lesson #04</span>
+
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- content -->
+                            <div class="accordion-content transition-all duration-500 h-0">
+                                <div class="content-wrapper p-10px md:px-30px">
+                                    <ul>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Intro
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">3.27</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">5.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <a href="lesson-2.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Outline
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div
+                                                class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
+                                                <p class="font-semibold">7.00</p>
+                                                <a href="lesson.html"
+                                                    class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
+                                                    <p class="px-10px">
+                                                        <i class="icofont-eye"></i> Preview
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-course-materials.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Course
+                                                        Materials
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li
+                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-audio mr-10px"></i>
+                                                    <a href="lesson-quiz.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
+                                                        Summer Quiz
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                        <li class="py-4 flex items-center justify-between flex-wrap">
+                                            <div>
+                                                <h4
+                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-file-text mr-10px"></i>
+                                                    <a href="lesson-assignment.html"
+                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">Assignment
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- lesson right -->
+            <div class="xl:col-start-5 xl:col-span-8 relative" data-aos="fade-up">
+                <div>
+                    <div
+                        class="absolute top-0 left-0 w-full flex justify-between items-center px-5 py-10px bg-primaryColor leading-1.2 text-whiteColor">
+                        <h3 class="sm:text-size-22 font-bold">
+                            Video Content lesson 01
+                        </h3>
+                        <a href="course-details.html" class="">Close</a>
+                    </div>
+
+                    <div class="aspect-[16/9]">
+                        <iframe src="https://www.youtube.com/embed/vHdclsdkp28" allowfullscreen="" allow="autoplay"
+                            class="w-full h-full"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
