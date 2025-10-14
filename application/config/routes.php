@@ -93,6 +93,7 @@ $route['instructor_myCourse'] = 'InstructorDashboardControllers/loaDinstructor_m
 $route['instructor_profile'] = 'InstructorDashboardControllers/loaDinstructor_profile'; // Profile page
 $route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_setting'; // Settings page 
 $route['create_lesson'] = 'InstructorDashboardControllers/loaDcreate_lesson'; // create_lesson page 
+$route['create_quiz'] = 'InstructorDashboardControllers/loaDcreate_quiz'; // create_create_quiz
 
 
 // Instructor_Model/Auth Methods for Instructor

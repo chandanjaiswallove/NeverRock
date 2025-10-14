@@ -14,16 +14,6 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
 
 
-
-
-
-
-
-
-
-
-
-
     <section>
         <div class="container-fluid-2">
             <div
@@ -31,21 +21,18 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
                 <!-- Heading -->
                 <div class="mb-3 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
-                    <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">Create Lesson</h2>
+                    <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                        Create Lesson
+                    </h2>
                 </div>
 
                 <!-- ADD LESSON BUTTON -->
                 <div class="mb-6" data-aos="fade-up">
-                      <button id="addLessonBtn" type="button"
-                    class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap before:w-full active">
-                     + Add Lesson
-                </button>
+                    <button id="addLessonBtn" type="button"
+                        class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap before:w-full active">
+                        + Add Lesson
+                    </button>
                 </div>
-
-
-
-
-              
 
                 <!-- LESSON FORM (HIDDEN INITIALLY) -->
                 <div id="lessonFormContainer" class="hidden transition-all duration-500">
@@ -53,15 +40,23 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                     <form
                         class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-6">
 
-                        <!-- Lesson Name -->
-                        <div class="space-y-3">
-                            <label class="block mb-3 font-semibold">Lesson Name</label>
-                            <input type="text" name="lesson_name" placeholder="Enter Lesson Name"
-                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                        <!-- Lesson ID -->
+                        <div class="space-y-3 mb-3">
+                            <label class="block  font-semibold">Lesson ID</label>
+                            <input type="text" name="lesson_id" placeholder="Enter Lesson ID"
+                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                         </div>
 
-                        <!-- COURSE INTRO ACCORDION -->
-                        <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px">
+                        <!-- Lesson Name -->
+                        <div class="space-y-3 mb-3 ">
+                            <label class="block  font-semibold">Lesson Name</label>
+                            <input type="text" name="lesson_name" placeholder="Enter Lesson Name"
+                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                        </div>
+
+                        <!-- ===== COURSE INTRO ===== -->
+                        <div
+                            class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px accordion-section">
                             <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                 onclick="this.nextElementSibling.classList.toggle('hidden')">
                                 <span class="text-blackColor dark:text-whiteColor">Course Intro</span>
@@ -72,26 +67,32 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     </path>
                                 </svg>
                             </div>
-                            <div class="hidden px-6 pb-6 space-y-4">
-                                <label class="block font-semibold mb-2">Intro Title</label>
-                                <input type="text" placeholder="Enter Intro Title"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                            <div class="hidden px-6 pb-6 space-y-4" id="introContainer">
+                                <div class="intro-item space-y-3">
+                                    <label class="block font-semibold mb-2">Intro Title</label>
+                                    <input type="text" placeholder="Enter Intro Title"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <label class="block font-semibold mb-2">Upload Video</label>
-                                <input type="file"
-                                    class="w-full py-2 px-3 text-sm border-2 border-borderColor rounded-md">
+                                    <label class="block font-semibold mb-2">Intro Description</label>
+                                    <textarea placeholder="Enter Intro Description"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"></textarea>
 
-                                <div class="mt-15px">
                                     <button type="button"
-                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark font-semibold">
-                                        + Add More Intro
+                                        class="remove-intro text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Remove Intro
                                     </button>
                                 </div>
+
+                                <button type="button" onclick="addIntroField()"
+                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                    + Add More Intro
+                                </button>
                             </div>
                         </div>
 
-                        <!-- LECTURES ACCORDION -->
-                        <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px">
+                        <!-- ===== LECTURES ===== -->
+                        <div
+                            class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px accordion-section">
                             <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                 onclick="this.nextElementSibling.classList.toggle('hidden')">
                                 <span class="text-blackColor dark:text-whiteColor">Lectures</span>
@@ -102,29 +103,35 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     </path>
                                 </svg>
                             </div>
-                            <div class="hidden px-6 pb-6 space-y-4">
-                                <label class="block font-semibold mb-2">Lecture Title</label>
-                                <input type="text" placeholder="Enter Lecture Title"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                            <div class="hidden px-6 pb-6 space-y-4" id="lectureContainer">
+                                <div class="lecture-item space-y-3">
+                                    <label class="block font-semibold mb-2">Lecture Title</label>
+                                    <input type="text" placeholder="Enter Lecture Title"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <label class="block font-semibold mb-2">Upload Video</label>
-                                <input type="file"
-                                    class="w-full py-2 px-3 text-sm border-2 border-borderColor rounded-md">
+                                    <label class="block font-semibold mb-2">Lecture File</label>
+                                    <input type="file"
+                                        class="w-full text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <div class="mt-15px">
                                     <button type="button"
-                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark font-semibold">
-                                        + Add New Lecture
+                                        class="remove-lecture text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Remove Lecture
                                     </button>
                                 </div>
+
+                                <button type="button" onclick="addLectureField()"
+                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                    + Add More Lecture
+                                </button>
                             </div>
                         </div>
 
-                        <!-- MATERIALS ACCORDION -->
-                        <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px">
+                        <!-- Materials -->
+                        <div
+                            class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px accordion-section">
                             <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                 onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                <span class="text-blackColor dark:text-whiteColor">Materials</span>
+                                <span class="text-blackColor dark:text-whiteColor">Course Materials</span>
                                 <svg class="transition-all duration-500 rotate-0" width="20"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                     <path fill-rule="evenodd"
@@ -132,26 +139,30 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     </path>
                                 </svg>
                             </div>
-                            <div class="hidden px-6 pb-6 space-y-4">
-                                <label class="block font-semibold mb-2">Material Title</label>
-                                <input type="text" placeholder="Enter Material Title"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                            <div class="hidden px-6 pb-6 space-y-4" id="materialContainer">
+                                <div class="material-item space-y-3">
+                                    <label class="block font-semibold mb-2">Material Title</label>
+                                    <input type="text" placeholder="Enter Material Title"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                    <input type="file"
+                                        class="w-full text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <label class="block font-semibold mb-2">Upload Material File</label>
-                                <input type="file"
-                                    class="w-full py-2 px-3 text-sm border-2 border-borderColor rounded-md">
-
-                                <div class="mt-15px">
                                     <button type="button"
-                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark font-semibold">
-                                        + Add New Material
+                                        class="remove-material text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Remove Material
                                     </button>
                                 </div>
+
+                                <button type="button" onclick="addMaterialField()"
+                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                    + Add More Material
+                                </button>
                             </div>
                         </div>
 
-                        <!-- QUIZ ACCORDION -->
-                        <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px">
+                        <!-- QUIZ -->
+                        <div
+                            class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px accordion-section">
                             <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                 onclick="this.nextElementSibling.classList.toggle('hidden')">
                                 <span class="text-blackColor dark:text-whiteColor">Quiz</span>
@@ -162,22 +173,28 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     </path>
                                 </svg>
                             </div>
-                            <div class="hidden px-6 pb-6 space-y-4">
-                                <label class="block font-semibold mb-2">Quiz Title</label>
-                                <input type="text" placeholder="Enter Quiz Title"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                            <div class="hidden px-6 pb-6 space-y-4" id="quizContainer">
+                                <div class="quiz-item space-y-3">
+                                    <label class="block font-semibold mb-2">Quiz Question</label>
+                                    <input type="text" placeholder="Enter Quiz Question"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <div class="mt-15px">
                                     <button type="button"
-                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark font-semibold">
-                                        + Add New Quiz
+                                        class="remove-quiz text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Remove Quiz
                                     </button>
                                 </div>
+
+                                <button type="button" onclick="addQuizField()"
+                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                    + Add More Quiz
+                                </button>
                             </div>
                         </div>
 
-                        <!-- ASSIGNMENT ACCORDION -->
-                        <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px">
+                        <!-- ASSIGNMENT -->
+                        <div
+                            class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 mt-15px accordion-section">
                             <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                 onclick="this.nextElementSibling.classList.toggle('hidden')">
                                 <span class="text-blackColor dark:text-whiteColor">Assignment</span>
@@ -188,21 +205,22 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     </path>
                                 </svg>
                             </div>
-                            <div class="hidden px-6 pb-6 space-y-4">
-                                <label class="block font-semibold mb-2">Assignment Title</label>
-                                <input type="text" placeholder="Enter Assignment Title"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                            <div class="hidden px-6 pb-6 space-y-4" id="assignmentContainer">
+                                <div class="assignment-item space-y-3">
+                                    <label class="block font-semibold mb-2">Assignment Title</label>
+                                    <input type="text" placeholder="Enter Assignment Title"
+                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <label class="block font-semibold mb-2">Assignment Description</label>
-                                <textarea placeholder="Enter Assignment Description"
-                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"></textarea>
-
-                                <div class="mt-15px">
                                     <button type="button"
-                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark font-semibold">
-                                        + Add New Assignment
+                                        class="remove-assignment text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Remove Assignment
                                     </button>
                                 </div>
+
+                                <button type="button" onclick="addAssignmentField()"
+                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                    + Add More Assignment
+                                </button>
                             </div>
                         </div>
 
@@ -222,34 +240,94 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
         </div>
     </section>
 
-    <!-- JS TOGGLE FORM -->
+    <!-- JS FOR ADD/REMOVE FIELDS -->
     <script>
         const addLessonBtn = document.getElementById('addLessonBtn');
         const lessonFormContainer = document.getElementById('lessonFormContainer');
-
         addLessonBtn.addEventListener('click', () => {
             lessonFormContainer.classList.toggle('hidden');
         });
+
+        // Add/Remove functions
+        function addIntroField() {
+            const container = document.getElementById('introContainer');
+            const div = document.createElement('div');
+            div.className = 'intro-item space-y-3';
+            div.innerHTML = `
+      <label class="block font-semibold mb-2">Intro Title</label>
+      <input type="text" placeholder="Enter Intro Title"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <label class="block font-semibold mb-2">Intro Description</label>
+      <textarea placeholder="Enter Intro Description"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"></textarea>
+      <button type="button" class="remove-intro text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">Remove Intro</button>
+    `;
+            container.insertBefore(div, container.lastElementChild);
+        }
+
+        function addLectureField() {
+            const container = document.getElementById('lectureContainer');
+            const div = document.createElement('div');
+            div.className = 'lecture-item space-y-3';
+            div.innerHTML = `
+      <label class="block font-semibold mb-2">Lecture Title</label>
+      <input type="text" placeholder="Enter Lecture Title"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <input type="file" class="w-full text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <button type="button" class="remove-lecture text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">Remove Lecture</button>
+    `;
+            container.insertBefore(div, container.lastElementChild);
+        }
+
+        function addMaterialField() {
+            const container = document.getElementById('materialContainer');
+            const div = document.createElement('div');
+            div.className = 'material-item space-y-3';
+            div.innerHTML = `
+      <label class="block font-semibold mb-2">Material Title</label>
+      <input type="text" placeholder="Enter Material Title"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <input type="file" class="w-full text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <button type="button" class="remove-material text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">Remove Material</button>
+    `;
+            container.insertBefore(div, container.lastElementChild);
+        }
+
+        function addQuizField() {
+            const container = document.getElementById('quizContainer');
+            const div = document.createElement('div');
+            div.className = 'quiz-item space-y-3';
+            div.innerHTML = `
+      <label class="block font-semibold mb-2">Quiz Question</label>
+      <input type="text" placeholder="Enter Quiz Question"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <button type="button" class="remove-quiz text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">Remove Quiz</button>
+    `;
+            container.insertBefore(div, container.lastElementChild);
+        }
+
+        function addAssignmentField() {
+            const container = document.getElementById('assignmentContainer');
+            const div = document.createElement('div');
+            div.className = 'assignment-item space-y-3';
+            div.innerHTML = `
+      <label class="block font-semibold mb-2">Assignment Title</label>
+      <input type="text" placeholder="Enter Assignment Title"
+        class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+      <button type="button" class="remove-assignment text-sm font-semibold text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">Remove Assignment</button>
+    `;
+            container.insertBefore(div, container.lastElementChild);
+        }
+
+        // Remove event delegation
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-intro')) e.target.closest('.intro-item').remove();
+            if (e.target.classList.contains('remove-lecture')) e.target.closest('.lecture-item').remove();
+            if (e.target.classList.contains('remove-material')) e.target.closest('.material-item').remove();
+            if (e.target.classList.contains('remove-quiz')) e.target.closest('.quiz-item').remove();
+            if (e.target.classList.contains('remove-assignment')) e.target.closest('.assignment-item').remove();
+        });
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

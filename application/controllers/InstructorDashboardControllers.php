@@ -46,6 +46,11 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/create_lesson');
     }
 
+        public function loaDcreate_quiz()
+    {
+        $this->load->view('dashboard/dInstructor/create_quiz');
+    }
+
     //// Instructor_Model loading here /////
 
     public function modeLloginINSTRUCTOR()

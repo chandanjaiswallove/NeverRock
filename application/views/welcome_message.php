@@ -887,7 +887,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
         <div class="container p-0 filter-contents flex flex-wrap sm:-mx-15px" data-aos="fade-up">
           <!-- card 1 -->
           <?php
-          $fetchEnrolledCourse = $this->db->query("SELECT * FROM course_directory");
+          $fetchEnrolledCourse = $this->db->query("SELECT * FROM course_directory ORDER BY RAND() LIMIT 6");
           foreach ($fetchEnrolledCourse->result() as $row) { ?>
 
             <div class="w-full md:w-1/2 lg:w-1/3  group grid-item <?php echo $row->course_category; ?>">

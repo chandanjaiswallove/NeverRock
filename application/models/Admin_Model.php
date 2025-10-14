@@ -231,6 +231,8 @@ class Admin_Model extends CI_Model
         $regularPrice = $_POST['regularPrice'];
         $discountPrice = $_POST['discountPercent'];
         $finalPrice = $_POST['finalPrice'];
+        $courseDescription = $_POST['courseDescription'];
+        $enquiryNumber = $_POST['enquiry_number'];
 
         // image Configuration for uploading course
         $config['upload_path'] = 'modules/courseThumbnail/';
@@ -240,6 +242,14 @@ class Admin_Model extends CI_Model
         $config['remove_spaces'] = TRUE;
         $config['file_ext_tolower'] = TRUE;
         $config['file_name'] = uniqid() . "_" . preg_replace('/\s+/', '_', $_FILES['courseImage']['name']);
+
+        $config2['upload_path'] = 'modules/courseVideo';
+        $config2['allowed_types'] = 'mp4';
+        $config2['remove_spaces'] = TRUE;
+        $config2['file_ext_tolower'] = TRUE;
+        $config2['file_name'] = uniqid() . "_" . preg_replace('/\s+/', '_', $_FILES['courseVideoFile']['name']);
+
+        $fullVideoUploads = base_url().$config2['upload_path'].$config2['file_name'];
 
         $this->load->library('upload', $config);
 
@@ -270,12 +280,14 @@ class Admin_Model extends CI_Model
                     'ending_date' => $finishDate,
                     'course_mode' => $courseAvailability,
                     'course_language' => $languageMedium,
-                    'course_description' => 'To be Updated',
+                    'course_description' => $courseDescription,
                     'course_actual_cost' => $regularPrice,
                     'course_selling_cost' => $finalPrice,
                     'discount_applied' => $discountPrice,
+                    'enquiry_number' => $enquiryNumber,
                     'course_large_description' => 'To be Updated',
-                    'course_preview_video' => 'To be Updated'
+                    'course_preview_video' => 'To be Updated',
+                    'course_video_content' => $fullVideoUploads
                 );
                 $this->db->insert('course_directory', $courseData);
 

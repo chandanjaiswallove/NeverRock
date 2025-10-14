@@ -66,7 +66,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     <!-- Course Description -->
                                     <div>
-                                        <label class="mb-3 block font-semibold">Course Description</label>
+                                        <label class="mb-3 block font-semibold">Short Description</label>
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             id="courseDescription" name="courseDescription" rows="4"
