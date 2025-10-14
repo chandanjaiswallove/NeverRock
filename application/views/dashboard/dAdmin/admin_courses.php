@@ -65,13 +65,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <!-- Course Description -->
-                                    <!-- <div>
+                                    <div>
                                         <label class="mb-3 block font-semibold">Course Description</label>
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             id="courseDescription" name="courseDescription" rows="4"
                                             required></textarea>
-                                    </div> -->
+                                    </div>
                                 </div>
 
 
@@ -194,10 +194,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
 
-                                        <!-- Enquiry Number -->
-                                        <!-- Upload Intro Video -->
-                                <!-- <div>
+                                <!-- Enquiry Number -->
+                                <!-- Upload Intro Video -->
+                                <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <!-- Enquiry Number -->
                                         <div>
                                             <label for="enquiryNumber"
                                                 class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
@@ -206,15 +207,38 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
+                                        <!-- Intro Video (File Upload / YouTube URL) -->
                                         <div>
-                                            <label for="courseVideo" class="mb-3 block font-semibold leading-1.8">Upload
-                                                Intro Video <span class="text-red-500">*</span></label>
-                                            <input type="file" id="courseVideo" name="courseVideo" accept="video/*"
-                                                required
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
+                                            <label class="mb-3 block font-semibold leading-1.8">Upload Intro Video <span
+                                                    class="text-red-500">*</span></label>
+
+                                            <!-- Tabs -->
+                                            <div class="flex gap-4 mb-3">
+                                                <button type="button" id="videoFileTab"
+                                                    class="px-4 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark dark:text-whiteColor ">
+                                                    Upload Video
+                                                </button>
+                                                <button type="button" id="videoUrlTab"
+                                                    class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-blackColor dark:text-whiteColor rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                                    YouTube URL
+                                                </button>
+                                            </div>
+
+                                            <!-- File Input -->
+                                            <input type="file" id="courseVideoFile" name="courseVideoFile"
+                                                accept="video/*"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3"
+                                                required>
+
+                                            <!-- YouTube URL Input -->
+                                            <input type="url" id="courseVideoUrl" name="courseVideoUrl"
+                                                placeholder="Add your YouTube Video URL here. Example: https://www.youtube.com/watch?v=yourvideoid"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3 hidden">
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
+
+
 
 
 
@@ -243,7 +267,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
                                                 placeholder="Regular Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no " >
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no ">
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -253,7 +277,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
                                                 placeholder="Discount (%)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
         bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" >
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Final Price -->
@@ -284,7 +308,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <div class="hidden transition-all duration-300">
 
                             <!-- Basic Accordion -->
-                            <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
                                     <span class="text-blackColor dark:text-whiteColor">Basic</span>
@@ -321,7 +345,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     </form>
                                 </div>
-                            </div>  -->
+                            </div>
 
                             <!-- Curriculum Accordion -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
@@ -619,8 +643,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 }
                             </script>
 
-                                         <!-- Feautes  -->
-                                         <!-- Feautes  -->
+                            <!-- Feautes  -->
+                            <!-- Feautes  -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -699,93 +723,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-                        <!-- third tab  -->
-                        <div class="hidden transition-all duration-300">
-                            <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
-                                data-aos="fade-up">
-                                <div class="grid grid-cols-1 mb-15px gap-y-15px gap-x-30px">
-                                    <div>
-                                        <label class="mb-3 block font-semibold"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="14" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-facebook inline-block mr-1">
-                                                <path
-                                                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
-                                                </path>
-                                            </svg>Facebook</label>
-                                        <input type="text" placeholder="https://facebook.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
 
-                                    <div>
-                                        <label class="mb-3 block font-semibold"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="14" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-twitter inline-block mr-1">
-                                                <path
-                                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                </path>
-                                            </svg>
-                                            Twitter</label>
-                                        <input type="text" placeholder="https://twitter.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-
-                                    <div>
-                                        <label class="mb-3 block font-semibold"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="14" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-linkedin inline-block mr-1">
-                                                <path
-                                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                                </path>
-                                                <rect x="2" y="9" width="4" height="12"></rect>
-                                                <circle cx="4" cy="4" r="2"></circle>
-                                            </svg>Linkedin</label>
-                                        <input type="text" placeholder="https://linkedin.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-
-                                    <div>
-                                        <label class="mb-3 block font-semibold"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="14" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-layout inline-block mr-1">
-                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                                <line x1="3" y1="9" x2="21" y2="9"></line>
-                                                <line x1="9" y1="21" x2="9" y2="9"></line>
-                                            </svg>Website</label>
-                                        <input type="text" placeholder="https://website.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-
-                                    <div>
-                                        <label class="mb-3 block font-semibold"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="14" height="24" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-github inline-block mr-1">
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>Github</label>
-                                        <input type="text" placeholder="https://github.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                    </div>
-                                </div>
-
-                                <div class="mt-15px">
-                                    <button type="submit"
-                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                        Update Social
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
 
 
                     </div>
@@ -809,7 +747,39 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
+    <!-- Video upload & Youtube Url script -->
+    <script>
+        const videoFileTab = document.getElementById('videoFileTab');
+        const videoUrlTab = document.getElementById('videoUrlTab');
+        const videoFileInput = document.getElementById('courseVideoFile');
+        const videoUrlInput = document.getElementById('courseVideoUrl');
 
+        // Switch to File Upload
+        videoFileTab.addEventListener('click', () => {
+            videoFileInput.classList.remove('hidden');
+            videoUrlInput.classList.add('hidden');
+            videoFileInput.required = true;
+            videoUrlInput.required = false;
+
+            videoFileTab.classList.add('bg-primaryColor', 'text-white');
+            videoFileTab.classList.remove('bg-gray-200', 'text-blackColor');
+            videoUrlTab.classList.remove('bg-primaryColor', 'text-white');
+            videoUrlTab.classList.add('bg-gray-200', 'text-blackColor');
+        });
+
+        // Switch to YouTube URL
+        videoUrlTab.addEventListener('click', () => {
+            videoFileInput.classList.add('hidden');
+            videoUrlInput.classList.remove('hidden');
+            videoFileInput.required = false;
+            videoUrlInput.required = true;
+
+            videoUrlTab.classList.add('bg-primaryColor', 'text-white');
+            videoUrlTab.classList.remove('bg-gray-200', 'text-blackColor');
+            videoFileTab.classList.remove('bg-primaryColor', 'text-white');
+            videoFileTab.classList.add('bg-gray-200', 'text-blackColor');
+        });
+    </script>
 
 
 

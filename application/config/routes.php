@@ -91,7 +91,9 @@ $route['instructor_dashboard'] = 'InstructorDashboardControllers/loaDinstructor_
 $route['instructor_message'] = 'InstructorDashboardControllers/loaDinstructor_message'; // Messages
 $route['instructor_myCourse'] = 'InstructorDashboardControllers/loaDinstructor_myCourse'; // Instructor courses
 $route['instructor_profile'] = 'InstructorDashboardControllers/loaDinstructor_profile'; // Profile page
-$route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_setting'; // Settings page
+$route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_setting'; // Settings page 
+$route['create_lesson'] = 'InstructorDashboardControllers/loaDcreate_lesson'; // create_lesson page 
+
 
 // Instructor_Model/Auth Methods for Instructor
 $route['instructorAuth'] = 'InstructorDashboardControllers/modeLloginINSTRUCTOR'; // Instructor login (calls model)
