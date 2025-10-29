@@ -88,7 +88,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark rounded-standard">
                   <!-- card image -->
                   <div class="relative mb-4">
-                    <a href="#" class="w-full overflow-hidden rounded">
+                    <a href="<?php echo base_url('course_details?id='.$row->id);?>" class="w-full overflow-hidden rounded">
                       <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>" alt=""
                         class="w-full transition-all duration-300 group-hover:scale-110">
                     </a>

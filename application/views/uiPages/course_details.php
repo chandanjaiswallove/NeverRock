@@ -4,6 +4,10 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 ?>
 
 <main class="">
+    <?php 
+    $fetchID = $_GET['id'];
+    $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
+    foreach ($fetchCourse->result() as $row) { ?>
 
     <!--course details section -->
     <section>
@@ -14,7 +18,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                     <div data-aos="fade-up">
                         <!-- course thumbnail -->
                         <div class="overflow-hidden relative mb-5">
-                            <img src="modules/assets/images/blog/courseDetails.jpg" alt="" class="w-full">
+                            <img src="<?php echo base_url()."modules/courseThumbnail/".$row->course_thumbnail; ?>" alt="" class="w-full">
                         </div>
                         <!-- course content -->
                         <div>
@@ -22,8 +26,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             <!-- titile -->
                             <h4 class="text-size-32 md:text-4xl font-bold text-blackColor dark:text-blackColor-dark mb-15px leading-43px md:leading-14.5"
                                 data-aos="fade-up">
-                                Making Music with Other People
-                            </h4>
+<?php echo $row->course_name;?>                            </h4>
                             <!-- price and rating -->
                             <div class="flex gap-5 flex-wrap items-center mb-30px" data-aos="fade-up">
                                 <div class="text-size-21 font-medium text-primaryColor font-inter leading-25px">
@@ -53,25 +56,22 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </p>
 
                             <div data-aos="fade-up" class="tab course-details-tab">
-                                <div class="tab-links flex flex-wrap md:flex-nowrap mb-30px rounded gap-0.5">
-                                    <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center active">
-                                        <i class="icofont-book-alt mr-2"></i> CURRICULUM
-                                    </button>
-                                    <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-paper mr-2"></i> DESCRIPTION
-                                    </button>
+            <div class="tab-links flex flex-wrap md:flex-nowrap mb-30px rounded gap-0.5">
+                      <button class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center active">
+                        <i class="icofont-book-alt mr-2"></i> Curriculum
+                      </button>
+                      <button class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
+                        <i class="icofont-paper mr-2"></i> Description
+                      </button>
 
-                                    <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-star mr-2"></i> FAQ
-                                    </button>
-                                    <button
-                                        class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
-                                        <i class="icofont-teacher mr-2"></i> INSTRUCTOR
-                                    </button>
-                                </div>
+                      <button class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
+                        <i class="icofont-star mr-2"></i> Faq </button>
+                      </button>
+                      <button class="is-checked relative p-10px md:px-25px md:py-15px lg:py-3 2xl:py-15px 2xl:px-45px text-blackColor bg-whiteColor hover:bg-primaryColor hover:text-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark dark:hover:bg-primaryColor dark:hover:text-whiteColor flex items-center">
+                        <i class="icofont-teacher mr-2"></i> Instructor
+                      </button>
+                    </div>
+                                
 
 
                                 <div class="tab-contents">
@@ -621,13 +621,13 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             data-aos="fade-up">
                             <!-- meeting thumbnail -->
                             <div class="overflow-hidden relative mb-5">
-<?php if (!empty($row->course_preview_video)) { ?>
+<?php if(!empty($row->course_video_content)) { ?>
     <video controls class="w-full rounded-md">
-        <source src="<?php echo base_url('uploads/videos/' . $row->course_preview_video); ?>" type="video/mp4">
+        <source src="<?php echo base_url().'uploads/videos/' . $row->course_preview_video; ?>" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 <?php } else { ?>
-    <img src="modules/assets/images/blog/courseDetails.jpg" alt="" class="w-full">
+    <img src="<?php echo base_url()."modules/courseThumbnail/".$row->course_thumbnail; ?>" alt="" class="w-full">
 <?php } ?>
                                 <div
                                     class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center z-10">
@@ -829,7 +829,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
             </div>
         </div>
     </section>
-
+<?php }?>
 
 
 </main>
