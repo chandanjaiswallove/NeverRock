@@ -914,12 +914,12 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                   </div>
                   <!-- card content -->
                   <div>
-                    <a href=""
+                    <a href="<?php echo base_url('course_details?id='.$row->id);?>"
                       class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                       <?php echo $row->course_name; ?>
                     </a>
 
-                    <!-- Online and offline medium  -->
+                    <!-- STart and end date  -->
                     <div class="text-lg font-semibold text-primaryColor font-inter">
                       <span class="text-sm text-black dark:text-blackColor-dark"> <i
                           class="icofont-calendar  text-primaryColor text-lg"></i>
@@ -948,7 +948,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                       <?php if (strtolower($row->course_type) == 'paid') { ?>
                         <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
                         <del class="text-sm text-lightGrey4 font-semibold">
-                          <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?>
+                          /<?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?>
                         </del>
                         <span
                           class="ml-6 text-base font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">
@@ -961,7 +961,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                     <!-- buttons  and buy and explore-->
                     <div class="grid grid-cols-1 md:grid-cols-2  text-center gap-2 ">
-                      <a href="http://localhost/NeverRock/welcome"
+                      <a href="<?php echo base_url('course_details?id='.$row->id);?>"
                         class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                         Explore
                       </a>
