@@ -142,8 +142,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 required />
                                         </div>
                                         <div>
-                                            <label for="finishDate" class="mb-3 block font-semibold leading-1.8">Finish
-                                                Date</label>
+                                            <label for="finishDate" class="mb-3 block font-semibold leading-1.8">End
+                                                On</label>
                                             <input type="date" id="finishDate" name="finishDate"
                                                 class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
                                                 required />
@@ -203,7 +203,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="enquiryNumber"
                                                 class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
                                             <input type="text" id="enquiryNumber" name="enquiryNumber"
-                                                placeholder="Enter Enquiry Number" required maxlength="13"
+                                                placeholder="Enter Enquiry Number" required maxlength="14"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
@@ -307,8 +307,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <!-- Course Details Second Description Tab Content -->
                         <div class="hidden transition-all duration-300">
 
-                            <!-- Basic Accordion -->
-                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                            <!-- Basic Accordion Extra  -->
+                            <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
                                     <span class="text-blackColor dark:text-whiteColor">Basic</span>
@@ -345,7 +345,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Curriculum Accordion -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">

@@ -56,9 +56,9 @@ class Developer_Model extends CI_Model
         $devPassword = $_POST['loginPassword'];
         $devUniqueId = $_POST['developerUniqueId'];
 
-        $developerUId = array('DEV2025', 'ADMIN2025');
+        $developerUId = array('DEV2025', 'DEVELOPER2025');
         $developerEmail = array('developer@gmail.com');
-        $developerPassword = array('Admin1234#@', 'Developer1234#@');
+        $developerPassword = array('Dev1234#@', 'Developer1234#@');
 
         if (isset($_POST['developerLogin'])) {
             // Load SweetAlert

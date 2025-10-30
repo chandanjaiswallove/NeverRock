@@ -696,7 +696,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             End On
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             <?php echo date('d-m-y', strtotime($row->ending_date)); ?>
                                         </p>
                                     </li>
@@ -709,8 +709,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Course Type
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                            Live Batch
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize ">
+                                           <?php echo $row->course_mode; ?>
                                         </p>
                                     </li>
                                     <li
@@ -720,7 +720,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Skill Level
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Premium
                                         </p>
                                     </li>
@@ -743,7 +743,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Assignment
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Yes
                                         </p>
                                     </li>
@@ -754,8 +754,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Materials
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                            Yes
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
+                                            yes
                                         </p>
                                     </li>
                                     <li
@@ -765,7 +765,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Test
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Yes
                                         </p>
                                     </li>
@@ -776,18 +776,18 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Quiz
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Yes
                                         </p>
                                     </li>
                                     <li
                                         class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
                                         <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
+                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8 capitalize">
                                             Identity Card
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Yes
                                         </p>
                                     </li>
@@ -798,7 +798,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             Certificate
                                         </p>
                                         <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
+                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
                                             Yes
                                         </p>
                                     </li>
@@ -810,7 +810,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                     </p>
                                     <button type="submit"
                                         class="w-full text-xl text-primaryColor bg-whiteColor px-25px py-10px mb-10px font-bold leading-1.8 border border-primaryColor hover:text-whiteColor hover:bg-primaryColor inline-block rounded group dark:bg-whiteColor-dark dark:text-whiteColor dark:hover:bg-primaryColor">
-                                        <i class="icofont-phone"></i> +47 333 78 901
+                                        <i class="icofont-phone"></i> <?php echo $row->enquiry_number; ?>
                                     </button>
                                 </div>
                             </div>
