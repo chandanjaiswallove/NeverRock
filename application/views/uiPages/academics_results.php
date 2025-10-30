@@ -66,7 +66,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
 
 
-        </div>
+        </div> 
 
 
         <!-- firsr card -->
