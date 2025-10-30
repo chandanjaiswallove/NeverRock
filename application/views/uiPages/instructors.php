@@ -58,49 +58,64 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Mirnsdo Nmdied
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-                <!-- teacher 2 -->
+
+               <!-- teacher 2 -->
 
                 <div data-aos="fade-up" class="group">
                     <div class="mb-30px relative flex flex-col items-center">
                         <div>
-                            <img src="modules/assets/images/teacher/teacher__2.png" class="rounded-full" alt="">
+                            <img src="modules/assets/images/teacher/teacher__1.png" class="rounded-full" alt="">
                         </div>
                         <!-- social icons -->
                         <div
@@ -122,49 +137,62 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Mirnsdo Nmdied
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- teacher 3 -->
-
                 <div data-aos="fade-up" class="group">
                     <div class="mb-30px relative flex flex-col items-center">
                         <div>
-                            <img src="modules/assets/images/teacher/teacher__3.png" class="rounded-full" alt="">
+                            <img src="modules/assets/images/teacher/teacher__1.png" class="rounded-full" alt="">
                         </div>
                         <!-- social icons -->
                         <div
@@ -186,49 +214,62 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Nidns Janicds
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- teacher 4 -->
-
                 <div data-aos="fade-up" class="group">
                     <div class="mb-30px relative flex flex-col items-center">
                         <div>
-                            <img src="modules/assets/images/teacher/teacher__4.png" class="rounded-full" alt="">
+                            <img src="modules/assets/images/teacher/teacher__1.png" class="rounded-full" alt="">
                         </div>
                         <!-- social icons -->
                         <div
@@ -250,49 +291,62 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Mbndie ndne mond
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- teacher 5 -->
-
                 <div data-aos="fade-up" class="group">
                     <div class="mb-30px relative flex flex-col items-center">
                         <div>
-                            <img src="modules/assets/images/teacher/teacher__5.png" class="rounded-full" alt="">
+                            <img src="modules/assets/images/teacher/teacher__1.png" class="rounded-full" alt="">
                         </div>
                         <!-- social icons -->
                         <div
@@ -314,49 +368,62 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Mahmud Sujons
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <!-- teacher 6 -->
-
                 <div data-aos="fade-up" class="group">
                     <div class="mb-30px relative flex flex-col items-center">
                         <div>
-                            <img src="modules/assets/images/teacher/teacher__6.png" class="rounded-full" alt="">
+                            <img src="modules/assets/images/teacher/teacher__1.png" class="rounded-full" alt="">
                         </div>
                         <!-- social icons -->
                         <div
@@ -378,42 +445,56 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h5>
-                            <a href="instructor-details.html"
-                                class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
-                                Jons Emon
-                            </a>
-                        </h5>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Manager
-                        </p>
-                        <p class="text-xl text-primaryColor font-medium leading-6 mb-10px">
-                            Lorem details
-                        </p>
-                        <ul class="flex gap-10px items-center justify-center">
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="instructor.html#"
-                                    class="text-primaryColor bg-primaryColor hover:bg-primaryColor hover:text-whiteColor hover:bg-opacity-100 bg-opacity-5 w-34px h-34px leading-34px text-center rounded-full"><i
-                                        class="icofont-twitter"></i></a>
-                            </li>
-                        </ul>
+                    <div class="rounded-standard  shadow-event p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px flex flex-col md:flex-row shadow-autor aos-init aos-animate"
+                        data-aos="fade-up">
+                        <div class="text-center">
+                            <!-- author name -->
+                            <div class="mb-3">
+                                <h3 class="mb-7px">
+                                    <a href="instructor-details.html"
+                                        class="text-size-28 leading-45px font-semibold text-contentColor capitalize dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                        Rolex Nexon
+                                    </a>
+                                </h3>
+                                <p class="text-xs text-contentColor2 dark:text-contentColor2-dark">
+                                    Blogger/Photographer
+                                </p>
+                            </div>
+                            <!-- description -->
+                            <p class="text-sm text-contentColor dark:text-contentColor-dark mb-15px leading-26px">
+                                Lorem Ipsum is simply dummy text of the printing
+                                and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the
+                                1500s, when an unknown printer took a galley
+                            </p>
+                            <!-- social -->
+                            <div class="text-center">
+                                <ul class="flex gap-10px items-center justify-center">
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="course-details.html#"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

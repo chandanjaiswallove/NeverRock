@@ -33,11 +33,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
                             COURSE INFO
                         </button>
-
-                        <button
+                            <button id="courseDetailsTab"
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
                             COURSE DETAILS
-                        </button>
+                            </button>
+
+
 
                         <!-- <button
                         class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
@@ -51,7 +52,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <!-- course info data -->
                             <!-- course info data -->
 
-                            <form
+                            <form id="courseInfoForm"
                                 class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
                                 data-aos="fade-up" method="POST" action="<?php echo base_url('createCourse'); ?>"
                                 enctype="multipart/form-data">
@@ -238,12 +239,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
 
-
-
-
-
-
-
                                 <!-- COURSE PRICING SECTION (Hide/Show based on Type) -->
                                 <!-- ============================== -->
                                 <div id="pricingSection" class="mt-20px">
@@ -292,11 +287,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
                                 <div class="mt-15px">
-                                    <button type="submit"
-                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
-                                        name="registerCourse" id="registerCourse">
-                                        Create Course
-                                    </button>
+                                <button type="submit" id="nextToDetails"
+                                class="bg-primaryColor text-whiteColor py-10px px-25px rounded-md font-semibold hover:bg-secondaryColor transition duration-300">
+                                Next
+                                </button>
+
+
                                 </div>
 
 
@@ -306,47 +302,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                         <!-- Course Details Second Description Tab Content -->
                         <div class="hidden transition-all duration-300">
-
-                            <!-- Basic Accordion Extra  -->
-                            <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
-                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                    <span class="text-blackColor dark:text-whiteColor">Basic</span>
-                                    <svg class="transition-all duration-500 rotate-0  " width="20"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
-                                        <path fill-rule="evenodd"
-                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                                        </path>
-                                    </svg>
-                                </div>
-
-                                <div class="hidden px-6 pb-6">
-                                    <form
-                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
-
-                                        <div>
-                                            <label class="mb-3 block font-semibold">Course Title</label>
-                                            <input type="text" placeholder="Course Title" name="courseTitle"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                        </div>
-
-                                        <div>
-                                            <label class="mb-3 block font-semibold">Upload Image</label>
-                                            <input type="file" accept="image/*" name="courseImage"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
-                                        </div>
-
-                                        <div>
-                                            <label class="mb-3 block font-semibold">Short Description</label>
-                                            <textarea rows="3" placeholder="Write short course description..."
-                                                name="shortDesc"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no placeholder:text-placeholder placeholder:opacity-80 leading-23px"></textarea>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div> -->
-
                             <!-- Curriculum Accordion -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
@@ -442,9 +397,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         </div>
 
-
-
-
                                         <!-- Important Topics Section -->
                                         <div id="importantTopicsContainer" class="space-y-4 mt-15px  ">
 
@@ -459,8 +411,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     <label class="block font-semibold">Important Topic Name</label>
                                                     <input type="text" name="importantTitle[]"
                                                         placeholder="Enter important topic name" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-                       bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
-                       rounded-md" required>
+                                                bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
+                                                rounded-md" required>
                                                 </div>
 
                                                 <!-- Important Fields for this topic -->
@@ -472,8 +424,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     <div class="flex items-start gap-2">
                                                         <input type="text" name="importantField[]"
                                                             placeholder="Enter important field" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-                           bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
-                           rounded-md" required>
+                                                    bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
+                                                    rounded-md" required>
                                                     </div>
                                                 </div>
                                                 <!-- Dynamic Fields (New Topics) -->
@@ -487,13 +439,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     </button>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
-
-
                                     </form>
                                 </div>
                             </div>
@@ -628,9 +574,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
                                         div.style.marginBottom = "10px"; // gap between blocks
                                         div.innerHTML = `
-<span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
-<button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
-`;
+                                        <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
+                                                <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
+                                                `;
                                         selectedDiv.appendChild(div);
                                     });
                                 }
@@ -698,37 +644,16 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </form>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            <div class="mt-15px">
+                                <button type="submit"
+                                    class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
+                                    name="registerCourse" id="registerCourse">
+                                    Save Course
+                                </button>
+                            </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -738,13 +663,21 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
+<script>
+document.getElementById("nextToDetails").addEventListener("click", function(e) {
+    e.preventDefault(); 
 
+    let form = document.getElementById("courseInfoForm");
 
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+    }
 
-
-
-
-
+    // If form is valid → go to course details tab
+    document.getElementById("courseDetailsTab").click();
+});
+</script>
 
 
     <!-- Video upload & Youtube Url script -->
@@ -780,8 +713,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             videoFileTab.classList.add('bg-gray-200', 'text-blackColor');
         });
     </script>
-
-
 
     <!-- Add Feautes Script add more feautres -->
 
@@ -819,7 +750,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             featureCounter++; // Increment counter for next dynamic feature
         }
     </script>
-
 
     <!-- faq question & answer  -->
 
@@ -1037,26 +967,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     </script>
 
 </main>
-
-
-<!-- color dark ligh mode for clicking
-text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor
- -->
-<!-- 
- background color
-  bg-darkdeep3 dark:bg-transparent  text-blackColor dark:text-blackColor-dark -->
-
-<!-- <p class="flex items-center gap-0.5 ">
-    <svg class="feather feather-info w-14px h-14px"
-    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <line x1="12" y1="16" x2="12" y2="12"></line>
-    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-    </svg>
-    Please Write Important Field According to Important Topics Name
-    </p> -->
 
 
 <!-- Admin Dashboard Footer section admin_footer  -->

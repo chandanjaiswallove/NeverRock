@@ -1,516 +1,719 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-
-class Admin_Model extends CI_Model
-{
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    // ✅ Admin Login
-    public function adminAuth()
-    {
-        $adminUniqueID = $_POST['adminUID'];
-        $adminEmail = $_POST['adminEMAIL'];
-        $adminPassword = $_POST['adminPASSWORD'];
-
-        $findFirstTimeUser = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '$adminUniqueID' AND admin_email = '$adminEmail'");
-
-        foreach ($findFirstTimeUser->result() as $row) {
-            $passwordStatus = $row->password_update_status;
-            $systemPassword = $row->system_generated_password;
-            $portalCredentials = $row->portal_credentials;
-        }
-
-        if (isset($_POST['adminLOGIN'])) {
-            if ($findFirstTimeUser->num_rows() > 0 and $passwordStatus = 'To be Updated' and $adminPassword == $systemPassword) {
-
-                $_SESSION['acitveAdmin'] = $adminUniqueID;
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>';
-                echo 'document.addEventListener("DOMContentLoaded", function() {';
-                echo '  swal({';
-                echo '    title: "User Verified!",';
-                echo '    text: "You have successfully registered the Admin to the Portal. Now admin can use their dashboard to manage their institution.",';
-                echo '    icon: "success",';
-                echo '  }).then(function() {';
-                echo '    window.location.href = "' . base_url('set_new_password') . '";';
-                echo '  });';
-                echo '});';
-                echo '</script>';
-
-            } else if ($findFirstTimeUser->num_rows() > 0 and $passwordStatus = 'Updated By User' and $adminPassword == password_verify($adminPassword, $portalCredentials)) {
-                $_SESSION['acitveAdmin'] = $adminUniqueID;
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>';
-                echo 'document.addEventListener("DOMContentLoaded", function() {';
-                echo '  swal({';
-                echo '    title: "User Verified!",';
-                echo '    text: "You have successfully registered the Admin to the Portal. Now admin can use their dashboard to manage their institution.",';
-                echo '    icon: "success",';
-                echo '  }).then(function() {';
-                echo '    window.location.href = "' . base_url('admin_dashboard') . '";';
-                echo '  });';
-                echo '});';
-                echo '</script>';
-
-                // echo "Logged in through Hashed Password";
-            } else {
-                echo "Wrong Credentials";
-            }
-        }
-    }
-
-    public function changeProfilePassword()
-    {
-        $portalPassword = $_POST['newPassword'];
-        $cnfPassword = $_POST['cnfPassword'];
-
-        $hashedPassword = password_hash($portalPassword, PASSWORD_DEFAULT);
-
-        if (isset($_POST['updatePassword'])) {
-            if ($cnfPassword === $portalPassword) {
-                $this->db->query("UPDATE admin_directory SET password_update_status = 'Updated By User',portal_credentials = '$hashedPassword' WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>';
-                echo 'document.addEventListener("DOMContentLoaded", function() {';
-                echo '  swal({';
-                echo '    title: "User Verified!",';
-                echo '    text: "You have successfully registered the Admin to the Portal. Now admin can use their dashboard to manage their institution.",';
-                echo '    icon: "success",';
-                echo '  }).then(function() {';
-                echo '    window.location.href = "' . base_url('logoutAdmin') . '";';
-                echo '  });';
-                echo '});';
-                echo '</script>';
-            } else {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>';
-                echo 'document.addEventListener("DOMContentLoaded", function() {';
-                echo '  swal({';
-                echo '    title: "Password Update Failed!",';
-                echo '    text: "Could not update the password, please try again.",';
-                echo '    icon: "error",';
-                echo '  }).then(function() {';
-                echo '    window.location.href = "' . base_url('set_new_password') . '";';
-                echo '  });';
-                echo '});';
-                echo '</script>';
-            }
-        }
-    }
-
-    //// Create an Instructor 
-    public function registerInstructor()
-    {
-        if (isset($_POST['instructorData'])) {
-
-            // Collect form data
-            $fullName = $this->input->post('instructorName', true);
-            $email = $this->input->post('instructorEmail', true);
-            $contact = $this->input->post('instructorContact', true);
-            $password = $this->input->post('instructorPassword', true);
-            $uidPortal = $this->input->post('portalUID', true);
-            $dummyData = 'To be Updated';
-
-            // ✅ Check for duplicate email or phone
-            $this->db->group_start();
-            $this->db->where('instructor_email', $email);
-            $this->db->or_where('instructor_phone', $contact);
-            $this->db->group_end();
-            $existing = $this->db->get('instructor_directory'); // ✅ correct table name
-
-            if ($existing->num_rows() > 0) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        swal({
-                            title: "Registration Failed",
-                            text: "Email or Phone already registered.",
-                            icon: "error"
-                        }).then(function(){ 
-                            window.location.href = "' . base_url('admin_createInstructors') . '"; 
-                        });
-                    });
-                  </script>';
-                return;
-            }
-
-            // ✅ Hash password
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-            // Prepare data array
-            $instructorData = array(
-                'instructor_name' => $fullName,
-                'instructor_email' => $email,
-                'instructor_phone' => $contact,
-                'instructor_uid' => $uidPortal,
-                'instructor_SystemPassword' => $password,
-                'portal_credentials' => $hashedPassword,
-                'password_update_status' => $dummyData,
-                'profile_active_status' => 'Active',
-               
-
-            );
-
-            // ✅ Insert into database
-            $this->db->insert('instructor_directory', $instructorData);
-
-            // Success alert
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    swal({
-                        title: "Registration Successful!",
-                        text: "Instructor registered successfully.",
-                        icon: "success"
-                    }).then(function(){ 
-                        window.location.href = "' . base_url('admin_dashboard') . '"; 
-                    });
-                });
-              </script>';
-        }
-    }
-
-
-
-    // ✅ Logout
-    public function logoutAdmin()
-    {
-        session_unset();
-        unset($_SESSION['activeAdmin']);
-        session_destroy();
-        redirect(base_url('admin_login'));
-
-    }
-
-}
-
-?>
-
-
-
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-
-class Student_Model extends CI_Model
-{
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    // Register student
-    public function registerStudent()
-    {
-
-        if (isset($_POST['studentSignupData'])) {
-
-            // Collect form data
-            $fullName = $this->input->post('studentName', true);
-            $email = $this->input->post('studentEmail', true);
-            $phone = $this->input->post('studentPhone', true);
-            $password = $this->input->post('studentPassword', true);
-            $confirmPass = $this->input->post('studentConfirm', true);
-            $username = $this->input->post('studentUsername', true);
-            $state = $this->input->post('studentState', true);
-
-            // Password match check
-            if ($password !== $confirmPass) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            swal({
-                                title: "Password Mismatch!",
-                                text: "Password and Confirm Password do not match.",
-                                icon: "error"
-                            }).then(function(){ window.location.href = "' . base_url('student_signup') . '"; });
-                        });
-                      </script>';
-                return;
-            }
-
-            // Check for duplicate email or phone
-            $this->db->where('student_email', $email);
-            $this->db->or_where('student_phone', $phone);
-            $existing = $this->db->get('student_directory');
-
-            if ($existing->num_rows() > 0) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            swal({
-                                title: "Registration Failed",
-                                text: "Email or Phone already registered.",
-                                icon: "error"
-                            }).then(function(){ window.location.href = "' . base_url('student_login') . '"; });
-                        });
-                      </script>';
-                return;
-            }
-
-            // Hash password
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-
-
-            // Prepare data array
-            $studentData = array(
-                'student_fullname' => $fullName,
-                'student_email' => $email,
-                'student_phone' => $phone,
-                'student_password' => $hashedPassword,
-                'student_username' => $username,
-                'student_state' => $state,
-            );
-
-            // Insert into database
-            $this->db->insert('student_directory', $studentData);
-
-            // Success alert
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        swal({
-                            title: "Registration Successful!",
-                            text: "Student registered successfully. You can now login.",
-                            icon: "success"
-                        }).then(function(){ window.location.href = "' . base_url('student_login') . '"; });
-                    });
-                  </script>';
-
-        }
-    }
-
-    //login student
-    public function loginStudent()
-    {
-        if (isset($_POST['studentLOGIN'])) {
-
-            // Load SweetAlert
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-
-            // Collect form data
-            $username = $this->input->post('stUsername', true);
-            $email = $this->input->post('loginEmail', true);
-            $password = $this->input->post('loginPassword', true);
-
-            // Check username + email in DB
-            $this->db->where('student_username', $username);
-            $this->db->where('student_email', $email);
-            $query = $this->db->get('student_directory');
-
-            if ($query->num_rows() == 0) {
-                echo '<script>
-            setTimeout(function () {
-                swal("Login Failed", "Username or Email not registered", "error")
-                .then(function() {
-                    window.location.href = "' . base_url('student_login') . '";
-                });
-            }, 100);
-            </script>';
-                return;
-            }
-
-            $student = $query->row();
-
-            // Verify password
-            if (!password_verify($password, $student->student_password)) {
-                echo '<script>
-            setTimeout(function () {
-                swal("Login Failed", "Incorrect Password", "error")
-                .then(function() {
-                    window.location.href = "' . base_url('student_login') . '";
-                });
-            }, 100);
-            </script>';
-                return;
-            }
-
-            // ✅ Successful Login — Set session with email only
-            $this->session->set_userdata('activeStudent', $student->student_email);
-
-            echo '<script>
-        setTimeout(function () {
-            swal("Login Success", "Welcome ' . $student->student_fullname . '!", "success")
-            .then(function() {
-                window.location.href = "' . base_url('student_dashboard') . '";
-            });
-        }, 100);
-        </script>';
-        }
-    }
-
-     // ✅ Logout
-    public function student_logout()
-    {
-        // Unset the activeStudent session
-        $this->session->unset_userdata('activeStudent');
-
-        // Destroy entire session (optional)
-        $this->session->sess_destroy();
-
-        // Redirect to login page
-        redirect(base_url('student_login'));
-
-    }
-
-}
-
-?>
-
-
-
-
-
-    //// Create an Instructor 
-    public function registerInstructor()
-    {
-        if (isset($_POST['instructorData'])) {
-
-            // Collect form data
-            $fullName = $this->input->post('instructorName', true);
-            $email = $this->input->post('instructorEmail', true);
-            $contact = $this->input->post('instructorContact', true);
-            $password = $this->input->post('instructorPassword', true);
-            $uidPortal = $this->input->post('portalUID', true);
-
-            // ✅ Check for duplicate email or phone
-            $this->db->group_start();
-            $this->db->where('instructor_email', $email);
-            $this->db->or_where('instructor_phone', $contact);
-            $this->db->group_end();
-            $existing = $this->db->get('instructor_directory'); // ✅ correct table name
-
-            if ($existing->num_rows() > 0) {
-                echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-                echo '<script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        swal({
-                            title: "Registration Failed",
-                            text: "Email or Phone already registered.",
-                            icon: "error"
-                        }).then(function(){ 
-                            window.location.href = "' . base_url('admin_createInstructors') . '"; 
-                        });
-                    });
-                  </script>';
-                return;
-            }
-
-            // ✅ Hash password
-            // $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-            // Prepare data array
-            $instructorData = array(
-                'instructor_name' => $fullName,
-                'instructor_email' => $email,
-                'instructor_phone' => $contact,
-                'instructor_uid' => $uidPortal,
-                'instructor_password' => $password,
-            );
-
-            // ✅ Insert into database
-            $this->db->insert('instructor_directory', $instructorData);
-
-            // Success alert
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    swal({
-                        title: "Registration Successful!",
-                        text: "Instructor registered successfully.",
-                        icon: "success"
-                    }).then(function(){ 
-                        window.location.href = "' . base_url('admin_dashboard') . '"; 
-                    });
-                });
-              </script>';
-        }
-    }
-
-
-    // ================= Create an Instructor =================
-public function registerInstructor()
-{
-    if (isset($_POST['instructorData'])) {
-
-        // Collect form data
-        $fullName = $this->input->post('instructorName', true);
-        $email = $this->input->post('instructorEmail', true);
-        $contact = $this->input->post('instructorContact', true);
-        $password = $this->input->post('instructorPassword', true);
-        $uidPortal = $this->input->post('portalUID', true);
-        $dummyData = 'To be Updated';
-
-        // ✅ Check for duplicate email
-        $checkEmail = $this->db->get_where('instructor_directory', ['instructor_email' => $email]);
-        if ($checkEmail->num_rows() > 0) {
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    swal({
-                        title: "Registration Failed",
-                        text: "Email already registered. Please use another email.",
-                        icon: "error"
-                    }).then(function(){ 
-                        window.location.href = "' . base_url('admin_createInstructors') . '"; 
-                    });
-                });
-              </script>';
-            return;
-        }
-
-        // ✅ Check for duplicate phone
-        $checkPhone = $this->db->get_where('instructor_directory', ['instructor_phone' => $contact]);
-        if ($checkPhone->num_rows() > 0) {
-            echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-            echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    swal({
-                        title: "Registration Failed",
-                        text: "Phone number already registered. Please use another contact number.",
-                        icon: "error"
-                    }).then(function(){ 
-                        window.location.href = "' . base_url('admin_createInstructors') . '"; 
-                    });
-                });
-              </script>';
-            return;
-        }
-
-        // ✅ Hash password
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-        // Prepare data
-        $instructorData = array(
-            'instructor_name' => $fullName,
-            'instructor_email' => $email,
-            'instructor_phone' => $contact,
-            'instructor_uid' => $uidPortal,
-            'instructor_SystemPassword' => $password,
-            'portal_credentials' => $hashedPassword,
-            'password_update_status' => $dummyData,
-            'profile_active_status' => 'Active',
-        );
-
-        // ✅ Insert into database
-        $this->db->insert('instructor_directory', $instructorData);
-
-        // ✅ Success alert
-        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-        echo '<script>
-            document.addEventListener("DOMContentLoaded", function() {
-                swal({
-                    title: "Registration Successful!",
-                    text: "Instructor registered successfully.",
-                    icon: "success"
-                }).then(function(){ 
-                    window.location.href = "' . base_url('admin_dashboard') . '"; 
-                });
-            });
-          </script>';
-    }
-}
+   <section>
+        <div class="container-fluid-2">
+            <!-- setting area -->
+            <div
+                class="p-10px md:px-10 md:py-50px mb-30px bg-whiteColor dark:bg-whiteColor-dark shadow-accordion dark:shadow-accordion-dark rounded-standard">
+                <!-- heading -->
+                <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                        Create Course
+                    </h2>
+                </div>
+
+                <div class="tab">
+                    <div class="tab-links flex flex-wrap mb-10px lg:mb-50px rounded gap-10px" data-aos="fade-up">
+                        <button
+                            class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
+                            COURSE INFO
+                        </button>
+
+                        <button
+                            class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
+                            COURSE DETAILS
+                        </button>
+
+                        <!-- <button
+                        class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
+                        TEMPALTE
+                    </button> -->
+                    </div>
+                    <div class="tab-contents">
+                        <div class="transition-all duration-300" data-aos="fade-up">
+
+                            <!-- course info data -->
+                            <!-- course info data -->
+                            <!-- course info data -->
+
+                            <form
+                                class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
+                                data-aos="fade-up" method="POST" action="<?php echo base_url('createCourse'); ?>"
+                                enctype="multipart/form-data">
+                                <div class="grid grid-cols-1 mb-15px gap-15px">
+                                    <!-- Course Title -->
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Course Title</label>
+                                        <input type="text" placeholder="Course Title"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                            id="courseTitle" name="courseTitle" required>
+                                    </div>
+
+                                    <!-- Course Description -->
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Short Description</label>
+                                        <textarea placeholder="Write a short description about the course"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                            id="courseDescription" name="courseDescription" rows="4"
+                                            required></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30px mb-15px">
+                                        <!-- Upload Image -->
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Upload Image</label>
+                                            <input type="file" id="courseImage" name="courseImage" accept="image/*"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        </div>
+
+                                        <!-- Category Choose by Class Dropdown -->
+                                        <!-- Category Choose by Class Dropdown -->
+                                        <div>
+                                            <label for="courseCategory"
+                                                class="mb-3 block font-semibold leading-1.8">Course
+                                                Category</label>
+                                            <div class="bg-whiteColor relative rounded-md">
+                                                <select id="courseCategory" name="courseCategory" required
+                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
+                                                    <option value="" disabled selected>--- Select Course Category ---
+                                                    </option>
+                                                    <option value="filter1">Class 8th</option>
+                                                    <option value="filter2">Class 9th</option>
+                                                    <option value="filter3">Class 10th</option>
+                                                    <option value="filter4">Class 11th</option>
+                                                    <option value="filter5">Class 12th</option>
+                                                </select>
+                                                <i
+                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Paid/Free Dropdown -->
+                                        <!-- Paid/Free Dropdown -->
+                                        <div>
+                                            <label for="courseType" class="mb-3 block font-semibold leading-1.8">Course
+                                                Type</label>
+                                            <div class="bg-whiteColor relative rounded-md">
+                                                <select id="courseType" name="courseType" required
+                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
+                                                    <option value="" disabled selected>--- Select Course Type ---
+                                                    </option>
+                                                    <option value="paid">Paid</option>
+                                                    <option value="free">Free</option>
+                                                </select>
+                                                <i
+                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- start and finish date -->
+                                <div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <div>
+                                            <label for="startDate" class="mb-3 block font-semibold leading-1.8">Start
+                                                Date</label>
+                                            <input type="date" id="startDate" name="startDate"
+                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
+                                                required />
+                                        </div>
+                                        <div>
+                                            <label for="finishDate" class="mb-3 block font-semibold leading-1.8">End
+                                                On</label>
+                                            <input type="date" id="finishDate" name="finishDate"
+                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- online and offline medium -->
+                                <div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <!-- Available -->
+                                        <div>
+                                            <label for="available"
+                                                class="mb-3 block font-semibold leading-1.8">Available</label>
+                                            <div class="bg-whiteColor relative rounded-md">
+                                                <select id="available" name="avilability" required
+                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
+                                                    <option value="" disabled selected>Select Available </option>
+                                                    <option value="online">Online</option>
+                                                    <option value="offline">Offline</option>
+                                                    <option value="online + offline">Online + Offline</option>
+                                                </select>
+                                                <i
+                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                            </div>
+                                        </div>
+
+                                        <!-- Language/Medium -->
+                                        <div>
+                                            <label for="language"
+                                                class="mb-3 block font-semibold leading-1.8">Language/Medium</label>
+                                            <div class="bg-whiteColor relative rounded-md">
+                                                <select id="language" name="language" required
+                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
+                                                    <option value="" disabled selected>Select Language/Medium</option>
+                                                    <option value="hindi">Hindi Medium</option>
+                                                    <option value="english">English Medium</option>
+                                                    <option value="hinglish">Hinglish</option>
+                                                </select>
+                                                <i
+                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Enquiry Number -->
+                                <!-- Upload Intro Video -->
+                                <div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+                                        <!-- Enquiry Number -->
+                                        <div>
+                                            <label for="enquiryNumber"
+                                                class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
+                                            <input type="text" id="enquiryNumber" name="enquiryNumber"
+                                                placeholder="Enter Enquiry Number" required maxlength="14"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
+                                        </div>
+
+                                        <!-- Intro Video (File Upload / YouTube URL) -->
+                                        <div>
+                                            <label class="mb-3 block font-semibold leading-1.8">Upload Intro Video <span
+                                                    class="text-red-500">*</span></label>
+
+                                            <!-- Tabs -->
+                                            <div class="flex gap-4 mb-3">
+                                                <button type="button" id="videoFileTab"
+                                                    class="px-4 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark dark:text-whiteColor ">
+                                                    Upload Video
+                                                </button>
+                                                <button type="button" id="videoUrlTab"
+                                                    class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-blackColor dark:text-whiteColor rounded hover:bg-gray-300 dark:hover:bg-gray-600">
+                                                    YouTube URL
+                                                </button>
+                                            </div>
+
+                                            <!-- File Input -->
+                                            <input type="file" id="courseVideoFile" name="courseVideoFile"
+                                                accept="video/*"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3"
+                                                required>
+
+                                            <!-- YouTube URL Input -->
+                                            <input type="url" id="courseVideoUrl" name="courseVideoUrl"
+                                                placeholder="Add your YouTube Video URL here. Example: https://www.youtube.com/watch?v=yourvideoid"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3 hidden">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <!-- COURSE PRICING SECTION (Hide/Show based on Type) -->
+                                <!-- ============================== -->
+                                <div id="pricingSection" class="mt-20px">
+                                    <p class="flex items-center gap-0.5 mb-4">
+                                        <svg class="feather feather-info w-14px h-14px"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                        The Course Price Includes Discounts and the final price.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30px mb-15px">
+                                        <!-- Regular Price -->
+                                        <div>
+                                            <label for="regularPrice" class="mb-3 block font-semibold">Actual Price
+                                                (&#8377;)</label>
+                                            <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
+                                                placeholder="Regular Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no ">
+                                        </div>
+
+                                        <!-- Discount Percentage -->
+                                        <div>
+                                            <label for="discountPercent" class="mb-3 block font-semibold">Discount
+                                                (%)</label>
+                                            <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
+                                                placeholder="Discount (%)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        </div>
+
+                                        <!-- Final Price -->
+                                        <div>
+                                            <label for="finalPrice" class="mb-3 block font-semibold">Selling Price
+                                                (&#8377;)</label>
+                                            <input type="text" id="finalPrice" name="finalPrice"
+                                                placeholder="Final Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-15px">
+                                    <button type="submit"
+                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
+                                        name="registerCourse" id="registerCourse">
+                                        Create Course
+                                    </button>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+                        <!-- Course Details Second Description Tab Content -->
+                        <div class="hidden transition-all duration-300">
+
+                            <!-- Basic Accordion Extra  -->
+                            <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Basic</span>
+                                    <svg class="transition-all duration-500 rotate-0  " width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Course Title</label>
+                                            <input type="text" placeholder="Course Title" name="courseTitle"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        </div>
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Upload Image</label>
+                                            <input type="file" accept="image/*" name="courseImage"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
+                                        </div>
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Short Description</label>
+                                            <textarea rows="3" placeholder="Write short course description..."
+                                                name="shortDesc"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no placeholder:text-placeholder placeholder:opacity-80 leading-23px"></textarea>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div> -->
+
+                            <!-- Curriculum Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Curriculum</span>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <!-- Subjects Container (inputs go here) -->
+                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
+                                            <!-- Existing First Input -->
+                                            <label class="mb-3 block font-semibold">Subject Name</label>
+                                            <div class="flex gap-2 items-center">
+                                                <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            </div>
+                                        </div>
+
+                                        <!-- Add New Subject Button (always at bottom) -->
+                                        <div class="mt-15px">
+                                            <button type="button" onclick="addNewSubject()"
+                                                class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                                Add New Subject
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Description Accordion -->
+                            <!-- Description Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Description</span>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+                                        <!-- Important Fields Section -->
+                                        <div id="importantFieldsContainer" class="space-y-4 mb-4">
+
+                                            <!-- Section Title -->
+                                            <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
+                                                Headings & Short Descriptions
+                                            </h3>
+
+                                            <!-- Fixed First Block (Not Removable) -->
+                                            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Important Title</label>
+                                                    <input type="text" name="importantHeading[]"
+                                                        placeholder="Enter heading"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                        required>
+                                                </div>
+                                                <div>
+                                                    <label class="block font-semibold">Description</label>
+                                                    <textarea name="importantDescription[]"
+                                                        placeholder="Enter description"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- Dynamic Fields will be added here (new ones appear above button) -->
+                                            <div id="dynamicFields" class="space-y-4"></div>
+
+                                            <!-- Add Button (stays always at bottom) -->
+                                            <div class="px-4 ">
+                                                <button type="button" onclick="addImportantField()"
+                                                    class="bg-primaryColor text-white py-2 px-4  rounded-md hover:bg-primaryColor-dark transition">
+                                                    + Add More
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <!-- Important Topics Section -->
+                                        <div id="importantTopicsContainer" class="space-y-4 mt-15px  ">
+
+                                            <!-- Section Title -->
+                                            <h3 class="text-lg font-semibold text-primaryColor dark:text-whiteColor  ">
+                                                Important Topics
+                                            </h3>
+
+                                            <!-- Fixed First Topic (Not Removable) -->
+                                            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Important Topic Name</label>
+                                                    <input type="text" name="importantTitle[]"
+                                                        placeholder="Enter important topic name" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                       bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
+                       rounded-md" required>
+                                                </div>
+
+                                                <!-- Important Fields for this topic -->
+                                                <div id="importantFieldsWrapper" class="space-y-3">
+                                                    <label class="block font-semibold">Important Fields (related to this
+                                                        topic)</label>
+
+                                                    <!-- Default Field (Not Removable) -->
+                                                    <div class="flex items-start gap-2">
+                                                        <input type="text" name="importantField[]"
+                                                            placeholder="Enter important field" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                           bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark 
+                           rounded-md" required>
+                                                    </div>
+                                                </div>
+                                                <!-- Dynamic Fields (New Topics) -->
+                                                <div id="dynamicTopicFields" class="space-y-4"></div>
+
+                                                <!-- Add Button (Always at Bottom) -->
+                                                <div class="mt-15px">
+                                                    <button type="button" onclick="addNewImportantField()"
+                                                        class="bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-primaryColor-dark transition">
+                                                        + Add More Fields
+                                                    </button>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Faq Accordion -->
+                            <!-- FAQ Accordion -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">FAQ</span>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <!-- FAQ Section -->
+                                        <div id="faqWrapper" class="space-y-4">
+                                            <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
+                                                Frequently Asked Questions</h3>
+
+                                            <!-- Fixed First FAQ -->
+                                            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Question</label>
+                                                    <input type="text" id="faqQuestion_0" name="faqQuestion[0]"
+                                                        placeholder="Enter your question here"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                        required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Answer</label>
+                                                    <textarea id="faqAnswer_0" name="faqAnswer[0]"
+                                                        placeholder="Enter the answer here"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- Dynamic FAQs container -->
+                                            <div id="dynamicFAQs" class="space-y-4"></div>
+
+                                            <!-- Add More Button -->
+                                            <div class="mt-3">
+                                                <button type="button" onclick="addNewFAQ()"
+                                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                                    + Add More
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- Instructor  -->
+                            <!-- Instructor  -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Instructors</span>
+                                    <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-4 md:p-5 lg:p-6 2xl:p-8 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-4">
+
+                                        <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
+                                            Select Instructors for this Course
+                                        </h3>
+
+                                        <!-- Multi-select Dropdown -->
+                                        <div class="relative mb-4">
+                                            <div class="relative mb-4">
+                                                <select id="instructorDropdown" multiple
+                                                    class="w-full py-3 px-4 text-sm text-blackColor dark:text-blackColor bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
+                                                    <option value="1">Rosalina D. Willaim</option>
+                                                    <option value="2">John Doe</option>
+                                                    <option value="3">Mary Smith</option>
+                                                    <option value="4">James Bond</option>
+                                                    <option value="5">Anna Johnson</option>
+                                                    <option value="6">Robert Brown</option>
+                                                    <option value="7">Lucy Liu</option>
+                                                    <option value="8">David Miller</option>
+                                                    <option value="9">Sophia Lee</option>
+                                                    <option value="10">Michael Scott</option>
+                                                    <option value="11">Emma Watson</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Selected Instructors List -->
+                                        <div id="selectedInstructors" class="space-y-3"></div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Instructor Add More Instrucotr script -->
+                            <script>
+                                const dropdown = document.getElementById("instructorDropdown");
+                                const selectedDiv = document.getElementById("selectedInstructors");
+
+                                let selectedInstructors = [];
+
+                                dropdown.addEventListener("change", () => {
+                                    Array.from(dropdown.selectedOptions).forEach(option => {
+                                        if (!selectedInstructors.find(i => i.id === option.value)) {
+                                            selectedInstructors.push({ id: option.value, name: option.text });
+                                        }
+                                    });
+                                    renderSelected();
+                                });
+
+                                function renderSelected() {
+                                    selectedDiv.innerHTML = "";
+                                    selectedInstructors.forEach(instr => {
+                                        const div = document.createElement("div");
+                                        div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
+                                        div.style.marginBottom = "10px"; // gap between blocks
+                                        div.innerHTML = `
+<span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
+<button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
+`;
+                                        selectedDiv.appendChild(div);
+                                    });
+                                }
+
+                                function removeInstructor(id) {
+                                    selectedInstructors = selectedInstructors.filter(i => i.id !== id);
+                                    const option = Array.from(dropdown.options).find(opt => opt.value === id);
+                                    if (option) option.selected = false;
+                                    renderSelected();
+                                }
+                            </script>
+
+                            <!-- Feautes  -->
+                            <!-- Feautes  -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Features</span>
+                                    <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
+                                            Add Features
+                                        </h3>
+
+                                        <!-- Fixed First Feature -->
+                                        <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                            <div class="mb-3">
+                                                <label class="block font-semibold">Feature Heading</label>
+                                                <input type="text" name="featureHeading[0]"
+                                                    placeholder="Enter feature heading"
+                                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="block font-semibold">Feature Value (Yes / No /
+                                                    Write)</label>
+                                                <input type="text" name="featureValue[0]"
+                                                    placeholder="Enter feature value"
+                                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-white dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <!-- Dynamic Features container -->
+                                        <div id="dynamicFeatures" class="space-y-4"></div>
+
+                                        <!-- Add More Button -->
+                                        <div class="mt-3">
+                                            <button type="button" onclick="addNewFeature()"
+                                                class="px-5 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark">
+                                                + Add More Features
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+

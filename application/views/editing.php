@@ -1183,3 +1183,46 @@
                                 </div>
                             </form>
                         </div>
+
+
+
+
+                            <!-- Basic Accordion Extra  -->
+                           <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                    onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                    <span class="text-blackColor dark:text-whiteColor">Basic</span>
+                                    <svg class="transition-all duration-500 rotate-0  " width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <div class="hidden px-6 pb-6">
+                                    <form
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Course Title</label>
+                                            <input type="text" placeholder="Course Title" name="courseTitle"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        </div>
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Upload Image</label>
+                                            <input type="file" accept="image/*" name="courseImage"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no">
+                                        </div>
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Short Description</label>
+                                            <textarea rows="3" placeholder="Write short course description..."
+                                                name="shortDesc"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no placeholder:text-placeholder placeholder:opacity-80 leading-23px"></textarea>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div> -->
