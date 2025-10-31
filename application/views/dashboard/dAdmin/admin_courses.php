@@ -33,10 +33,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
                             COURSE INFO
                         </button>
-                            <button id="courseDetailsTab"
+                        <button id="courseDetailsTab"
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
                             COURSE DETAILS
-                            </button>
+                        </button>
 
 
 
@@ -87,7 +87,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         <!-- Category Choose by Class Dropdown -->
                                         <!-- Category Choose by Class Dropdown -->
-                                        <div>
+                                        <!-- <div>
                                             <label for="courseCategory"
                                                 class="mb-3 block font-semibold leading-1.8">Course
                                                 Category</label>
@@ -105,12 +105,28 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <i
                                                     class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+                                        </div> -->
 
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Course Category</label>
+                                            <select required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
+                                                id="courseCategory" name="courseCategory">
+
+                                                <option value="" disabled selected>--- Select Course Category ---
+                                                </option>
+                                                <option value="filter1">Class 8th</option>
+                                                <option value="filter2">Class 9th</option>
+                                                <option value="filter3">Class 10th</option>
+                                                <option value="filter4">Class 11th</option>
+                                                <option value="filter5">Class 12th</option>
+                                            </select>
                                         </div>
 
+
                                         <!-- Paid/Free Dropdown -->
                                         <!-- Paid/Free Dropdown -->
-                                        <div>
+                                        <!-- <div>
                                             <label for="courseType" class="mb-3 block font-semibold leading-1.8">Course
                                                 Type</label>
                                             <div class="bg-whiteColor relative rounded-md">
@@ -124,7 +140,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <i
                                                     class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+                                        </div> -->
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Course Type</label>
+                                            <select required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
+                                                id="courseType" name="courseType">
+
+                                                <option value="" disabled selected>--- Select Course Type ---</option>
+                                                <option value="paid">Paid</option>
+                                                <option value="free">Free</option>
+                                            </select>
                                         </div>
+
 
                                     </div>
                                 </div>
@@ -135,7 +163,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <!-- start and finish date -->
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
-                                        <div>
+                                        <!-- <div>
                                             <label for="startDate" class="mb-3 block font-semibold leading-1.8">Start
                                                 Date</label>
                                             <input type="date" id="startDate" name="startDate"
@@ -148,7 +176,20 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="date" id="finishDate" name="finishDate"
                                                 class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
                                                 required />
+                                        </div> -->
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Start Date</label>
+                                            <input type="date" id="startDate" name="startDate" required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor  text-blackColor2  border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
                                         </div>
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">End On</label>
+                                            <input type="date" id="finishDate" name="finishDate" required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor  text-blackColor2  border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
+                                        </div>
+
+
                                     </div>
                                 </div>
 
@@ -159,7 +200,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
                                         <!-- Available -->
-                                        <div>
+                                        <!-- <div>
                                             <label for="available"
                                                 class="mb-3 block font-semibold leading-1.8">Available</label>
                                             <div class="bg-whiteColor relative rounded-md">
@@ -173,10 +214,23 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <i
                                                     class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+                                        </div> -->
+
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Available</label>
+                                            <select required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
+                                                id="available" name="avilability">
+                                                <option value="" disabled selected>Select Available</option>
+                                                <option value="online">Online</option>
+                                                <option value="offline">Offline</option>
+                                                <option value="online + offline">Online + Offline</option>
+                                            </select>
                                         </div>
 
+
                                         <!-- Language/Medium -->
-                                        <div>
+                                        <!-- <div>
                                             <label for="language"
                                                 class="mb-3 block font-semibold leading-1.8">Language/Medium</label>
                                             <div class="bg-whiteColor relative rounded-md">
@@ -190,8 +244,22 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <i
                                                     class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
                                             </div>
+                                        </div> -->
 
+                                        <div>
+                                            <label class="mb-3 block font-semibold">Language/Medium</label>
+                                            <select required
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
+                                                id="language" name="language">
+
+                                                <option value="" disabled selected>Select Language/Medium</option>
+                                                <option value="hindi">Hindi Medium</option>
+                                                <option value="english">English Medium</option>
+                                                <option value="hinglish">Hinglish</option>
+                                            </select>
                                         </div>
+
+
                                     </div>
                                 </div>
 
@@ -287,10 +355,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
                                 <div class="mt-15px">
-                                <button type="submit" id="nextToDetails"
-                                class="bg-primaryColor text-whiteColor py-10px px-25px rounded-md font-semibold hover:bg-secondaryColor transition duration-300">
-                                Next
-                                </button>
+                                    <button type="submit" id="nextToDetails"
+                                        class="bg-primaryColor text-whiteColor py-10px px-25px rounded-md font-semibold hover:bg-secondaryColor transition duration-300">
+                                        Next
+                                    </button>
 
 
                                 </div>
@@ -663,21 +731,21 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-<script>
-document.getElementById("nextToDetails").addEventListener("click", function(e) {
-    e.preventDefault(); 
+    <script>
+        document.getElementById("nextToDetails").addEventListener("click", function (e) {
+            e.preventDefault();
 
-    let form = document.getElementById("courseInfoForm");
+            let form = document.getElementById("courseInfoForm");
 
-    if (!form.checkValidity()) {
-        form.reportValidity(); 
-        return; 
-    }
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
-    // If form is valid → go to course details tab
-    document.getElementById("courseDetailsTab").click();
-});
-</script>
+            // If form is valid → go to course details tab
+            document.getElementById("courseDetailsTab").click();
+        });
+    </script>
 
 
     <!-- Video upload & Youtube Url script -->

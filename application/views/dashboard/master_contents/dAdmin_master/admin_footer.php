@@ -4,7 +4,7 @@
 
                 <section>
                         <div
-                                class="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20 mb-5">
+                                class="grid grid-cols-12 gap-30px md:gap-y-5 lg:gap-y-0 pt-60px pb-50px md:pt-30px md:pb-30px lg:pt-110px lg:pb-20 ">
                                 <!-- left -->
                                 <div class="col-start-1 col-span-12 md:col-span-6 lg:col-span-4 mr-30px"
                                         data-aos="fade-up">
@@ -23,7 +23,7 @@
 
                                                 <li>
                                                         <a href="admin-dashboard.html#"
-                                                                class="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0">Gallery</a>
+                                                                class="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0">New Instructor</a>
                                                 </li>
                                         </ul>
                                 </div>
@@ -38,8 +38,8 @@
 
                                                 <li>
                                                         <a href="admin-dashboard.html#"
-                                                                class="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0">Business
-                                                                English</a>
+                                                                class="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0">
+                                                                 New Course</a>
                                                 </li>
                                         </ul>
                                 </div>
@@ -47,24 +47,13 @@
                                 <div class="col-start-1 col-span-12 md:col-start-7 lg:col-start-10 md:col-span-6 lg:col-span-3 pl-0 2xl:pl-50px"
                                         data-aos="fade-up">
                                         <h4 class="text-size-22 font-bold text-whiteColor mb-3">
-                                                Recent Post
+                                                Quick Links
                                         </h4>
                                         <ul class="flex flex-col gap-y-5">
 
                                                 <li>
-                                                        <a class="flex items-center gap-3 group cursor-pointer">
-                                                                <div>
-                                                                        <img src="modules/assets/images/footer/footer__3.png"
-                                                                                alt="" class="w-61px h-54px">
-                                                                </div>
-                                                                <div>
-                                                                        <p class="text-xs text-darkgray mb-7px">
-                                                                                02 Apr 2025</p>
-                                                                        <h6
-                                                                                class="text-size-15 text-whiteColor font-bold group-hover:text-primaryColor transition-all duration-300">
-                                                                                Nice Your Business
-                                                                        </h6>
-                                                                </div>
+                                                        <a href="admin-dashboard.html#"
+                                                                class="text-darkgray relative hover:text-primaryColor after:transition-all after:duration-300 after:w-0 after:h-2px after:absolute after:bg-primaryColor hover:after:w-full after:bottom-0 after:left-0">Logout
                                                         </a>
                                                 </li>
                                         </ul>
