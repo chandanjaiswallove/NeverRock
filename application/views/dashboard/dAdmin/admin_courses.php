@@ -66,13 +66,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <!-- Course Description -->
-                                    <div>
+                                    <!-- <div>
                                         <label class="mb-3 block font-semibold">Short Description</label>
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                             id="courseDescription" name="courseDescription" rows="4"
                                             required></textarea>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -355,9 +355,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
                                 <div class="mt-15px">
-                                    <button type="submit" id="nextToDetails"
+                                    <button type="submit" id="nextToDetails" name="registerCourse"
                                         class="bg-primaryColor text-whiteColor py-10px px-25px rounded-md font-semibold hover:bg-secondaryColor transition duration-300">
-                                        Next
+                                        Submit
                                     </button>
 
 
@@ -731,7 +731,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-    <script>
+    <!-- <script>
         document.getElementById("nextToDetails").addEventListener("click", function (e) {
             e.preventDefault();
 
@@ -745,7 +745,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             // If form is valid → go to course details tab
             document.getElementById("courseDetailsTab").click();
         });
-    </script>
+    </script> -->
 
 
     <!-- Video upload & Youtube Url script -->
