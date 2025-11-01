@@ -12,7 +12,7 @@ if (!$this->session->userdata('activeStudent')) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Edurock - Education LMS Template</title>
+    <title>Student Dashboard | Edurock - Education LMS Template</title>
     <link rel="shortcut icon" type="image/x-icon" href="modules/assets/images/favicon.ico">
     <!-- link stylesheet -->
     <link rel="stylesheet" href="modules/assets/css/icofont.min.css">
