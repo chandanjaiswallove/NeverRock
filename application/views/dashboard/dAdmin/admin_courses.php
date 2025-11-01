@@ -56,6 +56,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
                                 data-aos="fade-up" method="POST" action="<?php echo base_url('createCourse'); ?>"
                                 enctype="multipart/form-data">
+
+
                                 <div class="grid grid-cols-1 mb-15px gap-15px">
                                     <!-- Course Title -->
                                     <div>
@@ -385,10 +387,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <div class="hidden px-6 pb-6">
                                     <form
-                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4" method="POST" >
 
-                                        <!-- Subjects Container (inputs go here) -->
-                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
+                                         <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
                                             <!-- Existing First Input -->
                                             <label class="mb-3 block font-semibold">Subject Name</label>
                                             <div class="flex gap-2 items-center">
@@ -396,6 +397,21 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                             </div>
                                         </div>
+
+
+                                                                            <!-- Course Description -->
+                                    
+
+                                        <!-- Subjects Container (inputs go here) -->
+                                       
+
+                                        <div>
+                                        <label class="mb-3 block font-semibold">Short Description</label>
+                                        <textarea placeholder="Write a short description about the course"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                            id="courseDescription" name="courseDescription" rows="4"
+                                            required></textarea>
+                                    </div>
 
                                         <!-- Add New Subject Button (always at bottom) -->
                                         <div class="mt-15px">
