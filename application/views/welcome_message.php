@@ -965,7 +965,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                         class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                         Explore
                       </a>
-                      <a href="http://localhost/NeverRock/welcome"
+                      <a href="welcome"
                         class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                         <?php echo (strtolower($row->course_type) == 'paid') ? 'Buy Now' : 'Join Now'; ?>
                       </a>

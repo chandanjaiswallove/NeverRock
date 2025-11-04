@@ -64,7 +64,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <label class="mb-3 block font-semibold">Course Title</label>
                                         <input type="text" placeholder="Course Title"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                            id="courseTitle" name="courseTitle" required>
+                                            id="courseTitle" name="course_name" required>
                                     </div>
 
                                     <!-- Course Description -->
@@ -298,8 +298,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <!-- File Input -->
                                             <input type="file" id="courseVideoFile" name="courseVideoFile"
                                                 accept="video/*"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3"
-                                                required>
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3">
 
                                             <!-- YouTube URL Input -->
                                             <input type="url" id="courseVideoUrl" name="courseVideoUrl"
@@ -387,9 +386,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <div class="hidden px-6 pb-6">
                                     <form
-                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4" method="POST" >
+                                        class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4"
+                                        method="POST">
 
-                                         <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
+                                        <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
                                             <!-- Existing First Input -->
                                             <label class="mb-3 block font-semibold">Subject Name</label>
                                             <div class="flex gap-2 items-center">
@@ -399,19 +399,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         </div>
 
 
-                                                                            <!-- Course Description -->
-                                    
+                                        <!-- Course Description -->
+
 
                                         <!-- Subjects Container (inputs go here) -->
-                                       
+
 
                                         <div>
-                                        <label class="mb-3 block font-semibold">Short Description</label>
-                                        <textarea placeholder="Write a short description about the course"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                            id="courseDescription" name="courseDescription" rows="4"
-                                            required></textarea>
-                                    </div>
+                                            <label class="mb-3 block font-semibold">Short Description</label>
+                                            <textarea placeholder="Write a short description about the course"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                                                id="courseDescription" name="courseDescription" rows="4"
+                                                required></textarea>
+                                        </div>
 
                                         <!-- Add New Subject Button (always at bottom) -->
                                         <div class="mt-15px">
@@ -771,11 +771,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         const videoFileInput = document.getElementById('courseVideoFile');
         const videoUrlInput = document.getElementById('courseVideoUrl');
 
+        // Default: show video upload
+        videoFileInput.classList.remove('hidden');
+        videoUrlInput.classList.add('hidden');
+
         // Switch to File Upload
         videoFileTab.addEventListener('click', () => {
             videoFileInput.classList.remove('hidden');
             videoUrlInput.classList.add('hidden');
-            videoFileInput.required = true;
+
+            // required हटाया गया
+            videoFileInput.required = false;
             videoUrlInput.required = false;
 
             videoFileTab.classList.add('bg-primaryColor', 'text-white');
@@ -788,8 +794,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         videoUrlTab.addEventListener('click', () => {
             videoFileInput.classList.add('hidden');
             videoUrlInput.classList.remove('hidden');
+
+            // required हटाया गया
             videoFileInput.required = false;
-            videoUrlInput.required = true;
+            videoUrlInput.required = false;
 
             videoUrlTab.classList.add('bg-primaryColor', 'text-white');
             videoUrlTab.classList.remove('bg-gray-200', 'text-blackColor');
@@ -797,6 +805,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             videoFileTab.classList.add('bg-gray-200', 'text-blackColor');
         });
     </script>
+
 
     <!-- Add Feautes Script add more feautres -->
 

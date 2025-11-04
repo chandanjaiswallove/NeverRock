@@ -627,31 +627,56 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md"
                                 data-aos="fade-up">
                                 <!-- meeting thumbnail -->
-                                <div class="overflow-hidden relative mb-5">
-                                    <?php if (!empty($row->course_video_content)) { ?>
-                                        <video controls class="w-full rounded-md">
-                                            <source
-                                                src="<?php echo base_url() . 'uploads/videos/' . $row->course_preview_video; ?>"
-                                                type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    <?php } else { ?>
-                                        <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>"
-                                            alt="" class="w-full">
-                                    <?php } ?>
-                                    <div
-                                        class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center z-10">
-                                        <div>
-                                            <button data-url="https://www.youtube.com/watch?v=vHdclsdkp28"
-                                                class="lvideo relative w-15 h-15 md:h-20 md:w-20 lg:w-15 lg:h-15 2xl:h-70px 2xl:w-70px 3xl:h-20 3xl:w-20 bg-secondaryColor rounded-full flex items-center justify-center">
-                                                <span
-                                                    class="animate-buble absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-[180px] h-[180px] border-secondaryColor rounded-full"></span><span
-                                                    class="animate-buble2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
-                                                <img src="modules/assets/images/icon/video.png" alt="">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+<div class="overflow-hidden relative mb-5">
+    <?php 
+    // Check video or URL availability
+    if (!empty($row->course_video_content)) {
+
+        // If YouTube link is provided
+        if (strpos($row->course_video_content, 'youtube.com') !== false || strpos($row->course_video_content, 'youtu.be') !== false) { 
+            // Thumbnail as background + YouTube popup button
+    ?>
+            <img src="<?php echo base_url('modules/courseThumbnail/' . $row->course_thumbnail); ?>" 
+                 alt="Course Thumbnail" class="w-full rounded-md">
+            
+            <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center z-10">
+                <div>
+                    <button data-url="<?php echo $row->course_video_content; ?>" 
+                        class="lvideo relative w-15 h-15 md:h-20 md:w-20 lg:w-15 lg:h-15 
+                               2xl:h-70px 2xl:w-70px 3xl:h-20 3xl:w-20 bg-secondaryColor 
+                               rounded-full flex items-center justify-center">
+                        <span class="animate-buble absolute top-1/2 left-1/2 
+                                     -translate-x-1/2 -translate-y-1/2 block 
+                                     w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
+                        <span class="animate-buble2 absolute top-1/2 left-1/2 
+                                      -translate-x-1/2 -translate-y-1/2 block 
+                                      w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
+                        <img src="<?php echo base_url('modules/assets/images/icon/video.png'); ?>" alt="">
+                    </button>
+                </div>
+            </div>
+
+    <?php 
+        } else { 
+            // If uploaded video file exists
+    ?>
+            <video controls class="w-full rounded-md">
+                <source src="<?php echo base_url('modules/courseVideo/' . $row->course_video_content); ?>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+    <?php 
+        } 
+    } else { 
+        // If no video and no YouTube URL
+    ?>
+        <img src="<?php echo base_url('modules/courseThumbnail/' . $row->course_thumbnail); ?>" 
+             alt="Course Thumbnail" class="w-full rounded-md">
+    <?php 
+    } 
+    ?>
+</div>
+
                                 <div class="flex justify-between mb-5">
                                     <div class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
                                         <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
