@@ -215,6 +215,16 @@ class Admin_Model extends CI_Model
     }
 
 
+
+
+
+
+
+
+
+
+
+
     // // ============================================================
     // // ✅ COURSE ENROLLMENT MODEL New
     // // ============================================================
@@ -291,7 +301,6 @@ class Admin_Model extends CI_Model
             'course_large_description' => 'To be Updated',
             'course_preview_video' => $courseVideoFinal,
             'course_video_content' => $courseVideoFinal,
-            'course_creation_date' => date('Y-m-d H:i:s') // ✅ नया कॉलम
         );
 
 
@@ -332,99 +341,6 @@ class Admin_Model extends CI_Model
 
 
 
-    // // ============================================================
-    // // ✅ COURSE ENROLLMENT MODEL Previous
-    // // ============================================================
-
-    // public function createCourse()
-    // {
-    //     $courseTitle = $_POST['courseTitle'];
-    //     $CourseType = $_POST['courseType'];
-    //     $courseBycategory = $_POST['courseCategory'];
-    //     $startDate = $_POST['startDate'];
-    //     $finishDate = $_POST['finishDate'];
-    //     $courseAvailability = $_POST['avilability'];
-    //     $languageMedium = $_POST['language'];
-    //     $regularPrice = $_POST['regularPrice'];
-    //     $discountPrice = $_POST['discountPercent'];
-    //     $finalPrice = $_POST['finalPrice'];
-    //     $courseDescription = $_POST['courseDescription'];
-    //     $enquiryNumber = $_POST['enquiry_number'];
-
-    //     // image Configuration for uploading course
-    //     $config['upload_path'] = 'modules/courseThumbnail/';
-    //     $config['allowed_types'] = 'jpg|png|jpeg|webp';
-    //     $config['max_height'] = 650;
-    //     $config['max_width'] = 1200;
-    //     $config['remove_spaces'] = TRUE;
-    //     $config['file_ext_tolower'] = TRUE;
-    //     $config['file_name'] = uniqid() . "_" . preg_replace('/\s+/', '_', $_FILES['courseImage']['name']);
-
-    //     $config2['upload_path'] = 'modules/courseVideo';
-    //     $config2['allowed_types'] = 'mp4';
-    //     $config2['remove_spaces'] = TRUE;
-    //     $config2['file_ext_tolower'] = TRUE;
-    //     $config2['file_name'] = uniqid() . "_" . preg_replace('/\s+/', '_', $_FILES['courseVideoFile']['name']);
-
-    //     $fullVideoUploads = base_url().$config2['upload_path'].$config2['file_name'];
-
-    //     $this->load->library('upload', $config);
-
-    //     if (isset($_POST['registerCourse'])) {
-    //         if (is_uploaded_file($_FILES['file_name']['tmp_name'])) {
-    //             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-    //             echo '<script>';
-    //             echo 'document.addEventListener("DOMContentLoaded", function() {';
-    //             echo '  swal({';
-    //             echo '    title: "No Image Uploaded!",';
-    //             echo '    text: "Please Try again.",';
-    //             echo '    icon: "success",';
-    //             echo '  }).then(function() {';
-    //             echo '    window.location.href = "' . base_url('admin_course') . '";';
-    //             echo '  });';
-    //             echo '});';
-    //             echo '</script>';
-    //         } else {
-
-    //             $this->upload->do_upload('courseImage');
-
-    //             $courseData = array(
-    //                 'course_name' => $courseTitle,
-    //                 'course_type' => $CourseType,
-    //                 'course_category' => $courseBycategory,
-    //                 'course_thumbnail' => $config['file_name'],
-    //                 'starting_date' => $startDate,
-    //                 'ending_date' => $finishDate,
-    //                 'course_mode' => $courseAvailability,
-    //                 'course_language' => $languageMedium,
-    //                 'course_description' => $courseDescription,
-    //                 'course_actual_cost' => $regularPrice,
-    //                 'course_selling_cost' => $finalPrice,
-    //                 'discount_applied' => $discountPrice,
-    //                 'enquiry_number' => $enquiryNumber,
-    //                 'course_large_description' => 'To be Updated',
-    //                 'course_preview_video' => 'To be Updated',
-    //                 'course_video_content' => $fullVideoUploads
-    //             );
-    //             $this->db->insert('course_directory', $courseData);
-
-    //             echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
-    //             echo '<script>';
-    //             echo 'document.addEventListener("DOMContentLoaded", function() {';
-    //             echo '  swal({';
-    //             echo '    title: "Course Created!",';
-    //             echo '    text: "You have successfully created a course.",';
-    //             echo '    icon: "success",';
-    //             echo '  }).then(function() {';
-    //             echo '    window.location.href = "' . base_url('admin_course') . '";';
-    //             echo '  });';
-    //             echo '});';
-    //             echo '</script>';
-    //         }
-    //     }
-
-
-    // }
 
 
 
@@ -435,6 +351,16 @@ class Admin_Model extends CI_Model
 
 
 
+
+
+
+
+
+
+
+
+
+    
 
     // ============================================================
     // ✅ ADMIN LOGOUT FUNCTION
