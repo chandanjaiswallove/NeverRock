@@ -627,55 +627,52 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md"
                                 data-aos="fade-up">
                                 <!-- meeting thumbnail -->
-<div class="overflow-hidden relative mb-5">
-    <?php 
-    // Check video or URL availability
-    if (!empty($row->course_video_content)) {
+                                <div class="overflow-hidden relative mb-5">
+    <?php
+    $video = $row->course_video_content;
+    $thumb = $row->course_thumbnail;
 
-        // If YouTube link is provided
-        if (strpos($row->course_video_content, 'youtube.com') !== false || strpos($row->course_video_content, 'youtu.be') !== false) { 
-            // Thumbnail as background + YouTube popup button
-    ?>
-            <img src="<?php echo base_url('modules/courseThumbnail/' . $row->course_thumbnail); ?>" 
+    if (!empty($video)) {
+
+        // ✅ YouTube Link Check
+        if (strpos($video, 'youtube.com') !== false || strpos($video, 'youtu.be') !== false) {
+            ?>
+            <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>" 
                  alt="Course Thumbnail" class="w-full rounded-md">
-            
-            <div class="absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center z-10">
-                <div>
-                    <button data-url="<?php echo $row->course_video_content; ?>" 
-                        class="lvideo relative w-15 h-15 md:h-20 md:w-20 lg:w-15 lg:h-15 
-                               2xl:h-70px 2xl:w-70px 3xl:h-20 3xl:w-20 bg-secondaryColor 
-                               rounded-full flex items-center justify-center">
-                        <span class="animate-buble absolute top-1/2 left-1/2 
-                                     -translate-x-1/2 -translate-y-1/2 block 
-                                     w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
-                        <span class="animate-buble2 absolute top-1/2 left-1/2 
-                                      -translate-x-1/2 -translate-y-1/2 block 
-                                      w-[180px] h-[180px] border-secondaryColor rounded-full"></span>
-                        <img src="<?php echo base_url('modules/assets/images/icon/video.png'); ?>" alt="">
-                    </button>
-                </div>
-            </div>
 
-    <?php 
-        } else { 
-            // If uploaded video file exists
-    ?>
-            <video controls class="w-full rounded-md">
-                <source src="<?php echo base_url('modules/courseVideo/' . $row->course_video_content); ?>" type="video/mp4">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <button data-url="<?php echo $video; ?>" 
+                        class="lvideo relative w-16 h-16 md:w-20 md:h-20 bg-secondaryColor rounded-full flex items-center justify-center">
+
+                    <span class="animate-buble absolute inset-0 border-secondaryColor rounded-full"></span>
+                    <span class="animate-buble2 absolute inset-0 border-secondaryColor rounded-full"></span>
+
+                    <img src="<?php echo base_url('modules/assets/images/icon/video.png'); ?>" alt="">
+                </button>
+            </div>
+        <?php
+        } else {
+            // ✅ Local Video Check
+            $videoPath = FCPATH . "modules/courseVideo/" . $video;
+            $videoSrc = (file_exists($videoPath))
+                ? base_url("modules/courseVideo/" . $video)
+                : $video; // fallback if stored link
+
+            ?>
+            <video controls autoplay muted loop playsinline preload="metadata" class="w-full rounded-md">
+                <source src="<?php echo $videoSrc; ?>" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-
-    <?php 
-        } 
-    } else { 
-        // If no video and no YouTube URL
+        <?php
+        }
+    } else {
+        // ✅ No Video → Show Thumbnail
     ?>
-        <img src="<?php echo base_url('modules/courseThumbnail/' . $row->course_thumbnail); ?>" 
+        <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>" 
              alt="Course Thumbnail" class="w-full rounded-md">
-    <?php 
-    } 
-    ?>
+    <?php } ?>
 </div>
+
 
                                 <div class="flex justify-between mb-5">
                                     <div class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
@@ -735,7 +732,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                         </p>
                                         <p
                                             class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize ">
-                                           <?php echo $row->course_mode; ?>
+                                            <?php echo $row->course_mode; ?>
                                         </p>
                                     </li>
                                     <li
