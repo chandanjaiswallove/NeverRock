@@ -628,50 +628,72 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                 data-aos="fade-up">
                                 <!-- meeting thumbnail -->
                                 <div class="overflow-hidden relative mb-5">
-    <?php
-    $video = $row->course_video_content;
-    $thumb = $row->course_thumbnail;
+<?php
+$video = $row->course_video_content;
+$thumb = $row->course_thumbnail;
 
-    if (!empty($video)) {
+if (!empty($video)) {
 
-        // ✅ YouTube Link Check
-        if (strpos($video, 'youtube.com') !== false || strpos($video, 'youtu.be') !== false) {
-            ?>
-            <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>" 
-                 alt="Course Thumbnail" class="w-full rounded-md">
+    // ✅ YouTube Link Check
+    if (strpos($video, 'youtube.com') !== false || strpos($video, 'youtu.be') !== false) {
 
-            <div class="absolute inset-0 flex items-center justify-center">
-                <button data-url="<?php echo $video; ?>" 
-                        class="lvideo relative w-16 h-16 md:w-20 md:h-20 bg-secondaryColor rounded-full flex items-center justify-center">
-
-                    <span class="animate-buble absolute inset-0 border-secondaryColor rounded-full"></span>
-                    <span class="animate-buble2 absolute inset-0 border-secondaryColor rounded-full"></span>
-
-                    <img src="<?php echo base_url('modules/assets/images/icon/video.png'); ?>" alt="">
-                </button>
-            </div>
-        <?php
-        } else {
-            // ✅ Local Video Check
-            $videoPath = FCPATH . "modules/courseVideo/" . $video;
-            $videoSrc = (file_exists($videoPath))
-                ? base_url("modules/courseVideo/" . $video)
-                : $video; // fallback if stored link
-
-            ?>
-            <video controls autoplay muted loop playsinline preload="metadata" class="w-full rounded-md">
-                <source src="<?php echo $videoSrc; ?>" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        <?php
+        // Extract YouTube video ID
+        $youtube_id = '';
+        if (strpos($video, 'youtube.com') !== false) {
+            parse_str(parse_url($video, PHP_URL_QUERY), $params);
+            $youtube_id = $params['v'] ?? '';
+        } elseif (strpos($video, 'youtu.be') !== false) {
+            $youtube_id = basename(parse_url($video, PHP_URL_PATH));
         }
+
+        // ✅ YouTube iframe autoplay muted, no-download
+        if (!empty($youtube_id)) {
+            ?>
+            <iframe 
+                width="100%" height="400"
+                src="https://www.youtube.com/embed/<?php echo $youtube_id; ?>?autoplay=1&mute=1&controls=1&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=<?php echo $youtube_id; ?>"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                class="rounded-md w-full"
+                style="pointer-events:auto;">
+            </iframe>
+            <?php
+        } else {
+            // fallback to thumbnail if invalid YouTube link
+            ?>
+            <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>"
+                 alt="Course Thumbnail" class="w-full rounded-md">
+            <?php
+        }
+
     } else {
-        // ✅ No Video → Show Thumbnail
+        // ✅ Local / Direct Video Check
+        $videoPath = FCPATH . "modules/courseVideo/" . $video;
+        $videoSrc = (file_exists($videoPath))
+            ? base_url("modules/courseVideo/" . $video)
+            : $video;
+
+        ?>
+        <!-- disables right-click download  -->
+        <video controls autoplay muted playsinline preload="metadata"
+               oncontextmenu="return false;"  
+               controlsList="nodownload noremoteplayback"
+               class="w-full rounded-md">
+            <source src="<?php echo $videoSrc; ?>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <?php
+    }
+
+} else {
+    // ✅ No Video → Show Thumbnail
     ?>
-        <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>" 
-             alt="Course Thumbnail" class="w-full rounded-md">
-    <?php } ?>
+    <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>"
+         alt="Course Thumbnail" class="w-full rounded-md">
+<?php } ?>
 </div>
+
 
 
                                 <div class="flex justify-between mb-5">
