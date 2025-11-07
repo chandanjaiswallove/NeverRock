@@ -8,6 +8,68 @@ class Admin_Model extends CI_Model
         parent::__construct();
     }
 
+
+    // ============================================================
+    // ✅ ADMIN LOGIN FUNCTION (Individual field validation)
+    // ============================================================
+    public function courseDetails()
+    {
+        if (isset($_POST['adminLOGIN'])) {
+
+            $adminUID = trim($this->input->post('adminUID', true));
+            $adminEmail = trim($this->input->post('adminEMAIL', true));
+            $adminPassword = trim($this->input->post('adminPASSWORD', true));
+
+
+
+
+
+
+
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // ============================================================
     // ✅ ADMIN LOGIN FUNCTION (Individual field validation)
     // ============================================================
