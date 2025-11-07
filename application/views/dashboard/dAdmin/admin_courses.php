@@ -282,6 +282,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     class="px-4 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark dark:text-whiteColor ">
                                                     Upload Video
                                                 </button>
+
                                                 <button type="button" id="videoUrlTab"
                                                     class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-blackColor dark:text-whiteColor rounded hover:bg-gray-300 dark:hover:bg-gray-600">
                                                     YouTube URL
@@ -350,8 +351,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </div>
                                 <div class="mt-15px">
                                     <button type="submit" id="nextToDetails" name="registerCourse"
-                                        class="bg-primaryColor text-whiteColor py-10px px-25px rounded-md font-semibold hover:bg-secondaryColor transition duration-300">
-                                        Submit
+                                        class="text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
+                                        Save Info
                                     </button>
 
 
@@ -362,7 +363,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                         </div>
 
-                        <!-- CourseDetails Second Description Tab Content -->
+                        <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
                         <div class="hidden transition-all duration-300">
                             <!-- Curriculum Accordion -->
                             <form action="">
@@ -685,7 +686,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <button type="submit"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
                                         name="registerCourse">
-                                        Save Course
+                                        Save Details
                                     </button>
                                 </div>
                             </form>
