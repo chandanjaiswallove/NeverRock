@@ -67,6 +67,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             id="courseTitle" name="course_name" required>
                                     </div>
 
+                                    <!-- Course Description -->
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Short Description</label>
+                                        <textarea placeholder="Write a short description about the course"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no resize-y"
+                                            id="courseDescription" name="courseDescription" rows="4" required
+                                            style="min-height: 100px; max-height:150px;"></textarea>
+                                    </div>
+
 
                                 </div>
 
@@ -366,7 +375,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
                         <div class="hidden transition-all duration-300">
                             <!-- Curriculum Accordion -->
-                            <form action="">
+                            <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
+                                enctype="multipart/form-data">
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -387,7 +397,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <!-- Existing First Input -->
                                                 <label class="mb-3 block font-semibold">Subject Name</label>
                                                 <div class="flex gap-2 items-center">
-                                                    <input type="text" name="subjectName[]"
+                                                    <input type="text" name="subjectNameR"
                                                         placeholder="Enter subject name"
                                                         class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                 </div>
@@ -395,13 +405,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <!-- Course Description -->
 
                                             <!-- Subjects Container (inputs go here) -->
-                                            <div>
+                                            <!-- <div>
                                                 <label class="mb-3 block font-semibold">Short Description</label>
                                                 <textarea placeholder="Write a short description about the course"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no resize-y"
                                                     id="courseDescription" name="courseDescription" rows="4" required
                                                     style="min-height: 100px; max-height:150px;"></textarea>
-                                            </div>
+                                            </div> -->
 
 
                                             <!-- Add New Subject Button (always at bottom) -->
@@ -956,7 +966,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             newDiv.classList.add('flex', 'gap-2', 'items-center');
 
             newDiv.innerHTML = `
-                                    <input type="text" name="subjectName[]" placeholder="Enter subject name"
+                                    <input type="text" name="subjectNameR" placeholder="Enter subject name"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     <button type="button" onclick="this.parentElement.remove()"
                                             class="px-3 py-2 bg-transparent text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">

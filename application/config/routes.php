@@ -77,7 +77,7 @@ $route['passwordUpdate'] = 'AdminDashboardControllers/modeLchangeProfilePassword
 $route['logoutAdmin'] = 'AdminDashboardControllers/modeLlogoutAdmin'; // Logout admin
 $route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor 
 $route['createCourse'] = 'AdminDashboardControllers/modeLcreateCourse'; // Create Course Bundle
-
+$route['verifyCourseData'] = 'AdminDashboardControllers/modeLDetailData'; // Create Course Details Data
 
 
 
