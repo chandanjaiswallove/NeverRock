@@ -1,4 +1,8 @@
-                            <form action="">
+                        <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
+                        <div class="hidden transition-all duration-300">
+                            <!-- Curriculum Accordion -->
+                            <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
+                                enctype="multipart/form-data">
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -25,13 +29,15 @@
                                                 </div>
                                             </div>
                                             <!-- Course Description -->
-                                            <div>
+
+                                            <!-- Subjects Container (inputs go here) -->
+                                            <!-- <div>
                                                 <label class="mb-3 block font-semibold">Short Description</label>
                                                 <textarea placeholder="Write a short description about the course"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no resize-y"
                                                     id="courseDescription" name="courseDescription" rows="4" required
                                                     style="min-height: 100px; max-height:150px;"></textarea>
-                                            </div>
+                                            </div> -->
 
 
                                             <!-- Add New Subject Button (always at bottom) -->
@@ -320,3 +326,41 @@
                                     </button>
                                 </div>
                             </form>
+                            <!-- Instructor Add More Instrucotr script -->
+                            <script>
+                                const dropdown = document.getElementById("instructorDropdown");
+                                const selectedDiv = document.getElementById("selectedInstructors");
+
+                                let selectedInstructors = [];
+
+                                dropdown.addEventListener("change", () => {
+                                    Array.from(dropdown.selectedOptions).forEach(option => {
+                                        if (!selectedInstructors.find(i => i.id === option.value)) {
+                                            selectedInstructors.push({ id: option.value, name: option.text });
+                                        }
+                                    });
+                                    renderSelected();
+                                });
+
+                                function renderSelected() {
+                                    selectedDiv.innerHTML = "";
+                                    selectedInstructors.forEach(instr => {
+                                        const div = document.createElement("div");
+                                        div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
+                                        div.style.marginBottom = "10px"; // gap between blocks
+                                        div.innerHTML = `
+                                        <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
+                                                <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
+                                                `;
+                                        selectedDiv.appendChild(div);
+                                    });
+                                }
+
+                                function removeInstructor(id) {
+                                    selectedInstructors = selectedInstructors.filter(i => i.id !== id);
+                                    const option = Array.from(dropdown.options).find(opt => opt.value === id);
+                                    if (option) option.selected = false;
+                                    renderSelected();
+                                }
+                            </script>
+                        </div>

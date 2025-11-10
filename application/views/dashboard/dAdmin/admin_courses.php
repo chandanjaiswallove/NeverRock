@@ -397,7 +397,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <!-- Existing First Input -->
                                                 <label class="mb-3 block font-semibold">Subject Name</label>
                                                 <div class="flex gap-2 items-center">
-                                                    <input type="text" name="subjectNameR"
+                                                    <input type="text" name="subjectNameC"
                                                         placeholder="Enter subject name"
                                                         class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                 </div>
@@ -454,15 +454,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Important Title</label>
-                                                        <input type="text" name="importantHeading[]"
+                                                        <input type="text" name="dimpHeading"
                                                             placeholder="Enter heading"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                             required>
                                                     </div>
                                                     <div>
                                                         <label class="block font-semibold">Description</label>
-                                                        <textarea name="importantDescription[]"
-                                                            placeholder="Enter description"
+                                                        <textarea name="dimpDescription" placeholder="Enter description"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                             required
                                                             style="min-height: 100px; max-height:150px;"></textarea>
@@ -495,7 +494,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Important Topic Name</label>
-                                                        <input type="text" name="importantTitle[]"
+                                                        <input type="text" name="importantTopic"
                                                             placeholder="Enter important topic name"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                             required>
@@ -509,7 +508,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                                         <!-- Default Field (Not Removable) -->
                                                         <div class="flex items-start gap-2">
-                                                            <input type="text" name="importantField[]"
+                                                            <input type="text" name="importantKey"
                                                                 placeholder="Enter important field"
                                                                 class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                                 required>
@@ -558,14 +557,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Question</label>
-                                                        <input type="text" id="faqQuestion_0" name="faqQuestion[0]"
+                                                        <input type="text" id="faqQuestion_0" name="faqQuestion"
                                                             placeholder="Enter your question here"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                             required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Answer</label>
-                                                        <textarea id="faqAnswer_0" name="faqAnswer[0]"
+                                                        <textarea id="faqAnswer_0" name="faqAnswer"
                                                             placeholder="Enter the answer here"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                             required
@@ -612,7 +611,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <!-- Multi-select Dropdown -->
                                             <div class="relative mb-4">
                                                 <div class="relative mb-4">
-                                                    <select id="instructorDropdown" multiple
+                                                    <select id="instructorDropdown" name="listedInstructor" multiple
                                                         class="w-full py-3 px-4 text-sm text-blackColor dark:text-whiteColor bg-whiteColor dark:bg-whiteColor-dark dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
                                                         <option value="1">Rosalina D. Willaim</option>
                                                         <option value="2">John Doe</option>
@@ -653,15 +652,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <div
                                             class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                            <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
-                                                Add Features
-                                            </h3>
-
                                             <!-- Fixed First Feature -->
                                             <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                                                 <div class="mb-3">
                                                     <label class="block font-semibold">Feature Heading</label>
-                                                    <input type="text" name="featureHeading[0]"
+                                                    <input type="text" name="featureHeading"
                                                         placeholder="Enter feature heading"
                                                         class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                         required>
@@ -669,7 +664,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div class="mb-3">
                                                     <label class="block font-semibold">Feature Value (Yes / No /
                                                         Write)</label>
-                                                    <input type="text" name="featureValue[0]"
+                                                    <input type="text" name="featureKey"
                                                         placeholder="Enter feature value"
                                                         class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                                                         required>
@@ -824,13 +819,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             group.innerHTML = `
             <div class="mb-3">
                 <label class="block font-semibold">Feature Heading</label>
-                <input type="text" name="featureHeading[${featureCounter}]" placeholder="Enter feature heading"
+                <input type="text" name="featureHeading" placeholder="Enter feature heading"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                     required>
             </div>
             <div class="mb-3">
                 <label class="block font-semibold">Feature Value (Yes / No / Write)</label>
-                <input type="text" name="featureValue[${featureCounter}]" placeholder="Enter feature value"
+                <input type="text" name="featureKey" placeholder="Enter feature value"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                     required>
             </div>
@@ -861,13 +856,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             group.innerHTML = `
             <div class="mb-3">
             <label class="block font-semibold">Question</label>
-            <input type="text" id="faqQuestion_${faqCounter}" name="faqQuestion[${faqCounter}]" placeholder="Enter your question here"
+            <input type="text" id="faqQuestion_${faqCounter}" name="faqQuestion" placeholder="Enter your question here"
             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
             required>
             </div>
             <div class="mb-3">
             <label class="block font-semibold">Answer</label>
-            <textarea id="faqAnswer_${faqCounter}" name="faqAnswer[${faqCounter}]" placeholder="Enter the answer here"
+            <textarea id="faqAnswer_${faqCounter}" name="faqAnswer" placeholder="Enter the answer here"
             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
             required  style="min-height: 100px; max-height:150px;"></textarea>
             </div>
@@ -897,13 +892,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             group.innerHTML = `
             <div class="mb-3">
                 <label class="block font-semibold">Important Title</label>
-                <input type="text" name="importantHeading[]" placeholder="Enter heading"
+                <input type="text" name="dimpHeading" placeholder="Enter heading"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                     required>
             </div>
             <div class="mb-3">
                 <label class="block font-semibold">Description</label>
-                <textarea name="importantDescription[]" placeholder="Enter description"
+                <textarea name="dimpDescription" placeholder="Enter description"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
                     required  style="min-height: 100px; max-height:150px;"></textarea>
             </div>
@@ -929,22 +924,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             // Create new block
             const group = document.createElement("div");
             group.className =
-                "group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border-t border-borderColor dark:border-borderColor-dark";
+                "group bg-gray-100 dark:bg-gray-800 rounded-md border-t border-borderColor dark:border-borderColor-dark";
 
             group.innerHTML = `
-            <div class="mb-3">
-                <label class="block font-semibold">Important Topic Name</label>
-                <input type="text" name="importantTitle[]" placeholder="Enter important topic name"
-                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" required>
-            </div>
 
-            <div class="mb-3">
-                <label class="block font-semibold">Important Fields (related to this topic)</label>
-                <input type="text" name="importantField[]" placeholder="Enter important field"
-                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no" required>
-            </div>
-
-            <div class="text-right">
+                <div class="flex items-start gap-2">
+                <input type="text" name="importantKey"
+                placeholder="Enter important field"
+                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                required>
+                </div>
+                <div class="text-right">
                 <button type="button"
                     class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor text-sm font-semibold"
                     onclick="this.closest('.group').remove()">Remove</button>
@@ -966,7 +956,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             newDiv.classList.add('flex', 'gap-2', 'items-center');
 
             newDiv.innerHTML = `
-                                    <input type="text" name="subjectNameR" placeholder="Enter subject name"
+                                    <input type="text" name="subjectNameC" placeholder="Enter subject name"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     <button type="button" onclick="this.parentElement.remove()"
                                             class="px-3 py-2 bg-transparent text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor rounded">

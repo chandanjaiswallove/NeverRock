@@ -17,6 +17,22 @@ class Admin_Model extends CI_Model
         if (isset($_POST['registerCourse'])) {
 
 
+            $fullName = trim($this->input->post('subjectNameC', true));
+
+            $fullName = trim($this->input->post('dimpHeading', true));
+            $fullName = trim($this->input->post('dimpDescription', true));
+            $fullName = trim($this->input->post('importantTopic', true));
+            $fullName = trim($this->input->post('importantKey', true));
+
+            $fullName = trim($this->input->post('faqQuestion', true));
+            $fullName = trim($this->input->post('faqAnswer', true));
+
+            $fullName = trim($this->input->post('listedInstructor', true));
+
+            $fullName = trim($this->input->post('featureHeading', true));
+            $fullName = trim($this->input->post('featureKey', true));
+
+
 
 
 
