@@ -16,10 +16,15 @@ class Admin_Model extends CI_Model
     {
         if (isset($_POST['registerCourse'])) {
 
+            // ============================================
+            // ✅ 1️⃣ Common Fields
+            // ============================================
             $course_id = uniqid('COURSE_');
             $date = date('Y-m-d H:i:s');
 
-            // 1️⃣ Subject Table
+            // ============================================
+            // ✅ 2️⃣ Insert into course_subjects
+            // ============================================
             foreach ($this->input->post('subjectNameC') as $subject) {
                 if (trim($subject) != '') {
                     $this->db->insert('course_subjects', [
@@ -30,7 +35,9 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // 2️⃣ Heading & Description Table
+            // ============================================
+            // ✅ 3️⃣ Insert into course_headings
+            // ============================================
             $headings = $this->input->post('dimpHeading');
             $descs = $this->input->post('dimpDescription');
             foreach ($headings as $i => $heading) {
@@ -44,7 +51,9 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // 3️⃣ Important Topic & Keys
+            // ============================================
+            // ✅ 4️⃣ Insert into course_topics
+            // ============================================
             $topic = trim($this->input->post('importantTopic', true));
             $keys = $this->input->post('importantKey');
             foreach ($keys as $key) {
@@ -58,7 +67,9 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // 4️⃣ FAQs
+            // ============================================
+            // ✅ 5️⃣ Insert into course_faqs
+            // ============================================
             $questions = $this->input->post('faqQuestion');
             $answers = $this->input->post('faqAnswer');
             foreach ($questions as $i => $q) {
@@ -72,7 +83,9 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // 5️⃣ Features
+            // ============================================
+            // ✅ 6️⃣ Insert into course_features
+            // ============================================
             $featureHeadings = $this->input->post('featureHeading');
             $featureKeys = $this->input->post('featureKey');
             foreach ($featureHeadings as $i => $fh) {
@@ -80,13 +93,15 @@ class Admin_Model extends CI_Model
                     $this->db->insert('course_features', [
                         'course_unique_id' => $course_id,
                         'feature_heading' => trim($fh),
-                        'feature_key' => trim($featureKeys[$i]),
+                        'feature_value' => trim($featureKeys[$i]),
                         'registration_date' => $date
                     ]);
                 }
             }
 
-            // 6️⃣ Instructor
+            // ============================================
+            // ✅ 7️⃣ Insert into course_instructors
+            // ============================================
             foreach ($this->input->post('listedInstructor') as $instructor) {
                 if (trim($instructor) != '') {
                     $this->db->insert('course_instructors', [
@@ -97,7 +112,9 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // ✅ SweetAlert Success Message
+            // ============================================
+            // ✅ 8️⃣ SweetAlert Success Message
+            // ============================================
             $this->sweetAlert(
                 "Success!",
                 "All course details inserted successfully!",
