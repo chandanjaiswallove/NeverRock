@@ -12,7 +12,7 @@ class Student_Model extends CI_Model
     // =================== Signup Student ===================
     public function registerStudent()
     {
-        
+
         if (isset($_POST['studentSignupData'])) {
 
             // Collect form data
@@ -101,19 +101,19 @@ class Student_Model extends CI_Model
                 return;
             }
 
-            // ✅ Successful Login
-            $this->session->set_userdata('activeStudent', $student->student_email);
-            $this->swalRedirect("Login Success", "Welcome " . $student->student_fullname . "!", "success", "student_dashboard");
+// ✅ Successful Login
+$this->session->set_userdata('activeStudent', $student->student_email);
+$this->swalRedirect("Login Success", "Welcome " . $student->student_fullname . "!", "success", "student_dashboard");
         }
     }
 
     // =================== Logout Student ===================
- public function student_logout()
-{
-    $this->session->unset_userdata('activeStudent');
-    $this->session->sess_destroy();
-    redirect(base_url('student_login'));
-}
+    public function student_logout()
+    {
+        $this->session->unset_userdata('activeStudent');
+        $this->session->sess_destroy();
+        redirect(base_url('student_login'));
+    }
 
 
     // =================== Helper: SweetAlert + Redirect ===================
