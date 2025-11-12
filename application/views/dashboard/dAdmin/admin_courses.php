@@ -38,12 +38,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             COURSE DETAILS
                         </button>
 
-
-
-                        <!-- <button
-                        class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
-                        TEMPALTE
-                    </button> -->
                     </div>
                     <div class="tab-contents">
                         <div class="transition-all duration-300" data-aos="fade-up">
@@ -89,27 +83,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
-                                        <!-- Category Choose by Class Dropdown -->
-                                        <!-- Category Choose by Class Dropdown -->
-                                        <!-- <div>
-                                            <label for="courseCategory"
-                                                class="mb-3 block font-semibold leading-1.8">Course
-                                                Category</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select id="courseCategory" name="courseCategory" required
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="" disabled selected>--- Select Course Category ---
-                                                    </option>
-                                                    <option value="filter1">Class 8th</option>
-                                                    <option value="filter2">Class 9th</option>
-                                                    <option value="filter3">Class 10th</option>
-                                                    <option value="filter4">Class 11th</option>
-                                                    <option value="filter5">Class 12th</option>
-                                                </select>
-                                                <i
-                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
-                                        </div> -->
+
 
                                         <div>
                                             <label class="mb-3 block font-semibold">Course Category</label>
@@ -128,23 +102,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         </div>
 
 
-                                        <!-- Paid/Free Dropdown -->
-                                        <!-- Paid/Free Dropdown -->
-                                        <!-- <div>
-                                            <label for="courseType" class="mb-3 block font-semibold leading-1.8">Course
-                                                Type</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select id="courseType" name="courseType" required
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="" disabled selected>--- Select Course Type ---
-                                                    </option>
-                                                    <option value="paid">Paid</option>
-                                                    <option value="free">Free</option>
-                                                </select>
-                                                <i
-                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
-                                        </div> -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Course Type</label>
                                             <select required
@@ -167,20 +124,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <!-- start and finish date -->
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
-                                        <!-- <div>
-                                            <label for="startDate" class="mb-3 block font-semibold leading-1.8">Start
-                                                Date</label>
-                                            <input type="date" id="startDate" name="startDate"
-                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
-                                                required />
-                                        </div>
-                                        <div>
-                                            <label for="finishDate" class="mb-3 block font-semibold leading-1.8">End
-                                                On</label>
-                                            <input type="date" id="finishDate" name="finishDate"
-                                                class="text-base bg-whiteColor text-blackColor2 w-full p-13px pr-30px rounded-md focus:outline-none focus:shadow-select"
-                                                required />
-                                        </div> -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Start Date</label>
                                             <input type="date" id="startDate" name="startDate" required
@@ -192,8 +135,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="date" id="finishDate" name="finishDate" required
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor  text-blackColor2  border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
                                         </div>
-
-
                                     </div>
                                 </div>
 
@@ -203,23 +144,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <!-- online and offline medium -->
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
-                                        <!-- Available -->
-                                        <!-- <div>
-                                            <label for="available"
-                                                class="mb-3 block font-semibold leading-1.8">Available</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select id="available" name="avilability" required
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="" disabled selected>Select Available </option>
-                                                    <option value="online">Online</option>
-                                                    <option value="offline">Offline</option>
-                                                    <option value="online + offline">Online + Offline</option>
-                                                </select>
-                                                <i
-                                                    class=" text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
-                                        </div> -->
-
                                         <div>
                                             <label class="mb-3 block font-semibold">Available</label>
                                             <select required
@@ -231,24 +155,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <option value="online + offline">Online + Offline</option>
                                             </select>
                                         </div>
-
-
-                                        <!-- Language/Medium -->
-                                        <!-- <div>
-                                            <label for="language"
-                                                class="mb-3 block font-semibold leading-1.8">Language/Medium</label>
-                                            <div class="bg-whiteColor relative rounded-md">
-                                                <select id="language" name="language" required
-                                                    class="text-base bg-transparent text-blackColor2 w-full p-13px pr-30px block appearance-none relative z-20 focus:outline-none focus:shadow-select rounded-md">
-                                                    <option value="" disabled selected>Select Language/Medium</option>
-                                                    <option value="hindi">Hindi Medium</option>
-                                                    <option value="english">English Medium</option>
-                                                    <option value="hinglish">Hinglish</option>
-                                                </select>
-                                                <i
-                                                    class="text-blackColor2 icofont-simple-down absolute top-1/2 right-3 -translate-y-1/2 block text-lg z-10"></i>
-                                            </div>
-                                        </div> -->
 
                                         <div>
                                             <label class="mb-3 block font-semibold">Language/Medium</label>
@@ -373,10 +279,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         </div>
 
                         <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
+                        <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
+
                         <div class="hidden transition-all duration-300">
                             <!-- Curriculum Accordion -->
                             <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
                                 enctype="multipart/form-data">
+
+
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -446,14 +356,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         <label class="block font-semibold">Important Title</label>
                                                         <input type="text" name="dimpHeading[]"
                                                             placeholder="Enter heading"
-                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            required>
+                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                     </div>
                                                     <div>
                                                         <label class="block font-semibold">Description</label>
-                                                        <textarea name="dimpDescription[]" placeholder="Enter description"
+                                                        <textarea name="dimpDescription[]"
+                                                            placeholder="Enter description"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            required
                                                             style="min-height: 100px; max-height:150px;"></textarea>
                                                     </div>
                                                 </div>
@@ -486,8 +395,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         <label class="block font-semibold">Important Topic Name</label>
                                                         <input type="text" name="importantTopic"
                                                             placeholder="Enter important topic name"
-                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            required>
+                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                     </div>
 
                                                     <!-- Important Fields for this topic -->
@@ -500,8 +408,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         <div class="flex items-start gap-2">
                                                             <input type="text" name="importantKey[]"
                                                                 placeholder="Enter important field"
-                                                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                                required>
+                                                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                         </div>
                                                     </div>
                                                     <!-- Dynamic Fields (New Topics) -->
@@ -549,15 +456,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         <label class="block font-semibold">Question</label>
                                                         <input type="text" id="faqQuestion_0" name="faqQuestion[]"
                                                             placeholder="Enter your question here"
-                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            required>
+                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Answer</label>
                                                         <textarea id="faqAnswer_0" name="faqAnswer[]"
                                                             placeholder="Enter the answer here"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            required
                                                             style="min-height: 100px; max-height:150px;"></textarea>
                                                     </div>
                                                 </div>
@@ -648,16 +553,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     <label class="block font-semibold">Feature Heading</label>
                                                     <input type="text" name="featureHeading[]"
                                                         placeholder="Enter feature heading"
-                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                        required>
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="block font-semibold">Feature Value (Yes / No /
                                                         Write)</label>
                                                     <input type="text" name="featureKey[]"
                                                         placeholder="Enter feature value"
-                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                        required>
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                                 </div>
                                             </div>
 
@@ -685,43 +588,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </button>
                                 </div>
                             </form>
-                            <!-- Instructor Add More Instrucotr script -->
-                            <script>
-                                const dropdown = document.getElementById("instructorDropdown");
-                                const selectedDiv = document.getElementById("selectedInstructors");
-
-                                let selectedInstructors = [];
-
-                                dropdown.addEventListener("change", () => {
-                                    Array.from(dropdown.selectedOptions).forEach(option => {
-                                        if (!selectedInstructors.find(i => i.id === option.value)) {
-                                            selectedInstructors.push({ id: option.value, name: option.text });
-                                        }
-                                    });
-                                    renderSelected();
-                                });
-
-                                function renderSelected() {
-                                    selectedDiv.innerHTML = "";
-                                    selectedInstructors.forEach(instr => {
-                                        const div = document.createElement("div");
-                                        div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
-                                        div.style.marginBottom = "10px"; // gap between blocks
-                                        div.innerHTML = `
-                                        <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
-                                                <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
-                                                `;
-                                        selectedDiv.appendChild(div);
-                                    });
-                                }
-
-                                function removeInstructor(id) {
-                                    selectedInstructors = selectedInstructors.filter(i => i.id !== id);
-                                    const option = Array.from(dropdown.options).find(opt => opt.value === id);
-                                    if (option) option.selected = false;
-                                    renderSelected();
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -731,66 +597,42 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-
-
-
-    <!-- <script>
-        document.getElementById("nextToDetails").addEventListener("click", function (e) {
-            e.preventDefault();
-
-            let form = document.getElementById("courseInfoForm");
-
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-
-            // If form is valid → go to course details tab
-            document.getElementById("courseDetailsTab").click();
-        });
-    </script> -->
-
-
-    <!-- Video upload & Youtube Url script -->
+    <!-- Instructor Add More Instrucotr script -->
     <script>
-        const videoFileTab = document.getElementById('videoFileTab');
-        const videoUrlTab = document.getElementById('videoUrlTab');
-        const videoFileInput = document.getElementById('courseVideoFile');
-        const videoUrlInput = document.getElementById('courseVideoUrl');
+        const dropdown = document.getElementById("instructorDropdown");
+        const selectedDiv = document.getElementById("selectedInstructors");
 
-        // Default: show video upload
-        videoFileInput.classList.remove('hidden');
-        videoUrlInput.classList.add('hidden');
+        let selectedInstructors = [];
 
-        // Switch to File Upload
-        videoFileTab.addEventListener('click', () => {
-            videoFileInput.classList.remove('hidden');
-            videoUrlInput.classList.add('hidden');
-
-            // required हटाया गया
-            videoFileInput.required = false;
-            videoUrlInput.required = false;
-
-            videoFileTab.classList.add('bg-primaryColor', 'text-white');
-            videoFileTab.classList.remove('bg-gray-200', 'text-blackColor');
-            videoUrlTab.classList.remove('bg-primaryColor', 'text-white');
-            videoUrlTab.classList.add('bg-gray-200', 'text-blackColor');
+        dropdown.addEventListener("change", () => {
+            Array.from(dropdown.selectedOptions).forEach(option => {
+                if (!selectedInstructors.find(i => i.id === option.value)) {
+                    selectedInstructors.push({ id: option.value, name: option.text });
+                }
+            });
+            renderSelected();
         });
 
-        // Switch to YouTube URL
-        videoUrlTab.addEventListener('click', () => {
-            videoFileInput.classList.add('hidden');
-            videoUrlInput.classList.remove('hidden');
+        function renderSelected() {
+            selectedDiv.innerHTML = "";
+            selectedInstructors.forEach(instr => {
+                const div = document.createElement("div");
+                div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
+                div.style.marginBottom = "10px"; // gap between blocks
+                div.innerHTML = `
+                                        <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
+                                                <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
+                                                `;
+                selectedDiv.appendChild(div);
+            });
+        }
 
-            // required हटाया गया
-            videoFileInput.required = false;
-            videoUrlInput.required = false;
-
-            videoUrlTab.classList.add('bg-primaryColor', 'text-white');
-            videoUrlTab.classList.remove('bg-gray-200', 'text-blackColor');
-            videoFileTab.classList.remove('bg-primaryColor', 'text-white');
-            videoFileTab.classList.add('bg-gray-200', 'text-blackColor');
-        });
+        function removeInstructor(id) {
+            selectedInstructors = selectedInstructors.filter(i => i.id !== id);
+            const option = Array.from(dropdown.options).find(opt => opt.value === id);
+            if (option) option.selected = false;
+            renderSelected();
+        }
     </script>
 
 
@@ -811,13 +653,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 <label class="block font-semibold">Feature Heading</label>
                 <input type="text" name="featureHeading[]" placeholder="Enter feature heading"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    required>
+                    >
             </div>
             <div class="mb-3">
                 <label class="block font-semibold">Feature Value (Yes / No / Write)</label>
                 <input type="text" name="featureKey[]" placeholder="Enter feature value"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    required>
+                    >
             </div>
             <div class="text-right">
                 <button type="button" 
@@ -848,13 +690,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             <label class="block font-semibold">Question</label>
             <input type="text" id="faqQuestion_${faqCounter}" name="faqQuestion[]" placeholder="Enter your question here"
             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-            required>
+            >
             </div>
             <div class="mb-3">
             <label class="block font-semibold">Answer</label>
             <textarea id="faqAnswer_${faqCounter}" name="faqAnswer[]" placeholder="Enter the answer here"
             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-            required  style="min-height: 100px; max-height:150px;"></textarea>
+              style="min-height: 100px; max-height:150px;"></textarea>
             </div>
             <div class="text-right">
             <button type="button"
@@ -884,13 +726,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 <label class="block font-semibold">Important Title</label>
                 <input type="text" name="dimpHeading[]" placeholder="Enter heading"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    required>
+                    >
             </div>
             <div class="mb-3">
                 <label class="block font-semibold">Description</label>
                 <textarea name="dimpDescription[]" placeholder="Enter description"
                     class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    required  style="min-height: 100px; max-height:150px;"></textarea>
+                      style="min-height: 100px; max-height:150px;"></textarea>
             </div>
             <div class="text-right">
                 <button type="button"
@@ -922,7 +764,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 <input type="text" name="importantKey[]"
                 placeholder="Enter important field"
                 class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                required>
+                >
                 </div>
                 <div class="text-right">
                 <button type="button"
@@ -958,6 +800,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             wrapper.appendChild(newDiv);
         }
     </script>
+
 
 
     <!-- Pricing and Disocun Sell cost -->

@@ -1,4 +1,7 @@
+<!-- Curriculum Accordion -->
 <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST" enctype="multipart/form-data">
+
+
     <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
         <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
             onclick="this.nextElementSibling.classList.toggle('hidden')">
@@ -19,7 +22,7 @@
                     <!-- Existing First Input -->
                     <label class="mb-3 block font-semibold">Subject Name</label>
                     <div class="flex gap-2 items-center">
-                        <input type="text" name="subjectNameC" placeholder="Enter subject name"
+                        <input type="text" name="subjectNameC[]" placeholder="Enter subject name"
                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                     </div>
                 </div>
@@ -65,15 +68,14 @@
                     <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                         <div class="mb-3">
                             <label class="block font-semibold">Important Title</label>
-                            <input type="text" name="dimpHeading" placeholder="Enter heading"
-                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                required>
+                            <input type="text" name="dimpHeading[]" placeholder="Enter heading"
+                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                         </div>
                         <div>
                             <label class="block font-semibold">Description</label>
-                            <textarea name="dimpDescription" placeholder="Enter description"
+                            <textarea name="dimpDescription[]" placeholder="Enter description"
                                 class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                required style="min-height: 100px; max-height:150px;"></textarea>
+                                style="min-height: 100px; max-height:150px;"></textarea>
                         </div>
                     </div>
 
@@ -103,8 +105,7 @@
                         <div class="mb-3">
                             <label class="block font-semibold">Important Topic Name</label>
                             <input type="text" name="importantTopic" placeholder="Enter important topic name"
-                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                required>
+                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                         </div>
 
                         <!-- Important Fields for this topic -->
@@ -115,9 +116,8 @@
 
                             <!-- Default Field (Not Removable) -->
                             <div class="flex items-start gap-2">
-                                <input type="text" name="importantKey" placeholder="Enter important field"
-                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                    required>
+                                <input type="text" name="importantKey[]" placeholder="Enter important field"
+                                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                             </div>
                         </div>
                         <!-- Dynamic Fields (New Topics) -->
@@ -163,16 +163,15 @@
                     <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                         <div class="mb-3">
                             <label class="block font-semibold">Question</label>
-                            <input type="text" id="faqQuestion_0" name="faqQuestion"
+                            <input type="text" id="faqQuestion_0" name="faqQuestion[]"
                                 placeholder="Enter your question here"
-                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                required>
+                                class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                         </div>
                         <div class="mb-3">
                             <label class="block font-semibold">Answer</label>
-                            <textarea id="faqAnswer_0" name="faqAnswer" placeholder="Enter the answer here"
+                            <textarea id="faqAnswer_0" name="faqAnswer[]" placeholder="Enter the answer here"
                                 class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                required style="min-height: 100px; max-height:150px;"></textarea>
+                                style="min-height: 100px; max-height:150px;"></textarea>
                         </div>
                     </div>
 
@@ -215,7 +214,7 @@
                 <!-- Multi-select Dropdown -->
                 <div class="relative mb-4">
                     <div class="relative mb-4">
-                        <select id="instructorDropdown" name="listedInstructor" multiple
+                        <select id="instructorDropdown" name="listedInstructor[]" multiple
                             class="w-full py-3 px-4 text-sm text-blackColor dark:text-whiteColor bg-whiteColor dark:bg-whiteColor-dark dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
                             <option value="1">Rosalina D. Willaim</option>
                             <option value="2">John Doe</option>
@@ -260,16 +259,14 @@
                 <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                     <div class="mb-3">
                         <label class="block font-semibold">Feature Heading</label>
-                        <input type="text" name="featureHeading" placeholder="Enter feature heading"
-                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                            required>
+                        <input type="text" name="featureHeading[]" placeholder="Enter feature heading"
+                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                     </div>
                     <div class="mb-3">
                         <label class="block font-semibold">Feature Value (Yes / No /
                             Write)</label>
-                        <input type="text" name="featureKey" placeholder="Enter feature value"
-                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                            required>
+                        <input type="text" name="featureKey[]" placeholder="Enter feature value"
+                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                     </div>
                 </div>
 
@@ -297,15 +294,3 @@
         </button>
     </div>
 </form>
-
-
-
-
-
-<!-- 
-course_features table ke andar row feature_heading,feature_heading 
-course_faqs table ke andar row faq_Question,faq_Answer 
-course_headings table ke andar row dimpHeading,dimpDescription 
-course_instructors table ke andar row instructorList, 
-course_subjects table ke andar row subject_name, 
-course_topics table ke andar row importantTopic, importantKey -->

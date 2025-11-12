@@ -37,7 +37,7 @@ class AdminDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dAdmin/academic_results');
     }
 
-    
+
 
     public function loaDadmin_dashboard()
     {
@@ -93,11 +93,14 @@ class AdminDashboardControllers extends CI_Controller
         $this->Admin_Model->createCourse();
     }
 
-    public function modeLDetailData() /// Create Course Details Data 
+    public function modeLDetailData()
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->insertDetailsData();
     }
+
+
+
 
 
 }

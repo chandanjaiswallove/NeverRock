@@ -16,59 +16,98 @@ class Admin_Model extends CI_Model
     {
         if (isset($_POST['registerCourse'])) {
 
+            $course_id = uniqid('COURSE_');
+            $date = date('Y-m-d H:i:s');
 
-            $fullName = trim($this->input->post('subjectNameC', true));
+            // 1️⃣ Subject Table
+            foreach ($this->input->post('subjectNameC') as $subject) {
+                if (trim($subject) != '') {
+                    $this->db->insert('course_subjects', [
+                        'course_unique_id' => $course_id,
+                        'subject_name' => trim($subject),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
-            $fullName = trim($this->input->post('dimpHeading', true));
-            $fullName = trim($this->input->post('dimpDescription', true));
-            $fullName = trim($this->input->post('importantTopic', true));
-            $fullName = trim($this->input->post('importantKey', true));
+            // 2️⃣ Heading & Description Table
+            $headings = $this->input->post('dimpHeading');
+            $descs = $this->input->post('dimpDescription');
+            foreach ($headings as $i => $heading) {
+                if (trim($heading) != '' || trim($descs[$i]) != '') {
+                    $this->db->insert('course_headings', [
+                        'course_unique_id' => $course_id,
+                        'dimpHeading' => trim($heading),
+                        'dimpDescription' => trim($descs[$i]),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
-            $fullName = trim($this->input->post('faqQuestion', true));
-            $fullName = trim($this->input->post('faqAnswer', true));
+            // 3️⃣ Important Topic & Keys
+            $topic = trim($this->input->post('importantTopic', true));
+            $keys = $this->input->post('importantKey');
+            foreach ($keys as $key) {
+                if (trim($key) != '') {
+                    $this->db->insert('course_topics', [
+                        'course_unique_id' => $course_id,
+                        'importantTopic' => $topic,
+                        'importantKey' => trim($key),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
-            $fullName = trim($this->input->post('listedInstructor', true));
+            // 4️⃣ FAQs
+            $questions = $this->input->post('faqQuestion');
+            $answers = $this->input->post('faqAnswer');
+            foreach ($questions as $i => $q) {
+                if (trim($q) != '' || trim($answers[$i]) != '') {
+                    $this->db->insert('course_faqs', [
+                        'course_unique_id' => $course_id,
+                        'faq_Question' => trim($q),
+                        'faq_Answer' => trim($answers[$i]),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
-            $fullName = trim($this->input->post('featureHeading', true));
-            $fullName = trim($this->input->post('featureKey', true));
+            // 5️⃣ Features
+            $featureHeadings = $this->input->post('featureHeading');
+            $featureKeys = $this->input->post('featureKey');
+            foreach ($featureHeadings as $i => $fh) {
+                if (trim($fh) != '' || trim($featureKeys[$i]) != '') {
+                    $this->db->insert('course_features', [
+                        'course_unique_id' => $course_id,
+                        'feature_heading' => trim($fh),
+                        'feature_key' => trim($featureKeys[$i]),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
+            // 6️⃣ Instructor
+            foreach ($this->input->post('listedInstructor') as $instructor) {
+                if (trim($instructor) != '') {
+                    $this->db->insert('course_instructors', [
+                        'course_unique_id' => $course_id,
+                        'instructorList' => trim($instructor),
+                        'registration_date' => $date
+                    ]);
+                }
+            }
 
-
-
-
-
-
+            // ✅ SweetAlert Success Message
+            $this->sweetAlert(
+                "Success!",
+                "All course details inserted successfully!",
+                "success",
+                base_url('admin_course')
+            );
         }
     }
 
 
-
-
-    // public function insertSubject()
-// {
-//     $subjectName = $_POST['subjectNameR'];
-//     $courseID = 'CS12345';
-//     $subject = [];
-
-    //     if(isset($_POST['registerCourse']))
-//     {
-//         for ($i = 0; $i < count($subjectName); $i++) {
-//                 if (!empty($subject[$i])) { // Skip empty rows
-//                     $data[] = [
-//                         'course_unique_id' => $courseID,
-//                         'subject_name'     => $subject[$i],
-//                     ];
-//                 }
-//             }
-
-    //             // Step 3: Insert multiple rows at once
-//             if (!empty($data)) {
-//                 $this->db->insert_batch('course_curriculum', $subject);
-//             }
-
-
-    //     }
-// }
 
 
 
