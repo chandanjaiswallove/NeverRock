@@ -117,7 +117,7 @@ class Admin_Model extends CI_Model
             // ============================================
             $this->sweetAlert(
                 "Success!",
-                "All course details inserted successfully!",
+                " Course details inserted successfully!",
                 "success",
                 base_url('admin_course')
             );
