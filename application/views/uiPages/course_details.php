@@ -4,10 +4,29 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 ?>
 
 <main class="">
+
+<?php
+// $fetchID = $_GET['id'];
+// $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
+// foreach ($fetchCourse->result() as $row) {
+?>
+
     <?php
     $fetchID = $_GET['id'];
     $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
-    foreach ($fetchCourse->result() as $row) { ?>
+
+    foreach ($fetchCourse->result() as $row) {
+
+        $course_unique_id = $row->course_unique_id;
+
+        // बाकी सभी tables से डेटा लाना
+        $courseHeadings = $this->db->query("SELECT * FROM course_headings WHERE course_unique_id = '$course_unique_id'");
+        $courseSubjects = $this->db->query("SELECT * FROM course_subjects WHERE course_unique_id = '$course_unique_id'");
+        $courseTopics = $this->db->query("SELECT * FROM course_topics WHERE course_unique_id = '$course_unique_id'");
+        $courseFeatures = $this->db->query("SELECT * FROM course_features WHERE course_unique_id = '$course_unique_id'");
+        $courseFaqs = $this->db->query("SELECT * FROM course_faqs WHERE course_unique_id = '$course_unique_id'");
+        $courseInstructors = $this->db->query("SELECT * FROM course_instructors WHERE course_unique_id = '$course_unique_id'");
+        ?>
 
         <!--course details section -->
         <section>
@@ -132,89 +151,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                                             </a>
                                                                         </div>
                                                                     </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-blackColor dark:text-blackColor-dark text-sm flex items-center">
-                                                                            <p>
-                                                                                <i class="icofont-clock-time"></i> 22
-                                                                                minutes
-                                                                            </p>
-                                                                            <a href="lesson.html"
-                                                                                class="bg-primaryColor text-whiteColor text-sm ml-5 rounded py-0.5">
-                                                                                <p class="px-10px">
-                                                                                    <i class="icofont-eye"></i> Preview
-                                                                                </p>
-                                                                            </a>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
+
+
                                                                     <li
                                                                         class="py-15px flex items-center justify-between flex-wrap">
                                                                         <div>
@@ -287,82 +225,6 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                                         </div>
                                                                     </li>
                                                                     <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    Video :
-                                                                                </span>
-                                                                                Lorem ipsum dolor sit amet.
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div
-                                                                            class="text-contentColor dark:text-contentColor-dark text-sm">
-                                                                            <p>
-                                                                                <i class="icofont-lock"></i>
-                                                                            </p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li
                                                                         class="py-15px flex items-center justify-between flex-wrap">
                                                                         <div>
                                                                             <h4
@@ -399,39 +261,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             </h4>
                                             <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Curabitur vulputate vestibulum Phasellus
-                                                rhoncus, dolor eget viverra pretium, dolor tellus
-                                                aliquet nunc, vitae ultricies erat elit eu lacus.
-                                                Vestibulum non justo consectetur, cursus ante,
-                                                tincidunt sapien. Nulla quis diam sit amet turpis
-                                                interdum accumsan quis nec enim. Vivamus faucibus ex
-                                                sed nibh egestas elementum. Mauris et bibendum dui.
-                                                Aenean consequat pulvinar luctus
+                                                elit.
                                             </p>
-                                            <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
-                                                We have covered many special events such as fireworks,
-                                                fairs, parades, races, walks, awards ceremonies,
-                                                fashion shows, sporting events, and even a memorial
-                                                service.
-                                            </p>
-                                            <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Curabitur vulputate vestibulum Phasellus
-                                                rhoncus, dolor eget viverra pretium, dolor tellus
-                                                aliquet nunc, vitae ultricies erat elit eu lacus.
-                                                Vestibulum non justo consectetur, cursus ante,
-                                                tincidunt sapien. Nulla quis diam sit amet turpis
-                                                interdum accumsan quis nec enim. Vivamus faucibus ex
-                                                sed nibh egestas elementum. Mauris et bibendum dui.
-                                                Aenean consequat pulvinar luctus.
-                                            </p>
-
-
-
-
-
-
-
 
                                             <div class="md:col-start-5 md:col-span-8">
                                                 <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px"
@@ -439,34 +270,6 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                     Why search Is Important ?
                                                 </h4>
                                                 <ul class="space-y-[15px] max-w-127">
-
-                                                    <li class="flex items-center group" data-aos="fade-up">
-                                                        <i
-                                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                                        <p
-                                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                                            Lorem Ipsum is simply dummying text of the printing
-                                                            andtypesetting industry most of the standard.
-                                                        </p>
-                                                    </li>
-                                                    <li class="flex items-center group" data-aos="fade-up">
-                                                        <i
-                                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                                        <p
-                                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                                            Lorem Ipsum is simply dummying text of the printing
-                                                            andtypesetting industry most of the standard.
-                                                        </p>
-                                                    </li>
-                                                    <li class="flex items-center group" data-aos="fade-up">
-                                                        <i
-                                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                                        <p
-                                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                                            Lorem Ipsum is simply dummying text of the printing
-                                                            andtypesetting industry most of the standard.
-                                                        </p>
-                                                    </li>
                                                     <li class="flex items-center group" data-aos="fade-up">
                                                         <i
                                                             class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
