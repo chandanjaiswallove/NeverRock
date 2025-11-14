@@ -188,19 +188,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         <!-- Intro Video (File Upload / YouTube URL) -->
                                         <div>
-                                            <label class="mb-3 block font-semibold leading-1.8">Upload Intro Video <span
-                                                    class="text-red-500">*</span></label>
+                                            <!-- <label class="mb-3 block font-semibold leading-1.8">Upload Intro Video <span
+                                                    class="text-red-500">*</span></label> -->
 
                                             <!-- Tabs -->
                                             <div class="flex gap-4 mb-3">
                                                 <button type="button" id="videoFileTab"
-                                                    class="px-4 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark dark:text-whiteColor ">
-                                                    Upload Video
+                                                    class="px-4 py-2 text-blackColor rounded  dark:text-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark">
+                                                    Video
                                                 </button>
 
                                                 <button type="button" id="videoUrlTab"
-                                                    class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-blackColor dark:text-whiteColor rounded hover:bg-gray-300 dark:hover:bg-gray-600">
-                                                    YouTube URL
+                                                    class="px-4 py-2 text-blackColor dark:text-whiteColor rounded ">
+                                                    URL
                                                 </button>
                                             </div>
 
@@ -212,7 +212,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <!-- YouTube URL Input -->
                                             <input type="url" id="courseVideoUrl" name="courseVideoUrl"
                                                 placeholder="Add your YouTube Video URL here. Example: https://www.youtube.com/watch?v=yourvideoid"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3 hidden">
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no hidden ">
                                         </div>
                                     </div>
                                 </div>
@@ -594,6 +594,44 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             </div>
         </div>
     </section>
+
+
+    <!-- Upload Video Tab and Upload YouTube Url -->
+    <script>
+        const fileTab = document.getElementById("videoFileTab");
+        const urlTab = document.getElementById("videoUrlTab");
+        const fileInput = document.getElementById("courseVideoFile");
+        const urlInput = document.getElementById("courseVideoUrl");
+
+        // ACTIVE class (common)
+        const activeClasses = ["dark:bg-whiteColor-dark", "border-2", "border-borderColor", "dark:border-borderColor-dark"];
+
+        // REMOVE all active classes from both tabs
+        function removeActiveClasses() {
+            fileTab.classList.remove(...activeClasses);
+            urlTab.classList.remove(...activeClasses);
+        }
+
+        // Upload Video Button
+        fileTab.addEventListener("click", function () {
+
+            fileInput.classList.remove("hidden");
+            urlInput.classList.add("hidden");
+
+            removeActiveClasses();
+            fileTab.classList.add(...activeClasses);
+        });
+
+        // YouTube URL Button
+        urlTab.addEventListener("click", function () {
+
+            urlInput.classList.remove("hidden");
+            fileInput.classList.add("hidden");
+
+            removeActiveClasses();
+            urlTab.classList.add(...activeClasses);
+        });
+    </script>
 
 
 

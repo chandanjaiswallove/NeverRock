@@ -6,27 +6,21 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 <main class="">
 
 <?php
-// $fetchID = $_GET['id'];
-// $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
-// foreach ($fetchCourse->result() as $row) {
-?>
+$fetchID = $_GET['id']; // card से आने वाली course id
 
-    <?php
-    $fetchID = $_GET['id'];
-    $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
+$fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
+foreach ($fetchCourse->result() as $row) {
 
-    foreach ($fetchCourse->result() as $row) {
+    // course_unique_id निकालो और trim करो ताकि कोई extra space न हो
+    $course_unique_id = trim($row->course_unique_id);
 
-        $course_unique_id = $row->course_unique_id;
+    // बाकी tables का data इसी ID से लाओ
+    $courseFaqs = $this->db->query("SELECT * FROM course_faqs WHERE course_unique_id = ?", [$course_unique_id]);
+    ?>
 
-        // बाकी सभी tables से डेटा लाना
-        $courseHeadings = $this->db->query("SELECT * FROM course_headings WHERE course_unique_id = '$course_unique_id'");
-        $courseSubjects = $this->db->query("SELECT * FROM course_subjects WHERE course_unique_id = '$course_unique_id'");
-        $courseTopics = $this->db->query("SELECT * FROM course_topics WHERE course_unique_id = '$course_unique_id'");
-        $courseFeatures = $this->db->query("SELECT * FROM course_features WHERE course_unique_id = '$course_unique_id'");
-        $courseFaqs = $this->db->query("SELECT * FROM course_faqs WHERE course_unique_id = '$course_unique_id'");
-        $courseInstructors = $this->db->query("SELECT * FROM course_instructors WHERE course_unique_id = '$course_unique_id'");
-        ?>
+
+
+
 
         <!--course details section -->
         <section>
@@ -300,56 +294,55 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                         </div>
 
 
-                                        <!-- Faqus Questions  -->
-                                        <div class="hidden">
-                                            <ul class="accordion-container curriculum">
-                                                <!-- accordion -->
-                                                <li class="accordion mb-25px overflow-hidden">
-                                                    <div
-                                                        class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md ">
-                                                        <!-- controller -->
-                                                        <div>
-                                                            <div
-                                                                class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]  ">
-                                                                <div class="flex items-center">
-                                                                    <span>इस Batch को कौन- कौन Join कर सकता है ? </span>
-                                                                </div>
-                                                                <svg class="transition-all duration-500 rotate-0" width="20"
-                                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                                                                    fill="#212529">
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                                                                    </path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                        <!-- content -->
-                                                        <div class="accordion-content transition-all duration-500 h-0">
-                                                            <div class="content-wrapper p-10px md:px-30px">
-                                                                <ul>
-                                                                    <li
-                                                                        class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                                        <div>
-                                                                            <h4
-                                                                                class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                                <i class="icofont-video-alt mr-10px"></i>
-                                                                                <span class="font-medium">
-                                                                                    जो भी छात्र Bihar SSC (10+2) Inter Level
-                                                                                    2025 परीक्षा की तैयारी करना चाहते हैं |
-                                                                                </span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
+    <!-- Faqus Questions -->
+    <div class="hidden">
+        <ul class="accordion-container curriculum">
+            <?php
+            if ($courseFaqs->num_rows() > 0) {
+                foreach ($courseFaqs->result() as $faq) {
+                    ?>
+                    <!-- accordion -->
+                    <li class="accordion mb-25px overflow-hidden">
+                        <div class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md">
+                            <div>
+                                <div class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                    <div class="flex items-center">
+                                        <span><?= htmlspecialchars($faq->faq_Question) ?></span>
+                                    </div>
+                                    <svg class="transition-all duration-500 rotate-0" width="20"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                        <path fill-rule="evenodd"
+                                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="accordion-content transition-all duration-500 h-0">
+                                <div class="content-wrapper p-10px md:px-30px">
+                                    <ul>
+                                        <li class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                            <div>
+                                                <h4 class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                    <i class="icofont-video-alt mr-10px"></i>
+                                                    <span class="font-medium">
+                                                        <?= htmlspecialchars($faq->faq_Answer) ?>
+                                                    </span>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                }
+            } else {
+                echo '<p class="text-center text-gray-500">No FAQs available for this course.</p>';
+            }
+            ?>
+        </ul>
+    </div>
 
-
-
-                                            </ul>
-                                        </div>
 
                                         <!-- Instructor  -->
                                         <div class="hidden">
