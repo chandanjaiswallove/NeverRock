@@ -32,20 +32,25 @@ class AdminDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dAdmin/admin_coursework');
     }
 
+    public function loaDadmin_courseView()
+    {
+        $this->load->view('dashboard/dAdmin/admin_courseView');
+    }
+
     public function loaDadmin_coursedetails()
     {
         $this->load->view('dashboard/dAdmin/admin_coursedetails');
     }
 
-            public function loaDadmin_cdetailsedit()
+    public function loaDadmin_cdetailsedit()
     {
         $this->load->view('dashboard/dAdmin/admin_cdetailsedit');
     }
-        public function loaDadmin_courseedit()
+    public function loaDadmin_courseedit()
     {
         $this->load->view('dashboard/dAdmin/admin_courseedit');
     }
-    
+
 
     public function loaDadmin_createInstructors()
     {

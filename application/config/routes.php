@@ -67,6 +67,7 @@ $route['admin_course'] = 'AdminDashboardControllers/loaDadmin_courses'; // Cours
 $route['admin_courseedit'] = 'AdminDashboardControllers/loaDadmin_courseedit'; // All Course card edit form
 
 $route['admin_coursework'] = 'AdminDashboardControllers/loaDadmin_coursework'; // All Course Listed Here and Add Edit $ Delte
+$route['admin_courseView'] = 'AdminDashboardControllers/loaDadmin_courseView'; // All Course Detials View Here 
 
 $route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails'; // All Course Detials form insert model
 $route['admin_cdetailsedit'] = 'AdminDashboardControllers/loaDadmin_cdetailsedit'; // All Course Detials form insert model
