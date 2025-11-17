@@ -21,11 +21,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             <div
                 class="p-10px md:px-10 md:py-50px mb-30px bg-whiteColor dark:bg-whiteColor-dark shadow-accordion dark:shadow-accordion-dark rounded-standard">
                 <!-- heading -->
-                <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
+                <!-- <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
                     <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
                         Create Course
                     </h2>
-                </div>
+                </div> -->
 
                 <div class="tab">
                     <div class="tab-links flex flex-wrap mb-10px lg:mb-50px rounded gap-10px" data-aos="fade-up">
