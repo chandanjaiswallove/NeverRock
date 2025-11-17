@@ -33,10 +33,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
                             COURSE INFO
                         </button>
-                        <button id="courseDetailsTab"
+                        <!-- <button id="courseDetailsTab"
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap">
                             COURSE DETAILS
-                        </button>
+                        </button> -->
 
                     </div>
                     <div class="tab-contents">
@@ -50,7 +50,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
                                 data-aos="fade-up" method="POST" action="<?php echo base_url('createCourse'); ?>"
                                 enctype="multipart/form-data">
-
+                                <?php
+                                    $fetchID = $_GET['id'];
+                                    $fetchSelectedCrs = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
+                                    foreach($fetchSelectedCrs->result() as $row)
+                                    {
+                                        $myCourseName = $row->course_name;
+                                        $courseType = $row->course_type;
+                                    }
+                                ?>
 
                                 <div class="grid grid-cols-1 mb-15px gap-15px">
                                     <!-- Course Title -->
@@ -58,7 +66,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <label class="mb-3 block font-semibold">Course Title</label>
                                         <input type="text" placeholder="Course Title"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                            id="courseTitle" name="course_name" required>
+                                            id="courseTitle" name="course_name" value="<?php echo $myCourseName; ?>" required>
                                     </div>
 
                                     <!-- Course Description -->
@@ -108,7 +116,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                                                 id="courseType" name="courseType">
 
-                                                <option value="" disabled selected>--- Select Course Type ---</option>
+                                                <option value="" disabled selected><?php echo $courseType;  ?></option>
                                                 <option value="paid">Paid</option>
                                                 <option value="free">Free</option>
                                             </select>
