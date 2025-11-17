@@ -62,13 +62,17 @@ $route['admin_reset'] = 'AdminOnBoardingControllers/loaDadmin_reset'; // Reset p
 
 // Controller: AdminDashboardControllers
 $route['admin_announcement'] = 'AdminDashboardControllers/loaDadmin_announcement'; // Announcements page
-$route['admin_course'] = 'AdminDashboardControllers/loaDadmin_courses'; // Course management
+
+$route['admin_course'] = 'AdminDashboardControllers/loaDadmin_courses'; // Course management insert model
+$route['admin_courseedit'] = 'AdminDashboardControllers/loaDadmin_courseedit'; // All Course card edit form
+
 $route['admin_coursework'] = 'AdminDashboardControllers/loaDadmin_coursework'; // All Course Listed Here and Add Edit $ Delte
-$route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails'; // All Course Detials form
+
+$route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails'; // All Course Detials form insert model
+$route['admin_cdetailsedit'] = 'AdminDashboardControllers/loaDadmin_cdetailsedit'; // All Course Detials form insert model
 
 $route['admin_createInstructors'] = 'AdminDashboardControllers/loaDadmin_createInstructors'; // Create instructors
 $route['admin_createAcademicResults'] = 'AdminDashboardControllers/loaDadminAcademicResults'; // Create academic results
-
 $route['admin_dashboard'] = 'AdminDashboardControllers/loaDadmin_dashboard'; // Main admin dashboard
 $route['admin_message'] = 'AdminDashboardControllers/loaDadmin_message'; // Admin messages
 $route['admin_profile'] = 'AdminDashboardControllers/loaDadmin_profile'; // Admin profile
