@@ -16,8 +16,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     $fetchID = $_GET['id']; // card से आने वाली course id
     
     $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
-    foreach ($fetchCourse->result() as $row) 
-        ?>
+    foreach ($fetchCourse->result() as $row)
+    ?>
 
     <!-- course create  -->
 
@@ -58,8 +58,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <div data-aos="fade-up" class="aos-init aos-animate">
                                             <!-- course thumbnail -->
                                             <div class="overflow-hidden relative mb-5">
-                                                <img src="http://localhost/NeverRock/modules/courseThumbnail/690f0c5020f02_690b24b975b08_68ef521beca62_courseDetails.jpg"
-                                                    alt="" class="w-full">
+                                                <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>"
+                                                    alt="Course_thumbnail" class="w-full">
                                             </div>
                                             <!-- course content -->
                                             <div>
@@ -67,14 +67,16 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <!-- titile -->
                                                 <h4 class="text-size-32 md:text-4xl font-bold text-blackColor dark:text-blackColor-dark mb-15px leading-43px md:leading-14.5 aos-init aos-animate"
                                                     data-aos="fade-up">
-                                                    बिहार बोर्ड 12वीं 2026 युद्ध बैच </h4>
+                                                    <?php echo $row->course_name; ?>
+                                                </h4>
                                                 <!-- price and rating -->
                                                 <div class="flex gap-5 flex-wrap items-center mb-30px aos-init aos-animate"
                                                     data-aos="fade-up">
                                                     <div
                                                         class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
-                                                        ₹799.00 <del class="text-sm text-lightGrey4 font-semibold">/
-                                                            ₹999</del>
+                                                        <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
+                                                        <del class="text-sm text-lightGrey4 font-semibold">/
+                                                            <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <div>
@@ -90,8 +92,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 </div>
                                                 <p class="text-sm md:text-lg text-contentColor dark:contentColor-dark mb-25px !leading-30px aos-init aos-animate"
                                                     data-aos="fade-up">
-                                                    We are testing her Yudh Batch 12th Online Course Here for 2026
-                                                    Final Testing For Course Details Here </p>
+                                                    <?php echo $row->course_description; ?>
+                                                </p>
 
                                                 <div data-aos="fade-up"
                                                     class="tab course-details-tab aos-init aos-animate">
@@ -399,22 +401,22 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                                     <div>
                                                                         <ul class="flex gap-10px items-center">
                                                                             <li>
-                                                                                <a href="course-details.html#"
+                                                                                <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                                     class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
                                                                                         class="icofont-facebook"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="course-details.html#"
+                                                                                <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                                     class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
                                                                                         class="icofont-youtube-play"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="course-details.html#"
+                                                                                <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                                     class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
                                                                                         class="icofont-instagram"></i></a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="course-details.html#"
+                                                                                <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                                     class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
                                                                                         class="icofont-twitter"></i></a>
                                                                             </li>
@@ -435,20 +437,71 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <div class="lg:col-start-9 lg:col-span-4">
                                         <div class="flex flex-col">
                                             <!-- enroll section -->
-                                            <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md aos-init aos-animate"
+                                            <div class="py-33px px-25px shadow-event mb-30px bg-whiteColor dark:bg-whiteColor-dark rounded-md"
                                                 data-aos="fade-up">
                                                 <!-- meeting thumbnail -->
                                                 <div class="overflow-hidden relative mb-5">
-                                                    <!-- disables right-click download  -->
-                                                    <video controls="" autoplay="" muted="" playsinline=""
-                                                        preload="metadata" oncontextmenu="return false;"
-                                                        controlslist="nodownload noremoteplayback"
-                                                        class="w-full rounded-md">
-                                                        <source
-                                                            src="http://localhost/NeverRock/modules/courseVideo/690f0c50219c5_videoplayback__1_.mp4"
-                                                            type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
+                                                    <?php
+                                                    $video = $row->course_video_content;
+                                                    $thumb = $row->course_thumbnail;
+
+                                                    if (!empty($video)) {
+
+                                                        // ✅ YouTube Link Check
+                                                        if (strpos($video, 'youtube.com') !== false || strpos($video, 'youtu.be') !== false) {
+
+                                                            // Extract YouTube video ID
+                                                            $youtube_id = '';
+                                                            if (strpos($video, 'youtube.com') !== false) {
+                                                                parse_str(parse_url($video, PHP_URL_QUERY), $params);
+                                                                $youtube_id = $params['v'] ?? '';
+                                                            } elseif (strpos($video, 'youtu.be') !== false) {
+                                                                $youtube_id = basename(parse_url($video, PHP_URL_PATH));
+                                                            }
+
+                                                            // ✅ YouTube iframe autoplay muted, no-download
+                                                            if (!empty($youtube_id)) {
+                                                                ?>
+                                                                <iframe width="100%" height="400"
+                                                                    src="https://www.youtube.com/embed/<?php echo $youtube_id; ?>?autoplay=1&mute=1&controls=1&rel=0&showinfo=0&modestbranding=1&loop=1&playlist=<?php echo $youtube_id; ?>"
+                                                                    frameborder="0" allow="autoplay; encrypted-media"
+                                                                    allowfullscreen class="rounded-md w-full"
+                                                                    style="pointer-events:auto;">
+                                                                </iframe>
+                                                                <?php
+                                                            } else {
+                                                                // fallback to thumbnail if invalid YouTube link
+                                                                ?>
+                                                                <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>"
+                                                                    alt="Course Thumbnail" class="w-full rounded-md">
+                                                                <?php
+                                                            }
+
+                                                        } else {
+                                                            // ✅ Local / Direct Video Check
+                                                            $videoPath = FCPATH . "modules/courseVideo/" . $video;
+                                                            $videoSrc = (file_exists($videoPath))
+                                                                ? base_url("modules/courseVideo/" . $video)
+                                                                : $video;
+
+                                                            ?>
+                                                            <!-- disables right-click download  -->
+                                                            <video controls autoplay muted playsinline preload="metadata"
+                                                                oncontextmenu="return false;"
+                                                                controlsList="nodownload noremoteplayback"
+                                                                class="w-full rounded-md">
+                                                                <source src="<?php echo $videoSrc; ?>" type="video/mp4">
+                                                                Your browser does not support the video tag.
+                                                            </video>
+                                                            <?php
+                                                        }
+
+                                                    } else {
+                                                        // ✅ No Video → Show Thumbnail
+                                                        ?>
+                                                        <img src="<?php echo base_url('modules/courseThumbnail/' . $thumb); ?>"
+                                                            alt="Course Thumbnail" class="w-full rounded-md">
+                                                    <?php } ?>
                                                 </div>
 
 
@@ -456,16 +509,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div class="flex justify-between mb-5">
                                                     <div
                                                         class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
-                                                        ₹799.00 <del class="text-sm text-lightGrey4 font-semibold">/
-                                                            ₹999</del>
+                                                        <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
+                                                        <del class="text-sm text-lightGrey4 font-semibold">/
+                                                            <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
                                                     </div>
                                                     <div>
                                                         <a href="course-details.html#"
-                                                            class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">20.02%
+                                                            class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark"><?php echo $this->config->item('discountPercent') . $row->discount_applied; ?>%
                                                             OFF</a>
                                                     </div>
                                                 </div>
-                                                <div class="mb-5 aos-init aos-animate" data-aos="fade-up">
+                                                <div class="mb-5" data-aos="fade-up">
                                                     <button type="submit"
                                                         class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
                                                         Add To Cart
@@ -486,7 +540,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         </p>
                                                         <p
                                                             class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px">
-                                                            13-11-25 </p>
+                                                            <?php echo date('d-m-y', strtotime($row->starting_date)); ?>
+                                                        </p>
                                                     </li>
 
                                                     <li
@@ -497,7 +552,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         </p>
                                                         <p
                                                             class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            08-01-26 </p>
+                                                            <?php echo date('d-m-y', strtotime($row->ending_date)); ?>
+                                                        </p>
                                                     </li>
 
 
@@ -509,7 +565,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         </p>
                                                         <p
                                                             class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize ">
-                                                            online + offline </p>
+                                                            <?php echo $row->course_mode; ?>
+                                                        </p>
                                                     </li>
                                                     <li
                                                         class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
@@ -531,7 +588,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         </p>
                                                         <p
                                                             class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            hinglish </p>
+                                                            <?php echo $row->course_language; ?>
+                                                        </p>
                                                     </li>
                                                     <li
                                                         class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
@@ -600,20 +658,22 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         </p>
                                                     </li>
                                                 </ul>
-                                                <div class="mt-5 aos-init" data-aos="fade-up">
+                                                <div class="mt-5" data-aos="fade-up">
                                                     <p
                                                         class="text-sm text-contentColor dark:text-contentColor-dark leading-1.8 text-center mb-5px">
                                                         More inquery about course
                                                     </p>
                                                     <button type="submit"
                                                         class="w-full text-xl text-primaryColor bg-whiteColor px-25px py-10px mb-10px font-bold leading-1.8 border border-primaryColor hover:text-whiteColor hover:bg-primaryColor inline-block rounded group dark:bg-whiteColor-dark dark:text-whiteColor dark:hover:bg-primaryColor">
-                                                        <i class="icofont-phone"></i> +91 7292818092 </button>
+                                                        <i class="icofont-phone"></i>
+                                                        <?php echo $row->enquiry_number; ?>
+                                                    </button>
                                                 </div>
                                             </div>
 
 
                                             <!-- social area -->
-                                            <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark aos-init"
+                                            <div class="p-5 md:p-30px lg:p-5 2xl:p-30px mb-30px border border-borderColor2 dark:border-borderColor2-dark"
                                                 data-aos="fade-up">
                                                 <h4
                                                     class="text-size-22 text-blackColor dark:text-blackColor-dark font-bold pl-2 before:w-0.5 relative before:h-[21px] before:bg-primaryColor before:absolute before:bottom-[5px] before:left-0 leading-30px mb-25px">
@@ -632,26 +692,23 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                                     class="icofont-youtube-play"></i></a>
                                                         </li>
                                                         <li>
-                                                            <a href="course-details.html#"
+                                                            <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                 class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
                                                                     class="icofont-instagram"></i></a>
                                                         </li>
                                                         <li>
-                                                            <a href="course-details.html#"
+                                                            <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                 class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
                                                                     class="icofont-twitter"></i></a>
                                                         </li>
                                                         <li>
-                                                            <a href="course-details.html#"
+                                                            <a href="https://www.facebook.com/chandanjaiswalloves/following"
                                                                 class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
                                                                     class="icofont-instagram"></i></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-
-
-
 
                                         </div>
                                     </div>

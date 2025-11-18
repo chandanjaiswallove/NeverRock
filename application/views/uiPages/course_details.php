@@ -32,7 +32,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                             <!-- course thumbnail -->
                             <div class="overflow-hidden relative mb-5">
                                 <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>"
-                                    alt="" class="w-full">
+                                    alt="Course_thumbnail" class="w-full">
                             </div>
                             <!-- course content -->
                             <div>

@@ -91,14 +91,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                                     class="shadow-dropdown max-w-dropdown2 w-auto  py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                                     <ul>
                                                                         <li>
-                                                                            <a href="<?php echo base_url('admin_course?id=' . $row->id); ?>"
+                                                                            <a href="<?php echo base_url('admin_courseedit?id=' . $row->id); ?>"
                                                                                 class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
                                                                                 Edit
                                                                             </a>
                                                                         </li>
 
                                                                         <li>
-                                                                            <a href="<?php echo base_url('edit_course?id=' . $row->id); ?>"
+                                                                            <a href="<?php echo base_url('admin_courseedit?id=' . $row->id); ?>"
                                                                                 class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
                                                                                 Delete
                                                                             </a>
