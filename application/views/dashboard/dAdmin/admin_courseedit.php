@@ -64,11 +64,33 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     $course_Actual_cost = $row->course_actual_cost;
                                     $course_Selling_cost = $row->course_selling_cost;
                                     $discount_Applied = $row->discount_applied;
-                                    $course_Preview_video = $row->course_preview_video;
-                                    $course_Video_content = $row->course_video_content;
 
+                                    // Video Data
+                                    $course_Preview_video = $row->course_preview_video;   // URL
+                                    $course_Video_content = $row->course_video_content;   // FILE
+                                }
+
+
+                                // ---------------------- FINAL LOGIC ---------------------- //
+// Priority 1 → If VIDEO FILE exists → Video tab active
+// Priority 2 → Else if URL exists → URL tab active
+// Default → Video tab active
+                                
+                                if (!empty($course_Video_content)) {
+                                    $isUrl = false;  // VIDEO TAB ACTIVE
+                                } else if (!empty($course_Preview_video) && strpos($course_Preview_video, 'http') === 0) {
+                                    $isUrl = true;   // URL TAB ACTIVE
+                                } else {
+                                    $isUrl = false;  // DEFAULT VIDEO TAB ACTIVE
                                 }
                                 ?>
+
+
+
+
+
+
+
 
 
                                 <div class="grid grid-cols-1 mb-15px gap-15px">
@@ -99,7 +121,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <!-- Upload Image -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Upload Image</label>
-                                            <input type="file" id="courseImage" name="courseImage" accept="image/*"
+                                            <input type="file" id="courseImage" name="courseImage" accept="image/*" value="<?php echo $course_Thumbnail; ?>"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
@@ -247,34 +269,50 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
+
+                                        <!-- Intro Video (File Upload / YouTube URL) -->
                                         <!-- Intro Video (File Upload / YouTube URL) -->
                                         <div>
-                                            <!-- <label class="mb-3 block font-semibold leading-1.8">Upload Intro Video <span
-                                                    class="text-red-500">*</span></label> -->
 
                                             <!-- Tabs -->
                                             <div class="flex gap-4 mb-3">
+
+                                                <!-- VIDEO TAB -->
                                                 <button type="button" id="videoFileTab"
-                                                    class="px-4 py-2 text-blackColor rounded  dark:text-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark">
+                                                    class="px-4 py-2 text-blackColor rounded dark:text-whiteColor
+            <?php echo !$isUrl ? 'dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark' : ''; ?>">
                                                     Video
                                                 </button>
 
+                                                <!-- URL TAB -->
                                                 <button type="button" id="videoUrlTab"
-                                                    class="px-4 py-2 text-blackColor dark:text-whiteColor rounded ">
+                                                    class="px-4 py-2 text-blackColor dark:text-whiteColor rounded
+            <?php echo $isUrl ? 'dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark' : ''; ?>">
                                                     URL
                                                 </button>
+
                                             </div>
 
                                             <!-- File Input -->
                                             <input type="file" id="courseVideoFile" name="courseVideoFile"
-                                                accept="video/*"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3">
+                                                accept="video/*" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+        rounded-md mb-3
+        <?php echo $isUrl ? 'hidden' : ''; ?>">
 
                                             <!-- YouTube URL Input -->
                                             <input type="url" id="courseVideoUrl" name="courseVideoUrl"
-                                                placeholder="Add your YouTube Video URL here. Example: https://www.youtube.com/watch?v=yourvideoid"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no hidden ">
+                                                value="<?php echo $course_Preview_video; ?>"
+                                                placeholder="Add your YouTube Video URL here" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+        placeholder:text-placeholder leading-23px rounded-md
+        <?php echo !$isUrl ? 'hidden' : ''; ?>">
                                         </div>
+
+
+
+
+
                                     </div>
                                 </div>
 
@@ -301,9 +339,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 (₹)</label>
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
                                                 placeholder="Regular Price (₹)"
-                                                value="<?php echo $course_Actual_cost; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                value="<?php echo $course_Actual_cost; ?>"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                                                    bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                    placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -313,8 +352,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
                                                 placeholder="Discount (%)" value="<?php echo $discount_Applied; ?>"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Final Price -->
@@ -323,9 +362,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 (₹)</label>
                                             <input type="text" id="finalPrice" name="finalPrice"
                                                 placeholder="Final Price (₹)"
-                                                value="<?php echo $course_Selling_cost; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
+                                                value="<?php echo $course_Selling_cost; ?>"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
                                         </div>
 
                                     </div>
@@ -363,18 +403,15 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         const fileInput = document.getElementById("courseVideoFile");
         const urlInput = document.getElementById("courseVideoUrl");
 
-        // ACTIVE class (common)
         const activeClasses = ["dark:bg-whiteColor-dark", "border-2", "border-borderColor", "dark:border-borderColor-dark"];
 
-        // REMOVE all active classes from both tabs
         function removeActiveClasses() {
             fileTab.classList.remove(...activeClasses);
             urlTab.classList.remove(...activeClasses);
         }
 
-        // Upload Video Button
-        fileTab.addEventListener("click", function () {
-
+        // VIDEO TAB CLICK
+        fileTab.addEventListener("click", () => {
             fileInput.classList.remove("hidden");
             urlInput.classList.add("hidden");
 
@@ -382,9 +419,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             fileTab.classList.add(...activeClasses);
         });
 
-        // YouTube URL Button
-        urlTab.addEventListener("click", function () {
-
+        // URL TAB CLICK
+        urlTab.addEventListener("click", () => {
             urlInput.classList.remove("hidden");
             fileInput.classList.add("hidden");
 
@@ -452,23 +488,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
     <!-- hide show for free and paid -->
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const courseTypeSelect = document.getElementById("courseType");
-            const pricingSection = document.getElementById("pricingSection");
-
-            pricingSection.style.display = "none";
-
-            courseTypeSelect.addEventListener("change", function () {
-                if (this.value === "paid") {
-                    pricingSection.style.display = "block"; // show pricing section
-                } else {
-                    pricingSection.style.display = "none"; // hide pricing section
-                }
-            });
-        });
-    </script> -->
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const courseTypeSelect = document.getElementById("courseType");

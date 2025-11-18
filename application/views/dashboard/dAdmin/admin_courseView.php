@@ -39,7 +39,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
                             COURSE DETAILS
                         </button>
-                        <a href="<?php echo base_url('admin_courseedit?id=' . $row->id); ?>" id="courseDetailsTab" class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base 
+                        <a href="<?php echo base_url('admin_cdetailsedit?id=' . $row->id); ?>" id="courseDetailsTab"
+                            class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base 
                                 text-blackColor bg-whiteColor shadow-overview-button 
                                 dark:bg-whiteColor-dark dark:text-blackColor-dark 
                                 before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 

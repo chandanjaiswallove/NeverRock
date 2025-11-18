@@ -79,36 +79,36 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-                                        <div>
-                                            <label class="mb-3 block font-semibold">Course Category</label>
-                                            <select required
-                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
-                                                id="courseCategory" name="courseCategory">
+<div>
+    <label class="mb-3 block font-semibold">Course Category</label>
+    <select required
+        class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
+        id="courseCategory" name="courseCategory">
 
-                                                <option value="" disabled>Select Category</option>
+        <option value="" disabled selected>Select Category</option>
 
-                                                <option value="filter1" <?php echo ($course_category == 'filter1') ? 'selected' : ''; ?>>
-                                                    Class 8th
-                                                </option>
+        <option value="filter1">
+            Class 8th
+        </option>
 
-                                                <option value="filter2" <?php echo ($course_category == 'filter2') ? 'selected' : ''; ?>>
-                                                    Class 9th
-                                                </option>
+        <option value="filter2">
+            Class 9th
+        </option>
 
-                                                <option value="filter3" <?php echo ($course_category == 'filter3') ? 'selected' : ''; ?>>
-                                                    Class 10th
-                                                </option>
+        <option value="filter3">
+            Class 10th
+        </option>
 
-                                                <option value="filter4" <?php echo ($course_category == 'filter4') ? 'selected' : ''; ?>>
-                                                    Class 11th
-                                                </option>
+        <option value="filter4">
+            Class 11th
+        </option>
 
-                                                <option value="filter5" <?php echo ($course_category == 'filter5') ? 'selected' : ''; ?>>
-                                                    Class 12th
-                                                </option>
+        <option value="filter5">
+            Class 12th
+        </option>
 
-                                            </select>
-                                        </div>
+    </select>
+</div>
 
 
                                         <div>
