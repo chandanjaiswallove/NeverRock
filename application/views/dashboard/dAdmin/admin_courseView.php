@@ -12,6 +12,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     $this->load->view('dashboard/master_contents/dAdmin_master/admin_banner');
     ?>
 
+    <?php
+    $fetchID = $_GET['id']; // card से आने वाली course id
+    
+    $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
+    foreach ($fetchCourse->result() as $row) 
+        ?>
 
     <!-- course create  -->
 
