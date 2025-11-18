@@ -87,7 +87,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no resize-y"
                                             id="courseDescription" name="courseDescription" rows="4" required
-                                            style="min-height: 100px; max-height:150px;"><?php  echo $course_Description; ?></textarea>
+                                            style="min-height: 100px; max-height:150px;"><?php echo $course_Description; ?></textarea>
                                     </div>
 
 
@@ -110,14 +110,31 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                                                 id="courseCategory" name="courseCategory">
 
-                                                <option value=" "selected><?php echo $course_Category; ?>"</option>
-                                                <option value="filter1">Class 8th</option>
-                                                <option value="filter2">Class 9th</option>
-                                                <option value="filter3">Class 10th</option>
-                                                <option value="filter4">Class 11th</option>
-                                                <option value="filter5">Class 12th</option>
+                                                <option value="" disabled>Select Category</option>
+
+                                                <option value="filter1" <?php echo ($course_category == 'filter1') ? 'selected' : ''; ?>>
+                                                    Class 8th
+                                                </option>
+
+                                                <option value="filter2" <?php echo ($course_category == 'filter2') ? 'selected' : ''; ?>>
+                                                    Class 9th
+                                                </option>
+
+                                                <option value="filter3" <?php echo ($course_category == 'filter3') ? 'selected' : ''; ?>>
+                                                    Class 10th
+                                                </option>
+
+                                                <option value="filter4" <?php echo ($course_category == 'filter4') ? 'selected' : ''; ?>>
+                                                    Class 11th
+                                                </option>
+
+                                                <option value="filter5" <?php echo ($course_category == 'filter5') ? 'selected' : ''; ?>>
+                                                    Class 12th
+                                                </option>
+
                                             </select>
                                         </div>
+
 
 
                                         <div>
@@ -126,36 +143,47 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                                                 id="courseType" name="courseType">
 
-                                                <option value="" selected><?php echo $course_Type ?></option>
-                                                <option value="paid">Paid</option>
-                                                <option value="free">Free</option>
+                                                <option value="" disabled>Select Course Type</option>
+
+                                                <option value="paid" <?php if ($course_Type == "paid")
+                                                    echo "selected"; ?>>
+                                                    Paid</option>
+                                                <option value="free" <?php if ($course_Type == "free")
+                                                    echo "selected"; ?>>
+                                                    Free</option>
+
                                             </select>
                                         </div>
 
 
+
                                     </div>
                                 </div>
 
 
 
 
-                                <!-- start and finish date -->
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
+
                                         <div>
                                             <label class="mb-3 block font-semibold">Start Date</label>
                                             <input type="date" id="startDate" name="startDate" required
-                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor  text-blackColor2  border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
+                                                value="<?php echo $starting_Date; ?>"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor text-blackColor2 border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
                                         </div>
 
                                         <div>
                                             <label class="mb-3 block font-semibold">End On</label>
-                                            <input type="text" id="finishDate" name="finishDate"
-                                                value="<?php echo $ending_Date; ?>" required
-                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor  text-blackColor2  border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
+                                            <input type="date" id="finishDate" name="finishDate" required
+                                                value="<?php echo $ending_Date; ?>"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor text-blackColor2 border-2 border-borderColor dark:border-borderColor-dark rounded-md" />
                                         </div>
+
                                     </div>
                                 </div>
+
+
 
 
 
@@ -168,12 +196,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <select required
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                                                 id="available" name="avilability">
-                                                <option value="" disabled selected>Select Available</option>
-                                                <option value="online">Online</option>
-                                                <option value="offline">Offline</option>
-                                                <option value="online + offline">Online + Offline</option>
+
+                                                <option value="" disabled>Select Available</option>
+
+                                                <option value="online" <?php if ($course_Mode == "online")
+                                                    echo "selected"; ?>>Online</option>
+                                                <option value="offline" <?php if ($course_Mode == "offline")
+                                                    echo "selected"; ?>>Offline</option>
+                                                <option value="online + offline" <?php if ($course_Mode == "online + offline")
+                                                    echo "selected"; ?>>Online + Offline</option>
+
                                             </select>
                                         </div>
+
 
                                         <div>
                                             <label class="mb-3 block font-semibold">Language/Medium</label>
@@ -181,12 +216,18 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                                                 id="language" name="language">
 
-                                                <option value="" disabled selected>Select Language/Medium</option>
-                                                <option value="hindi">Hindi Medium</option>
-                                                <option value="english">English Medium</option>
-                                                <option value="hinglish">Hinglish</option>
+                                                <option value="" disabled>Select Language/Medium</option>
+
+                                                <option value="hindi" <?php if ($course_Language == "hindi")
+                                                    echo "selected"; ?>>Hindi Medium</option>
+                                                <option value="english" <?php if ($course_Language == "english")
+                                                    echo "selected"; ?>>English Medium</option>
+                                                <option value="hinglish" <?php if ($course_Language == "hinglish")
+                                                    echo "selected"; ?>>Hinglish</option>
+
                                             </select>
                                         </div>
+
 
 
                                     </div>
@@ -253,15 +294,16 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </p>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30px mb-15px">
-                                        <!-- Regular Price -->
+
+                                        <!-- Actual Price -->
                                         <div>
                                             <label for="regularPrice" class="mb-3 block font-semibold">Actual Price
-                                                (&#8377;)</label>
+                                                (₹)</label>
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
                                                 placeholder="Regular Price (₹)"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no ">
+                                                value="<?php echo $course_Actual_cost; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -269,23 +311,25 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="discountPercent" class="mb-3 block font-semibold">Discount
                                                 (%)</label>
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
-                                                placeholder="Discount (%)"
+                                                placeholder="Discount (%)" value="<?php echo $discount_Applied; ?>"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Final Price -->
                                         <div>
                                             <label for="finalPrice" class="mb-3 block font-semibold">Selling Price
-                                                (&#8377;)</label>
+                                                (₹)</label>
                                             <input type="text" id="finalPrice" name="finalPrice"
                                                 placeholder="Final Price (₹)"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-                                                    bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-                                                    placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
+                                                value="<?php echo $course_Selling_cost; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
                                         </div>
+
                                     </div>
+
                                 </div>
                                 <div class="mt-15px">
                                     <button type="submit" id="nextToDetails" name="registerCourse"
@@ -304,15 +348,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                     </div>
 
-                    <!-- Submit button here Save All -->
-                    <div class="mt-15px">
-                        <button type="submit"
-                            class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
-                            name="registerCourse">
-                            Save Details
-                        </button>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -417,15 +452,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
     <!-- hide show for free and paid -->
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             const courseTypeSelect = document.getElementById("courseType");
             const pricingSection = document.getElementById("pricingSection");
 
-            // hide by default
             pricingSection.style.display = "none";
 
-            // when course type changes
             courseTypeSelect.addEventListener("change", function () {
                 if (this.value === "paid") {
                     pricingSection.style.display = "block"; // show pricing section
@@ -434,7 +467,31 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 }
             });
         });
+    </script> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const courseTypeSelect = document.getElementById("courseType");
+            const pricingSection = document.getElementById("pricingSection");
+
+            // 👉 PAGE LOAD PAR CHECK KARO
+            if (courseTypeSelect.value === "paid") {
+                pricingSection.style.display = "block";
+            } else {
+                pricingSection.style.display = "none";
+            }
+
+            // 👉 JAB USER CHANGE KARE
+            courseTypeSelect.addEventListener("change", function () {
+                if (this.value === "paid") {
+                    pricingSection.style.display = "block";
+                } else {
+                    pricingSection.style.display = "none";
+                }
+            });
+        });
     </script>
+
 
 </main>
 
