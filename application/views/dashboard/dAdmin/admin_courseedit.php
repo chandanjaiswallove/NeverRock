@@ -48,11 +48,28 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <?php
                                 $fetchID = $_GET['id'];
                                 $fetchSelectedCrs = $this->db->query("SELECT * FROM course_directory WHERE id = '$fetchID'");
+
                                 foreach ($fetchSelectedCrs->result() as $row) {
+
                                     $myCourseName = $row->course_name;
-                                    $courseType = $row->course_type;
+                                    $course_Category = $row->course_category;
+                                    $course_Type = $row->course_type;
+                                    $course_Thumbnail = $row->course_thumbnail;
+                                    $starting_Date = $row->starting_date;
+                                    $ending_Date = $row->ending_date;
+                                    $course_Mode = $row->course_mode;
+                                    $enquiry_Number = $row->enquiry_number;
+                                    $course_Language = $row->course_language;
+                                    $course_Description = $row->course_description;
+                                    $course_Actual_cost = $row->course_actual_cost;
+                                    $course_Selling_cost = $row->course_selling_cost;
+                                    $discount_Applied = $row->discount_applied;
+                                    $course_Preview_video = $row->course_preview_video;
+                                    $course_Video_content = $row->course_video_content;
+
                                 }
                                 ?>
+
 
                                 <div class="grid grid-cols-1 mb-15px gap-15px">
                                     <!-- Course Title -->
@@ -69,7 +86,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <label class="mb-3 block font-semibold">Short Description</label>
                                         <textarea placeholder="Write a short description about the course"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no resize-y"
-                                            id="courseDescription" name="courseDescription" rows="4" required
+                                            id="courseDescription" value="<?php echo $course_Description; ?>"
+                                            name="courseDescription" rows="4" required
                                             style="min-height: 100px; max-height:150px;"></textarea>
                                     </div>
 
@@ -85,7 +103,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <input type="file" id="courseImage" name="courseImage" accept="image/*"
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
-
 
 
                                         <div>
@@ -241,9 +258,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="regularPrice" class="mb-3 block font-semibold">Actual Price
                                                 (&#8377;)</label>
                                             <input type="text" id="regularPrice" name="regularPrice" maxlength="6"
-                                                placeholder="Regular Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no ">
+                                                placeholder="Regular Price (₹)"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no ">
                                         </div>
 
                                         <!-- Discount Percentage -->
@@ -251,9 +269,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="discountPercent" class="mb-3 block font-semibold">Discount
                                                 (%)</label>
                                             <input type="text" id="discountPercent" name="discountPercent" maxlength="6"
-                                                placeholder="Discount (%)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                placeholder="Discount (%)"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                         </div>
 
                                         <!-- Final Price -->
@@ -261,9 +280,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <label for="finalPrice" class="mb-3 block font-semibold">Selling Price
                                                 (&#8377;)</label>
                                             <input type="text" id="finalPrice" name="finalPrice"
-                                                placeholder="Final Price (₹)" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
-        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
-        placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
+                                                placeholder="Final Price (₹)"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark
+                                                    bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark
+                                                    placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no bg-gray-100">
                                         </div>
                                     </div>
                                 </div>
