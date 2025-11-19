@@ -75,10 +75,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     data-aos="fade-up">
                                                     <div
                                                         class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
-                                                        <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
-                                                        <del class="text-sm text-lightGrey4 font-semibold">/
-                                                            <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
+                                                        <?php if (strtolower($row->course_type) == 'paid') { ?>
+                                                            <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
+                                                            <del class="text-sm text-lightGrey4 font-semibold">/
+                                                                <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
+                                                        <?php } else { ?>
+                                                            <span
+                                                                class="text-primaryColor dark:text-blackColor-dark font-semibold">Free
+                                                                Course</span>
+                                                        <?php } ?>
                                                     </div>
+
                                                     <div class="flex items-center">
                                                         <div>
                                                             <i
@@ -508,18 +515,27 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
                                                 <div class="flex justify-between mb-5">
-                                                    <div
-                                                        class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
-                                                        <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
-                                                        <del class="text-sm text-lightGrey4 font-semibold">/
-                                                            <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
-                                                    </div>
-                                                    <div>
-                                                        <a href="course-details.html#"
-                                                            class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark"><?php echo $this->config->item('discountPercent') . $row->discount_applied; ?>%
-                                                            OFF</a>
-                                                    </div>
+                                                    <?php if (strtolower($row->course_type) == 'paid') { ?>
+                                                        <div
+                                                            class="text-size-21 font-bold text-primaryColor font-inter leading-25px">
+                                                            <?php echo $this->config->item('indianRupee') . $row->course_selling_cost; ?>
+                                                            <del class="text-sm text-lightGrey4 font-semibold">/
+                                                                <?php echo $this->config->item('indianRupee') . $row->course_actual_cost; ?></del>
+                                                        </div>
+                                                        <div>
+                                                            <a href="course-details.html#"
+                                                                class="uppercase text-sm font-semibold text-secondaryColor2 leading-27px px-2 bg-whitegrey1 dark:bg-whitegrey1-dark">
+                                                                <?php echo $this->config->item('discountPercent') . $row->discount_applied; ?>%
+                                                                OFF
+                                                            </a>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <span
+                                                            class="text-primaryColor dark:text-blackColor-dark font-semibold">Free
+                                                            Course</span>
+                                                    <?php } ?>
                                                 </div>
+
                                                 <div class="mb-5" data-aos="fade-up">
                                                     <button type="submit"
                                                         class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border mb-10px leading-1.8 border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
