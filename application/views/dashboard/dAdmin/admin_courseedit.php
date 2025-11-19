@@ -355,7 +355,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 </div>
                                 <div class="mt-15px">
-                                    <button type="submit" id="nextToDetails" name="updateCourseBtn"
+                                    <button type="submit" id="nextToDetails" name="update_course_btn"
                                         class="text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
                                         Save Changes
                                     </button>

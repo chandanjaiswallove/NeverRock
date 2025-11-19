@@ -487,8 +487,9 @@ class Admin_Model extends CI_Model
 
 
 
-
-
+    // ============================================================
+    // ✅ Course info Update Here 
+    // ============================================================
 
 public function updateCourse()
 {
@@ -577,37 +578,23 @@ public function updateCourse()
     $updated = $this->db->update('course_directory', $data);
 
     // ==========================================================
-    // 4️⃣ MANUAL SWEET ALERT + REDIRECT
+    //  SWEET ALERT + REDIRECT
     // ==========================================================
     if ($updated) {
-
-        echo "
-        <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
-        <script>
-            swal({
-                title: 'Success!',
-                text: 'Course updated successfully!',
-                icon: 'success'
-            }).then(function(){
-                window.location.href = '" . base_url('admin_coursework') . "';
-            });
-        </script>";
-
-    } else {
-
-        echo "
-        <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
-        <script>
-            swal({
-                title: 'Failed!',
-                text: 'Something went wrong!',
-                icon: 'error'
-            }).then(function(){
-                window.location.href = '" . base_url('admin_dashboard') . "';
-            });
-        </script>";
-
-    }
+                return $this->sweetAlert(
+                    'Update Successful!',
+                    'Welcome to Courses Dashboard ',
+                    'success',
+                    base_url('admin_dashboard')
+                );
+            } else  {
+                return $this->sweetAlert(
+                    'Update Failed!',
+                    'Sorry Try Again for Update ',
+                    'Failed',
+                    base_url('admin_courseWork')
+                );
+            }
 }
 
 
