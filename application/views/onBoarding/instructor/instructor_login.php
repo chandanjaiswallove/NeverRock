@@ -91,23 +91,25 @@
   <div class="auth-container">
     <!-- Left: Image -->
     <div class="auth-left">
-      <img class="auth-illustration"
-        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
+      <img class="auth-illustration" src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
 
     <!-- Right: Login -->
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Login to Your Account 👋</h4>
       </div>
 
-      <form id="loginFormEl" action="<?php echo base_url('instructorAuth'); ?>" method="POST" >
+      <form id="loginFormEl" action="<?php echo base_url('instructorAuth'); ?>" method="POST">
         <div class="mb-3">
           <label class="form-label">Unique ID</label>
-          <input type="text" class="form-control" id="loginUniqueID" name="loginUniqueID" placeholder="Enter unique ID" required
-            oninput="this.value = this.value.toUpperCase()">
+          <input type="text" class="form-control" id="loginUniqueID" name="loginUniqueID" placeholder="Enter unique ID"
+            required oninput="this.value = this.value.toUpperCase()">
         </div>
         <div class="mb-3">
           <label class="form-label">Email</label>
@@ -116,7 +118,8 @@
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" required>
+            <input type="password" class="form-control" id="loginPassword" name="loginPassword"
+              placeholder="Enter password" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('loginPassword', this)">Show</button>
           </div>
@@ -127,10 +130,11 @@
             <input class="form-check-input" type="checkbox" id="rememberCheck">
             <label class="form-check-label" for="rememberCheck">Remember me</label>
           </div>
-          <a href="<?php echo base_url('instructor_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
+          <a href="<?php echo base_url('instructor_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot
+            Password?</a>
         </div>
 
-        <button class="btn btn-primary w-100 mb-3" type="submit" name="instructorLOGIN" >Login</button>
+        <button class="btn btn-primary w-100 mb-3" type="submit" name="instructorLOGIN">Login</button>
       </form>
 
     </div>

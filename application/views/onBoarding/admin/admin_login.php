@@ -13,7 +13,7 @@
       background: #f9f9ff;
       color: #000;
       min-height: 100vh;
-      display: flex; 
+      display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
@@ -99,23 +99,29 @@
     <!-- Right: Login -->
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Login to Your Account 👋</h4>
       </div>
 
-      <form id="loginFormEl" action="<?php echo base_url('adminAuth'); ?>" method="POST" >
+      <form id="loginFormEl" action="<?php echo base_url('adminAuth'); ?>" method="POST">
         <div class="mb-3">
           <label class="form-label">Unique ID</label>
-          <input type="text" class="form-control" id="adminUID" name="adminUID" placeholder="Enter unique ID" maxlength="16" required oninput="this.value = this.value.toUpperCase()">
+          <input type="text" class="form-control" id="adminUID" name="adminUID" placeholder="Enter unique ID"
+            maxlength="16" required oninput="this.value = this.value.toUpperCase()">
         </div>
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" id="adminEMAIL" name="adminEMAIL" placeholder="Enter email" maxlength="35" required>
+          <input type="email" class="form-control" id="adminEMAIL" name="adminEMAIL" placeholder="Enter email"
+            maxlength="35" required>
         </div>
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="adminPASSWORD" name="adminPASSWORD" placeholder="Enter password" maxlength="35" required>
+            <input type="password" class="form-control" id="adminPASSWORD" name="adminPASSWORD"
+              placeholder="Enter password" maxlength="35" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('adminPASSWORD', this)">Show</button>
           </div>
@@ -126,7 +132,8 @@
             <input class="form-check-input" type="checkbox" id="rememberCheck">
             <label class="form-check-label" for="rememberCheck">Remember me</label>
           </div>
-          <a href="<?php echo base_url('admin_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password?</a>
+          <a href="<?php echo base_url('admin_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot
+            Password?</a>
         </div>
 
         <button class="btn btn-primary w-100 mb-3" name="adminLOGIN" type="submit">Login</button>

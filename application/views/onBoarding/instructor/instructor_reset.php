@@ -118,7 +118,10 @@
 
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Reset Password 🔑</h4>
       </div>
 

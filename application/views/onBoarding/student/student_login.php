@@ -80,7 +80,8 @@
     }
 
     .extra-text a {
-      color: #553cdf;;
+      color: #553cdf;
+      ;
       text-decoration: none;
       font-weight: bold;
     }
@@ -103,34 +104,38 @@
   <div class="auth-container">
     <!-- Left: Image -->
     <div class="auth-left">
-      <img class="auth-illustration"
-        src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
+      <img class="auth-illustration" src="<?php echo base_url('modules/assets/images/logo/Authleft.jpg'); ?>"
         alt="Illustration" />
     </div>
 
     <!-- Right: Login -->
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Login to Your Account 👋</h4>
       </div>
 
-      <form id="loginFormEl" action="<?php echo base_url('studentAuth'); ?>" method="POST" >
+      <form id="loginFormEl" action="<?php echo base_url('studentAuth'); ?>" method="POST">
         <div class="mb-3">
           <label class="form-label">Student UID</label>
-          <input type="text" class="form-control" id="stUsername" name="stUsername" placeholder="Enter Student UID" maxlength="9" required
-            oninput="this.value = this.value.toUpperCase()">
+          <input type="text" class="form-control" id="stUsername" name="stUsername" placeholder="Enter Student UID"
+            maxlength="9" required oninput="this.value = this.value.toUpperCase()">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="Enter email" maxlength="35"  required>
+          <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="Enter email"
+            maxlength="35" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" maxlength="25"  required>
+            <input type="password" class="form-control" id="loginPassword" name="loginPassword"
+              placeholder="Enter password" maxlength="25" required>
             <button type="button" class="btn btn-outline-secondary rounded-end"
               onclick="togglePassword('loginPassword', this)">Show</button>
           </div>
@@ -141,7 +146,8 @@
             <input class="form-check-input" type="checkbox" id="rememberCheck">
             <label class="form-check-label" for="rememberCheck">Remember me</label>
           </div>
-          <a href="<?php echo base_url('student_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot Password</a>
+          <a href="<?php echo base_url('student_forgot'); ?>" class="text-primary" style="cursor:pointer;">Forgot
+            Password</a>
         </div>
 
         <button class="btn btn-primary w-100 mb-3" type="submit" name="studentLOGIN">Login</button>

@@ -80,11 +80,13 @@
     }
 
     .back-home span {
-      color: #000; /* "Back to" black */
+      color: #000;
+      /* "Back to" black */
     }
 
     .back-home a {
-      color: #553cdf; /* "Home" purple */
+      color: #553cdf;
+      /* "Home" purple */
       text-decoration: none;
       font-weight: 500;
     }
@@ -93,7 +95,16 @@
       text-decoration: underline;
     }
 
-    @media (max-width:768px){.auth-container{flex-direction:column;max-width:100%}.auth-left{order:-1}}
+    @media (max-width:768px) {
+      .auth-container {
+        flex-direction: column;
+        max-width: 100%
+      }
+
+      .auth-left {
+        order: -1
+      }
+    }
   </style>
 </head>
 
@@ -107,7 +118,10 @@
 
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Reset Password 🔑</h4>
       </div>
 
@@ -123,17 +137,20 @@
         <div class="mb-3">
           <label class="form-label">New Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New password" maxlength="20" 
-                   pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required>
-            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('newPassword', this)">Show</button>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="New password"
+              maxlength="20" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$" required>
+            <button type="button" class="btn btn-outline-secondary"
+              onclick="togglePassword('newPassword', this)">Show</button>
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Confirm New Password</label>
           <div class="input-group">
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" maxlength="20" required>
-            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmPassword', this)">Show</button>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+              placeholder="Confirm password" maxlength="20" required>
+            <button type="button" class="btn btn-outline-secondary"
+              onclick="togglePassword('confirmPassword', this)">Show</button>
           </div>
         </div>
 
@@ -145,11 +162,12 @@
   </div>
 
   <script>
-    function togglePassword(id, btn){
+    function togglePassword(id, btn) {
       const inp = document.getElementById(id);
       inp.type = inp.type === 'password' ? 'text' : 'password';
       btn.textContent = inp.type === 'password' ? 'Show' : 'Hide';
     }
   </script>
 </body>
+
 </html>

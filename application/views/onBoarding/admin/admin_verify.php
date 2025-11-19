@@ -81,11 +81,13 @@
     }
 
     .back-home span {
-      color: #000; /* "Back to" black */
+      color: #000;
+      /* "Back to" black */
     }
 
     .back-home a {
-      color: #553cdf; /* "Home" purple */
+      color: #553cdf;
+      /* "Home" purple */
       text-decoration: none;
       font-weight: 500;
     }
@@ -117,7 +119,10 @@
 
     <div class="auth-right bg-white">
       <div class="text-center mb-3">
-        <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>" alt="Logo">
+        <a href="<?php echo site_url('welcome'); ?>">
+          <img class="brand-logo mb-1" src="<?php echo base_url('modules/assets/images/logo/logo_1.png'); ?>"
+            alt="Logo">
+        </a>
         <h4 class="title">Verify OTP 🔑</h4>
       </div>
 
@@ -138,4 +143,5 @@
     </div>
   </div>
 </body>
+
 </html>
