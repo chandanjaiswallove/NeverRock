@@ -52,6 +52,7 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
+
     public function loaDadmin_createInstructors()
     {
         $this->load->view('dashboard/dAdmin/admin_createInstructors');
@@ -122,6 +123,12 @@ class AdminDashboardControllers extends CI_Controller
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->insertDetailsData();
+    }
+
+    public function loaDupdateCourse()
+    {
+        $this->load->model('Admin_Model');
+        $this->Admin_Model->updateCourse();
     }
 
 

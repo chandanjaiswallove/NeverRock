@@ -43,7 +43,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                             <form id="courseInfoForm"
                                 class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
-                                data-aos="fade-up" method="POST" action="<?php echo base_url('createCourse'); ?>"
+                                data-aos="fade-up" method="POST" action="<?php echo base_url('updateCourse'); ?>"
                                 enctype="multipart/form-data">
                                 <?php
                                 $fetchID = $_GET['id'];
@@ -71,6 +71,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 }
 
                                 ?>
+
+                                <!-- Hidden Inputs for Update -->
+                                <input type="hidden" name="courseID" value="<?php echo $fetchID; ?>">
+                                <input type="hidden" name="oldImage" value="<?php echo $course_Thumbnail; ?>">
+                                <input type="hidden" name="oldVideo" value="<?php echo $course_Video_content; ?>">
+
 
 
 
@@ -349,9 +355,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 </div>
                                 <div class="mt-15px">
-                                    <button type="submit" id="nextToDetails" name="registerCourse"
+                                    <button type="submit" id="nextToDetails" name="updateCourseBtn"
                                         class="text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                        Save Info
+                                        Save Changes
                                     </button>
 
 
