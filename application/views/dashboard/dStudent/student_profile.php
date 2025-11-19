@@ -10,7 +10,7 @@ $this->load->view('dashboard/master_contents/dStudent_master/student_header');
     <?php
     $this->load->view('dashboard/master_contents/dStudent_master/student_banner');
     ?>
-    <!--Setting Password change update section -->
+    <!--Tasb section -->
     <section>
         <div class="container-fluid-2">
             <!-- setting area -->
