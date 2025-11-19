@@ -65,24 +65,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     $course_Selling_cost = $row->course_selling_cost;
                                     $discount_Applied = $row->discount_applied;
 
-                                    // Video Data
-                                    $course_Preview_video = $row->course_preview_video;   // URL
-                                    $course_Video_content = $row->course_video_content;   // FILE
+                                    // both file collect any video or url only one two places
+                                    $course_Preview_video = $row->course_preview_video;
+                                    $course_Video_content = $row->course_video_content;
                                 }
 
-
-                                // ---------------------- FINAL LOGIC ---------------------- //
-// Priority 1 → If VIDEO FILE exists → Video tab active
-// Priority 2 → Else if URL exists → URL tab active
-// Default → Video tab active
-                                
-                                if (!empty($course_Video_content)) {
-                                    $isUrl = false;  // VIDEO TAB ACTIVE
-                                } else if (!empty($course_Preview_video) && strpos($course_Preview_video, 'http') === 0) {
-                                    $isUrl = true;   // URL TAB ACTIVE
-                                } else {
-                                    $isUrl = false;  // DEFAULT VIDEO TAB ACTIVE
-                                }
                                 ?>
 
 
@@ -111,18 +98,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             id="courseDescription" name="courseDescription" rows="4" required
                                             style="min-height: 100px; max-height:150px;"><?php echo $course_Description; ?></textarea>
                                     </div>
-
-
                                 </div>
 
 
                                 <div>
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-30px mb-15px">
-                                        <!-- Upload Image -->
+                                        <!-- Enquiry Number -->
                                         <div>
-                                            <label class="mb-3 block font-semibold">Upload Image</label>
-                                            <input type="file" id="courseImage" name="courseImage" accept="image/*" value="<?php echo $course_Thumbnail; ?>"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            <label for="enquiryNumber"
+                                                class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
+                                            <input type="text" id="enquiryNumber" name="enquiryNumber"
+                                                value="<?php echo $enquiry_Number; ?>"
+                                                placeholder="Enter Enquiry Number" required maxlength="14"
+                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
 
@@ -255,66 +243,55 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
 
-                                <!-- Enquiry Number -->
-                                <!-- Upload Intro Video -->
-                                <div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-30px mb-15px">
-                                        <!-- Enquiry Number -->
-                                        <div>
-                                            <label for="enquiryNumber"
-                                                class="mb-3 block font-semibold leading-1.8">Enquiry Number</label>
-                                            <input type="text" id="enquiryNumber" name="enquiryNumber"
-                                                value="<?php echo $enquiry_Number; ?>"
-                                                placeholder="Enter Enquiry Number" required maxlength="14"
-                                                class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
+
+                                <div class="grid grid-cols-1 mb-15px gap-15px">
+                                    <!-- Upload Image -->
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Upload Image</label>
+
+                                        <!-- Show previously uploaded file name -->
+                                        <p class="mb-2 text-sm text-gray-700 dark:text-gray-300">
+                                            <b>Selected :</b> <?php echo $course_Thumbnail; ?>
+                                        </p>
+
+                                        <!-- File input -->
+                                        <input type="file" id="courseImage" name="courseImage" accept="image/*"
+                                            class="w-full py-2 px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-6 rounded-md font-no">
+                                    </div>
+
+                                    <div>
+                                        <div class="flex gap-4 mb-3">
+                                            <button type="button" id="videoFileTab"
+                                                class="px-4 py-2 text-blackColor rounded  dark:text-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark">
+                                                Video
+                                            </button>
+
+                                            <button type="button" id="videoUrlTab"
+                                                class="px-4 py-2 text-blackColor dark:text-whiteColor rounded ">
+                                                URL
+                                            </button>
+
                                         </div>
 
-
-                                        <!-- Intro Video (File Upload / YouTube URL) -->
-                                        <!-- Intro Video (File Upload / YouTube URL) -->
-                                        <div>
-
-                                            <!-- Tabs -->
-                                            <div class="flex gap-4 mb-3">
-
-                                                <!-- VIDEO TAB -->
-                                                <button type="button" id="videoFileTab"
-                                                    class="px-4 py-2 text-blackColor rounded dark:text-whiteColor
-            <?php echo !$isUrl ? 'dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark' : ''; ?>">
-                                                    Video
-                                                </button>
-
-                                                <!-- URL TAB -->
-                                                <button type="button" id="videoUrlTab"
-                                                    class="px-4 py-2 text-blackColor dark:text-whiteColor rounded
-            <?php echo $isUrl ? 'dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark' : ''; ?>">
-                                                    URL
-                                                </button>
-
-                                            </div>
-
-                                            <!-- File Input -->
-                                            <input type="file" id="courseVideoFile" name="courseVideoFile"
-                                                accept="video/*" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
-        rounded-md mb-3
-        <?php echo $isUrl ? 'hidden' : ''; ?>">
-
-                                            <!-- YouTube URL Input -->
-                                            <input type="url" id="courseVideoUrl" name="courseVideoUrl"
-                                                value="<?php echo $course_Preview_video; ?>"
-                                                placeholder="Add your YouTube Video URL here" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-        bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
-        placeholder:text-placeholder leading-23px rounded-md
-        <?php echo !$isUrl ? 'hidden' : ''; ?>">
-                                        </div>
+                                        <!-- Show previously uploaded file name -->
+                                        <p class="mb-2 text-sm text-gray-700 dark:text-gray-300 max-w-full overflow-hidden break-words
+">
+                                            <b>Selected :</b> <?php echo $course_Video_content; ?>
+                                        </p>
 
 
+                                        <!-- File Input -->
+                                        <input type="file" id="courseVideoFile" name="courseVideoFile" accept="video/*"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md font-no mb-3">
 
-
+                                        <!-- YouTube URL Input -->
+                                        <input type="url" id="courseVideoUrl" name="courseVideoUrl"
+                                            placeholder="Add your YouTube Video URL here. Example: https://www.youtube.com/watch?v=yourvideoid"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no hidden ">
 
                                     </div>
                                 </div>
+
 
                                 <!-- COURSE PRICING SECTION (Hide/Show based on Type) -->
                                 <!-- ============================== -->
@@ -396,38 +373,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     </section>
 
 
-    <!-- Upload Video Tab and Upload YouTube Url -->
-    <script>
-        const fileTab = document.getElementById("videoFileTab");
-        const urlTab = document.getElementById("videoUrlTab");
-        const fileInput = document.getElementById("courseVideoFile");
-        const urlInput = document.getElementById("courseVideoUrl");
 
-        const activeClasses = ["dark:bg-whiteColor-dark", "border-2", "border-borderColor", "dark:border-borderColor-dark"];
-
-        function removeActiveClasses() {
-            fileTab.classList.remove(...activeClasses);
-            urlTab.classList.remove(...activeClasses);
-        }
-
-        // VIDEO TAB CLICK
-        fileTab.addEventListener("click", () => {
-            fileInput.classList.remove("hidden");
-            urlInput.classList.add("hidden");
-
-            removeActiveClasses();
-            fileTab.classList.add(...activeClasses);
-        });
-
-        // URL TAB CLICK
-        urlTab.addEventListener("click", () => {
-            urlInput.classList.remove("hidden");
-            fileInput.classList.add("hidden");
-
-            removeActiveClasses();
-            urlTab.classList.add(...activeClasses);
-        });
-    </script>
 
 
     <!-- Pricing and Disocun Sell cost -->
@@ -508,6 +454,43 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                     pricingSection.style.display = "none";
                 }
             });
+        });
+    </script>
+
+    <!-- Upload Video Tab and Upload YouTube Url -->
+    <script>
+        const fileTab = document.getElementById("videoFileTab");
+        const urlTab = document.getElementById("videoUrlTab");
+        const fileInput = document.getElementById("courseVideoFile");
+        const urlInput = document.getElementById("courseVideoUrl");
+
+        // ACTIVE class (common)
+        const activeClasses = ["dark:bg-whiteColor-dark", "border-2", "border-borderColor", "dark:border-borderColor-dark"];
+
+        // REMOVE all active classes from both tabs
+        function removeActiveClasses() {
+            fileTab.classList.remove(...activeClasses);
+            urlTab.classList.remove(...activeClasses);
+        }
+
+        // Upload Video Button
+        fileTab.addEventListener("click", function () {
+
+            fileInput.classList.remove("hidden");
+            urlInput.classList.add("hidden");
+
+            removeActiveClasses();
+            fileTab.classList.add(...activeClasses);
+        });
+
+        // YouTube URL Button
+        urlTab.addEventListener("click", function () {
+
+            urlInput.classList.remove("hidden");
+            fileInput.classList.add("hidden");
+
+            removeActiveClasses();
+            urlTab.classList.add(...activeClasses);
         });
     </script>
 
