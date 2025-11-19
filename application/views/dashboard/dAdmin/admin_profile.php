@@ -16,13 +16,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
             <!-- Profile area -->
             <div
                 class="p-10px md:px-10 md:py-50px mb-30px bg-whiteColor dark:bg-whiteColor-dark shadow-accordion dark:shadow-accordion-dark rounded-standard">
-                <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark">
+                <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
                     <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
                         My Profile
                     </h2>
                 </div>
 
-                <div>
+                <div data-aos="fade-up">
                     <ul>
                         <li
                             class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px">
@@ -37,31 +37,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <li
                             class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
                             <div class="md:col-start-1 md:col-span-4">
-                                <span class="inline-block">First Name</span>
+                                <span class="inline-block">Full Name</span>
                             </div>
                             <div class="md:col-start-5 md:col-span-8">
-                                <span class="inline-block">Michle</span>
-                            </div>
-                        </li>
-                        <li
-                            class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
-                            <div class="md:col-start-1 md:col-span-4">
-                                <span class="inline-block">Last Name</span>
-                            </div>
-                            <div class="md:col-start-5 md:col-span-8">
-                                <span class="inline-block">Obema</span>
+                                <span class="inline-block">Michle Obema</span>
                             </div>
                         </li>
 
-                        <li
-                            class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
-                            <div class="md:col-start-1 md:col-span-4">
-                                <span class="inline-block">Username</span>
-                            </div>
-                            <div class="md:col-start-5 md:col-span-8">
-                                <span class="inline-block"> obema007</span>
-                            </div>
-                        </li>
+
 
                         <li
                             class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
@@ -96,6 +79,37 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <li
                             class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
                             <div class="md:col-start-1 md:col-span-4">
+                                <span class="inline-block">Social Links</span>
+                            </div>
+                            <div class="md:col-start-5 md:col-span-8">
+                                <ul class="flex gap-10px items-center">
+                                    <li>
+                                        <a href="https://www.facebook.com/chandanjaiswalloves/following"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/chandanjaiswalloves/following"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/chandanjaiswalloves/following"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/chandanjaiswalloves/following"
+                                            class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
+                                                class="icofont-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li
+                            class="text-lg text-contentColor dark:text-contentColor-dark leading-1.67 grid grid-cols-1 md:grid-cols-12 gap-x-30px mt-15px">
+                            <div class="md:col-start-1 md:col-span-4">
                                 <span class="inline-block">Biography</span>
                             </div>
                             <div class="md:col-start-5 md:col-span-8">
@@ -107,6 +121,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     quasi alias est!</span>
                             </div>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
