@@ -9,6 +9,63 @@ class Admin_Model extends CI_Model
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // ============================================================
     // ✅ CourseDetails All Sections Here
     // ============================================================
@@ -490,119 +547,119 @@ class Admin_Model extends CI_Model
     // ============================================================
     // ✅ Course info Update Here 
     // ============================================================
-public function updateCourse()
-{
-    $courseID = $this->input->post('courseID', true);
-    $oldImage = $this->input->post('oldImage');
-    $oldVideo = $this->input->post('oldVideo');
+    public function updateCourse()
+    {
+        $courseID = $this->input->post('courseID', true);
+        $oldImage = $this->input->post('oldImage');
+        $oldVideo = $this->input->post('oldVideo');
 
-    $courseType = $this->input->post('courseType', true);
+        $courseType = $this->input->post('courseType', true);
 
-    // ==========================================================
-    //  DATA ARRAY
-    // ==========================================================
-    $data = array(
-        'course_name' => $this->input->post('course_name', true),
-        'course_description' => $this->input->post('courseDescription'),
-        'course_type' => $courseType,
-        'course_category' => $this->input->post('courseCategory', true),
-        'starting_date' => $this->input->post('startDate', true),
-        'ending_date' => $this->input->post('finishDate', true),
-        'course_mode' => $this->input->post('avilability', true),
-        'course_language' => $this->input->post('language', true),
-        'enquiry_number' => $this->input->post('enquiryNumber', true),
-    );
+        // ==========================================================
+        //  DATA ARRAY
+        // ==========================================================
+        $data = array(
+            'course_name' => $this->input->post('course_name', true),
+            'course_description' => $this->input->post('courseDescription'),
+            'course_type' => $courseType,
+            'course_category' => $this->input->post('courseCategory', true),
+            'starting_date' => $this->input->post('startDate', true),
+            'ending_date' => $this->input->post('finishDate', true),
+            'course_mode' => $this->input->post('avilability', true),
+            'course_language' => $this->input->post('language', true),
+            'enquiry_number' => $this->input->post('enquiryNumber', true),
+        );
 
-    // ==========================================================
-    // PRICE & DISCOUNT LOGIC
-    // ==========================================================
-    if ($courseType == 'free') {
-        $data['course_actual_cost'] = 0;
-        $data['discount_applied'] = 0;
-        $data['course_selling_cost'] = 0;
-    } else {
-        $data['course_actual_cost'] = $this->input->post('regularPrice', true);
-        $data['discount_applied'] = $this->input->post('discountPercent', true);
-        $data['course_selling_cost'] = $this->input->post('finalPrice', true);
-    }
+        // ==========================================================
+        // PRICE & DISCOUNT LOGIC
+        // ==========================================================
+        if ($courseType == 'free') {
+            $data['course_actual_cost'] = 0;
+            $data['discount_applied'] = 0;
+            $data['course_selling_cost'] = 0;
+        } else {
+            $data['course_actual_cost'] = $this->input->post('regularPrice', true);
+            $data['discount_applied'] = $this->input->post('discountPercent', true);
+            $data['course_selling_cost'] = $this->input->post('finalPrice', true);
+        }
 
-    // ==========================================================
-    // 1️⃣ UPDATE IMAGE
-    // ==========================================================
-    if (!empty($_FILES['courseImage']['name'])) {
-        $config['upload_path'] = 'modules/courseThumbnail/';
-        $config['allowed_types'] = 'jpg|jpeg|png|webp';
-        $config['remove_spaces'] = TRUE;
-        $config['file_ext_tolower'] = TRUE;
-        $config['file_name'] = uniqid() . "_" . $_FILES['courseImage']['name'];
+        // ==========================================================
+        // 1️⃣ UPDATE IMAGE
+        // ==========================================================
+        if (!empty($_FILES['courseImage']['name'])) {
+            $config['upload_path'] = 'modules/courseThumbnail/';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp';
+            $config['remove_spaces'] = TRUE;
+            $config['file_ext_tolower'] = TRUE;
+            $config['file_name'] = uniqid() . "_" . $_FILES['courseImage']['name'];
 
-        $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('courseImage')) {
-            if (!empty($oldImage) && file_exists('modules/courseThumbnail/' . $oldImage)) {
-                unlink('modules/courseThumbnail/' . $oldImage);
+            if ($this->upload->do_upload('courseImage')) {
+                if (!empty($oldImage) && file_exists('modules/courseThumbnail/' . $oldImage)) {
+                    unlink('modules/courseThumbnail/' . $oldImage);
+                }
+                $data['course_thumbnail'] = $config['file_name'];
             }
-            $data['course_thumbnail'] = $config['file_name'];
+        }
+
+        // ==========================================================
+        // 2️⃣ UPDATE VIDEO
+        // ==========================================================
+        $videoUrl = $this->input->post('courseVideoUrl', true);
+
+        if (!empty($_FILES['courseVideoFile']['name'])) {
+            $config2['upload_path'] = 'modules/courseVideo/';
+            $config2['allowed_types'] = 'mp4|mov|avi|mkv';
+            $config2['max_size'] = 500000;
+            $config2['remove_spaces'] = TRUE;
+            $config2['file_ext_tolower'] = TRUE;
+
+            $cleanName = preg_replace("/[^A-Za-z0-9\.\-_]/", "_", $_FILES['courseVideoFile']['name']);
+            $config2['file_name'] = uniqid() . "_" . $cleanName;
+
+            $this->upload->initialize($config2);
+
+            if ($this->upload->do_upload('courseVideoFile')) {
+                if (!empty($oldVideo) && file_exists('modules/courseVideo/' . $oldVideo)) {
+                    unlink('modules/courseVideo/' . $oldVideo);
+                }
+
+                $video = $this->upload->data();
+
+                $data['course_preview_video'] = $video['file_name'];
+                $data['course_video_content'] = $video['file_name'];
+            }
+        } else if (!empty($videoUrl)) {
+            $data['course_preview_video'] = $videoUrl;
+            $data['course_video_content'] = $videoUrl;
+        }
+
+        // ==========================================================
+        // 3️⃣ DATABASE UPDATE
+        // ==========================================================
+        $this->db->where('id', $courseID);
+        $updated = $this->db->update('course_directory', $data);
+
+        // ==========================================================
+        // 4️⃣ SWEET ALERT + REDIRECT
+        // ==========================================================
+        if ($updated) {
+            return $this->sweetAlert(
+                'Update Successful!',
+                'Course has been updated successfully!',
+                'success',
+                base_url('admin_dashboard')
+            );
+        } else {
+            return $this->sweetAlert(
+                'Update Failed!',
+                'Sorry, something went wrong. Please try again.',
+                'error',
+                base_url('admin_courseWork')
+            );
         }
     }
-
-    // ==========================================================
-    // 2️⃣ UPDATE VIDEO
-    // ==========================================================
-    $videoUrl = $this->input->post('courseVideoUrl', true);
-
-    if (!empty($_FILES['courseVideoFile']['name'])) {
-        $config2['upload_path'] = 'modules/courseVideo/';
-        $config2['allowed_types'] = 'mp4|mov|avi|mkv';
-        $config2['max_size'] = 500000;
-        $config2['remove_spaces'] = TRUE;
-        $config2['file_ext_tolower'] = TRUE;
-
-        $cleanName = preg_replace("/[^A-Za-z0-9\.\-_]/", "_", $_FILES['courseVideoFile']['name']);
-        $config2['file_name'] = uniqid() . "_" . $cleanName;
-
-        $this->upload->initialize($config2);
-
-        if ($this->upload->do_upload('courseVideoFile')) {
-            if (!empty($oldVideo) && file_exists('modules/courseVideo/' . $oldVideo)) {
-                unlink('modules/courseVideo/' . $oldVideo);
-            }
-
-            $video = $this->upload->data();
-
-            $data['course_preview_video'] = $video['file_name'];
-            $data['course_video_content'] = $video['file_name'];
-        }
-    } else if (!empty($videoUrl)) {
-        $data['course_preview_video'] = $videoUrl;
-        $data['course_video_content'] = $videoUrl;
-    }
-
-    // ==========================================================
-    // 3️⃣ DATABASE UPDATE
-    // ==========================================================
-    $this->db->where('id', $courseID);
-    $updated = $this->db->update('course_directory', $data);
-
-    // ==========================================================
-    // 4️⃣ SWEET ALERT + REDIRECT
-    // ==========================================================
-    if ($updated) {
-        return $this->sweetAlert(
-            'Update Successful!',
-            'Course has been updated successfully!',
-            'success',
-            base_url('admin_dashboard')
-        );
-    } else {
-        return $this->sweetAlert(
-            'Update Failed!',
-            'Sorry, something went wrong. Please try again.',
-            'error',
-            base_url('admin_courseWork')
-        );
-    }
-}
 
 
 

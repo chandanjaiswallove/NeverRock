@@ -47,7 +47,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                     <div class="tab-contents">
                         <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form action="" method=""
+                            <form action="<?php echo site_url('updateProfile'); ?>" method="POST"
+                                enctype="multipart/form-data"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
                                 <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
@@ -60,12 +61,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     <div>
                                         <label for="expertAs" class="mb-3 block font-semibold">Expert As</label>
-                                        <input type="text" id="expertAs" name="expertAs" placeholder="teacher"
+                                        <input type="text" id="expertAs" name="expertAs" placeholder="You Expert As"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
-                                        <label for="expertAs" class="mb-3 block font-semibold">Nick Name</label>
+                                        <label for="nickName" class="mb-3 block font-semibold">Nick Name</label>
                                         <input type="text" id="nickName" name="nickName" placeholder="Your Nick Name"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -87,7 +88,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <div>
-                                        <label for="twitter" class="mb-3 block font-semibold">
+                                        <label for="xtwitter" class="mb-3 block font-semibold">
                                             <!-- X (Twitter) Icon -->
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

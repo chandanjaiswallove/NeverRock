@@ -1,6 +1,13 @@
 <!-- Developer dashboard Banner section -->
 <section>
     <div class="container-fluid-2 py-5">
+        <?php
+        $fetchStudent = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
+        foreach ($fetchStudent->result() as $row) {
+            $directorName = $row->director_name;
+        }
+
+        ?>
         <div
             class="bg-naveBlue p-5 md:p-10 rounded-standard flex justify-center md:justify-between items-center flex-wrap gap-2">
             <div class="flex items-center flex-wrap justify-center sm:justify-start">
@@ -10,13 +17,6 @@
                 </div>
                 <div class="text-whiteColor font-bold text-center sm:text-start">
                     <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome </h5>
-                    <?php
-                    $fetchStudent = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
-                    foreach ($fetchStudent->result() as $row) {
-                        $directorName = $row->director_name;
-                    }
-
-                    ?>
                     <h2 class="text-2xl leading-1.24"><?php echo $directorName; ?></h2>
 
                 </div>
