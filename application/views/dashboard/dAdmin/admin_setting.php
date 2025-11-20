@@ -47,170 +47,115 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                     <div class="tab-contents">
                         <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form action="<?php echo site_url('updateProfile'); ?>" method="POST"
+                            <form method="POST" action="<?php echo base_url('completeProfile'); ?>"
                                 enctype="multipart/form-data"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
-                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
 
+                                <?php
+                                // Admin data fetch
+                                $fetchAdmin = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
+                                $admin = $fetchAdmin->row();
+                                ?>
+
+                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
                                     <div>
                                         <label for="profilePhoto" class="mb-3 block font-semibold">Profile Photo</label>
-                                        <input type="file" id="profilePhoto" name="profilePhoto"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <p class="mb-2 text-sm text-gray-700 dark:text-gray-300">
+                                            <b>Selected :</b>
+                                            <?php echo !empty($admin->admin_photo) ? $admin->admin_photo : 'default.png'; ?>
+                                        </p>
+                                        <input type="file" id="profilePhoto" name="profilePhoto" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
                                         <label for="expertAs" class="mb-3 block font-semibold">Expert As</label>
                                         <input type="text" id="expertAs" name="expertAs" placeholder="You Expert As"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->expert_as ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
                                         <label for="nickName" class="mb-3 block font-semibold">Nick Name</label>
                                         <input type="text" id="nickName" name="nickName" placeholder="Your Nick Name"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->nick_name ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
-                                        <label for="facebook" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-facebook inline-block mr-1">
-                                                <path
-                                                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
-                                                </path>
-                                            </svg>Facebook
-                                        </label>
+                                        <label for="facebook" class="mb-3 block font-semibold">Facebook</label>
                                         <input type="text" id="facebook" name="facebook"
                                             placeholder="https://facebook.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->facebook_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
-                                        <label for="xtwitter" class="mb-3 block font-semibold">
-                                            <!-- X (Twitter) Icon -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="inline-block mr-1">
-                                                <path
-                                                    d="M18 2H21L13 11L22 22H15L9.5 15.5L4 22H1L9 12L1 2H8L13.5 8.5L18 2Z" />
-                                            </svg>
-                                            X / Twitter
-                                        </label>
-
+                                        <label for="xtwitter" class="mb-3 block font-semibold">X / Twitter</label>
                                         <input type="text" id="xtwitter" name="xtwitter" placeholder="https://x.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor 
-                                            dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 
-                                            border-borderColor dark:border-borderColor-dark placeholder:text-placeholder 
-                                            placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->twitter_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
-
                                     <div>
-                                        <label for="linkedin" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-linkedin inline-block mr-1">
-                                                <path
-                                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                                </path>
-                                                <rect x="2" y="9" width="4" height="12"></rect>
-                                                <circle cx="4" cy="4" r="2"></circle>
-                                            </svg>Linkedin
-                                        </label>
+                                        <label for="linkedin" class="mb-3 block font-semibold">Linkedin</label>
                                         <input type="text" id="linkedin" name="linkedin"
                                             placeholder="https://linkedin.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->admin_linkdin_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
-                                        <label for="github" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-github inline-block mr-1">
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>Github
-                                        </label>
+                                        <label for="github" class="mb-3 block font-semibold">Github</label>
                                         <input type="text" id="github" name="github" placeholder="https://github.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->admin_github_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
-                                        <label for="instagram" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-instagram inline-block mr-1">
-                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                                <path d="M16 11.37A4 4 0 1 1 12.63 8"></path>
-                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                            </svg>
-                                            Instagram
-                                        </label>
-
+                                        <label for="instagram" class="mb-3 block font-semibold">Instagram</label>
                                         <input type="text" id="instagram" name="instagram"
                                             placeholder="https://instagram.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->instagram_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
-
                                     <div>
-                                        <label for="website" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-globe inline-block mr-1">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                                <path
-                                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                                </path>
-                                            </svg>
-                                            Website
-                                        </label>
-
+                                        <label for="website" class="mb-3 block font-semibold">Website</label>
                                         <input type="text" id="website" name="website"
                                             placeholder="https://website.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->admin_website_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
-
 
                                     <div>
-                                        <label for="youtube" class="mb-3 block font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-youtube inline-block mr-1">
-                                                <path
-                                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z">
-                                                </path>
-                                                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
-                                            </svg>
-                                            Youtube
-                                        </label>
-
+                                        <label for="youtube" class="mb-3 block font-semibold">Youtube</label>
                                         <input type="text" id="youtube" name="youtube"
                                             placeholder="https://youtube.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $admin->youtube_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
-
-
                                 </div>
 
                                 <div class="mb-15px">
                                     <label for="biography" class="mb-3 block font-semibold">Biography</label>
                                     <textarea id="biography" name="biography"
-                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md resize-y"
+                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark 
+                         border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md resize-y"
                                         style="max-height: 150px;" cols="30"
-                                        rows="5">Write Something about yourself..</textarea>
+                                        rows="5"><?php echo $admin->admin_biography ?? 'Write Something about yourself..'; ?></textarea>
                                 </div>
-
 
                                 <div class="mt-15px">
                                     <button type="submit" name="updateProfile"
@@ -219,6 +164,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </button>
                                 </div>
                             </form>
+
 
 
                         </div>
