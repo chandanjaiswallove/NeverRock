@@ -405,9 +405,20 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                                         class="icofont-instagram"></i></a>
                                                             </li>
                                                             <li>
-                                                                <a href="course-details.html#"
-                                                                    class="w-35px h-35px leading-35px text-center border border-borderColor2 text-contentColor hover:text-whiteColor hover:bg-primaryColor dark:text-contentColor-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded"><i
-                                                                        class="icofont-twitter"></i></a>
+                                                                <a href="course-details.html#" class="w-35px h-35px leading-35px text-center border border-borderColor2 
+                                                                    text-contentColor hover:text-whiteColor hover:bg-primaryColor 
+                                                                    dark:text-contentColor-dark dark:hover:text-whiteColor 
+                                                                    dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" viewBox="0 0 24 24" fill="currentColor"
+                                                                        class="inline-block">
+                                                                        <path
+                                                                            d="M18 2H21L13 11L22 22H15L9.5 15.5L4 22H1L9 12L1 2H8L13.5 8.5L18 2Z" />
+                                                                    </svg>
+
+                                                                </a>
+
                                                             </li>
                                                         </ul>
                                                     </div>

@@ -88,19 +88,24 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     <div>
                                         <label for="twitter" class="mb-3 block font-semibold">
+                                            <!-- X (Twitter) Icon -->
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-twitter inline-block mr-1">
+                                                class="inline-block mr-1">
                                                 <path
-                                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                                </path>
-                                            </svg>Twitter
+                                                    d="M18 2H21L13 11L22 22H15L9.5 15.5L4 22H1L9 12L1 2H8L13.5 8.5L18 2Z" />
+                                            </svg>
+                                            X / Twitter
                                         </label>
-                                        <input type="text" id="twitter" name="twitter"
-                                            placeholder="https://twitter.com/"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+
+                                        <input type="text" id="xtwitter" name="xtwitter" placeholder="https://x.com/"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor 
+                                            dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 
+                                            border-borderColor dark:border-borderColor-dark placeholder:text-placeholder 
+                                            placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
 
                                     <div>
                                         <label for="linkedin" class="mb-3 block font-semibold">
@@ -136,50 +141,64 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <div>
-                                        <label for="github" class="mb-3 block font-semibold">
+                                        <label for="instagram" class="mb-3 block font-semibold">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-github inline-block mr-1">
-                                                <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                                </path>
-                                            </svg>Instagram
+                                                class="feather feather-instagram inline-block mr-1">
+                                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                                <path d="M16 11.37A4 4 0 1 1 12.63 8"></path>
+                                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                            </svg>
+                                            Instagram
                                         </label>
-                                        <input type="text" id="github" name="github"
+
+                                        <input type="text" id="instagram" name="instagram"
                                             placeholder="https://instagram.com/"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
+
                                     <div>
-                                        <label for="github" class="mb-3 block font-semibold">
+                                        <label for="website" class="mb-3 block font-semibold">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-github inline-block mr-1">
+                                                class="feather feather-globe inline-block mr-1">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
                                                 <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                                                 </path>
-                                            </svg>Website
+                                            </svg>
+                                            Website
                                         </label>
-                                        <input type="text" id="github" name="github" placeholder="https://website.com/"
+
+                                        <input type="text" id="website" name="website"
+                                            placeholder="https://website.com/"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
+
                                     <div>
-                                        <label for="github" class="mb-3 block font-semibold">
+                                        <label for="youtube" class="mb-3 block font-semibold">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-github inline-block mr-1">
+                                                class="feather feather-youtube inline-block mr-1">
                                                 <path
-                                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z">
                                                 </path>
-                                            </svg>Youtube
+                                                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                                            </svg>
+                                            Youtube
                                         </label>
-                                        <input type="text" id="github" name="github" placeholder="https://youtube.com/"
+
+                                        <input type="text" id="youtube" name="youtube"
+                                            placeholder="https://youtube.com/"
                                             class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
 
                                 </div>
 
