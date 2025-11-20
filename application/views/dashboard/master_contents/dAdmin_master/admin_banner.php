@@ -2,22 +2,34 @@
 <section>
     <div class="container-fluid-2 py-5">
         <?php
-        $fetchStudent = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
-        foreach ($fetchStudent->result() as $row) {
-            $directorName = $row->director_name;
-        }
-
+        $fetchAdmin = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
+        $admin = $fetchAdmin->row();
         ?>
         <div
             class="bg-naveBlue p-5 md:p-10 rounded-standard flex justify-center md:justify-between items-center flex-wrap gap-2">
             <div class="flex items-center flex-wrap justify-center sm:justify-start">
+
+                <?php
+                $adminPhotoPath = 'modules/adminProfilePhoto/' . $admin->admin_photo;
+                // अगर database में profile image नहीं है या file missing है
+                if (empty($admin->admin_photo) || !file_exists(FCPATH . $adminPhotoPath)) {
+                    // default avatar show करो
+                    $finalImage = 'modules/avatar/default.png';
+                } else {
+                    // database वाली photo show करो
+                    $finalImage = $adminPhotoPath;
+                }
+                ?>
+
                 <div class="mr-5">
-                    <img src="modules/assets/images/dashbord/dashbord__2.jpg" alt=""
+                    <img src="<?php echo base_url($finalImage); ?>" alt="Admin Photo"
                         class="w-27 h-27 md:w-22 md:h-22 lg:w-27 lg:h-27 rounded-full p-1 border-2 border-darkdeep7 box-content">
                 </div>
+
+
                 <div class="text-whiteColor font-bold text-center sm:text-start">
                     <h5 class="text-xl leading-1.2 mb-5px text-secondaryColor ">Welcome </h5>
-                    <h2 class="text-2xl leading-1.24"><?php echo $directorName; ?></h2>
+                    <h2 class="text-2xl leading-1.24"><?php echo $admin->director_name; ?></h2>
 
                 </div>
 
