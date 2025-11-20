@@ -47,7 +47,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                     <div class="tab-contents">
                         <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form method="POST" action="<?php echo base_url('completeProfile'); ?>"
+                            <form method="POST" action="<?php echo base_url('profile_updated'); ?>"
                                 enctype="multipart/form-data"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">

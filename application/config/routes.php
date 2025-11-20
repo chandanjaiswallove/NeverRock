@@ -78,7 +78,10 @@ $route['admin_createInstructors'] = 'AdminDashboardControllers/loaDadmin_createI
 $route['admin_createAcademicResults'] = 'AdminDashboardControllers/loaDadminAcademicResults'; // Create academic results
 $route['admin_dashboard'] = 'AdminDashboardControllers/loaDadmin_dashboard'; // Main admin dashboard
 $route['admin_message'] = 'AdminDashboardControllers/loaDadmin_message'; // Admin messages
+
 $route['admin_profile'] = 'AdminDashboardControllers/loaDadmin_profile'; // Admin profile
+$route['profile_updated'] = 'AdminDashboardControllers/loaDadminProfileUpdate'; // Admin profile Update
+
 $route['admin_setting'] = 'AdminDashboardControllers/loaDadmin_setting'; // Admin settings
 
 // Admin_Model/Auth Methods for Admin

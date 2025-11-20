@@ -9,6 +9,76 @@ class Admin_Model extends CI_Model
     }
 
 
+    // ============================================================
+    // ✅ admin profile Update Here 
+    // ============================================================
+public function adminProfileUpdate()
+{
+    // 1️⃣ Get logged-in admin
+    $portal_uid = $_SESSION['activeAdmin'];
+    $admin = $this->db->get_where('admin_directory', ['portal_uid' => $portal_uid])->row();
+    $oldImage = $admin->admin_photo ?? null;
+
+    // 2️⃣ Collect POST data safely
+    $data = array(
+        'nick_name' => $this->input->post('nickName', true),
+        'expert_as' => $this->input->post('expertAs', true),
+        'admin_biography' => $this->input->post('biography', true),
+        'facebook_url' => $this->input->post('facebook', true),
+        'twitter_url' => $this->input->post('xtwitter', true),
+        'admin_linkdin_url' => $this->input->post('linkedin', true),
+        'admin_github_url' => $this->input->post('github', true),
+        'instagram_url' => $this->input->post('instagram', true),
+        'youtube_url' => $this->input->post('youtube', true),
+        'admin_website_url' => $this->input->post('website', true),
+    );
+
+    // 3️⃣ Handle profile image upload
+    if (!empty($_FILES['profilePhoto']['name'])) {
+        $config['upload_path'] = 'modules/adminProfilePhoto/';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
+        $config['remove_spaces'] = TRUE;
+        $config['file_ext_tolower'] = TRUE;
+        $config['file_name'] = uniqid() . "_" . $_FILES['profilePhoto']['name'];
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('profilePhoto')) {
+            // Delete old image if exists
+            if (!empty($oldImage) && file_exists('modules/adminProfilePhoto/' . $oldImage)) {
+                unlink('modules/adminProfilePhoto/' . $oldImage);
+            }
+
+            $uploadData = $this->upload->data();
+            $data['admin_photo'] = $uploadData['file_name']; // Save new filename in DB
+        } else {
+            // Handle upload error
+            $error = $this->upload->display_errors('', '');
+            return $this->sweetAlert('Upload Failed!', $error, 'error', base_url('admin_profile'));
+        }
+    }
+
+    // 4️⃣ Update database
+    $this->db->where('portal_uid', $portal_uid);
+    $updated = $this->db->update('admin_directory', $data);
+
+    // 5️⃣ SweetAlert + redirect
+    if ($updated) {
+        return $this->sweetAlert(
+            'Update Successful!',
+            'Profile has been updated successfully!',
+            'success',
+            base_url('admin_profile')
+        );
+    } else {
+        return $this->sweetAlert(
+            'Update Failed!',
+            'Sorry, something went wrong. Please try again.',
+            'error',
+            base_url('admin_setting')
+        );
+    }
+}
 
 
 
@@ -65,7 +135,7 @@ class Admin_Model extends CI_Model
 
 
 
-    
+
     // ============================================================
     // ✅ CourseDetails All Sections Here
     // ============================================================
