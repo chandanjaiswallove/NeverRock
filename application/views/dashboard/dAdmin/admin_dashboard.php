@@ -26,8 +26,26 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 </div>
 
                 <!-- counter area -->
-                <div class="counter grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-30px gap-y-5 pb-5"
+                <div class="counter grid grid-cols-1  md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-x-30px gap-y-5 pb-5"
                     data-aos="fade-up">
+
+                    <div
+                        class="p-5 md:px-10 md:py-50px bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2 shadow-accordion-dark">
+                        <a href="<?php echo base_url('admin_coursework'); ?>" class="flex gap-4">
+                            <div>
+                                <img src="modules/assets/images/counter/counter__4.png" alt="">
+                            </div>
+                            <div>
+                                <p
+                                    class="text-size-34 leading-[1.1] text-blackColor font-bold font-hind dark:text-blackColor-dark">
+                                    <span data-countup-number="120">120</span><span>,000+</span>
+                                </p>
+                                <p class="text-blackColor font-medium leading-[18px] dark:text-blackColor-dark">
+                                    Total Earning
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                     <div
                         class="p-5 md:px-10 md:py-50px bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2 shadow-accordion-dark">
                         <a href="<?php echo base_url('admin_coursework'); ?>" class="flex gap-4">
@@ -77,7 +95,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     Complete Courses
                                 </p>
                             </div>
-                            </a>
+                        </a>
                     </div>
                     <div
                         class="p-5 md:px-10 md:py-50px bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2 shadow-accordion-dark">
@@ -126,6 +144,23 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 </p>
                                 <p class="text-blackColor font-medium leading-[18px] dark:text-blackColor-dark">
                                     Total Earning
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div
+                        class="p-5 md:px-10 md:py-50px bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2 shadow-accordion-dark">
+                        <a href="<?php echo base_url('admin_coursework'); ?>" class="flex gap-4">
+                            <div>
+                                <img src="modules/assets/images/counter/counter__1.png" alt="">
+                            </div>
+                            <div>
+                                <p
+                                    class="text-size-34 leading-[1.1] text-blackColor font-bold font-hind dark:text-blackColor-dark">
+                                    <span data-countup-number="12">12</span><span>+</span>
+                                </p>
+                                <p class="text-blackColor font-medium leading-[18px] dark:text-blackColor-dark">
+                                    Enrolled Courses
                                 </p>
                             </div>
                         </a>
@@ -257,6 +292,414 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                     </table>
                 </div>
             </div>
+
+            <div
+                class="p-10px md:px-10 md:py-50px mb-30px bg-whiteColor dark:bg-whiteColor-dark shadow-accordion dark:shadow-accordion-dark rounded-standard">
+                <!-- heading -->
+                <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
+                    <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                        Order History
+                    </h2>
+                </div>
+
+                <!-- main content -->
+                <div class="overflow-auto">
+                    <table class="w-full text-left" data-aos="fade-up">
+                        <thead
+                            class="text-sm md:text-base text-blackColor dark:text-blackColor-dark bg-lightGrey5 dark:bg-whiteColor-dark leading-1.8 md:leading-1.8">
+                            <tr>
+                                <th class="px-5px py-10px md:px-5">Order ID</th>
+                                <th class="px-5px py-10px md:px-5">Course Name</th>
+                                <th class="px-5px py-10px md:px-5">Date</th>
+                                <th class="px-5px py-10px md:px-5">Price</th>
+                                <th class="px-5px py-10px md:px-5">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="text-size-13 md:text-base text-contentColor dark:text-contentColor-dark font-normal">
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #5478
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            Success</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Processing</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #5478
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            Success</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Processing</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr class="leading-1.8 md:leading-1.8">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #9656
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>App Development</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>January 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$100.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-greencolor2 leading-22px font-bold text-whiteColor rounded-md">
+                                            On Hold</span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="leading-1.8 md:leading-1.8 bg-lightGrey5 dark:bg-whiteColor-dark">
+                                <th class="px-5px py-10px md:px-5 font-normal text-wrap">
+                                    <p class="text-blackColor dark:text-blackColor-dark">
+                                        #4585
+                                    </p>
+                                </th>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>Graphic</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>May 27, 2024</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p>$200.99</p>
+                                </td>
+                                <td class="px-5px py-10px md:px-5">
+                                    <p class="text-xs">
+                                        <span
+                                            class="h-22px inline-block px-7px bg-primaryColor leading-22px font-bold text-whiteColor rounded-md">
+                                            Canceled</span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
         </div>
     </section>
 
