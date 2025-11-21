@@ -45,7 +45,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
                         <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form method="POST" action="<?php echo base_url('iprofile_update'); ?>"
+                            <form method="POST" action="<?php echo base_url('instProfileUpdate'); ?>"
                                 enctype="multipart/form-data"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">

@@ -114,6 +114,9 @@ $route['create_quiz'] = 'InstructorDashboardControllers/loaDcreate_quiz'; // cre
 // Instructor_Model/Auth Methods for Instructor
 $route['instructorAuth'] = 'InstructorDashboardControllers/modeLloginINSTRUCTOR'; // Instructor login (calls model)
 $route['instPasswordUpdate'] = 'InstructorDashboardControllers/modeLchangeProfilePassword';// update passowrd funciton 
+
+$route['instProfileUpdate'] = 'InstructorDashboardControllers/loaDinstProfileUpdate';// instructor profile update 
+
 $route['logoutInstructor'] = 'InstructorDashboardControllers/modeLinstructor_logout'; // Logout instructor
 
 

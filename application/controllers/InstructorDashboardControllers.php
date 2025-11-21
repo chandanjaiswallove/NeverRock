@@ -41,12 +41,12 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/instructor_setting');
     }
 
-        public function loaDcreate_lesson()
+    public function loaDcreate_lesson()
     {
         $this->load->view('dashboard/dInstructor/create_lesson');
     }
 
-        public function loaDcreate_quiz()
+    public function loaDcreate_quiz()
     {
         $this->load->view('dashboard/dInstructor/create_quiz');
     }
@@ -68,6 +68,12 @@ class InstructorDashboardControllers extends CI_Controller
     {
         $this->load->model('Instructor_Model');
         $this->Instructor_Model->instructor_logout();
+    }
+
+    public function loaDinstProfileUpdate()    /// Instructor Profile Update
+    {
+        $this->load->model('Instructor_Model');
+        $this->Instructor_Model->instProfileUpdate();
     }
 
 }
