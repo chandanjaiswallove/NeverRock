@@ -42,17 +42,18 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                         </button>
                     </div>
                     <div class="tab-contents">
+
                         <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form method="POST" action="<?php echo base_url('profile_updated'); ?>"
+                            <form method="POST" action="<?php echo base_url('iprofile_update'); ?>"
                                 enctype="multipart/form-data"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
 
                                 <?php
-                                // Admin data fetch
-                                $fetchAdmin = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
-                                $admin = $fetchAdmin->row();
+                                // instructor data fetch
+                                $fetchInstructor = $this->db->query("SELECT * FROM instructor_directory WHERE instructor_uid = '{$_SESSION['activeInstructor']}'");
+                                $instructor = $fetchInstructor->row();
                                 ?>
 
                                 <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
@@ -60,25 +61,27 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="profilePhoto" class="mb-3 block font-semibold">Profile Photo</label>
                                         <p class="mb-2 text-sm text-gray-700 dark:text-gray-300">
                                             <b>Selected :</b>
-                                            <?php echo !empty($admin->admin_photo) ? $admin->admin_photo : 'default.png'; ?>
+                                            <?php echo !empty($instructor->instructor_photo) ? $instructor->instructor_photo : 'default.png'; ?>
                                         </p>
-                                        <input type="file" id="profilePhoto" name="profilePhoto" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
-                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <input type="file" id="profilePhoto" name="profilePhoto"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                                            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
                                         <label for="expertAs" class="mb-3 block font-semibold">Expert As</label>
                                         <input type="text" id="expertAs" name="expertAs" placeholder="You Expert As"
-                                            value="<?php echo $admin->expert_as ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
-                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
-                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                            value="<?php echo $instructor->expert_as ?? ''; ?>"
+                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                                            placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
 
                                     <div>
                                         <label for="nickName" class="mb-3 block font-semibold">Nick Name</label>
                                         <input type="text" id="nickName" name="nickName" placeholder="Your Nick Name"
-                                            value="<?php echo $admin->nick_name ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->nick_name ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -87,7 +90,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="facebook" class="mb-3 block font-semibold">Facebook</label>
                                         <input type="text" id="facebook" name="facebook"
                                             placeholder="https://facebook.com/"
-                                            value="<?php echo $admin->facebook_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->facebook_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -95,7 +98,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     <div>
                                         <label for="xtwitter" class="mb-3 block font-semibold">X / Twitter</label>
                                         <input type="text" id="xtwitter" name="xtwitter" placeholder="https://x.com/"
-                                            value="<?php echo $admin->twitter_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->twitter_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -104,7 +107,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="linkedin" class="mb-3 block font-semibold">Linkedin</label>
                                         <input type="text" id="linkedin" name="linkedin"
                                             placeholder="https://linkedin.com/"
-                                            value="<?php echo $admin->admin_linkdin_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->linkdin_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -112,7 +115,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     <div>
                                         <label for="github" class="mb-3 block font-semibold">Github</label>
                                         <input type="text" id="github" name="github" placeholder="https://github.com/"
-                                            value="<?php echo $admin->admin_github_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->github_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -121,7 +124,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="instagram" class="mb-3 block font-semibold">Instagram</label>
                                         <input type="text" id="instagram" name="instagram"
                                             placeholder="https://instagram.com/"
-                                            value="<?php echo $admin->instagram_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->instagram_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -130,7 +133,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="website" class="mb-3 block font-semibold">Website</label>
                                         <input type="text" id="website" name="website"
                                             placeholder="https://website.com/"
-                                            value="<?php echo $admin->admin_website_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->website_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -139,7 +142,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         <label for="youtube" class="mb-3 block font-semibold">Youtube</label>
                                         <input type="text" id="youtube" name="youtube"
                                             placeholder="https://youtube.com/"
-                                            value="<?php echo $admin->youtube_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                            value="<?php echo $instructor->youtube_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                           bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
                           placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
@@ -151,7 +154,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                         class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark 
                          border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md resize-y"
                                         style="max-height: 150px;" cols="30"
-                                        rows="5"><?php echo $admin->admin_biography ?? 'Write Something about yourself..'; ?></textarea>
+                                        rows="5"><?php echo $instructor->biography_bio ?? 'Write Something about yourself..'; ?></textarea>
                                 </div>
 
                                 <div class="mt-15px">
@@ -216,7 +219,6 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                 </div>
                             </form>
                         </div>
-
 
                         <!-- Social LInks -->
                         <div class="hidden transition-all duration-300">
@@ -305,6 +307,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
 
@@ -325,10 +328,6 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
             }
         }
     </script>
-
-
-
-
 
 
 </main>
