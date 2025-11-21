@@ -42,59 +42,128 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                         </button>
                     </div>
                     <div class="tab-contents">
+                        <!-- Profile Section Here -->
                         <div class="transition-all duration-300">
-                            <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
+                            <form method="POST" action="<?php echo base_url('profile_updated'); ?>"
+                                enctype="multipart/form-data"
+                                class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
+
+                                <?php
+                                // Admin data fetch
+                                $fetchAdmin = $this->db->query("SELECT * FROM admin_directory WHERE portal_uid = '{$_SESSION['activeAdmin']}'");
+                                $admin = $fetchAdmin->row();
+                                ?>
+
                                 <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
                                     <div>
-                                        <label class="mb-3 block font-semibold">First Name</label>
-                                        <input type="text" placeholder="John"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="profilePhoto" class="mb-3 block font-semibold">Profile Photo</label>
+                                        <p class="mb-2 text-sm text-gray-700 dark:text-gray-300">
+                                            <b>Selected :</b>
+                                            <?php echo !empty($admin->admin_photo) ? $admin->admin_photo : 'default.png'; ?>
+                                        </p>
+                                        <input type="file" id="profilePhoto" name="profilePhoto" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Last Name</label>
-                                        <input type="text" placeholder="Due"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="expertAs" class="mb-3 block font-semibold">Expert As</label>
+                                        <input type="text" id="expertAs" name="expertAs" placeholder="You Expert As"
+                                            value="<?php echo $admin->expert_as ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">User Name</label>
-                                        <input type="text" placeholder="Ntaden Mic"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="nickName" class="mb-3 block font-semibold">Nick Name</label>
+                                        <input type="text" id="nickName" name="nickName" placeholder="Your Nick Name"
+                                            value="<?php echo $admin->nick_name ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Phone Number</label>
-                                        <input type="text" placeholder="+1-202-555-0174"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="facebook" class="mb-3 block font-semibold">Facebook</label>
+                                        <input type="text" id="facebook" name="facebook"
+                                            placeholder="https://facebook.com/"
+                                            value="<?php echo $admin->facebook_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Skill/Occupation</label>
-                                        <input type="text" placeholder="Full Stack Developer"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="xtwitter" class="mb-3 block font-semibold">X / Twitter</label>
+                                        <input type="text" id="xtwitter" name="xtwitter" placeholder="https://x.com/"
+                                            value="<?php echo $admin->twitter_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Display Name Publicly As</label>
-                                        <input type="text" placeholder="John"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label for="linkedin" class="mb-3 block font-semibold">Linkedin</label>
+                                        <input type="text" id="linkedin" name="linkedin"
+                                            placeholder="https://linkedin.com/"
+                                            value="<?php echo $admin->admin_linkdin_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    </div>
+
+                                    <div>
+                                        <label for="github" class="mb-3 block font-semibold">Github</label>
+                                        <input type="text" id="github" name="github" placeholder="https://github.com/"
+                                            value="<?php echo $admin->admin_github_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    </div>
+
+                                    <div>
+                                        <label for="instagram" class="mb-3 block font-semibold">Instagram</label>
+                                        <input type="text" id="instagram" name="instagram"
+                                            placeholder="https://instagram.com/"
+                                            value="<?php echo $admin->instagram_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    </div>
+
+                                    <div>
+                                        <label for="website" class="mb-3 block font-semibold">Website</label>
+                                        <input type="text" id="website" name="website"
+                                            placeholder="https://website.com/"
+                                            value="<?php echo $admin->admin_website_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                    </div>
+
+                                    <div>
+                                        <label for="youtube" class="mb-3 block font-semibold">Youtube</label>
+                                        <input type="text" id="youtube" name="youtube"
+                                            placeholder="https://youtube.com/"
+                                            value="<?php echo $admin->youtube_url ?? ''; ?>" class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                          bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark 
+                          placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
                                     </div>
                                 </div>
+
                                 <div class="mb-15px">
-                                    <label class="mb-3 block font-semibold">Bio</label>
-                                    <textarea
-                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md"
-                                        cols="30" rows="10">
-Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                     </textarea>
+                                    <label for="biography" class="mb-3 block font-semibold">Biography</label>
+                                    <textarea id="biography" name="biography"
+                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark 
+                         border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md resize-y"
+                                        style="max-height: 150px;" cols="30"
+                                        rows="5"><?php echo $admin->admin_biography ?? 'Write Something about yourself..'; ?></textarea>
                                 </div>
 
                                 <div class="mt-15px">
-                                    <button type="submit"
+                                    <button type="submit" name="updateProfile"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                        Update Info
+                                        Update Profile
                                     </button>
                                 </div>
                             </form>
                         </div>
 
+                        <!-- Password  -->
                         <div class="hidden transition-all duration-300">
                             <form method="POST" action="<?php echo base_url('instPasswordUpdate'); ?>"
                                 class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
@@ -148,6 +217,8 @@ Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                             </form>
                         </div>
 
+
+                        <!-- Social LInks -->
                         <div class="hidden transition-all duration-300">
                             <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">

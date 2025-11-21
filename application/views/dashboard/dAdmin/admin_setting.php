@@ -164,9 +164,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </button>
                                 </div>
                             </form>
-
-
-
                         </div>
 
                         <!-- Password Section Here -->
