@@ -208,15 +208,17 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                             <!-- ASSIGN SECTION -->
 
-                                            <div class="grid grid-cols-2 gap-4">
+                                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                 <select id="subjectSelect"
                                                     class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                                                     <option value="">Choose Subject</option>
                                                 </select>
                                                 <button type="button" onclick="openTeacherPopup()"
-                                                    class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">Choose
-                                                    Teachers</button>
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                    Choose Teachers
+                                                </button>
                                             </div>
+
 
 
                                             <!-- ASSIGNED SUMMARY -->
