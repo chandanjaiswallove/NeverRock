@@ -9,148 +9,24 @@ class Admin_Model extends CI_Model
     }
 
 
-    // ============================================================
-    // ✅ admin profile Update Here 
-    // ============================================================
-public function adminProfileUpdate()
-{
-    // 1️⃣ Get logged-in admin
-    $portal_uid = $_SESSION['activeAdmin'];
-    $admin = $this->db->get_where('admin_directory', ['portal_uid' => $portal_uid])->row();
-    $oldImage = $admin->admin_photo ?? null;
-
-    // 2️⃣ Collect POST data safely
-    $data = array(
-        'nick_name' => $this->input->post('nickName', true),
-        'expert_as' => $this->input->post('expertAs', true),
-        'admin_biography' => $this->input->post('biography', true),
-        'facebook_url' => $this->input->post('facebook', true),
-        'twitter_url' => $this->input->post('xtwitter', true),
-        'admin_linkdin_url' => $this->input->post('linkedin', true),
-        'admin_github_url' => $this->input->post('github', true),
-        'instagram_url' => $this->input->post('instagram', true),
-        'youtube_url' => $this->input->post('youtube', true),
-        'admin_website_url' => $this->input->post('website', true),
-    );
-
-    // 3️⃣ Handle profile image upload
-    if (!empty($_FILES['profilePhoto']['name'])) {
-        $config['upload_path'] = 'modules/adminProfilePhoto/';
-        $config['allowed_types'] = 'jpg|jpeg|png|webp';
-        $config['remove_spaces'] = TRUE;
-        $config['file_ext_tolower'] = TRUE;
-        $config['file_name'] = uniqid() . "_" . $_FILES['profilePhoto']['name'];
-
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('profilePhoto')) {
-            // Delete old image if exists
-            if (!empty($oldImage) && file_exists('modules/adminProfilePhoto/' . $oldImage)) {
-                unlink('modules/adminProfilePhoto/' . $oldImage);
-            }
-
-            $uploadData = $this->upload->data();
-            $data['admin_photo'] = $uploadData['file_name']; // Save new filename in DB
-        } else {
-            // Handle upload error
-            $error = $this->upload->display_errors('', '');
-            return $this->sweetAlert('Upload Failed!', $error, 'error', base_url('admin_profile'));
-        }
-    }
-
-    // 4️⃣ Update database
-    $this->db->where('portal_uid', $portal_uid);
-    $updated = $this->db->update('admin_directory', $data);
-
-    // 5️⃣ SweetAlert + redirect
-    if ($updated) {
-        return $this->sweetAlert(
-            'Update Successful!',
-            'Profile has been updated successfully!',
-            'success',
-            base_url('admin_profile')
-        );
-    } else {
-        return $this->sweetAlert(
-            'Update Failed!',
-            'Sorry, something went wrong. Please try again.',
-            'error',
-            base_url('admin_setting')
-        );
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // ============================================================
     // ✅ CourseDetails All Sections Here
     // ============================================================
+
     public function insertDetailsData()
     {
         if (isset($_POST['registerCourse'])) {
 
             // ============================================
-            // ✅ 1️⃣ Common Fields
+            // 1️⃣ Course Directory ka ID uthao (NO NEW ID)
             // ============================================
-            $course_id = uniqid('COURSE_');
+            $course_id = $this->input->post('course_unique_id', true);
             $date = date('Y-m-d H:i:s');
 
             // ============================================
-            // ✅ 2️⃣ Insert into course_subjects
+            // 2️⃣ Insert into course_subjects
             // ============================================
             foreach ($this->input->post('subjectNameC') as $subject) {
                 if (trim($subject) != '') {
@@ -163,7 +39,7 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 3️⃣ Insert into course_headings
+            // 3️⃣ Insert into course_headings
             // ============================================
             $headings = $this->input->post('dimpHeading');
             $descs = $this->input->post('dimpDescription');
@@ -179,7 +55,7 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 4️⃣ Insert into course_topics
+            // 4️⃣ Insert into course_topics
             // ============================================
             $topic = trim($this->input->post('importantTopic', true));
             $keys = $this->input->post('importantKey');
@@ -195,7 +71,7 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 5️⃣ Insert into course_faqs
+            // 5️⃣ Insert into course_faqs
             // ============================================
             $questions = $this->input->post('faqQuestion');
             $answers = $this->input->post('faqAnswer');
@@ -211,7 +87,7 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 6️⃣ Insert into course_features
+            // 6️⃣ Insert into course_features
             // ============================================
             $featureHeadings = $this->input->post('featureHeading');
             $featureKeys = $this->input->post('featureKey');
@@ -227,7 +103,7 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 7️⃣ Insert into course_instructors
+            // 7️⃣ Insert into course_instructors
             // ============================================
             foreach ($this->input->post('listedInstructor') as $instructor) {
                 if (trim($instructor) != '') {
@@ -240,11 +116,11 @@ public function adminProfileUpdate()
             }
 
             // ============================================
-            // ✅ 8️⃣ SweetAlert Success Message
+            // 8️⃣ SweetAlert Success Message
             // ============================================
             $this->sweetAlert(
                 "Success!",
-                " Course details inserted successfully!",
+                "Course details inserted successfully!",
                 "success",
                 base_url('admin_course')
             );
@@ -261,6 +137,96 @@ public function adminProfileUpdate()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ============================================================
+    // ✅ admin profile Update Here 
+    // ============================================================
+
+    public function adminProfileUpdate()
+    {
+        // 1️⃣ Get logged-in admin
+        $portal_uid = $_SESSION['activeAdmin'];
+        $admin = $this->db->get_where('admin_directory', ['portal_uid' => $portal_uid])->row();
+        $oldImage = $admin->admin_photo ?? null;
+
+        // 2️⃣ Collect POST data safely
+        $data = array(
+            'nick_name' => $this->input->post('nickName', true),
+            'expert_as' => $this->input->post('expertAs', true),
+            'admin_biography' => $this->input->post('biography', true),
+            'facebook_url' => $this->input->post('facebook', true),
+            'twitter_url' => $this->input->post('xtwitter', true),
+            'admin_linkdin_url' => $this->input->post('linkedin', true),
+            'admin_github_url' => $this->input->post('github', true),
+            'instagram_url' => $this->input->post('instagram', true),
+            'youtube_url' => $this->input->post('youtube', true),
+            'admin_website_url' => $this->input->post('website', true),
+        );
+
+        // 3️⃣ Handle profile image upload
+        if (!empty($_FILES['profilePhoto']['name'])) {
+            $config['upload_path'] = 'modules/adminProfilePhoto/';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp';
+            $config['remove_spaces'] = TRUE;
+            $config['file_ext_tolower'] = TRUE;
+            $config['file_name'] = uniqid() . "_" . $_FILES['profilePhoto']['name'];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('profilePhoto')) {
+                // Delete old image if exists
+                if (!empty($oldImage) && file_exists('modules/adminProfilePhoto/' . $oldImage)) {
+                    unlink('modules/adminProfilePhoto/' . $oldImage);
+                }
+
+                $uploadData = $this->upload->data();
+                $data['admin_photo'] = $uploadData['file_name']; // Save new filename in DB
+            } else {
+                // Handle upload error
+                $error = $this->upload->display_errors('', '');
+                return $this->sweetAlert('Upload Failed!', $error, 'error', base_url('admin_profile'));
+            }
+        }
+
+        // 4️⃣ Update database
+        $this->db->where('portal_uid', $portal_uid);
+        $updated = $this->db->update('admin_directory', $data);
+
+        // 5️⃣ SweetAlert + redirect
+        if ($updated) {
+            return $this->sweetAlert(
+                'Update Successful!',
+                'Profile has been updated successfully!',
+                'success',
+                base_url('admin_profile')
+            );
+        } else {
+            return $this->sweetAlert(
+                'Update Failed!',
+                'Sorry, something went wrong. Please try again.',
+                'error',
+                base_url('admin_setting')
+            );
+        }
+    }
 
 
 
@@ -612,11 +578,10 @@ public function adminProfileUpdate()
 
 
 
-
-
     // ============================================================
     // ✅ Course info Update Here 
     // ============================================================
+
     public function updateCourse()
     {
         $courseID = $this->input->post('courseID', true);
@@ -730,30 +695,6 @@ public function adminProfileUpdate()
             );
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

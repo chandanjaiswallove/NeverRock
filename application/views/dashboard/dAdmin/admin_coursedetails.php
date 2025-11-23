@@ -44,6 +44,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
                                 enctype="multipart/form-data">
 
+                                    <!-- Yaha hidden input DALO -->
+                   <p>Course Unique ID: <?= isset($course_unique_id) ? $course_unique_id : 'Not received' ?></p>
+    <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+
+
+
 
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"

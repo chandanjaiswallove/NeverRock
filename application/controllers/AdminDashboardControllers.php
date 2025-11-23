@@ -15,6 +15,30 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
+    public function loaDadmin_coursedetails()
+    {
+        // 1️⃣ URL se course_unique_id uthao
+        $course_uid = $this->input->get('course_uid');  // ?course_uid=ZIVJJC
+
+        // 2️⃣ Data array me dal do, view me use karne ke liye
+        $data['course_unique_id'] = $course_uid;
+
+        // 3️⃣ View load karo aur course_unique_id bhejo
+        $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
+    }
+
+
+    public function modeLDetailData()  /// Create course details data  
+    {
+        $this->load->model('Admin_Model');
+        $this->Admin_Model->insertDetailsData();
+    }
+
+
+
+
+
+
     //// dAdmin Dashboard  pages loading here////
 
     public function loaDadmin_announcement()
@@ -37,10 +61,7 @@ class AdminDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dAdmin/admin_courseView');
     }
 
-    public function loaDadmin_coursedetails()
-    {
-        $this->load->view('dashboard/dAdmin/admin_coursedetails');
-    }
+
 
     public function loaDadmin_cdetailsedit()
     {
@@ -119,11 +140,6 @@ class AdminDashboardControllers extends CI_Controller
         $this->Admin_Model->createCourse();
     }
 
-    public function modeLDetailData()  /// Create course details data  
-    {
-        $this->load->model('Admin_Model');
-        $this->Admin_Model->insertDetailsData();
-    }
 
     public function loaDupdateCourse()  ///  Create Course Bundle  update  
     {
@@ -134,6 +150,7 @@ class AdminDashboardControllers extends CI_Controller
     {
         $this->load->model('Admin_Model');
         $this->Admin_Model->adminProfileUpdate();
+
     }
 
 

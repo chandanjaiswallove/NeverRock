@@ -45,8 +45,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <!-- course info data -->
                             <!-- course info data -->
                             <!-- course info data -->
+                             <!-- verifyCourseData -->
 
-                            <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
+                            <form action="<?php echo base_url(''); ?>" method="POST"
                                 enctype="multipart/form-data">
 
                                 <div
@@ -263,7 +264,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <button type="submit"
                                         class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark"
                                         name="registerCourse">
-                                        Save Details
+                                        Save Changes
                                     </button>
                                 </div>
                             </form>

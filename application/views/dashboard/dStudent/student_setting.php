@@ -42,53 +42,199 @@ $this->load->view('dashboard/master_contents/dStudent_master/student_header');
                         <div class="transition-all duration-300">
                             <form class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8"
                                 data-aos="fade-up">
+
+                                <!-- Student Basic Details -->
+                                <h3 class="text-lg font-bold mb-3">Student Basic Details</h3>
                                 <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">First Name</label>
-                                        <input type="text" placeholder="John"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label class="mb-3 block font-semibold">Student ID</label>
+                                        <input type="text" id="student_id" name="student_id" value="STU-2024-00125"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Last Name</label>
-                                        <input type="text" placeholder="Due"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label class="mb-3 block font-semibold">Registration Date</label>
+                                        <input type="text" id="registration_date" name="registration_date"
+                                            value="20 January 2024, 9:00 PM"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">User Name</label>
-                                        <input type="text" placeholder="Ntaden Mic"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label class="mb-3 block font-semibold">Full Name</label>
+                                        <input type="text" id="full_name" name="full_name" value="Michle"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
                                     </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Nick Name</label>
+                                        <input type="text" id="nick_name" name="nick_name" value="obema007"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Gender</label>
+                                        <input type="text" id="gender" name="gender" value="Male"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Date of Birth</label>
+                                        <input type="text" id="dob" name="dob" value="10 Feb 2000"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Blood Group</label>
+                                        <input type="text" id="blood_group" name="blood_group" value="O+"
+                                            class="w-full py-10px px-5 text-sm bg-whiteColor border-2 border-borderColor rounded-md">
+                                    </div>
+
+                                </div>
+
+                                <!-- Contact Details -->
+                                <h3 class="text-lg font-bold mb-3">Contact Details</h3>
+                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Email</label>
+                                        <input type="email" id="email" name="email" value="obema@example.com"
+                                            class="w-full py-10px px-5 border-2 border-borderColor rounded-md">
+                                    </div>
+
                                     <div>
                                         <label class="mb-3 block font-semibold">Phone Number</label>
-                                        <input type="text" placeholder="+1-202-555-0174"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <input type="text" id="phone" name="phone" value="+55 669 4456 25987"
+                                            class="w-full py-10px px-5 border-2 border-borderColor rounded-md">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Skill/Occupation</label>
-                                        <input type="text" placeholder="Full Stack Developer"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label class="mb-3 block font-semibold">Alternate Phone</label>
+                                        <input type="text" id="alt_phone" name="alt_phone" value="+55 889 1234 9876"
+                                            class="w-full py-10px px-5 border-2 border-borderColor rounded-md">
                                     </div>
+
                                     <div>
-                                        <label class="mb-3 block font-semibold">Display Name Publicly As</label>
-                                        <input type="text" placeholder="John"
-                                            class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                        <label class="mb-3 block font-semibold">Emergency Contact</label>
+                                        <input type="text" id="emergency_contact" name="emergency_contact"
+                                            value="+55 669 4456 25987"
+                                            class="w-full py-10px px-5 border-2 border-borderColor rounded-md">
                                     </div>
+
                                 </div>
-                                <div class="mb-15px">
-                                    <label class="mb-3 block font-semibold">Bio</label>
-                                    <textarea
-                                        class="w-full py-10px px-5 text-sm text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md"
-                                        cols="30" rows="10">
-Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                     </textarea>
+
+                                <!-- Address Details -->
+                                <h3 class="text-lg font-bold mb-3">Address Details</h3>
+                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Current Address</label>
+                                        <input type="text" id="current_address" name="current_address"
+                                            value="Street 12, Maintand, Bettiah"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">District</label>
+                                        <input type="text" id="district" name="district" value="Bettiah"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">State</label>
+                                        <input type="text" id="state" name="state" value="Bihar"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Country</label>
+                                        <input type="text" id="country" name="country" value="India"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                </div>
+
+                                <!-- Parent Details -->
+                                <h3 class="text-lg font-bold mb-3">Parent / Guardian Details</h3>
+                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Father Name</label>
+                                        <input type="text" id="father_name" name="father_name" value="John Aeliya"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Father Occupation</label>
+                                        <input type="text" id="father_occupation" name="father_occupation"
+                                            value="Contractor" class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Father Contact</label>
+                                        <input type="text" id="father_contact" name="father_contact"
+                                            value="+55 889 1234 5566" class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Mother Name</label>
+                                        <input type="text" id="mother_name" name="mother_name" value="Aeliya Mary"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Mother Occupation</label>
+                                        <input type="text" id="mother_occupation" name="mother_occupation"
+                                            value="Teacher" class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                </div>
+
+                                <!-- Academic Information -->
+                                <h3 class="text-lg font-bold mb-3">Academic Information</h3>
+                                <div class="grid grid-cols-1 xl:grid-cols-2 mb-15px gap-y-15px gap-x-30px">
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Course Enrolled</label>
+                                        <input type="text" id="course_enrolled" name="course_enrolled"
+                                            value="BSc Computer Science"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Session / Batch</label>
+                                        <input type="text" id="session_batch" name="session_batch" value="2023 - 2027"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+
+                                </div>
+
+                                <!-- Uploaded Documents -->
+                                <h3 class="text-lg font-bold mb-3">Uploaded Documents</h3>
+                                <div class="grid grid-cols-1 xl:grid-cols-2 gap-y-15px gap-x-30px">
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Aadhar Card</label>
+                                        <input type="file" id="aadhar" name="aadhar" value="Uploaded"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
+                                    <div>
+                                        <label class="mb-3 block font-semibold">Previous Marksheet</label>
+                                        <input type="file" id="marksheet" name="marksheet" value="Uploaded"
+                                            class="w-full py-10px px-5 border-2 rounded-md">
+                                    </div>
+
                                 </div>
 
                                 <div class="mt-15px">
                                     <button type="submit"
-                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                        Update Info
+                                        class="text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border rounded">
+                                        Save Profile
                                     </button>
                                 </div>
+
                             </form>
                         </div>
 
