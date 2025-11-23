@@ -51,7 +51,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <div class="container p-0  flex flex-wrap sm:-mx-15px" data-aos="fade-up">
                                 <!-- card 1 -->
                                 <?php
-                                $fetchEnrolledCourse = $this->db->query("SELECT * FROM course_directory ORDER BY RAND() LIMIT 6");
+                                $fetchEnrolledCourse = $this->db->query("SELECT * FROM course_directory ORDER BY RAND()");
                                 foreach ($fetchEnrolledCourse->result() as $row) { ?>
 
                                     <div
@@ -61,7 +61,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark rounded-standard">
                                                 <!-- card image -->
                                                 <div class="relative mb-4">
-                                                    <a href="<?php echo base_url('admin_courseView?id=' . $row->id); ?> "
+                                                    <a href="<?php echo base_url('admin_courseView?course_uid=' . $row->course_unique_id); ?> "
                                                         class="w-full overflow-hidden rounded">
                                                         <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>"
                                                             alt=""
@@ -150,7 +150,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 </div>
                                                 <!-- card content -->
                                                 <div>
-                                                    <a href="<?php echo base_url('admin_courseView?id=' . $row->id); ?>"
+                                                    <a href="<?php echo base_url('admin_courseView?course_uid=' . $row->course_unique_id); ?>"
                                                         class="text-xl font-semibold text-blackColor mb-10px font-hind dark:text-blackColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                                                         <?php echo $row->course_name; ?>
                                                     </a>
@@ -203,7 +203,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                                     <!-- buttons  and buy and explore-->
                                                     <div class="grid grid-cols-1 md:grid-cols-2  text-center gap-2 ">
-                                                        <a href="<?php echo base_url('admin_courseView?id=' . $row->id); ?>"
+                                                        <a href="<?php echo base_url('admin_courseView?course_uid=' . $row->course_unique_id); ?>"
                                                             class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block mr-6px md:mr-30px dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                                                             Explore
                                                         </a>

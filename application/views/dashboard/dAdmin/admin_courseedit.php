@@ -119,7 +119,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 rounded-md font-no">
                                         </div>
 
-
+                                                    <!-- Course Filter Category -->
                                         <div>
                                             <label class="mb-3 block font-semibold">Course Category</label>
                                             <select required
@@ -128,28 +128,24 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                                 <option value="" disabled>Select Category</option>
 
-                                                <option value="filter1" <?php echo ($course_category == 'filter1') ? 'selected' : ''; ?>>
-                                                    Class 8th
-                                                </option>
-
-                                                <option value="filter2" <?php echo ($course_category == 'filter2') ? 'selected' : ''; ?>>
-                                                    Class 9th
-                                                </option>
-
-                                                <option value="filter3" <?php echo ($course_category == 'filter3') ? 'selected' : ''; ?>>
-                                                    Class 10th
-                                                </option>
-
-                                                <option value="filter4" <?php echo ($course_category == 'filter4') ? 'selected' : ''; ?>>
-                                                    Class 11th
-                                                </option>
-
-                                                <option value="filter5" <?php echo ($course_category == 'filter5') ? 'selected' : ''; ?>>
-                                                    Class 12th
-                                                </option>
+                                                <option value="filter1" <?php echo ($course_Category == 'filter1') ? 'selected' : ''; ?>>Class 8th</option>
+                                                <option value="filter2" <?php echo ($course_Category == 'filter2') ? 'selected' : ''; ?>>Class 9th</option>
+                                                <option value="filter3" <?php echo ($course_Category == 'filter3') ? 'selected' : ''; ?>>Class 10th</option>
+                                                <option value="filter4" <?php echo ($course_Category == 'filter4') ? 'selected' : ''; ?>>Class 11th</option>
+                                                <option value="filter5" <?php echo ($course_Category == 'filter5') ? 'selected' : ''; ?>>Class 12th</option>
 
                                             </select>
                                         </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,13 +13,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     ?>
 
     <?php
-    $fetchID = $_GET['id']; // card से आने वाली course id
-    
-    $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
-    foreach ($fetchCourse->result() as $row)
-    ?>
+   // $fetchID = $_GET['id']; // card से आने वाली course id
+   // $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
+   // foreach ($fetchCourse->result() as $row)
+   // ?>
 
     <!-- course create  -->
+    <input type="hidden" name="course_uid" value="<?php echo $course_uid; ?>">
 
     <section>
         <div class="container-fluid-2">
@@ -39,15 +39,40 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base text-blackColor bg-whiteColor shadow-overview-button dark:bg-whiteColor-dark dark:text-blackColor-dark before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 before:left-0 before:bg-primaryColor hover:before:w-full before:transition-all before:duration-300 whitespace-nowrap active">
                             COURSE DETAILS
                         </button>
-                        <a href="<?php echo base_url('admin_cdetailsedit?id=' . $row->id); ?>" id="courseDetailsTab"
-                            class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base 
-                                text-blackColor bg-whiteColor shadow-overview-button 
-                                dark:bg-whiteColor-dark dark:text-blackColor-dark 
-                                before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 
-                                before:left-0 before:bg-primaryColor hover:before:w-full 
-                                before:transition-all before:duration-300 whitespace-nowrap">
-                            + EDIT
-                        </a>
+                        <!-- wrapper relative for positioning dropdown -->
+                        <div class="relative inline-block group">
+
+                            <!-- EDIT button with icon -->
+                            <a href="javascript:void(0);" class="is-checked relative py-10px px-5 md:py-15px lg:px-10 font-bold uppercase text-sm lg:text-base 
+              text-blackColor bg-whiteColor shadow-overview-button 
+              dark:bg-whiteColor-dark dark:text-blackColor-dark 
+              before:w-0 before:h-0.5 before:absolute before:-bottom-0.5 lg:before:bottom-0 
+              before:left-0 before:bg-primaryColor hover:before:w-full 
+              before:transition-all before:duration-300 whitespace-nowrap inline-flex items-center gap-2">
+                                Manage
+                            </a>
+
+                            <!-- dropdown menu (hidden by default, show on hover) -->
+                            <div
+                                class="absolute right-0 top-full z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                transition-all duration-300 mt-2 w-auto py-14px rounded-standard bg-white dark:bg-whiteColor-dark shadow-dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="<?php echo base_url('admin_cdetailsedit?course_uid=' . $row->course_unique_id); ?>"
+                                            class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
+                                            Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-red-500 dark:text-contentColor-dark dark:hover:text-red-500 dark:hover:bg-whitegrey1-dark">
+                                            Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="tab-contents">
                         <div class="transition-all duration-300" data-aos="fade-up">
@@ -62,6 +87,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <img src="<?php echo base_url() . "modules/courseThumbnail/" . $row->course_thumbnail; ?>"
                                                     alt="Course_thumbnail" class="w-full">
                                             </div>
+
+
+
+
                                             <!-- course content -->
                                             <div>
 

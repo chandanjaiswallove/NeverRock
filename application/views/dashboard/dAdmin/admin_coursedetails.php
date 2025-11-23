@@ -23,7 +23,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 <!-- heading -->
                 <div class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark" data-aos="fade-up">
                     <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
-                        Create Course
+                        Course Details
                     </h2>
                 </div>
 
@@ -44,9 +44,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
                                 enctype="multipart/form-data">
 
-                                    <!-- Yaha hidden input DALO -->
-                   <p>Course Unique ID: <?= isset($course_unique_id) ? $course_unique_id : 'Not received' ?></p>
-    <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+                                <!-- Yaha hidden input DALO -->
+                                <p>Course Unique ID:
+                                    <?= isset($course_unique_id) ? $course_unique_id : 'Not received' ?>
+                                </p>
+                                <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
 
 
 
@@ -64,11 +66,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <div class="hidden px-6 pb-6">
-                                        <div
+
+
+                                        <!-- <div
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                            <div id="subjectsWrapper" class="space-y-3"><!-- gap बढ़ाया 2 से 3 -->
-                                                <!-- Existing First Input -->
+                                            <div id="subjectsWrapper" class="space-y-3">
                                                 <label class="mb-3 block font-semibold">Subject Name</label>
                                                 <div class="flex gap-2 items-center">
                                                     <input type="text" name="subjectNameC[]"
@@ -78,15 +81,231 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 </div>
                                             </div>
 
-
-                                            <!-- Add New Subject Button (always at bottom) -->
                                             <div class="mt-15px">
                                                 <button type="button" onclick="addNewSubject()"
                                                     class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
                                                     Add New Subject
                                                 </button>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- SWEET ALERT -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="px-6 pb-6 max-w-4xl mx-auto">
+
+    <!-- ADD SUBJECT BUTTON -->
+    <button type="button" onclick="openAddSubjectPopup()" class="bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-primaryColor-dark transition mb-4">
+        + Add New Subject
+    </button>
+
+    <!-- ADD SUBJECT POPUP -->
+    <div id="addSubjectPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-80">
+            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Add New Subject</h3>
+            <input id="newSubjectInput" type="text" placeholder="Enter Subject Name" class="w-full px-4 py-2 border border-borderColor rounded-md focus:outline-none text-contentColor dark:text-contentColor-dark placeholder:text-placeholder mb-4">
+            <div class="flex justify-end gap-3">
+                <button type="button" onclick="closeAddSubjectPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
+                <button type="button" onclick="saveNewSubject()" class="px-4 py-2 bg-primaryColor text-white rounded-md">Assign</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHOOSE TEACHERS POPUP -->
+    <div id="teacherPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-96">
+            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Choose Teachers</h3>
+            <div id="teacherCheckboxList" class="max-h-40 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4"></div>
+            <div class="flex justify-end gap-3">
+                <button type="button" onclick="closeTeacherPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
+                <button type="button" onclick="assignSelectedTeachersPopup()" class="px-4 py-2 bg-primaryColor text-white rounded-md">Assign</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- REMOVE TEACHER POPUP -->
+    <div id="removeTeacherPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-96">
+            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Remove Teacher</h3>
+            <div id="removeTeacherList" class="max-h-40 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4"></div>
+            <div class="flex justify-end gap-3">
+                <button type="button" onclick="closeRemoveTeacherPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
+                <button type="button" onclick="confirmRemoveTeacher()" class="px-4 py-2 bg-red-600 text-white rounded-md">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSIGN SECTION -->
+    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md mb-5">
+        <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Assign Teacher to Subject</h3>
+        <div class="grid grid-cols-2 gap-4">
+            <select id="subjectSelect" class="px-3 py-2 border border-borderColor dark:border-borderColor-dark rounded-md w-full text-contentColor dark:text-contentColor-dark">
+                <option value="">Choose Subject</option>
+            </select>
+            <button type="button" onclick="openTeacherPopup()" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md w-full text-left text-contentColor dark:text-contentColor-dark">Choose Teachers</button>
+        </div>
+    </div>
+
+    <!-- ASSIGNED SUMMARY -->
+    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md mb-5">
+        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">Assigned Summary</h3>
+        <div id="assignedList" class="space-y-3"></div>
+    </div>
+
+    <!-- UNASSIGNED SUMMARY -->
+    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md">
+        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">Unassigned Subjects</h3>
+        <div id="unassignedList" class="space-y-3"></div>
+    </div>
+
+</div>
+
+<script>
+let subjects = [];
+let assignments = {};
+let tempTeachers = [];
+let removeSubjectName = "";
+const allTeachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D"];
+
+/* POPUPS */
+function openAddSubjectPopup(){ document.getElementById("addSubjectPopup").classList.remove("hidden"); }
+function closeAddSubjectPopup(){ document.getElementById("addSubjectPopup").classList.add("hidden"); }
+
+function openTeacherPopup(){
+    tempTeachers = [];
+    const list = document.getElementById("teacherCheckboxList");
+    list.innerHTML = "";
+    allTeachers.forEach(t=> list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="teacherCheck mr-2" value="${t}"> ${t}</label>`);
+    document.getElementById("teacherPopup").classList.remove("hidden");
+}
+function closeTeacherPopup(){ document.getElementById("teacherPopup").classList.add("hidden"); }
+
+function openRemoveTeacherPopup(subject){
+    removeSubjectName = subject;
+    const list = document.getElementById("removeTeacherList");
+    list.innerHTML = "";
+    assignments[subject].forEach(t=> list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="removeCheck mr-2" value="${t}"> ${t}</label>`);
+    document.getElementById("removeTeacherPopup").classList.remove("hidden");
+}
+function closeRemoveTeacherPopup(){ document.getElementById("removeTeacherPopup").classList.add("hidden"); }
+
+/* ADD SUBJECT */
+function saveNewSubject(){
+    let name = document.getElementById("newSubjectInput").value.trim();
+    if(!name){ Swal.fire("Error","Please enter subject name","error"); return; }
+    if(subjects.includes(name)){ Swal.fire("Warning","Subject already exists!","warning"); return; }
+    subjects.push(name);
+    assignments[name] = [];
+    updateDropdown();
+    updateLists();
+    document.getElementById("newSubjectInput").value="";
+    closeAddSubjectPopup();
+}
+
+/* ASSIGN TEACHERS */
+function assignSelectedTeachersPopup(){
+    tempTeachers = [...document.querySelectorAll(".teacherCheck:checked")].map(c=>c.value);
+    if(tempTeachers.length===0){ Swal.fire("Warning","Please select at least one teacher","warning"); return;}
+    finalAssign();
+    closeTeacherPopup();
+}
+function finalAssign(){
+    const subject = document.getElementById("subjectSelect").value;
+    if(!subject){ Swal.fire("Warning","Please choose a subject first","warning"); return;}
+    tempTeachers.forEach(t=> { if(!assignments[subject].includes(t)) assignments[subject].push(t); });
+    tempTeachers=[];
+    document.getElementById("subjectSelect").value="";
+    updateLists();
+}
+
+/* REMOVE TEACHER */
+function confirmRemoveTeacher(){
+    const selected = [...document.querySelectorAll(".removeCheck:checked")].map(i=>i.value);
+    assignments[removeSubjectName] = assignments[removeSubjectName].filter(t=> !selected.includes(t));
+    closeRemoveTeacherPopup();
+    updateLists();
+}
+
+/* DELETE SUBJECT */
+function deleteSubject(sub){
+    Swal.fire({
+        title:"Delete?",
+        text:"Subject will be removed permanently",
+        icon:"warning",
+        showCancelButton:true,
+        confirmButtonText:"Yes, delete",
+        cancelButtonText:"Cancel"
+    }).then(res=>{
+        if(res.isConfirmed){
+            subjects = subjects.filter(s=> s!==sub);
+            delete assignments[sub];
+            updateDropdown();
+            updateLists();
+        }
+    });
+}
+
+/* UPDATE UI */
+function updateDropdown(){
+    const dd = document.getElementById("subjectSelect");
+    dd.innerHTML=`<option value="">Choose Subject</option>`;
+    subjects.forEach(s=> dd.innerHTML += `<option>${s}</option>`);
+}
+function updateLists(){
+    const assigned = document.getElementById("assignedList");
+    const unassigned = document.getElementById("unassignedList");
+    assigned.innerHTML=""; unassigned.innerHTML="";
+    subjects.forEach(s=>{
+        const teachers = assignments[s];
+        if(teachers.length>0){
+            assigned.innerHTML += `
+                <div class="border p-4 rounded-md flex justify-between items-center bg-white dark:bg-darkdeep3">
+                    <div class="text-contentColor dark:text-contentColor-dark"><b>${s}</b><br>${teachers.map(t=>`<span class='inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm mr-1 mt-1'>${t}</span>`).join("")}</div>
+                    <div class="flex gap-2">
+                        <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="openRemoveTeacherPopup('${s}')">Remove Teacher</button>
+                        <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="deleteSubject('${s}')">Delete</button>
+                    </div>
+                </div>
+            `;
+        }else{
+            unassigned.innerHTML += `
+                <div class="border p-4 rounded-md flex justify-between items-center bg-white dark:bg-darkdeep3">
+                    <div class="text-contentColor dark:text-contentColor-dark"><b>${s}</b> <span class='ml-2 px-2 py-1 text-sm bg-red-100 text-red-700 rounded'>Not Assigned</span></div>
+                    <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="deleteSubject('${s}')">Delete</button>
+                </div>
+            `;
+        }
+    });
+}
+</script>
+
+
+                                        
+
+
+                                        
+
                                     </div>
                                 </div>
 
@@ -250,7 +469,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <!-- Instructor  -->
                                 <!-- Instructor  -->
-                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
                                         <span class="text-blackColor dark:text-whiteColor">Instructors</span>
@@ -268,7 +487,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
                                                 Select Instructors for this Course
                                             </h3>
-                                            <!-- Multi-select Dropdown -->
                                             <div class="relative mb-4">
                                                 <div class="relative mb-4">
                                                     <select id="instructorDropdown" name="listedInstructor[]" multiple
@@ -287,12 +505,12 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                     </select>
                                                 </div>
                                             </div>
-                                            <!-- Selected Instructors List -->
                                             <div id="selectedInstructors" class="space-y-3"></div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
+ -->
 
                                 <!-- Feautes  -->
                                 <!-- Feautes  -->

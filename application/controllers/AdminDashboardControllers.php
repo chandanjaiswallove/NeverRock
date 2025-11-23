@@ -58,8 +58,25 @@ class AdminDashboardControllers extends CI_Controller
 
     public function loaDadmin_courseView()
     {
-        $this->load->view('dashboard/dAdmin/admin_courseView');
+        // URL se course_uid lena
+        $uid = $this->input->get('course_uid');  // unique variable
+
+        // Database se row fetch karna
+        $courseData = $this->db->get_where('course_directory', [
+            'course_unique_id' => $uid
+        ])->row();  // yaha bhi naam change
+
+        // View me `$row` naam se bhejna
+        $data['row'] = $courseData;
+
+        // Extra bhi bhejna ho to:
+        $data['course_uid'] = $uid;
+
+        // View load
+        $this->load->view('dashboard/dAdmin/admin_courseView', $data);
     }
+
+
 
 
 
