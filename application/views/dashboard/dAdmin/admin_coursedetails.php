@@ -69,6 +69,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
                                         <!-- <div
+                                         
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
                                             <div id="subjectsWrapper" class="space-y-3">
@@ -109,206 +110,320 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
+                                        <div
+                                            class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-<!-- SWEET ALERT -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class="px-6 pb-6 max-w-4xl mx-auto">
+                                            <!-- SWEET ALERT -->
+                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ADD SUBJECT BUTTON -->
-    <button type="button" onclick="openAddSubjectPopup()" class="bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-primaryColor-dark transition mb-4">
-        + Add New Subject
-    </button>
 
-    <!-- ADD SUBJECT POPUP -->
-    <div id="addSubjectPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
-        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-80">
-            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Add New Subject</h3>
-            <input id="newSubjectInput" type="text" placeholder="Enter Subject Name" class="w-full px-4 py-2 border border-borderColor rounded-md focus:outline-none text-contentColor dark:text-contentColor-dark placeholder:text-placeholder mb-4">
-            <div class="flex justify-end gap-3">
-                <button type="button" onclick="closeAddSubjectPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
-                <button type="button" onclick="saveNewSubject()" class="px-4 py-2 bg-primaryColor text-white rounded-md">Assign</button>
-            </div>
+                                            <!-- ADD SUBJECT BUTTON -->
+                                            <button type="button" onclick="openAddSubjectPopup()"
+                                                class="bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-primaryColor-dark transition mb-4">
+                                                + Add New Subject
+                                            </button>
+
+                                            <!-- ADD SUBJECT POPUP -->
+                                            <div id="addSubjectPopup"
+                                                class="fixed top-0 left-0 w-full h-full  flex justify-center items-center z-50 hidden">
+                                                <div
+                                                    class=" py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark  rounded-md shadow-md w-80 ">
+                                                    <h3
+                                                        class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">
+                                                        Add New Subject</h3>
+                                                    <input id="newSubjectInput" type="text"
+                                                        placeholder="Enter Subject Name"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                    <div class="flex justify-center gap-4 mt-5 mb-5">
+                                                        <!-- Cancel Button (Delete style) -->
+                                                        <button type="button" onclick="closeAddSubjectPopup()"
+                                                            class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-10 px-5 rounded-md transition">
+                                                            Cancel
+                                                        </button>
+
+                                                        <!-- Assign Button (Primary style) -->
+                                                        <button type="button" onclick="saveNewSubject()"
+                                                            class="flex items-center justify-center gap-1 text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark h-10 px-5 rounded-md transition">
+                                                            Assign
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <!-- CHOOSE TEACHERS POPUP -->
+                                            <div id="teacherPopup"
+                                                class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                                                <div
+                                                    class=" py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark  rounded-md shadow-md w-96">
+                                                    <h3
+                                                        class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">
+                                                        Choose Teachers</h3>
+                                                    <div id="teacherCheckboxList"
+                                                        class="max-h-40 px-4 py-2 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4">
+                                                    </div>
+                                                    <div class="flex justify-end gap-3">
+                                                        <button type="button" onclick="closeTeacherPopup()"
+                                                            class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-10 px-5 rounded-md transition">Cancel</button>
+                                                        <button type="button" onclick="assignSelectedTeachersPopup()"
+                                                            class="px-4 py-2 bg-primaryColor text-white rounded-md">Assign</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- REMOVE TEACHER POPUP -->
+                                            <div id="removeTeacherPopup"
+                                                class="fixed top-0 left-0 w-full h-full  flex justify-center items-center z-50 hidden">
+                                                <div
+                                                    class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
+                                                    <h3
+                                                        class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">
+                                                        Remove Teacher
+                                                    </h3>
+                                                    <div id="removeTeacherList"
+                                                        class="max-h-40 px-4 py-2 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4">
+                                                        <label class="block mb-2"><input type="checkbox"
+                                                                class="removeCheck mr-2" value="Teacher A"> Teacher
+                                                            A</label>
+                                                        <label class="block mb-2"><input type="checkbox"
+                                                                class="removeCheck mr-2" value="Teacher B"> Teacher
+                                                            B</label>
+                                                    </div>
+                                                    <div class="flex justify-end gap-3">
+                                                        <!-- Cancel Button styled like Choose Teachers -->
+                                                        <button type="button" onclick="closeRemoveTeacherPopup()"
+                                                            class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-10 px-5 rounded-md transition">
+                                                            Cancel
+                                                        </button>
+                                                        <!-- Remove Button styled like Assign -->
+                                                        <button type="button" onclick="confirmRemoveTeacher()"
+                                                            class="flex items-center justify-center gap-1 text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark h-10 px-5 rounded-md transition">
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- ASSIGN SECTION -->
+
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <select id="subjectSelect"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                    <option value="">Choose Subject</option>
+                                                </select>
+                                                <button type="button" onclick="openTeacherPopup()"
+                                                    class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">Choose
+                                                    Teachers</button>
+                                            </div>
+
+
+                                            <!-- ASSIGNED SUMMARY -->
+                                            <div class="p-5  mt-5">
+                                                <h3
+                                                    class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                                    Assigned Summary</h3>
+                                                <div id="assignedList" class="space-y-3"></div>
+                                            </div>
+
+                                            <!-- UNASSIGNED SUMMARY -->
+                                            <div class=" p-5  mb-5">
+                                                <h3
+                                                    class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                                    Unassigned Subjects</h3>
+                                                <div id="unassignedList" class=""></div>
+                                            </div>
+
+                                        </div>
+
+                                        <script>
+                                            let subjects = [];
+                                            let assignments = {};
+                                            let tempTeachers = [];
+                                            let removeSubjectName = "";
+                                            const allTeachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D"];
+
+                                            /* POPUPS */
+                                            function openAddSubjectPopup() { document.getElementById("addSubjectPopup").classList.remove("hidden"); }
+                                            function closeAddSubjectPopup() { document.getElementById("addSubjectPopup").classList.add("hidden"); }
+
+                                            function openTeacherPopup() {
+                                                tempTeachers = [];
+                                                const list = document.getElementById("teacherCheckboxList");
+                                                list.innerHTML = "";
+                                                allTeachers.forEach(t => list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="teacherCheck mr-2" value="${t}"> ${t}</label>`);
+                                                document.getElementById("teacherPopup").classList.remove("hidden");
+                                            }
+                                            function closeTeacherPopup() { document.getElementById("teacherPopup").classList.add("hidden"); }
+
+                                            function openRemoveTeacherPopup(subject) {
+                                                removeSubjectName = subject;
+                                                const list = document.getElementById("removeTeacherList");
+                                                list.innerHTML = "";
+                                                assignments[subject].forEach(t => list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="removeCheck mr-2" value="${t}"> ${t}</label>`);
+                                                document.getElementById("removeTeacherPopup").classList.remove("hidden");
+                                            }
+                                            function closeRemoveTeacherPopup() { document.getElementById("removeTeacherPopup").classList.add("hidden"); }
+
+                                            /* ADD SUBJECT */
+                                            function saveNewSubject() {
+                                                let name = document.getElementById("newSubjectInput").value.trim();
+                                                if (!name) { Swal.fire("Error", "Please enter subject name", "error"); return; }
+                                                if (subjects.includes(name)) { Swal.fire("Warning", "Subject already exists!", "warning"); return; }
+                                                subjects.push(name);
+                                                assignments[name] = [];
+                                                updateDropdown();
+                                                updateLists();
+                                                document.getElementById("newSubjectInput").value = "";
+                                                closeAddSubjectPopup();
+                                            }
+
+                                            /* ASSIGN TEACHERS */
+                                            function assignSelectedTeachersPopup() {
+                                                tempTeachers = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
+                                                if (tempTeachers.length === 0) { Swal.fire("Warning", "Please select at least one teacher", "warning"); return; }
+                                                finalAssign();
+                                                closeTeacherPopup();
+                                            }
+                                            function finalAssign() {
+                                                const subject = document.getElementById("subjectSelect").value;
+                                                if (!subject) { Swal.fire("Warning", "Please choose a subject first", "warning"); return; }
+                                                tempTeachers.forEach(t => { if (!assignments[subject].includes(t)) assignments[subject].push(t); });
+                                                tempTeachers = [];
+                                                document.getElementById("subjectSelect").value = "";
+                                                updateLists();
+                                            }
+
+                                            /* REMOVE TEACHER */
+                                            function confirmRemoveTeacher() {
+                                                const selected = [...document.querySelectorAll(".removeCheck:checked")].map(i => i.value);
+                                                assignments[removeSubjectName] = assignments[removeSubjectName].filter(t => !selected.includes(t));
+                                                closeRemoveTeacherPopup();
+                                                updateLists();
+                                            }
+
+                                            /* DELETE SUBJECT */
+                                            function deleteSubject(sub) {
+                                                Swal.fire({
+                                                    title: "Delete?",
+                                                    text: "Subject will be removed permanently",
+                                                    icon: "warning",
+                                                    showCancelButton: true,
+                                                    confirmButtonText: "Yes, delete",
+                                                    cancelButtonText: "Cancel",
+                                                    customClass: {
+                                                        confirmButton: "bg-primaryColor text-white px-4 py-2 rounded-md hover:bg-primaryColor-dark transition mr-2", // add margin-right for gap
+                                                        cancelButton: "bg-secondaryColor text-white px-4 py-2 rounded-md hover:bg-whiteColor dark:hover:bg-whiteColor-dark transition"
+                                                    },
+                                                    buttonsStyling: false // important to apply Tailwind classes
+                                                }).then(res => {
+                                                    if (res.isConfirmed) {
+                                                        subjects = subjects.filter(s => s !== sub);
+                                                        delete assignments[sub];
+                                                        updateDropdown();
+                                                        updateLists();
+                                                    }
+                                                });
+                                            }
+
+
+                                            /* UPDATE UI */
+                                            function updateDropdown() {
+                                                const dd = document.getElementById("subjectSelect");
+                                                dd.innerHTML = `<option value="">Choose Subject</option>`;
+                                                subjects.forEach(s => dd.innerHTML += `<option>${s}</option>`);
+                                            }
+                                            function updateLists() {
+                                                const assigned = document.getElementById("assignedList");
+                                                const unassigned = document.getElementById("unassignedList");
+                                                assigned.innerHTML = ""; unassigned.innerHTML = "";
+                                                subjects.forEach(s => {
+                                                    const teachers = assignments[s];
+                                                    if (teachers.length > 0) {
+                                                        assigned.innerHTML += `
+<div class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col md:flex-row md:items-start justify-between gap-2">
+    <!-- Left side: Subject + Teachers -->
+    <div class="flex-1">
+        <!-- Subject Name -->
+        <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2">
+            ${s}
+        </div>
+        <!-- Teacher List (wrap if too many) -->
+        <div class="flex flex-wrap gap-1 mt-4">
+            ${teachers.map(t => `<span class='inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm'>${t}</span>`).join("")}
         </div>
     </div>
+    <!-- Right side: Buttons -->
+    <div class="flex flex-col sm:flex-row gap-2 mt-2 md:mt-0">
+        <!-- Remove Teacher Button with bg-skycolor -->
+        <button type="button" 
+                class="flex items-center gap-1 text-sm font-bold text-whiteColor bg-skycolor hover:bg-skycolor-dark border border-skycolor h-30px px-14px justify-center rounded-md w-full sm:w-auto"
+                onclick="openRemoveTeacherPopup('${s}')">
+            Remove Teacher
+        </button>
+        <!-- Delete Button (unchanged) -->
+        <button type="button" 
+                class="flex items-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-14px justify-center rounded-md w-full sm:w-auto"
+                onclick="deleteSubject('${s}')">
+            Delete
+        </button>
+    </div>
+</div>
 
-    <!-- CHOOSE TEACHERS POPUP -->
-    <div id="teacherPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
-        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-96">
-            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Choose Teachers</h3>
-            <div id="teacherCheckboxList" class="max-h-40 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4"></div>
-            <div class="flex justify-end gap-3">
-                <button type="button" onclick="closeTeacherPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
-                <button type="button" onclick="assignSelectedTeachersPopup()" class="px-4 py-2 bg-primaryColor text-white rounded-md">Assign</button>
-            </div>
-        </div>
+
+            `;
+                                                    } else {
+                                                        unassigned.innerHTML += `
+<div class="w-full mb-2 py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+
+    <!-- Left side: Subject Name -->
+    <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2 sm:mb-0">
+        ${s}
     </div>
 
-    <!-- REMOVE TEACHER POPUP -->
-    <div id="removeTeacherPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
-        <div class="bg-white dark:bg-darkdeep3 p-6 rounded-md shadow-md w-96">
-            <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Remove Teacher</h3>
-            <div id="removeTeacherList" class="max-h-40 overflow-y-auto border border-borderColor dark:border-borderColor-dark rounded-md p-3 mb-4"></div>
-            <div class="flex justify-end gap-3">
-                <button type="button" onclick="closeRemoveTeacherPopup()" class="px-4 py-2 bg-gray-300 rounded-md text-contentColor dark:text-contentColor-dark">Cancel</button>
-                <button type="button" onclick="confirmRemoveTeacher()" class="px-4 py-2 bg-red-600 text-white rounded-md">Remove</button>
-            </div>
-        </div>
-    </div>
+    <!-- Right side: Not Assigned badge + Delete button -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+        <!-- Not Assigned Badge -->
+        <span class="inline-block h-30px px-7px bg-skycolor leading-30px font-bold text-whiteColor rounded-md text-center">
+            Not Assigned
+        </span>
 
-    <!-- ASSIGN SECTION -->
-    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md mb-5">
-        <h3 class="text-lg font-semibold mb-3 text-blackColor dark:text-whiteColor">Assign Teacher to Subject</h3>
-        <div class="grid grid-cols-2 gap-4">
-            <select id="subjectSelect" class="px-3 py-2 border border-borderColor dark:border-borderColor-dark rounded-md w-full text-contentColor dark:text-contentColor-dark">
-                <option value="">Choose Subject</option>
-            </select>
-            <button type="button" onclick="openTeacherPopup()" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md w-full text-left text-contentColor dark:text-contentColor-dark">Choose Teachers</button>
-        </div>
-    </div>
-
-    <!-- ASSIGNED SUMMARY -->
-    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md mb-5">
-        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">Assigned Summary</h3>
-        <div id="assignedList" class="space-y-3"></div>
-    </div>
-
-    <!-- UNASSIGNED SUMMARY -->
-    <div class="bg-white dark:bg-darkdeep3 p-5 rounded-md shadow-md">
-        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">Unassigned Subjects</h3>
-        <div id="unassignedList" class="space-y-3"></div>
+        <!-- Delete Button (same height as badge) -->
+        <button type="button" 
+                class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-7px leading-30px rounded-md" onclick="deleteSubject('${s}') ">
+            Delete
+        </button>
     </div>
 
 </div>
 
-<script>
-let subjects = [];
-let assignments = {};
-let tempTeachers = [];
-let removeSubjectName = "";
-const allTeachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D"];
 
-/* POPUPS */
-function openAddSubjectPopup(){ document.getElementById("addSubjectPopup").classList.remove("hidden"); }
-function closeAddSubjectPopup(){ document.getElementById("addSubjectPopup").classList.add("hidden"); }
 
-function openTeacherPopup(){
-    tempTeachers = [];
-    const list = document.getElementById("teacherCheckboxList");
-    list.innerHTML = "";
-    allTeachers.forEach(t=> list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="teacherCheck mr-2" value="${t}"> ${t}</label>`);
-    document.getElementById("teacherPopup").classList.remove("hidden");
-}
-function closeTeacherPopup(){ document.getElementById("teacherPopup").classList.add("hidden"); }
 
-function openRemoveTeacherPopup(subject){
-    removeSubjectName = subject;
-    const list = document.getElementById("removeTeacherList");
-    list.innerHTML = "";
-    assignments[subject].forEach(t=> list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="removeCheck mr-2" value="${t}"> ${t}</label>`);
-    document.getElementById("removeTeacherPopup").classList.remove("hidden");
-}
-function closeRemoveTeacherPopup(){ document.getElementById("removeTeacherPopup").classList.add("hidden"); }
-
-/* ADD SUBJECT */
-function saveNewSubject(){
-    let name = document.getElementById("newSubjectInput").value.trim();
-    if(!name){ Swal.fire("Error","Please enter subject name","error"); return; }
-    if(subjects.includes(name)){ Swal.fire("Warning","Subject already exists!","warning"); return; }
-    subjects.push(name);
-    assignments[name] = [];
-    updateDropdown();
-    updateLists();
-    document.getElementById("newSubjectInput").value="";
-    closeAddSubjectPopup();
-}
-
-/* ASSIGN TEACHERS */
-function assignSelectedTeachersPopup(){
-    tempTeachers = [...document.querySelectorAll(".teacherCheck:checked")].map(c=>c.value);
-    if(tempTeachers.length===0){ Swal.fire("Warning","Please select at least one teacher","warning"); return;}
-    finalAssign();
-    closeTeacherPopup();
-}
-function finalAssign(){
-    const subject = document.getElementById("subjectSelect").value;
-    if(!subject){ Swal.fire("Warning","Please choose a subject first","warning"); return;}
-    tempTeachers.forEach(t=> { if(!assignments[subject].includes(t)) assignments[subject].push(t); });
-    tempTeachers=[];
-    document.getElementById("subjectSelect").value="";
-    updateLists();
-}
-
-/* REMOVE TEACHER */
-function confirmRemoveTeacher(){
-    const selected = [...document.querySelectorAll(".removeCheck:checked")].map(i=>i.value);
-    assignments[removeSubjectName] = assignments[removeSubjectName].filter(t=> !selected.includes(t));
-    closeRemoveTeacherPopup();
-    updateLists();
-}
-
-/* DELETE SUBJECT */
-function deleteSubject(sub){
-    Swal.fire({
-        title:"Delete?",
-        text:"Subject will be removed permanently",
-        icon:"warning",
-        showCancelButton:true,
-        confirmButtonText:"Yes, delete",
-        cancelButtonText:"Cancel"
-    }).then(res=>{
-        if(res.isConfirmed){
-            subjects = subjects.filter(s=> s!==sub);
-            delete assignments[sub];
-            updateDropdown();
-            updateLists();
-        }
-    });
-}
-
-/* UPDATE UI */
-function updateDropdown(){
-    const dd = document.getElementById("subjectSelect");
-    dd.innerHTML=`<option value="">Choose Subject</option>`;
-    subjects.forEach(s=> dd.innerHTML += `<option>${s}</option>`);
-}
-function updateLists(){
-    const assigned = document.getElementById("assignedList");
-    const unassigned = document.getElementById("unassignedList");
-    assigned.innerHTML=""; unassigned.innerHTML="";
-    subjects.forEach(s=>{
-        const teachers = assignments[s];
-        if(teachers.length>0){
-            assigned.innerHTML += `
-                <div class="border p-4 rounded-md flex justify-between items-center bg-white dark:bg-darkdeep3">
-                    <div class="text-contentColor dark:text-contentColor-dark"><b>${s}</b><br>${teachers.map(t=>`<span class='inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm mr-1 mt-1'>${t}</span>`).join("")}</div>
-                    <div class="flex gap-2">
-                        <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="openRemoveTeacherPopup('${s}')">Remove Teacher</button>
-                        <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="deleteSubject('${s}')">Delete</button>
-                    </div>
-                </div>
             `;
-        }else{
-            unassigned.innerHTML += `
-                <div class="border p-4 rounded-md flex justify-between items-center bg-white dark:bg-darkdeep3">
-                    <div class="text-contentColor dark:text-contentColor-dark"><b>${s}</b> <span class='ml-2 px-2 py-1 text-sm bg-red-100 text-red-700 rounded'>Not Assigned</span></div>
-                    <button type="button" class="text-contentColor dark:text-contentColor-dark text-sm font-semibold" onclick="deleteSubject('${s}')">Delete</button>
-                </div>
-            `;
-        }
-    });
-}
-</script>
+                                                    }
+                                                });
+                                            }
+                                        </script>
 
 
-                                        
 
 
-                                        
+
+
+
+
+
+
+
+
+
+
+
 
                                     </div>
                                 </div>
-
                                 <!-- Description Accordion -->
                                 <!-- Description Accordion -->
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
@@ -376,7 +491,8 @@ function updateLists(){
                                                 <!-- Fixed First Topic (Not Removable) -->
                                                 <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
                                                     <div class="mb-3">
-                                                        <label class="block font-semibold">Important Topic Name</label>
+                                                        <label class="block font-semibold">Important Topic
+                                                            Name</label>
                                                         <input type="text" name="importantTopic"
                                                             placeholder="Enter important topic name"
                                                             class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
@@ -384,7 +500,8 @@ function updateLists(){
 
                                                     <!-- Important Fields for this topic -->
                                                     <div id="importantFieldsWrapper" class="space-y-3">
-                                                        <label class="block font-semibold">Important Fields (related to
+                                                        <label class="block font-semibold">Important Fields (related
+                                                            to
                                                             this
                                                             topic)</label>
 
@@ -469,7 +586,7 @@ function updateLists(){
 
                                 <!-- Instructor  -->
                                 <!-- Instructor  -->
-                                <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
                                         <span class="text-blackColor dark:text-whiteColor">Instructors</span>
@@ -510,7 +627,7 @@ function updateLists(){
                                     </div>
 
                                 </div>
- -->
+
 
                                 <!-- Feautes  -->
                                 <!-- Feautes  -->
