@@ -133,13 +133,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                                             </a>
                                                                         </li>
 
-                                                                        <li>
-                                                                            <a href="<?php echo base_url('admin_coursedetails?course_uid=' . $row->course_unique_id); ?>"
-                                                                                class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
-                                                                                Manage Details
-                                                                            </a>
-                                                                        </li>
-
                                                                     </ul>
                                                                 </div>
                                                             </div>

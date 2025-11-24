@@ -13,10 +13,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     ?>
 
     <?php
-   // $fetchID = $_GET['id']; // card से आने वाली course id
-   // $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
-   // foreach ($fetchCourse->result() as $row)
-   // ?>
+    // $fetchID = $_GET['id']; // card से आने वाली course id
+    // $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
+    // foreach ($fetchCourse->result() as $row)
+    // ?>
 
     <!-- course create  -->
     <input type="hidden" name="course_uid" value="<?php echo $course_uid; ?>">
@@ -58,9 +58,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 transition-all duration-300 mt-2 w-auto py-14px rounded-standard bg-white dark:bg-whiteColor-dark shadow-dropdown">
                                 <ul>
                                     <li>
-                                        <a href="<?php echo base_url('admin_cdetailsedit?course_uid=' . $row->course_unique_id); ?>"
+                                        <a href="<?php echo base_url('admin_coursedetails?course_uid=' . $row->course_unique_id); ?>"
                                             class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
-                                            Edit
+                                            Edit Details
                                         </a>
                                     </li>
                                     <li>
@@ -343,51 +343,49 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                                         <!-- description -->
                                                         <div class="hidden">
-                                                            <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14 aos-init aos-animate"
-                                                                data-aos="fade-up">
-                                                                Experience is over the world visit
-                                                            </h4>
-                                                            <p class="text-lg text-darkdeep4 mb-5 !leading-30px aos-init aos-animate"
-                                                                data-aos="fade-up">
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit.
-                                                            </p>
 
-                                                            <div class="md:col-start-5 md:col-span-8">
-                                                                <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px aos-init aos-animate"
-                                                                    data-aos="fade-up">
-                                                                    Why search Is Important ?
-                                                                </h4>
-                                                                <ul class="space-y-[15px] max-w-127">
-                                                                    <li class="flex items-center group aos-init aos-animate"
+                                                            <!-- Headings Section -->
+                                                            <?php if (!empty($headings)): ?>
+                                                                <?php foreach ($headings as $heading): ?>
+                                                                    <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14 aos-init aos-animate"
                                                                         data-aos="fade-up">
-                                                                        <i
-                                                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                                                        <p
-                                                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                                                            Lorem Ipsum is simply dummying text of
-                                                                            the printing
-                                                                            andtypesetting industry most of the
-                                                                            standard.
-                                                                        </p>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                                        <?php echo $heading->dimpHeading; ?>
+                                                                    </h4>
+                                                                    <p class="text-lg text-darkdeep4 mb-5 !leading-30px aos-init aos-animate"
+                                                                        data-aos="fade-up">
+                                                                        <?php echo $heading->dimpDescription; ?>
+                                                                    </p>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
 
+                                                            <!-- Single Important Topic Heading -->
+                                                            <?php if (!empty($topics)): ?>
+                                                                <div class="md:col-start-5 md:col-span-8 mb-8">
+                                                                    <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px aos-init aos-animate"
+                                                                        data-aos="fade-up">
+                                                                        <?php echo $topics[0]->importantTopic; // single topic name ?>
+                                                                    </h4>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                                                    <!-- Multiple Important Keys -->
+                                                                    <ul class="space-y-[15px] max-w-127">
+                                                                        <?php foreach ($topics as $topic): ?>
+                                                                            <li class="flex items-center group aos-init aos-animate"
+                                                                                data-aos="fade-up">
+                                                                                <i
+                                                                                    class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
+                                                                                <p
+                                                                                    class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
+                                                                                    <?php echo $topic->importantKey; ?>
+                                                                                </p>
+                                                                            </li>
+                                                                        <?php endforeach; ?>
+                                                                    </ul>
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <div class="md:col-start-5 md:col-span-8">
+                                                                    <h4>Data Coming Soon !</h4>
+                                                                </div>
+                                                            <?php endif; ?>
 
                                                         </div>
 
@@ -395,10 +393,55 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                         <!-- Faqus Questions -->
                                                         <div class="hidden">
                                                             <ul class="accordion-container curriculum">
-                                                                <p class="text-center text-gray-500">No FAQs
-                                                                    available for this course.</p>
+                                                                <?php if (!empty($faqs)): ?>
+                                                                    <?php foreach ($faqs as $faq): ?>
+                                                                        <li class="accordion mb-25px overflow-hidden">
+                                                                            <div
+                                                                                class="bg-whiteColor border border-borderColor dark:bg-whiteColor-dark dark:border-borderColor-dark rounded-t-md">
+                                                                                <div>
+                                                                                    <div
+                                                                                        class="cursor-pointer accordion-controller flex justify-between items-center text-xl text-headingColor font-bold w-full px-5 py-18px dark:text-headingColor-dark font-hind leading-[20px]">
+                                                                                        <div class="flex items-center">
+                                                                                            <span><?php echo $faq->faq_Question; ?></span>
+                                                                                        </div>
+                                                                                        <svg class="transition-all duration-500 rotate-0"
+                                                                                            width="20"
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            viewBox="0 0 16 16" fill="#212529">
+                                                                                            <path fill-rule="evenodd"
+                                                                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                                                                            </path>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="accordion-content transition-all duration-500 h-0">
+                                                                                    <div
+                                                                                        class="content-wrapper p-10px md:px-30px">
+                                                                                        <ul>
+                                                                                            <li
+                                                                                                class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                                                                                <div>
+                                                                                                    <h4
+                                                                                                        class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                                                                        <span
+                                                                                                            class="font-medium"><?php echo $faq->faq_Answer; ?></span>
+                                                                                                    </h4>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <li>No FAQs found.</li>
+                                                                <?php endif; ?>
                                                             </ul>
                                                         </div>
+
+
 
 
                                                         <!-- Instructor  -->
@@ -614,17 +657,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                             <?php echo $row->course_mode; ?>
                                                         </p>
                                                     </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Skill Level
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Premium
-                                                        </p>
-                                                    </li>
+
 
                                                     <li
                                                         class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
@@ -637,72 +670,32 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                             <?php echo $row->course_language; ?>
                                                         </p>
                                                     </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Assignment
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Yes
-                                                        </p>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Materials
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            yes
-                                                        </p>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Test
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Yes
-                                                        </p>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Quiz
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Yes
-                                                        </p>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8 capitalize">
-                                                            Identity Card
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Yes
-                                                        </p>
-                                                    </li>
-                                                    <li
-                                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                                        <p
-                                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                                            Certificate
-                                                        </p>
-                                                        <p
-                                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                                            Yes
-                                                        </p>
-                                                    </li>
+                                                    <ul>
+                                                        <?php if (!empty($features)): ?>
+                                                            <?php foreach ($features as $feature): ?>
+                                                                <li
+                                                                    class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
+                                                                    <!-- Feature Name -->
+                                                                    <p
+                                                                        class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
+                                                                        <?php echo $feature->feature_heading; ?>
+                                                                    </p>
+
+                                                                    <!-- Feature Value -->
+                                                                    <p
+                                                                        class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
+                                                                        <?php echo $feature->feature_value; ?>
+                                                                    </p>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        <?php else: ?>
+                                                            <li>No features found for this course.</li>
+                                                        <?php endif; ?>
+                                                    </ul>
+
+
+
+
                                                 </ul>
                                                 <div class="mt-5" data-aos="fade-up">
                                                     <p

@@ -11,7 +11,7 @@ class AdminDashboardControllers extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        
+
 
     }
 
@@ -59,21 +59,32 @@ class AdminDashboardControllers extends CI_Controller
 
     public function loaDadmin_courseView()
     {
-        // URL se course_uid lena
-        $uid = $this->input->get('course_uid');  // unique variable
+        $uid = $this->input->get('course_uid');
 
-        // Database se row fetch karna
-        $courseData = $this->db->get_where('course_directory', [
-            'course_unique_id' => $uid
-        ])->row();  // yaha bhi naam change
+        // Course details
+        $courseData = $this->db->get_where('course_directory', ['course_unique_id' => $uid])->row();
 
-        // View me `$row` naam se bhejna
-        $data['row'] = $courseData;
+        // Course Headings
+        $headings = $this->db->get_where('course_headings', ['course_unique_id' => $uid])->result();
 
-        // Extra bhi bhejna ho to:
-        $data['course_uid'] = $uid;
+        // Course Topics
+        $topics = $this->db->get_where('course_topics', ['course_unique_id' => $uid])->result();
 
-        // View load
+        // Course FAQs (optional, agar pehle wale accordion chahiye)
+        $faqs = $this->db->get_where('course_faqs', ['course_unique_id' => $uid])->result();
+
+        // Course Features
+        $features = $this->db->get_where('course_features', ['course_unique_id' => $uid])->result();
+
+        $data = [
+            'row' => $courseData,
+            'headings' => $headings,
+            'topics' => $topics,
+            'faqs' => $faqs,
+            'features' => $features,
+            'course_uid' => $uid
+        ];
+
         $this->load->view('dashboard/dAdmin/admin_courseView', $data);
     }
 
@@ -81,7 +92,9 @@ class AdminDashboardControllers extends CI_Controller
 
 
 
-    public function loaDadmin_cdetailsedit()
+
+
+    public function loaDadmin_cdetailsedit() /// Extra page this one 
     {
         $this->load->view('dashboard/dAdmin/admin_cdetailsedit');
     }
