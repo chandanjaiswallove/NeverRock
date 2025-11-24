@@ -1,8 +1,7 @@
-<?php 
- if(!isset($_SESSION['activeAdmin']))
- {
+<?php
+if (!isset($_SESSION['activeAdmin'])) {
     redirect(base_url('logoutAdmin'));
- }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +19,8 @@
     <link rel="stylesheet" href="modules/assets/css/video-modal.css">
     <link rel="stylesheet" href="modules/assets/css/aos.css">
     <link rel="stylesheet" href="modules/assets/css/style.css">
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="relative font-inter font-normal text-base leading-[1.8] bg-bodyBg dark:bg-bodyBg-dark">

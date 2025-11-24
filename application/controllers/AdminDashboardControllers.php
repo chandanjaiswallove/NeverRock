@@ -16,15 +16,40 @@ class AdminDashboardControllers extends CI_Controller
 
     public function loaDadmin_coursedetails()
     {
-        // 1️⃣ URL se course_unique_id uthao
+        // URL se course_unique_id pick karo
         $course_uid = $this->input->get('course_uid');  // ?course_uid=ZIVJJC
 
-        // 2️⃣ Data array me dal do, view me use karne ke liye
-        $data['course_unique_id'] = $course_uid;
+        if (!$course_uid) {
+            echo "Invalid Course UID!";
+            return;
+        }
 
-        // 3️⃣ View load karo aur course_unique_id bhejo
+        // Course Features fetch 
+        $courseFeatures = $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
+
+        // Course Headings fetch 
+        $courseHeading = $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
+
+        // Course Topics fetch
+        $courseTopics = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+
+        // Course Faqs fetch
+        $courseFaqs = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
+
+        // Data view ko bhejo
+        $data = [
+            'course_unique_id' => $course_uid,
+            'heading' => $courseHeading,
+            'topics' => $courseTopics,
+            'faqs' => $courseFaqs,
+            'features' => $courseFeatures
+        ];
+
+        // View load
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
+
+
 
 
     public function modeLDetailData()  /// Create course details data  

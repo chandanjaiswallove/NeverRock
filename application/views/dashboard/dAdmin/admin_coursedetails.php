@@ -13,7 +13,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
     ?>
 
 
-    <!-- course create  -->
+    <!--Course Details-->
 
     <section>
         <div class="container-fluid-2">
@@ -56,7 +56,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                        <span class="text-blackColor dark:text-whiteColor">Subject & Teacher Assign</span>
+                                        <span class="text-blackColor dark:text-whiteColor">Subject & Teacher
+                                            Assign</span>
                                         <svg class="transition-all duration-500 rotate-0" width="20"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                             <path fill-rule="evenodd"
@@ -112,11 +113,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         <div
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
-
-
-                                            <!-- SWEET ALERT -->
-                                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
                                             <!-- ADD SUBJECT BUTTON -->
                                             <button type="button" onclick="openAddSubjectPopup()"
@@ -549,38 +545,76 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
                                             <!-- FAQ Section -->
-                                            <div id="faqWrapper" class="space-y-4">
-                                                <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
-                                                    Frequently Asked Questions</h3>
+                                    <div id="faqWrapper" class="space-y-4">
+    <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
+        Frequently Asked Questions
+    </h3>
 
-                                                <!-- Fixed First FAQ -->
-                                                <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
-                                                    <div class="mb-3">
-                                                        <label class="block font-semibold">Question</label>
-                                                        <input type="text" id="faqQuestion_0" name="faqQuestion[]"
-                                                            placeholder="Enter your question here"
-                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="block font-semibold">Answer</label>
-                                                        <textarea id="faqAnswer_0" name="faqAnswer[]"
-                                                            placeholder="Enter the answer here"
-                                                            class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                            style="min-height: 100px; max-height:150px;"></textarea>
-                                                    </div>
-                                                </div>
+    <?php if (!empty($faqs)): ?>
+        <?php foreach ($faqs as $index => $faq): ?>
+            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
 
-                                                <!-- Dynamic FAQs container -->
-                                                <div id="dynamicFAQs" class="space-y-4"></div>
+                <!-- Question -->
+                <div class="mb-3">
+                    <label class="block font-semibold">Question</label>
+                    <input type="text" 
+                        name="faqQuestion[]"
+                        value="<?= $faq->faq_Question ?>"
+                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                               bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor 
+                               dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 
+                               leading-23px rounded-md font-no">
+                    <input type="hidden" name="faqId[]" value="<?= $faq->id ?>">
+                </div>
 
-                                                <!-- Add More Button -->
-                                                <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
-                                                    <button type="button" onclick="addNewFAQ()"
-                                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
-                                                        + Add More
-                                                    </button>
-                                                </div>
-                                            </div>
+                <!-- Answer -->
+                <div class="mb-3">
+                    <label class="block font-semibold">Answer</label>
+                    <textarea name="faqAnswer[]"
+                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                               bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor 
+                               dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 
+                               leading-23px rounded-md font-no"
+                        style="min-height: 100px; max-height:150px;"><?= $faq->faq_Answer ?></textarea>
+                </div>
+
+                <div class="text-right">
+                    <button type="button"
+                        class="text-red-500 text-sm font-semibold"
+                        onclick="this.closest('.group').remove()">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+
+        <!-- If no FAQ in DB then show one empty block -->
+        <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+            <div class="mb-3">
+                <label class="block font-semibold">Question</label>
+                <input type="text" name="faqQuestion[]" class="w-full py-2 px-3 text-sm border rounded-md">
+            </div>
+            <div class="mb-3">
+                <label class="block font-semibold">Answer</label>
+                <textarea name="faqAnswer[]" class="w-full py-2 px-3 text-sm border rounded-md" 
+                          style="min-height:100px"></textarea>
+            </div>
+        </div>
+
+    <?php endif; ?>
+
+    <!-- Dynamic Add More FAQs -->
+    <div id="dynamicFAQs" class="space-y-4"></div>
+
+    <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
+        <button type="button" onclick="addNewFAQ()"
+            class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+            + Add More
+        </button>
+    </div>
+</div>
+
                                         </div>
                                     </div>
                                 </div>
