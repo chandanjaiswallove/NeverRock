@@ -56,7 +56,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                        <span class="text-blackColor dark:text-whiteColor">Curriculum</span>
+                                        <span class="text-blackColor dark:text-whiteColor">Subject & Teacher Assign</span>
                                         <svg class="transition-all duration-500 rotate-0" width="20"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                             <path fill-rule="evenodd"
@@ -588,7 +588,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <!-- Instructor  -->
                                 <!-- Instructor  -->
-                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
                                         <span class="text-blackColor dark:text-whiteColor">Instructors</span>
@@ -628,7 +628,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> -->
 
 
                                 <!-- Feautes  -->
