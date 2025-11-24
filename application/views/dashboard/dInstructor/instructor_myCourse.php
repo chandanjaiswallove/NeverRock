@@ -43,7 +43,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                 class="p-15px bg-whiteColor shadow-brand dark:bg-darkdeep3-dark dark:shadow-brand-dark rounded-standard">
                                 <!-- card image -->
                                 <div class="relative mb-4">
-                                    <a href="http://localhost/NeverRock/admin_courseView?course_uid=ZIVJJC "
+                                    <a href="http://localhost/NeverRock/course_subjects?course_uid=ZIVJJC "
                                         class="w-full overflow-hidden rounded">
                                         <img src="http://localhost/NeverRock/modules/courseThumbnail/6922639a08cc2_690b24b975b08_68ef521beca62_courseDetails.jpg"
                                             alt="" class="w-full transition-all duration-300 group-hover:scale-110">
@@ -70,7 +70,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                     class="shadow-dropdown max-w-dropdown2 w-auto  py-14px rounded-standard bg-white dark:bg-whiteColor-dark">
                                                     <ul>
                                                         <li>
-                                                            <a href="http://localhost/NeverRock/admin_courseView?course_uid=ZIVJJC"
+                                                            <a href="http://localhost/NeverRock/instructor_courseV?course_uid=ZIVJJC"
                                                                 class="text-sm font-semibold text-black border-l-2 border-transparent transition duration-300 hover:border-primaryColor px-25px py-10px hover:bg-whitegrey1 block hover:text-primaryColor dark:text-contentColor-dark dark:hover:text-primaryColor dark:hover:bg-whitegrey1-dark">
                                                                 Details
                                                             </a>

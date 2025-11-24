@@ -104,8 +104,10 @@ $route['instructor_reset'] = 'InstructorOnBoardingControllers/loaDinstructor_res
 // Controller: InstructorDashboardControllers
 $route['instructor_dashboard'] = 'InstructorDashboardControllers/loaDinstructor_dashboard'; // Instructor dashboard
 $route['instructor_message'] = 'InstructorDashboardControllers/loaDinstructor_message'; // Messages
+
 $route['instructor_myCourse'] = 'InstructorDashboardControllers/loaDinstructor_myCourse'; // Instructor courses
 $route['course_subjects'] = 'InstructorDashboardControllers/loaDcourse_subjects'; // Instructor courses Subjects
+$route['instructor_courseV'] = 'InstructorDashboardControllers/loaDinstructor_courseV'; // Instructor courses details View
 
 $route['instructor_profile'] = 'InstructorDashboardControllers/loaDinstructor_profile'; // Profile page
 $route['instructor_setting'] = 'InstructorDashboardControllers/loaDinstructor_setting'; // Settings page 

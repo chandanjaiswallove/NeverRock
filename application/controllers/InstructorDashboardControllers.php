@@ -36,6 +36,11 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/course_subjects');
     }
 
+    public function loaDinstructor_courseV()
+    {
+        $this->load->view('dashboard/dInstructor/instructor_courseV');
+    }
+
     public function loaDinstructor_profile()
     {
         $this->load->view('dashboard/dInstructor/instructor_profile');
