@@ -7,15 +7,16 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
     <?php
     $fetchID = $_GET['id']; // card से आने वाली course id
-    
     $fetchCourse = $this->db->query("SELECT * FROM course_directory WHERE id = ?", [$fetchID]);
     foreach ($fetchCourse->result() as $row) {
-
-        // course_unique_id निकालो और trim करो ताकि कोई extra space न हो
         $course_unique_id = trim($row->course_unique_id);
 
-        // बाकी tables का data इसी ID से लाओ
+        $courseHeadings = $this->db->query("SELECT * FROM course_headings WHERE course_unique_id = ?", [$course_unique_id]);
         $courseFaqs = $this->db->query("SELECT * FROM course_faqs WHERE course_unique_id = ?", [$course_unique_id]);
+        $courseTopics = $this->db->query("SELECT * FROM course_topics WHERE course_unique_id = ?", [$course_unique_id]);
+        $courseFeatures = $this->db->query("SELECT * FROM course_features WHERE course_unique_id = ?", [$course_unique_id]);
+        $adminDirectory = $this->db->query("SELECT * FROM admin_directory WHERE course_unique_id = ?", [$course_unique_id]);
+
         ?>
 
 
@@ -256,49 +257,72 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
 
                                         <!-- description -->
                                         <div class="hidden">
-                                            <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14"
-                                                data-aos="fade-up">
-                                                Experience is over the world visit
-                                            </h4>
-                                            <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit.
-                                            </p>
 
-                                            <div class="md:col-start-5 md:col-span-8">
-                                                <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px"
-                                                    data-aos="fade-up">
-                                                    Why search Is Important ?
-                                                </h4>
-                                                <ul class="space-y-[15px] max-w-127">
-                                                    <li class="flex items-center group" data-aos="fade-up">
-                                                        <i
-                                                            class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
-                                                        <p
-                                                            class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
-                                                            Lorem Ipsum is simply dummying text of the printing
-                                                            andtypesetting industry most of the standard.
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <!-- ========== DYNAMIC HEADING + DESCRIPTION ========== -->
+                                            <?php if ($courseHeadings->num_rows() > 0): ?>
+                                                <?php foreach ($courseHeadings->result() as $heading): ?>
+
+                                                    <h4 class="text-size-26 font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-14"
+                                                        data-aos="fade-up">
+                                                        <?= htmlspecialchars($heading->dimpHeading) ?>
+                                                    </h4>
+
+                                                    <p class="text-lg text-darkdeep4 mb-5 !leading-30px" data-aos="fade-up">
+                                                        <?= htmlspecialchars($heading->dimpDescription) ?>
+                                                    </p>
+
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
 
 
+                                            <!-- ========== GROUP TOPICS BY IMPORTANT TOPIC ========== -->
+                                            <?php
+                                            $topicGroups = [];
+
+                                            if ($courseTopics->num_rows() > 0) {
+                                                foreach ($courseTopics->result() as $topic) {
+                                                    $mainTopic = trim($topic->importantTopic);
+                                                    $topicGroups[$mainTopic][] = $topic->importantKey;
+                                                }
+                                            }
+                                            ?>
 
 
+                                            <!-- ========== OUTPUT ALL TOPIC GROUPS + KEYS ========== -->
+                                            <?php if (!empty($topicGroups)): ?>
 
+                                                <?php foreach ($topicGroups as $topicName => $keys): ?>
 
+                                                    <div class="md:col-start-5 md:col-span-8">
 
+                                                        <!-- MAIN TOPIC HEADING -->
+                                                        <h4 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark mb-15px !leading-38px"
+                                                            data-aos="fade-up">
+                                                            <?= htmlspecialchars($topicName) ?>
+                                                        </h4>
 
+                                                        <ul class="space-y-[15px] max-w-127">
+                                                            <?php foreach ($keys as $key): ?>
+                                                                <li class="flex items-center group" data-aos="fade-up">
+                                                                    <i
+                                                                        class="icofont-check px-2 py-2 text-primaryColor bg-whitegrey3 bg-opacity-40 group-hover:bg-primaryColor group-hover:text-white group-hover:opacity-100 mr-15px dark:bg-whitegrey1-dark"></i>
 
+                                                                    <p
+                                                                        class="text-sm lg:text-xs 2xl:text-sm font-medium leading-25px lg:leading-21px 2xl:leading-25px text-contentColor dark:text-contentColor-dark">
+                                                                        <?= htmlspecialchars($key) ?>
+                                                                    </p>
+                                                                </li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
 
+                                                    </div>
 
+                                                <?php endforeach; ?>
 
-
-
-
+                                            <?php endif; ?>
 
                                         </div>
+
 
 
                                         <!-- Faqus Questions -->
@@ -405,7 +429,8 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                                                         class="icofont-instagram"></i></a>
                                                             </li>
                                                             <li>
-                                                                <a href="course-details.html#" class="w-35px h-35px leading-35px text-center border border-borderColor2 
+                                                                <a href="course-details.html#"
+                                                                    class="w-35px h-35px leading-35px text-center border border-borderColor2 
                                                                     text-contentColor hover:text-whiteColor hover:bg-primaryColor 
                                                                     dark:text-contentColor-dark dark:hover:text-whiteColor 
                                                                     dark:hover:bg-primaryColor dark:border-borderColor2-dark rounded">
@@ -574,17 +599,7 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             <?php echo $row->course_mode; ?>
                                         </p>
                                     </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Skill Level
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Premium
-                                        </p>
-                                    </li>
+
 
                                     <li
                                         class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
@@ -597,73 +612,34 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                             <?php echo $row->course_language; ?>
                                         </p>
                                     </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Assignment
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Yes
-                                        </p>
-                                    </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Materials
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            yes
-                                        </p>
-                                    </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Test
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Yes
-                                        </p>
-                                    </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Quiz
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Yes
-                                        </p>
-                                    </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8 capitalize">
-                                            Identity Card
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Yes
-                                        </p>
-                                    </li>
-                                    <li
-                                        class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
-                                        <p
-                                            class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
-                                            Certificate
-                                        </p>
-                                        <p
-                                            class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
-                                            Yes
-                                        </p>
-                                    </li>
+
+                                    <?php
+                                    if ($courseFeatures->num_rows() > 0) {
+                                        foreach ($courseFeatures->result() as $feature) {
+                                            ?>
+                                            <li
+                                                class="flex items-center justify-between py-10px border-b border-borderColor dark:border-borderColor-dark">
+                                                <p
+                                                    class="text-sm font-medium text-contentColor dark:text-contentColor-dark leading-1.8">
+                                                    <?= htmlspecialchars($feature->feature_heading) ?>
+                                                </p>
+                                                <p
+                                                    class="text-xs text-contentColor dark:text-contentColor-dark px-10px py-6px bg-borderColor dark:bg-borderColor-dark rounded-full leading-13px capitalize">
+                                                    <?= htmlspecialchars($feature->feature_value) ?>
+                                                </p>
+                                            </li>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo '<p class="text-center text-gray-500">No features available for this course.</p>';
+                                    }
+                                    ?>
+
+
+
+
                                 </ul>
+
                                 <div class="mt-5" data-aos="fade-up">
                                     <p
                                         class="text-sm text-contentColor dark:text-contentColor-dark leading-1.8 text-center mb-5px">
@@ -686,33 +662,66 @@ $this->load->view('master_contents/uiPages_content/uiHeader');
                                 </h4>
                                 <div>
                                     <ul class="flex gap-4 items-center">
-                                        <li>
-                                            <a href="course-details.html#"
-                                                class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
-                                                    class="icofont-facebook"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="course-details.html#"
-                                                class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
-                                                    class="icofont-youtube-play"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="course-details.html#"
-                                                class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
-                                                    class="icofont-instagram"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="course-details.html#"
-                                                class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
-                                                    class="icofont-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="course-details.html#"
-                                                class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded"><i
-                                                    class="icofont-instagram"></i></a>
-                                        </li>
+
+                                        <?php if ($adminDirectory->num_rows() > 0): ?>
+                                            <?php foreach ($adminDirectory->result() as $admin): ?>
+
+                                                <!-- Facebook -->
+                                                <?php if (!empty($admin->facebook_url)): ?>
+                                                    <li>
+                                                        <a href="<?= htmlspecialchars($admin->facebook_url) ?>" target="_blank"
+                                                            class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded">
+                                                            <i class="icofont-facebook"></i>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <!-- YouTube -->
+                                                <?php if (!empty($admin->youtube_url)): ?>
+                                                    <li>
+                                                        <a href="<?= htmlspecialchars($admin->youtube_url) ?>" target="_blank"
+                                                            class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded">
+                                                            <i class="icofont-youtube-play"></i>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <!-- Instagram -->
+                                                <?php if (!empty($admin->instagram_url)): ?>
+                                                    <li>
+                                                        <a href="<?= htmlspecialchars($admin->instagram_url) ?>" target="_blank"
+                                                            class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded">
+                                                            <i class="icofont-instagram"></i>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <!-- Twitter -->
+                                                <?php if (!empty($admin->twitter_url)): ?>
+                                                    <li>
+                                                        <a href="<?= htmlspecialchars($admin->twitter_url) ?>" target="_blank"
+                                                            class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded">
+                                                            <i class="icofont-twitter"></i>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <!-- Website -->
+                                                <?php if (!empty($admin->admin_website_url)): ?>
+                                                    <li>
+                                                        <a href="<?= htmlspecialchars($admin->admin_website_url) ?>" target="_blank"
+                                                            class="w-38px h-38px leading-38px text-center text-blackColor2 bg-whitegrey2 hover:text-whiteColor hover:bg-primaryColor dark:bg-whitegrey2-dark dark:text-blackColor2-dark dark:hover:text-whiteColor dark:hover:bg-primaryColor rounded">
+                                                            <i class="icofont-web"></i>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+
                                     </ul>
                                 </div>
+
                             </div>
 
 
