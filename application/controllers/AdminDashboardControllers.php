@@ -1,22 +1,16 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-defined('BASEPATH') or exit('no direct script access allowed');
-
-/**
- * 
- */
 class AdminDashboardControllers extends CI_Controller
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
-        $this->load->database();   // REQUIRED
+        $this->load->database();
     }
-
 
     public function loaDadmin_coursedetails()
     {
-        // URL se course_unique_id pick karo
         $course_uid = $this->input->get('course_uid');  // ?course_uid=ZIVJJC
 
         if (!$course_uid) {
@@ -24,30 +18,29 @@ class AdminDashboardControllers extends CI_Controller
             return;
         }
 
-        // Course Features fetch 
+        // Fetch course related tables
         $courseFeatures = $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
-
-        // Course Headings fetch 
         $courseHeading = $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
+        $courseTopics  = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+        $courseFaqs    = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
 
-        // Course Topics fetch
-        $courseTopics = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+        // Fetch all instructors for the "Choose Teachers" dropdown
+        $allTeachers = $this->db->order_by('instructor_name', 'ASC')->get('instructor_directory')->result();
 
-        // Course Faqs fetch
-        $courseFaqs = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
-
-        // Data view ko bhejo
+        // Prepare data array for view
         $data = [
             'course_unique_id' => $course_uid,
-            'heading' => $courseHeading,
-            'topics' => $courseTopics,
-            'faqs' => $courseFaqs,
-            'features' => $courseFeatures
+            'features'         => $courseFeatures,
+            'heading'          => $courseHeading,
+            'topics'           => $courseTopics,
+            'faqs'             => $courseFaqs,
+            'allTeachers'      => $allTeachers
         ];
 
-        // View load
+        // Load view
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
+
 
 
 
@@ -57,10 +50,6 @@ class AdminDashboardControllers extends CI_Controller
         $this->load->model('Admin_Model');
         $this->Admin_Model->insertDetailsData();
     }
-
-
-
-
 
 
     //// dAdmin Dashboard  pages loading here////

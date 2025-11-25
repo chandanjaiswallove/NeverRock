@@ -38,7 +38,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                         <div class="transition-all duration-300" data-aos="fade-up">
 
                             <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
-                            <!-- CourseDetails coursedetials start here #212529 Second Description Tab Content -->
 
                             <!-- Curriculum Accordion -->
                             <form action="<?php echo base_url('verifyCourseData'); ?>" method="POST"
@@ -67,54 +66,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
 
                                     <div class="hidden px-6 pb-6">
-
-
-                                        <!-- <div
-                                         
-                                            class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
-
-                                            <div id="subjectsWrapper" class="space-y-3">
-                                                <label class="mb-3 block font-semibold">Subject Name</label>
-                                                <div class="flex gap-2 items-center">
-                                                    <input type="text" name="subjectNameC[]"
-                                                        placeholder="Enter subject name"
-                                                        class="w-full py-10px px-5 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                                                        required>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-15px">
-                                                <button type="button" onclick="addNewSubject()"
-                                                    class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
-                                                    Add New Subject
-                                                </button>
-                                            </div>
-                                        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                         <div
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                            <!-- ADD SUBJECT BUTTON -->
                                             <button type="button" onclick="openAddSubjectPopup()"
                                                 class="bg-primaryColor text-white py-2 px-4 rounded-md hover:bg-primaryColor-dark transition mb-4">
                                                 + Add New Subject
@@ -235,192 +189,233 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         </div>
 
-                                        <script>
-                                            let subjects = [];
-                                            let assignments = {};
-                                            let tempTeachers = [];
-                                            let removeSubjectName = "";
-                                            const allTeachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D"];
+                              <script>
+    let subjects = [];
+    let assignments = {};
+    let tempTeachers = [];
+    let removeSubjectName = "";
 
-                                            /* POPUPS */
-                                            function openAddSubjectPopup() { document.getElementById("addSubjectPopup").classList.remove("hidden"); }
-                                            function closeAddSubjectPopup() { document.getElementById("addSubjectPopup").classList.add("hidden"); }
-
-                                            function openTeacherPopup() {
-                                                tempTeachers = [];
-                                                const list = document.getElementById("teacherCheckboxList");
-                                                list.innerHTML = "";
-                                                allTeachers.forEach(t => list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="teacherCheck mr-2" value="${t}"> ${t}</label>`);
-                                                document.getElementById("teacherPopup").classList.remove("hidden");
-                                            }
-                                            function closeTeacherPopup() { document.getElementById("teacherPopup").classList.add("hidden"); }
-
-                                            function openRemoveTeacherPopup(subject) {
-                                                removeSubjectName = subject;
-                                                const list = document.getElementById("removeTeacherList");
-                                                list.innerHTML = "";
-                                                assignments[subject].forEach(t => list.innerHTML += `<label class="block mb-2"><input type="checkbox" class="removeCheck mr-2" value="${t}"> ${t}</label>`);
-                                                document.getElementById("removeTeacherPopup").classList.remove("hidden");
-                                            }
-                                            function closeRemoveTeacherPopup() { document.getElementById("removeTeacherPopup").classList.add("hidden"); }
-
-                                            /* ADD SUBJECT */
-                                            function saveNewSubject() {
-                                                let name = document.getElementById("newSubjectInput").value.trim();
-                                                if (!name) { Swal.fire("Error", "Please enter subject name", "error"); return; }
-                                                if (subjects.includes(name)) { Swal.fire("Warning", "Subject already exists!", "warning"); return; }
-                                                subjects.push(name);
-                                                assignments[name] = [];
-                                                updateDropdown();
-                                                updateLists();
-                                                document.getElementById("newSubjectInput").value = "";
-                                                closeAddSubjectPopup();
-                                            }
-
-                                            /* ASSIGN TEACHERS */
-                                            function assignSelectedTeachersPopup() {
-                                                tempTeachers = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
-                                                if (tempTeachers.length === 0) { Swal.fire("Warning", "Please select at least one teacher", "warning"); return; }
-                                                finalAssign();
-                                                closeTeacherPopup();
-                                            }
-                                            function finalAssign() {
-                                                const subject = document.getElementById("subjectSelect").value;
-                                                if (!subject) { Swal.fire("Warning", "Please choose a subject first", "warning"); return; }
-                                                tempTeachers.forEach(t => { if (!assignments[subject].includes(t)) assignments[subject].push(t); });
-                                                tempTeachers = [];
-                                                document.getElementById("subjectSelect").value = "";
-                                                updateLists();
-                                            }
-
-                                            /* REMOVE TEACHER */
-                                            function confirmRemoveTeacher() {
-                                                const selected = [...document.querySelectorAll(".removeCheck:checked")].map(i => i.value);
-                                                assignments[removeSubjectName] = assignments[removeSubjectName].filter(t => !selected.includes(t));
-                                                closeRemoveTeacherPopup();
-                                                updateLists();
-                                            }
-
-                                            /* DELETE SUBJECT */
-                                            function deleteSubject(sub) {
-                                                Swal.fire({
-                                                    title: "Delete?",
-                                                    text: "Subject will be removed permanently",
-                                                    icon: "warning",
-                                                    showCancelButton: true,
-                                                    confirmButtonText: "Yes, delete",
-                                                    cancelButtonText: "Cancel",
-                                                    customClass: {
-                                                        confirmButton: "bg-primaryColor text-white px-4 py-2 rounded-md hover:bg-primaryColor-dark transition mr-2", // add margin-right for gap
-                                                        cancelButton: "bg-secondaryColor text-white px-4 py-2 rounded-md hover:bg-whiteColor dark:hover:bg-whiteColor-dark transition"
-                                                    },
-                                                    buttonsStyling: false // important to apply Tailwind classes
-                                                }).then(res => {
-                                                    if (res.isConfirmed) {
-                                                        subjects = subjects.filter(s => s !== sub);
-                                                        delete assignments[sub];
-                                                        updateDropdown();
-                                                        updateLists();
-                                                    }
-                                                });
-                                            }
+    /* 🔥 DATABASE SE AAYE TEACHERS */
+    const allTeachers = <?php echo json_encode(array_column($allTeachers, 'instructor_name')); ?>;
 
 
-                                            /* UPDATE UI */
-                                            function updateDropdown() {
-                                                const dd = document.getElementById("subjectSelect");
-                                                dd.innerHTML = `<option value="">Choose Subject</option>`;
-                                                subjects.forEach(s => dd.innerHTML += `<option>${s}</option>`);
-                                            }
-                                            function updateLists() {
-                                                const assigned = document.getElementById("assignedList");
-                                                const unassigned = document.getElementById("unassignedList");
-                                                assigned.innerHTML = ""; unassigned.innerHTML = "";
-                                                subjects.forEach(s => {
-                                                    const teachers = assignments[s];
-                                                    if (teachers.length > 0) {
-                                                        assigned.innerHTML += `
-<div class="w-full py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col md:flex-row md:items-start justify-between gap-2">
-    <!-- Left side: Subject + Teachers -->
+
+    /* POPUPS */
+    function openAddSubjectPopup() { 
+        document.getElementById("addSubjectPopup").classList.remove("hidden"); 
+    }
+    function closeAddSubjectPopup() { 
+        document.getElementById("addSubjectPopup").classList.add("hidden"); 
+    }
+
+    function openTeacherPopup() {
+        tempTeachers = [];
+        const list = document.getElementById("teacherCheckboxList");
+        list.innerHTML = "";
+
+        /* 🔥 TEACHERS LIST Database se fill hogi */
+        allTeachers.forEach(t => 
+            list.innerHTML += `
+                <label class="block mb-2">
+                    <input type="checkbox" class="teacherCheck mr-2" value="${t}"> ${t}
+                </label>
+            `
+        );
+
+        document.getElementById("teacherPopup").classList.remove("hidden");
+    }
+
+    function closeTeacherPopup() { 
+        document.getElementById("teacherPopup").classList.add("hidden"); 
+    }
+
+
+
+    /* REMOVE TEACHER POPUP */
+    function openRemoveTeacherPopup(subject) {
+        removeSubjectName = subject;
+        const list = document.getElementById("removeTeacherList");
+        list.innerHTML = "";
+
+        assignments[subject].forEach(t =>
+            list.innerHTML += `
+                <label class="block mb-2">
+                    <input type="checkbox" class="removeCheck mr-2" value="${t}"> ${t}
+                </label>`
+        );
+
+        document.getElementById("removeTeacherPopup").classList.remove("hidden");
+    }
+    function closeRemoveTeacherPopup() { 
+        document.getElementById("removeTeacherPopup").classList.add("hidden"); 
+    }
+
+
+
+    /* ADD SUBJECT */
+    function saveNewSubject() {
+        let name = document.getElementById("newSubjectInput").value.trim();
+
+        if (!name) { Swal.fire("Error", "Please enter subject name", "error"); return; }
+        if (subjects.includes(name)) { Swal.fire("Warning", "Subject already exists!", "warning"); return; }
+
+        subjects.push(name);
+        assignments[name] = [];
+
+        updateDropdown();
+        updateLists();
+
+        document.getElementById("newSubjectInput").value = "";
+        closeAddSubjectPopup();
+    }
+
+
+
+    /* ASSIGN TEACHERS */
+    function assignSelectedTeachersPopup() {
+        tempTeachers = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
+
+        if (tempTeachers.length === 0) { 
+            Swal.fire("Warning", "Please select at least one teacher", "warning"); 
+            return; 
+        }
+
+        finalAssign();
+        closeTeacherPopup();
+    }
+
+    function finalAssign() {
+        const subject = document.getElementById("subjectSelect").value;
+
+        if (!subject) { 
+            Swal.fire("Warning", "Please choose a subject first", "warning"); 
+            return; 
+        }
+
+        tempTeachers.forEach(t => {
+            if (!assignments[subject].includes(t)) 
+                assignments[subject].push(t);
+        });
+
+        tempTeachers = [];
+        document.getElementById("subjectSelect").value = "";
+
+        updateLists();
+    }
+
+
+
+    /* REMOVE TEACHER */
+    function confirmRemoveTeacher() {
+        const selected = [...document.querySelectorAll(".removeCheck:checked")].map(i => i.value);
+
+        assignments[removeSubjectName] = assignments[removeSubjectName]
+            .filter(t => !selected.includes(t));
+
+        closeRemoveTeacherPopup();
+        updateLists();
+    }
+
+
+
+    /* DELETE SUBJECT */
+    function deleteSubject(sub) {
+        Swal.fire({
+            title: "Delete?",
+            text: "Subject will be removed permanently",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
+            customClass: {
+                confirmButton: "bg-primaryColor text-white px-4 py-2 rounded-md hover:bg-primaryColor-dark transition mr-2",
+                cancelButton: "bg-secondaryColor text-white px-4 py-2 rounded-md hover:bg-whiteColor dark:hover:bg-whiteColor-dark transition"
+            },
+            buttonsStyling: false
+        }).then(res => {
+            if (res.isConfirmed) {
+                subjects = subjects.filter(s => s !== sub);
+                delete assignments[sub];
+                updateDropdown();
+                updateLists();
+            }
+        });
+    }
+
+
+
+    /* UPDATE UI */
+    function updateDropdown() {
+        const dd = document.getElementById("subjectSelect");
+        dd.innerHTML = `<option value="">Choose Subject</option>`;
+        subjects.forEach(s => dd.innerHTML += `<option>${s}</option>`);
+    }
+
+    function updateLists() {
+        const assigned = document.getElementById("assignedList");
+        const unassigned = document.getElementById("unassignedList");
+
+        assigned.innerHTML = "";
+        unassigned.innerHTML = "";
+
+        subjects.forEach(s => {
+            const teachers = assignments[s];
+
+            if (teachers.length > 0) {
+
+                assigned.innerHTML += `
+<div class="w-full py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col md:flex-row justify-between gap-2">
+
     <div class="flex-1">
-        <!-- Subject Name -->
-        <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2">
-            ${s}
-        </div>
-        <!-- Teacher List (wrap if too many) -->
+        <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2">${s}</div>
+
         <div class="flex flex-wrap gap-1 mt-4">
             ${teachers.map(t => `<span class='inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm'>${t}</span>`).join("")}
         </div>
     </div>
-    <!-- Right side: Buttons -->
+
     <div class="flex flex-col sm:flex-row gap-2 mt-2 md:mt-0">
-        <!-- Remove Teacher Button with bg-skycolor -->
-        <button type="button" 
-                class="flex items-center gap-1 text-sm font-bold text-whiteColor bg-skycolor hover:bg-skycolor-dark border border-skycolor h-30px px-14px justify-center rounded-md w-full sm:w-auto"
-                onclick="openRemoveTeacherPopup('${s}')">
+
+        <button type="button" class="flex items-center gap-1 text-sm font-bold text-whiteColor bg-skycolor hover:bg-skycolor-dark border border-skycolor h-30px px-14px justify-center rounded-md" 
+            onclick="openRemoveTeacherPopup('${s}')">
             Remove Teacher
         </button>
-        <!-- Delete Button (unchanged) -->
-        <button type="button" 
-                class="flex items-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-14px justify-center rounded-md w-full sm:w-auto"
-                onclick="deleteSubject('${s}')">
+
+        <button type="button" class="flex items-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-14px justify-center rounded-md" 
+            onclick="deleteSubject('${s}')">
             Delete
         </button>
+
     </div>
 </div>
+                `;
 
+            } else {
 
-            `;
-                                                    } else {
-                                                        unassigned.innerHTML += `
-<div class="w-full mb-2 py-10px px-5 text-sm focus:outline-none bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                unassigned.innerHTML += `
+<div class="w-full mb-2 py-10px px-5 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md flex flex-col sm:flex-row justify-between">
 
-    <!-- Left side: Subject Name -->
-    <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2 sm:mb-0">
-        ${s}
-    </div>
+    <div class="text-contentColor dark:text-contentColor-dark font-bold mb-2 sm:mb-0">${s}</div>
 
-    <!-- Right side: Not Assigned badge + Delete button -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-        <!-- Not Assigned Badge -->
-        <span class="inline-block h-30px px-7px bg-skycolor leading-30px font-bold text-whiteColor rounded-md text-center">
-            Not Assigned
-        </span>
+        <span class="inline-block h-30px px-7px bg-skycolor leading-30px font-bold text-whiteColor rounded-md text-center">Not Assigned</span>
 
-        <!-- Delete Button (same height as badge) -->
-        <button type="button" 
-                class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-7px leading-30px rounded-md" onclick="deleteSubject('${s}') ">
+        <button type="button" class="flex items-center justify-center gap-1 text-sm font-bold text-whiteColor hover:text-secondaryColor bg-secondaryColor hover:bg-whiteColor dark:hover:bg-whiteColor-dark border border-secondaryColor h-30px px-7px leading-30px rounded-md" 
+            onclick="deleteSubject('${s}')">
             Delete
         </button>
     </div>
 
 </div>
-
-
-
-
-            `;
-                                                    }
-                                                });
-                                            }
-                                        </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                `;
+            }
+        });
+    }
+</script>
 
 
                                     </div>
+                                    
                                 </div>
                                 <!-- Description Accordion -->
                                 <!-- Description Accordion -->
@@ -545,124 +540,78 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             class="p-10px md:p-10 lg:p-5 2xl:p-10 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
                                             <!-- FAQ Section -->
-                                    <div id="faqWrapper" class="space-y-4">
-    <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
-        Frequently Asked Questions
-    </h3>
+                                            <div id="faqWrapper" class="space-y-4">
+                                                <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor">
+                                                    Frequently Asked Questions
+                                                </h3>
 
-    <?php if (!empty($faqs)): ?>
-        <?php foreach ($faqs as $index => $faq): ?>
-            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                <?php if (!empty($faqs)): ?>
+                                                    <?php foreach ($faqs as $index => $faq): ?>
+                                                        <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
 
-                <!-- Question -->
-                <div class="mb-3">
-                    <label class="block font-semibold">Question</label>
-                    <input type="text" 
-                        name="faqQuestion[]"
-                        value="<?= $faq->faq_Question ?>"
-                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                                            <!-- Question -->
+                                                            <div class="mb-3">
+                                                                <label class="block font-semibold">Question</label>
+                                                                <input type="text" name="faqQuestion[]"
+                                                                    value="<?= $faq->faq_Question ?>" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor 
                                dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 
                                leading-23px rounded-md font-no">
-                    <input type="hidden" name="faqId[]" value="<?= $faq->id ?>">
-                </div>
+                                                                <input type="hidden" name="faqId[]" value="<?= $faq->id ?>">
+                                                            </div>
 
-                <!-- Answer -->
-                <div class="mb-3">
-                    <label class="block font-semibold">Answer</label>
-                    <textarea name="faqAnswer[]"
-                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
+                                                            <!-- Answer -->
+                                                            <div class="mb-3">
+                                                                <label class="block font-semibold">Answer</label>
+                                                                <textarea name="faqAnswer[]" class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark 
                                bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor 
                                dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 
                                leading-23px rounded-md font-no"
-                        style="min-height: 100px; max-height:150px;"><?= $faq->faq_Answer ?></textarea>
-                </div>
+                                                                    style="min-height: 100px; max-height:150px;"><?= $faq->faq_Answer ?></textarea>
+                                                            </div>
 
-                <div class="text-right">
-                    <button type="button"
-                        class="text-red-500 text-sm font-semibold"
-                        onclick="this.closest('.group').remove()">
-                        Remove
-                    </button>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
+                                                            <div class="text-right">
+                                                                <button type="button" class="text-red-500 text-sm font-semibold"
+                                                                    onclick="this.closest('.group').remove()">
+                                                                    Remove
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
 
-        <!-- If no FAQ in DB then show one empty block -->
-        <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
-            <div class="mb-3">
-                <label class="block font-semibold">Question</label>
-                <input type="text" name="faqQuestion[]" class="w-full py-2 px-3 text-sm border rounded-md">
-            </div>
-            <div class="mb-3">
-                <label class="block font-semibold">Answer</label>
-                <textarea name="faqAnswer[]" class="w-full py-2 px-3 text-sm border rounded-md" 
-                          style="min-height:100px"></textarea>
-            </div>
-        </div>
+                                                    <!-- If no FAQ in DB then show one empty block -->
+                                                    <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                        <div class="mb-3">
+                                                            <label class="block font-semibold">Question</label>
+                                                            <input type="text" name="faqQuestion[]"
+                                                                class="w-full py-2 px-3 text-sm border rounded-md">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="block font-semibold">Answer</label>
+                                                            <textarea name="faqAnswer[]"
+                                                                class="w-full py-2 px-3 text-sm border rounded-md"
+                                                                style="min-height:100px"></textarea>
+                                                        </div>
+                                                    </div>
 
-    <?php endif; ?>
+                                                <?php endif; ?>
 
-    <!-- Dynamic Add More FAQs -->
-    <div id="dynamicFAQs" class="space-y-4"></div>
+                                                <!-- Dynamic Add More FAQs -->
+                                                <div id="dynamicFAQs" class="space-y-4"></div>
 
-    <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
-        <button type="button" onclick="addNewFAQ()"
-            class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
-            + Add More
-        </button>
-    </div>
-</div>
+                                                <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
+                                                    <button type="button" onclick="addNewFAQ()"
+                                                        class="px-5 py-2 bg-primaryColor text-whiteColor rounded hover:bg-primaryColor-dark">
+                                                        + Add More
+                                                    </button>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
 
-
-                                <!-- Instructor  -->
-                                <!-- Instructor  -->
-                                <!-- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
-                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                        <span class="text-blackColor dark:text-whiteColor">Instructors</span>
-                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
-                                            <path fill-rule="evenodd"
-                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                                            </path>
-                                        </svg>
-                                    </div>
-
-                                    <div class="hidden px-6 pb-6">
-                                        <div
-                                            class="p-4 md:p-5 lg:p-6 2xl:p-8 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-4">
-                                            <h3 class="text-lg font-semibold text-blackColor dark:text-whiteColor mb-4">
-                                                Select Instructors for this Course
-                                            </h3>
-                                            <div class="relative mb-4">
-                                                <div class="relative mb-4">
-                                                    <select id="instructorDropdown" name="listedInstructor[]" multiple
-                                                        class="w-full py-3 px-4 text-sm text-blackColor dark:text-whiteColor bg-whiteColor dark:bg-whiteColor-dark dark:bg-gray-700 border border-borderColor dark:border-borderColor-dark rounded-md focus:outline-none h-12">
-                                                        <option value="1">Rosalina D. Willaim</option>
-                                                        <option value="2">John Doe</option>
-                                                        <option value="3">Mary Smith</option>
-                                                        <option value="4">James Bond</option>
-                                                        <option value="5">Anna Johnson</option>
-                                                        <option value="6">Robert Brown</option>
-                                                        <option value="7">Lucy Liu</option>
-                                                        <option value="8">David Miller</option>
-                                                        <option value="9">Sophia Lee</option>
-                                                        <option value="10">Michael Scott</option>
-                                                        <option value="11">Emma Watson</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div id="selectedInstructors" class="space-y-3"></div>
-                                        </div>
-                                    </div>
-
-                                </div> -->
 
 
                                 <!-- Feautes  -->
@@ -722,6 +671,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -733,43 +683,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-    <!-- Instructor Add More Instrucotr script -->
-    <script>
-        const dropdown = document.getElementById("instructorDropdown");
-        const selectedDiv = document.getElementById("selectedInstructors");
 
-        let selectedInstructors = [];
-
-        dropdown.addEventListener("change", () => {
-            Array.from(dropdown.selectedOptions).forEach(option => {
-                if (!selectedInstructors.find(i => i.id === option.value)) {
-                    selectedInstructors.push({ id: option.value, name: option.text });
-                }
-            });
-            renderSelected();
-        });
-
-        function renderSelected() {
-            selectedDiv.innerHTML = "";
-            selectedInstructors.forEach(instr => {
-                const div = document.createElement("div");
-                div.className = "flex justify-between items-center py-3 px-4 border border-borderColor dark:border-borderColor-dark rounded-md bg-gray-100 dark:bg-gray-800";
-                div.style.marginBottom = "10px"; // gap between blocks
-                div.innerHTML = `
-                                        <span class="text-contentColor dark:text-contentColor-dark">${instr.name}</span>
-                                                <button type="button" class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor font-semibold" onclick="removeInstructor('${instr.id}')">Remove</button>
-                                                `;
-                selectedDiv.appendChild(div);
-            });
-        }
-
-        function removeInstructor(id) {
-            selectedInstructors = selectedInstructors.filter(i => i.id !== id);
-            const option = Array.from(dropdown.options).find(opt => opt.value === id);
-            if (option) option.selected = false;
-            renderSelected();
-        }
-    </script>
 
 
     <!-- Add Feautes Script add more feautres -->
