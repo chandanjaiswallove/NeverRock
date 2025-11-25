@@ -104,18 +104,6 @@ class Admin_Model extends CI_Model
                 }
             }
 
-            // ============================================
-            // 7️⃣ Insert into course_instructors
-            // ============================================
-            foreach ($this->input->post('listedInstructor') as $instructor) {
-                if (trim($instructor) != '') {
-                    $this->db->insert('course_instructors', [
-                        'course_unique_id' => $course_id,
-                        'instructorList' => trim($instructor),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
 
             // ============================================
             // 8️⃣ SweetAlert Success Message
