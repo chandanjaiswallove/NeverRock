@@ -1,54 +1,54 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class AdminDashboardControllers extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Admin_Model', 'admin'); // Load model
+        $this->load->database();
     }
 
+    // Load UI and fetch features
     public function loaDadmin_coursedetails()
     {
-        $course_uid = $this->input->get('course_uid');  // ?course_uid=ZIVJJC
+        $course_uid = $this->input->get('course_uid'); // ?course_uid=ZIVJJC
 
         if (!$course_uid) {
             echo "Invalid Course UID!";
             return;
         }
 
-        // Fetch course related tables
-        $courseFeatures = $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
-        $courseHeading = $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
-        $courseTopics  = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
-        $courseFaqs    = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
-
-        // Fetch all instructors for the "Choose Teachers" dropdown
-        $allTeachers = $this->db->order_by('instructor_name', 'ASC')->get('instructor_directory')->result();
-
-        // Prepare data array for view
-        $data = [
-            'course_unique_id' => $course_uid,
-            'features'         => $courseFeatures,
-            'heading'          => $courseHeading,
-            'topics'           => $courseTopics,
-            'faqs'             => $courseFaqs,
-            'allTeachers'      => $allTeachers
-        ];
+        // Fetch features from model
+        $data['course_unique_id'] = $course_uid;
+        $data['features'] = $this->admin->getCourseFeatures($course_uid);
 
         // Load view
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
 
-
-
-
-
-    public function modeLDetailData()  /// Create course details data  
+    // Handle form submit: insert, update, delete
+    public function verifyCourseData()
     {
-        $this->load->model('Admin_Model');
-        $this->Admin_Model->insertDetailsData();
+        $course_uid = $this->input->post('course_unique_id');
+        $ids = $this->input->post('feature_id') ?? [];
+        $headings = $this->input->post('featureHeading') ?? [];
+        $values = $this->input->post('featureKey') ?? [];
+        $delete_ids = $this->input->post('delete_ids') ?? [];
+
+        $this->admin->saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids);
     }
+
+
+
+
+
+
+
+
+
+
 
 
     //// dAdmin Dashboard  pages loading here////

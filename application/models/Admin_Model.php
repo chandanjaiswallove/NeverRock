@@ -8,118 +8,72 @@ class Admin_Model extends CI_Model
         parent::__construct();
     }
 
-
-
-
-    // ============================================================
-    // ✅ CourseDetails All Sections Here
-    // ============================================================
-
-    public function insertDetailsData()
+    // Fetch all features for a course
+    public function getCourseFeatures($course_uid)
     {
-        if (isset($_POST['registerCourse'])) {
+        return $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
+    }
 
-            // ============================================
-            // 1️⃣ Course Directory ka ID uthao (NO NEW ID)
-            // ============================================
-            $course_id = $this->input->post('course_unique_id', true);
-            $date = date('Y-m-d H:i:s');
+    // Insert new feature
+    public function insertFeature($data)
+    {
+        return $this->db->insert('course_features', $data);
+    }
 
-            // ============================================
-            // 2️⃣ Insert into course_subjects
-            // ============================================
-            foreach ($this->input->post('subjectNameC') as $subject) {
-                if (trim($subject) != '') {
-                    $this->db->insert('course_subjects', [
-                        'course_unique_id' => $course_id,
-                        'subject_name' => trim($subject),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
+    // Update existing feature
+    public function updateFeature($id, $data)
+    {
+        return $this->db->where('id', $id)->update('course_features', $data);
+    }
 
-            // ============================================
-            // 3️⃣ Insert into course_headings
-            // ============================================
-            $headings = $this->input->post('dimpHeading');
-            $descs = $this->input->post('dimpDescription');
-            foreach ($headings as $i => $heading) {
-                if (trim($heading) != '' || trim($descs[$i]) != '') {
-                    $this->db->insert('course_headings', [
-                        'course_unique_id' => $course_id,
-                        'dimpHeading' => trim($heading),
-                        'dimpDescription' => trim($descs[$i]),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
+    // Delete feature
+    public function deleteFeature($id)
+    {
+        return $this->db->delete('course_features', ['id' => $id]);
+    }
 
-            // ============================================
-            // 4️⃣ Insert into course_topics
-            // ============================================
-            $topic = trim($this->input->post('importantTopic', true));
-            $keys = $this->input->post('importantKey');
-            foreach ($keys as $key) {
-                if (trim($key) != '') {
-                    $this->db->insert('course_topics', [
-                        'course_unique_id' => $course_id,
-                        'importantTopic' => $topic,
-                        'importantKey' => trim($key),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
-
-            
-
-            // ============================================
-            // 5️⃣ Insert into course_faqs
-            // ============================================
-            $questions = $this->input->post('faqQuestion');
-            $answers = $this->input->post('faqAnswer');
-            foreach ($questions as $i => $q) {
-                if (trim($q) != '' || trim($answers[$i]) != '') {
-                    $this->db->insert('course_faqs', [
-                        'course_unique_id' => $course_id,
-                        'faq_Question' => trim($q),
-                        'faq_Answer' => trim($answers[$i]),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
-
-            // ============================================
-            // 6️⃣ Insert into course_features
-            // ============================================
-            $featureHeadings = $this->input->post('featureHeading');
-            $featureKeys = $this->input->post('featureKey');
-            foreach ($featureHeadings as $i => $fh) {
-                if (trim($fh) != '' || trim($featureKeys[$i]) != '') {
-                    $this->db->insert('course_features', [
-                        'course_unique_id' => $course_id,
-                        'feature_heading' => trim($fh),
-                        'feature_value' => trim($featureKeys[$i]),
-                        'registration_date' => $date
-                    ]);
-                }
-            }
-
-
-            // ============================================
-            // 8️⃣ SweetAlert Success Message
-            // ============================================
-            $this->sweetAlert(
-                "Success!",
-                "Course details inserted successfully!",
-                "success",
-                base_url('admin_course')
-            );
+    // Save all features (insert + update + delete)
+  public function saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids = [])
+{
+    // DELETE
+    if(!empty($delete_ids)){
+        foreach($delete_ids as $del){
+            $this->deleteFeature($del);
         }
     }
 
+    // INSERT + UPDATE
+    for($i = 0; $i < count($headings); $i++){
+        if(empty($headings[$i]) && empty($values[$i])) continue;
+
+        if($ids[$i] == 0){
+            $this->insertFeature([
+                'course_unique_id' => $course_uid,
+                'feature_heading' => $headings[$i],
+                'feature_value' => $values[$i]
+            ]);
+        } else {
+            $this->updateFeature($ids[$i], [
+                'feature_heading' => $headings[$i],
+                'feature_value' => $values[$i]
+            ]);
+        }
+    }
+
+    // **Hamesha alert dikhaye, chahe arrays empty ho**
+    $this->sweetAlert(
+        "Success!",
+        "Features updated successfully!",
+        "success",
+        base_url('admin_coursedetails?course_uid=' . $course_uid)
+    );
+}
 
 
 
+
+       
+   
 
 
 

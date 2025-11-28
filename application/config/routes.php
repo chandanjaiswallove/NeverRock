@@ -71,7 +71,15 @@ $route['updateCourse'] = 'AdminDashboardControllers/loaDupdateCourse'; //  Cours
 $route['admin_coursework'] = 'AdminDashboardControllers/loaDadmin_coursework'; // All Course Listed Here and Add Edit $ Delte
 $route['admin_courseView'] = 'AdminDashboardControllers/loaDadmin_courseView'; // All Course Detials View Here 
 
-$route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails'; // All Course Detials form insert model
+/// Testing here to url for feth edit remove insert
+$route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails';
+$route['verifyCourseData'] = 'AdminDashboardControllers/verifyCourseData';
+
+
+// Save Course Data (Insert + Update + Delete)
+$route['save-course-details'] = 'AdminDashboardControllers/saveCourseDetails';
+
+
 $route['admin_cdetailsedit'] = 'AdminDashboardControllers/loaDadmin_cdetailsedit'; // All Course Detials form insert model
 
 $route['admin_createInstructors'] = 'AdminDashboardControllers/loaDadmin_createInstructors'; // Create instructors
@@ -90,7 +98,7 @@ $route['passwordUpdate'] = 'AdminDashboardControllers/modeLchangeProfilePassword
 $route['logoutAdmin'] = 'AdminDashboardControllers/modeLlogoutAdmin'; // Logout admin
 $route['add_instructor'] = 'AdminDashboardControllers/modeLregisterInstructor'; // Register instructor 
 $route['createCourse'] = 'AdminDashboardControllers/modeLcreateCourse'; // Create Course Bundle
-$route['verifyCourseData'] = 'AdminDashboardControllers/modeLDetailData'; // Create Course Details Data
+// $route['verifyCourseData'] = 'AdminDashboardControllers/modeLDetailData'; // Create Course Details Data
 
 
 
