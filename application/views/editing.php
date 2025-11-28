@@ -41,7 +41,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                     </div>
                     <div class="tab-contents">
-                        
+
                         <div class="transition-all duration-300" data-aos="fade-up">
 
                             <!-- Curriculum Accordion -->
@@ -53,6 +53,93 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     <?= isset($course_unique_id) ? $course_unique_id : 'Not received' ?>
                                 </p>
                                 <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+
+                                <!-- Feautes  -->
+                                <!-- Feautes  -->
+                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                        <span class="text-blackColor dark:text-whiteColor">Features</span>
+                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                            <path fill-rule="evenodd"
+                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="hidden px-6 pb-6">
+                                        <div
+                                            class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                            <!-- Fixed First Feature -->
+                                            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Feature Heading</label>
+                                                    <input type="text" name="featureHeading[]"
+                                                        placeholder="Enter feature heading"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="block font-semibold">Feature Value (Yes / No /
+                                                        Write)</label>
+                                                    <input type="text" name="featureKey[]"
+                                                        placeholder="Enter feature value"
+                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+                                                </div>
+                                            </div>
+
+                                            <!-- Dynamic Features container -->
+                                            <div id="dynamicFeatures" class="space-y-4"></div>
+                                            <!-- Add More Button -->
+                                            <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
+                                                <button type="button" onclick="addNewFeature()"
+                                                    class="px-5 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark">
+                                                    + Add More Features
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add Feautes Script add more feautres -->
+
+                                    <script>
+                                        let featureCounter = 1; // Start from 1 because first feature is fixed
+
+                                        function addNewFeature() {
+                                            const container = document.getElementById("dynamicFeatures");
+
+                                            // Create a new dynamic feature block
+                                            const group = document.createElement("div");
+                                            group.className = "group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border-t border-borderColor dark:border-borderColor-dark";
+
+                                            group.innerHTML = `
+            <div class="mb-3">
+                <label class="block font-semibold">Feature Heading</label>
+                <input type="text" name="featureHeading[]" placeholder="Enter feature heading"
+                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                    >
+            </div>
+            <div class="mb-3">
+                <label class="block font-semibold">Feature Value (Yes / No / Write)</label>
+                <input type="text" name="featureKey[]" placeholder="Enter feature value"
+                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
+                    >
+            </div>
+            <div class="text-right">
+                <button type="button" 
+                    class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor text-sm font-semibold"
+                    onclick="this.closest('.group').remove()">Remove</button>
+            </div>
+        `;
+
+                                            container.appendChild(group);
+                                            featureCounter++; // Increment counter for next dynamic feature
+                                        }
+                                    </script>
+                                </div>
+
+
 
                                 <!-- Description Accordion -->
                                 <!-- Description Accordion -->
@@ -249,53 +336,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
 
-                                <!-- Feautes  -->
-                                <!-- Feautes  -->
-                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
-                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
-                                        <span class="text-blackColor dark:text-whiteColor">Features</span>
-                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
-                                            <path fill-rule="evenodd"
-                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                                            </path>
-                                        </svg>
-                                    </div>
-
-                                    <div class="hidden px-6 pb-6">
-                                        <div
-                                            class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
-
-                                            <!-- Fixed First Feature -->
-                                            <div class="group bg-gray-100 dark:bg-gray-800 p-5 rounded-md">
-                                                <div class="mb-3">
-                                                    <label class="block font-semibold">Feature Heading</label>
-                                                    <input type="text" name="featureHeading[]"
-                                                        placeholder="Enter feature heading"
-                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="block font-semibold">Feature Value (Yes / No /
-                                                        Write)</label>
-                                                    <input type="text" name="featureKey[]"
-                                                        placeholder="Enter feature value"
-                                                        class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
-                                                </div>
-                                            </div>
-
-                                            <!-- Dynamic Features container -->
-                                            <div id="dynamicFeatures" class="space-y-4"></div>
-                                            <!-- Add More Button -->
-                                            <div class="mt-3 pl-0 md:pl-5 lg:pl-5 2xl:pl-6">
-                                                <button type="button" onclick="addNewFeature()"
-                                                    class="px-5 py-2 bg-primaryColor text-white rounded hover:bg-primaryColor-dark">
-                                                    + Add More Features
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <!-- Submit button here Save All -->
                                 <div class="mt-15px">
@@ -312,9 +352,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                         <!--  SUBJECT TEACHER ASSIGN -->
                         <div class="hidden transition-all duration-300">
-                                   <!-- Curriculum Accordion -->
-                            <form action="<?php echo base_url(''); ?>" method="POST"
-                                enctype="multipart/form-data">
+                            <!-- Curriculum Accordion -->
+                            <form action="<?php echo base_url(''); ?>" method="POST" enctype="multipart/form-data">
                                 <!-- Yaha hidden input DALO -->
                                 <p>Course Unique ID:
                                     <?= isset($course_unique_id) ? $course_unique_id : 'Not received' ?>
@@ -711,42 +750,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-    <!-- Add Feautes Script add more feautres -->
-
-    <script>
-        let featureCounter = 1; // Start from 1 because first feature is fixed
-
-        function addNewFeature() {
-            const container = document.getElementById("dynamicFeatures");
-
-            // Create a new dynamic feature block
-            const group = document.createElement("div");
-            group.className = "group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border-t border-borderColor dark:border-borderColor-dark";
-
-            group.innerHTML = `
-            <div class="mb-3">
-                <label class="block font-semibold">Feature Heading</label>
-                <input type="text" name="featureHeading[]" placeholder="Enter feature heading"
-                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    >
-            </div>
-            <div class="mb-3">
-                <label class="block font-semibold">Feature Value (Yes / No / Write)</label>
-                <input type="text" name="featureKey[]" placeholder="Enter feature value"
-                    class="w-full py-2 px-3 text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no"
-                    >
-            </div>
-            <div class="text-right">
-                <button type="button" 
-                    class="text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor text-sm font-semibold"
-                    onclick="this.closest('.group').remove()">Remove</button>
-            </div>
-        `;
-
-            container.appendChild(group);
-            featureCounter++; // Increment counter for next dynamic feature
-        }
-    </script>
 
     <!-- faq question & answer  -->
 
@@ -893,34 +896,34 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_footer');
 
 
 
-                                    public function loaDadmin_coursedetails()
-    {
-        $course_uid = $this->input->get('course_uid');  // ?course_uid=ZIVJJC
+public function loaDadmin_coursedetails()
+{
+$course_uid = $this->input->get('course_uid'); // ?course_uid=ZIVJJC
 
-        if (!$course_uid) {
-            echo "Invalid Course UID!";
-            return;
-        }
+if (!$course_uid) {
+echo "Invalid Course UID!";
+return;
+}
 
-        // Fetch course related tables
-        $courseFeatures = $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
-        $courseHeading = $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
-        $courseTopics  = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
-        $courseFaqs    = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
+// Fetch course related tables
+$courseFeatures = $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
+$courseHeading = $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
+$courseTopics = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+$courseFaqs = $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
 
-        // Fetch all instructors for the "Choose Teachers" dropdown
-        $allTeachers = $this->db->order_by('instructor_name', 'ASC')->get('instructor_directory')->result();
+// Fetch all instructors for the "Choose Teachers" dropdown
+$allTeachers = $this->db->order_by('instructor_name', 'ASC')->get('instructor_directory')->result();
 
-        // Prepare data array for view
-        $data = [
-            'course_unique_id' => $course_uid,
-            'features'         => $courseFeatures,
-            'heading'          => $courseHeading,
-            'topics'           => $courseTopics,
-            'faqs'             => $courseFaqs,
-            'allTeachers'      => $allTeachers
-        ];
+// Prepare data array for view
+$data = [
+'course_unique_id' => $course_uid,
+'features' => $courseFeatures,
+'heading' => $courseHeading,
+'topics' => $courseTopics,
+'faqs' => $courseFaqs,
+'allTeachers' => $allTeachers
+];
 
-        // Load view
-        $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
-    }
+// Load view
+$this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
+}
