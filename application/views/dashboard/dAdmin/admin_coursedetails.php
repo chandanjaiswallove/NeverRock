@@ -362,82 +362,478 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                             </div>
 
+                            <!-- HEADING & DESCRIPTION -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+
+                                <form action="<?= base_url('verifyCourseHeadings'); ?>" method="POST"
+                                    enctype="multipart/form-data">
+
+                                    <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+
+                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                        <span class="text-blackColor dark:text-whiteColor">Headings & Description</span>
+
+                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                            <path fill-rule="evenodd"
+                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="hidden px-6 pb-6">
+                                        <div
+                                            class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                            <!-- EXISTING ENTRIES -->
+                                            <?php if (!empty($headings)): ?>
+                                                <?php foreach ($headings as $h): ?>
+                                                    <div
+                                                        class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                                                        <input type="hidden" name="heading_id[]" value="<?= $h->id ?>">
+
+                                                        <div class="mb-3">
+                                                            <label class="block font-semibold">Heading</label>
+                                                            <input type="text" name="headingTitle[]"
+                                                                value="<?= $h->dimpHeading ?>"
+                                                                class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="block font-semibold">Description</label>
+                                                            <textarea name="headingDescription[]" rows="2"
+                                                                class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"><?= $h->dimpDescription ?></textarea>
+                                                        </div>
+
+                                                        <button type="button"
+                                                            class="text-red-600 font-semibold text-sm hover:text-primaryColor dark:hover:text-primaryColor"
+                                                            onclick="removeExistingHeading(this, <?= $h->id ?>)">
+                                                            Remove
+                                                        </button>
+
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+
+                                            <!-- EMPTY IF NO DATA -->
+                                            <?php if (empty($headings)): ?>
+                                                <div
+                                                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                                                    <input type="hidden" name="heading_id[]" value="0">
+
+                                                    <div class="mb-3">
+                                                        <label class="block font-semibold">Heading</label>
+                                                        <input type="text" name="headingTitle[]" placeholder="Enter heading"
+                                                            class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="block font-semibold">Description</label>
+                                                        <textarea name="headingDescription[]"
+                                                            placeholder="Enter description" rows="2"
+                                                            class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"></textarea>
+                                                    </div>
+
+                                                    <!-- NO REMOVE -->
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <!-- Dynamic container -->
+                                            <div id="dynamicHeadings" class="space-y-4"></div>
+
+                                            <div
+                                                class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
+
+                                                <button type="button" onclick="addNewHeading()"
+                                                    class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block">
+                                                    + Add More
+                                                </button>
+
+                                                <button type="submit"
+                                                    class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block">
+                                                    Save Headings
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <script>
+                                    function addNewHeading() {
+                                        const container = document.getElementById("dynamicHeadings");
+
+                                        const html = `
+            <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                <input type="hidden" name="heading_id[]" value="0">
+
+                <div class="mb-3">
+                    <label class="block font-semibold">Heading</label>
+                    <input type="text" name="headingTitle[]" placeholder="Enter heading"
+                        class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                </div>
+
+                <div class="mb-3">
+                    <label class="block font-semibold">Description</label>
+                    <textarea name="headingDescription[]" placeholder="Enter description" rows="2"
+                        class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"></textarea>
+                </div>
+
+                <button type="button"
+                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                    onclick="this.closest('.group').remove()">
+                    Remove
+                </button>
+            </div>
+        `;
+
+                                        container.insertAdjacentHTML("beforeend", html);
+                                    }
+
+                                    function removeExistingHeading(el, id) {
+                                        el.closest('.group').remove();
+
+                                        const hidden = document.createElement("input");
+                                        hidden.type = "hidden";
+                                        hidden.name = "delete_heading_ids[]";
+                                        hidden.value = id;
+
+                                        document.forms[0].appendChild(hidden);
+                                    }
+                                </script>
+
+                            </div>
+
+                            <!-- SUBJECT  -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4">
+                                <!-- FULL SUBJECT FORM -->
+                                <form action="<?= base_url('verifyCourseSubject'); ?>" method="POST"
+                                    enctype="multipart/form-data">
+                                    <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+
+                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                        <span class="text-blackColor dark:text-whiteColor">Subjects</span>
+
+                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                            <path fill-rule="evenodd"
+                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <div class="hidden px-6 pb-6">
+                                        <div
+                                            class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                            <!-- EXISTING SUBJECT IF DATABASE HAS DATA -->
+                                            <?php if (!empty($subjects)): ?>
+                                                <?php foreach ($subjects as $s): ?>
+                                                    <div
+                                                        class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                                                        <input type="hidden" name="subject_id[]" value="<?= $s->id ?>">
+
+                                                        <div class="mb-3">
+                                                            <label class="block font-semibold">Subject Name</label>
+                                                            <input type="text" name="subjectName[]" value="<?= $s->subject ?>"
+                                                                class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                        </div>
+
+                                                        <!-- REMOVE existing -->
+                                                        <button type="button"
+                                                            class="text-red-600 font-semibold text-sm hover:text-primaryColor dark:hover:text-primaryColor"
+                                                            onclick="removeExistingSubject(this, <?= $s->id ?>)">
+                                                            Remove
+                                                        </button>
+
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+
+                                            <!-- EMPTY BLOCK IF NO SUBJECT -->
+                                            <?php if (empty($subjects)): ?>
+                                                <div
+                                                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                                                    <input type="hidden" name="subject_id[]" value="0">
+
+                                                    <div class="mb-3">
+                                                        <label class="block font-semibold">Subject Name</label>
+                                                        <input type="text" name="subjectName[]"
+                                                            placeholder="Enter Subject Name"
+                                                            class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                    </div>
+
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <!-- Dynamic SUBJECT container -->
+                                            <div id="dynamicSubject" class="space-y-4"></div>
+
+                                            <!-- ADD MORE + SAVE BUTTON ROW -->
+                                            <div
+                                                class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
+
+                                                <!-- ADD MORE SUBJECT -->
+                                                <button type="button" onclick="addNewSubject()"
+                                                    class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                                                    + Add More Subject
+                                                </button>
+
+                                                <!-- SAVE SUBJECT -->
+                                                <button type="submit"
+                                                    class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                                                    Save Subjects
+                                                </button>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <script>
+                                    // ADD NEW SUBJECT — exact same structure as FAQ (only Answer removed)
+                                    function addNewSubject() {
+                                        const container = document.getElementById("dynamicSubject");
+
+                                        const html = `
+            <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                <input type="hidden" name="subject_id[]" value="0">
+
+                <div class="mb-3">
+                    <label class="block font-semibold">Subject Name</label>
+                    <input type="text" name="subjectName[]" placeholder="Enter Subject Name"
+                        class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                </div>
+
+                <!-- Remove only removes this block -->
+                <button type="button"
+                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                    onclick="this.closest('.group').remove()">
+                    Remove
+                </button>
+            </div>
+        `;
+
+                                        container.insertAdjacentHTML("beforeend", html);
+                                    }
+
+                                    // REMOVE EXISTING SUBJECT (DB delete)
+                                    function removeExistingSubject(el, id) {
+                                        el.closest('.group').remove();
+
+                                        const hidden = document.createElement("input");
+                                        hidden.type = "hidden";
+                                        hidden.name = "delete_subject_ids[]";
+                                        hidden.value = id;
+
+                                        document.forms[0].appendChild(hidden);
+                                    }
+                                </script>
+
+                            </div>
+
+<!-- INSTRUCTOR UI WRAPPER -->
+<div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 transition-all duration-300"
+    data-aos="fade-up">
+
+    <!-- HEADER -->
+    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+        onclick="this.nextElementSibling.classList.toggle('hidden')">
+
+        <span class="text-blackColor dark:text-whiteColor">Instructors</span>
+
+        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+            <path fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+            </path>
+        </svg>
+    </div>
+
+    <!-- BODY -->
+    <div class="hidden px-6 pb-6">
+        <div class="p-5 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-5">
+
+            <!-- SELECT + ADD BUTTON (50/50) -->
+            <div class="flex flex-col md:flex-row md:items-end gap-5">
+
+                <!-- LEFT 50% -->
+                <div class="w-full md:w-1/2">
+                    <label class="font-semibold block mb-2">Select Instructor</label>
+
+                    <select id="instructorSelect"
+                        class=" overflow-x-visible overflow-y-visible
+w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
+                               border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+
+                        <option value="">Choose Instructor</option>
+                        <option value="1">Rahul Sharma</option>
+                        <option value="2">Priya Singh</option>
+                        <option value="3">Aman Verma</option>
+                        <option value="4">Neha Das</option>
+                    </select>
+                </div>
+
+                <!-- RIGHT 50% -->
+                <div class="w-full md:w-1/2 md:pt-6">
+                    <button type="button" onclick="addInstructorToList()"
+                        class="w-full text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor 
+                        px-10px py-10px rounded hover:text-primaryColor hover:bg-whiteColor 
+                        dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                        + Add Instructor
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- INSTRUCTOR LIST -->
+            <div id="instructorList" class="space-y-4 mt-4"></div>
+
+            <!-- SAVE BUTTON -->
+            <button type="submit"
+                class="w-full mt-6 py-3 text-whiteColor bg-primaryColor border border-primaryColor 
+                       rounded-md font-semibold hover:bg-whiteColor hover:text-primaryColor 
+                       dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                Save
+            </button>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    let addedInstructors = new Set();
+
+    function addInstructorToList() {
+        const select = document.getElementById("instructorSelect");
+        const list = document.getElementById("instructorList");
+
+        let id = select.value;
+        let name = select.options[select.selectedIndex].text;
+
+        if (!id) return;
+
+        if (addedInstructors.has(id)) return;
+        addedInstructors.add(id);
+
+        // PERFECT UI BLOCK WITH PADDING + BORDER + SPACING
+        list.insertAdjacentHTML("beforeend", `
+            <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
+                        border-borderColor dark:border-borderColor-dark 
+                        flex justify-between items-center">
+
+                <span class="font-semibold text-sm text-blackColor dark:text-whiteColor">${name}</span>
+
+                <button type="button"
+                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                    onclick="removeInstructor(this, '${id}')">
+                    Remove
+                </button>
+
+                <input type="hidden" name="instructors[]" value="${id}">
+            </div>
+        `);
+    }
+
+    function removeInstructor(btn, id) {
+        addedInstructors.delete(id);
+        btn.closest('.group').remove();
+    }
+</script>
+
+
+
+
+
 
 
 
                         </div>
 
                         <!-- SUBJECT TEACHER ASSIGN -->
-<div class="hidden transition-all duration-300">
+                        <div class="hidden transition-all duration-300">
 
-    <div
-        class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                            <div
+                                class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
-        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-            Assign Subject to Teacher
-        </h3>
+                                <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                    Assign Subject to Teacher
+                                </h3>
 
-        <!-- SUBJECT LIST -->
-        <div id="subjectList" class="space-y-3"></div>
+                                <!-- SUBJECT LIST -->
+                                <div id="subjectList" class="space-y-3"></div>
 
-    </div>
+                            </div>
 
-    <!-- MANAGE TEACHER POPUP -->
-    <div id="teacherPopup"
-        class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                            <!-- MANAGE TEACHER POPUP -->
+                            <div id="teacherPopup"
+                                class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
 
-        <div
-            class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
+                                <div
+                                    class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-            <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
-            </h3>
+                                    <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                        Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+                                    </h3>
 
-            <div id="teacherCheckboxList"
-                class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
-            </div>
+                                    <div id="teacherCheckboxList"
+                                        class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+                                    </div>
 
-            <div class="flex justify-start gap-3">
-                <button type="button" onclick="closeTeacherPopup()"
-                    class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
-                    Cancel
-                </button>
+                                    <div class="flex justify-start gap-3">
+                                        <button type="button" onclick="closeTeacherPopup()"
+                                            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
+                                            Cancel
+                                        </button>
 
-                <button type="button" onclick="assignTeachers()"
-                    class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
-                    Assign
-                </button>
-            </div>
-        </div>
-    </div>
+                                        <button type="button" onclick="assignTeachers()"
+                                            class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                                            Assign
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
-    <script>
-        /* Dummy Subjects */
-        let subjects = [ "Science"];
+                            <script>
+                                /* Dummy Subjects */
+                                let subjects = ["Science"];
 
-        /* Dummy Teachers */
-        let teachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D", "Teacher E"];
+                                /* Dummy Teachers */
+                                let teachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D", "Teacher E"];
 
-        /* Assigned List */
-        let assigned = {
-            "English": [],
-            "Math": [],
-            "Science": []
-        };
+                                /* Assigned List */
+                                let assigned = {
+                                    "English": [],
+                                    "Math": [],
+                                    "Science": []
+                                };
 
-        let currentSubject = "";
+                                let currentSubject = "";
 
-        /* Render Subject List */
-        function loadSubjects() {
-            const box = document.getElementById("subjectList");
-            box.innerHTML = "";
+                                /* Render Subject List */
+                                function loadSubjects() {
+                                    const box = document.getElementById("subjectList");
+                                    box.innerHTML = "";
 
-            subjects.forEach(sub => {
-                box.innerHTML += `
+                                    subjects.forEach(sub => {
+                                        box.innerHTML += `
 <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
     <div class="flex justify-between items-center">
-        <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">${sub}</span>
+        <span class="font-bold uppercase     text-contentColor dark:text-contentColor-dark">${sub}</span>
 
         <button onclick="openTeacherPopup('${sub}')"
             class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
@@ -447,57 +843,57 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
     <div class="flex flex-wrap gap-2 mt-3">
         ${assigned[sub].length > 0 ?
-                        assigned[sub].map(t =>
-                            `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t}</span>`
-                        ).join("")
-                        :
-                        `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
-                    }
+                                                assigned[sub].map(t =>
+                                                    `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t}</span>`
+                                                ).join("")
+                                                :
+                                                `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
+                                            }
     </div>
 </div>
 `;
-            });
-        }
+                                    });
+                                }
 
-        /* Open Popup */
-        function openTeacherPopup(sub) {
-            currentSubject = sub;
-            document.getElementById("popupSubjectName").innerText = sub;
+                                /* Open Popup */
+                                function openTeacherPopup(sub) {
+                                    currentSubject = sub;
+                                    document.getElementById("popupSubjectName").innerText = sub;
 
-            const list = document.getElementById("teacherCheckboxList");
-            list.innerHTML = "";
+                                    const list = document.getElementById("teacherCheckboxList");
+                                    list.innerHTML = "";
 
-            teachers.forEach(t => {
-                const isChecked = assigned[sub].includes(t) ? "checked" : "";
-                list.innerHTML += `
+                                    teachers.forEach(t => {
+                                        const isChecked = assigned[sub].includes(t) ? "checked" : "";
+                                        list.innerHTML += `
 <label class="flex items-center mb-2 text-blackColor dark:text-whiteColor">
     <input type="checkbox" class="teacherCheck mr-2" value="${t}" ${isChecked}>
     <span class="pl-1">${t}</span>
 </label>
 `;
-            });
+                                    });
 
-            document.getElementById("teacherPopup").classList.remove("hidden");
-        }
+                                    document.getElementById("teacherPopup").classList.remove("hidden");
+                                }
 
-        /* Close Popup */
-        function closeTeacherPopup() {
-            document.getElementById("teacherPopup").classList.add("hidden");
-        }
+                                /* Close Popup */
+                                function closeTeacherPopup() {
+                                    document.getElementById("teacherPopup").classList.add("hidden");
+                                }
 
-        /* Assign Selected Teachers */
-        function assignTeachers() {
-            const selected = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
-            assigned[currentSubject] = selected; // overwrite
-            closeTeacherPopup();
-            loadSubjects();
-        }
+                                /* Assign Selected Teachers */
+                                function assignTeachers() {
+                                    const selected = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
+                                    assigned[currentSubject] = selected; // overwrite
+                                    closeTeacherPopup();
+                                    loadSubjects();
+                                }
 
-        // Initial load
-        loadSubjects();
-    </script>
+                                // Initial load
+                                loadSubjects();
+                            </script>
 
-</div>
+                        </div>
 
 
 
