@@ -413,7 +413,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
     <script>
         /* Dummy Subjects */
-        let subjects = ["English", "Math", "Science"];
+        let subjects = [ "Science"];
 
         /* Dummy Teachers */
         let teachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D", "Teacher E"];
@@ -437,7 +437,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
     <div class="flex justify-between items-center">
-        <span class="font-bold text-contentColor dark:text-contentColor-dark">${sub}</span>
+        <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">${sub}</span>
 
         <button onclick="openTeacherPopup('${sub}')"
             class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
