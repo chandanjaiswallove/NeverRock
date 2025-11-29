@@ -139,7 +139,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                             <!-- RIGHT: Save -->
                                             <button type="submit"
-                                                class="text-white bg-primaryColor px-6 py-2 rounded hover:bg-primaryColor-dark">
+                                                class=" ml-2 text-white bg-primaryColor px-6 py-2 rounded hover:bg-primaryColor-dark">
                                                 Save Details
                                             </button>
 
@@ -198,6 +198,10 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 }
                             </script>
                         </div>
+
+
+
+                      
 
 
                     </div>
