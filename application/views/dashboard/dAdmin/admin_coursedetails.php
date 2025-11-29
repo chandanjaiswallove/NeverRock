@@ -513,6 +513,102 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             </div>
 
 
+
+                            <!-- IMPORTANT TOPIC UI WRAPPER -->
+                            <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
+                                data-aos="fade-up">
+
+                                <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST"
+                                    enctype="multipart/form-data">
+
+                                    <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+
+                                    <!-- HEADER -->
+                                    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+
+                                        <span class="text-blackColor dark:text-whiteColor">Important Topic</span>
+
+                                        <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                            <path fill-rule="evenodd"
+                                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <!-- BODY -->
+                                    <div class="hidden px-6 pb-6">
+                                        <div
+                                            class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+
+                                            <!-- IMPORTANT TOPIC ONLY ONE FIELD -->
+                                            <div
+                                                class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                                                <label class="block font-semibold">Important Topic Name</label>
+
+                                                <input type="text" name="important_topic"
+                                                    placeholder="Enter Important Topic name" class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
+                               border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+
+                                            </div>
+
+                                            <!-- START IMPORTANT KEY LIST -->
+                                            <div id="importantKeyList" class="space-y-4"></div>
+
+                                            <!-- ADD MORE + SAVE BUTTON -->
+                                            <div
+                                                class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
+
+                                                <!-- ADD MORE KEY -->
+                                                <button type="button" onclick="addImportantKey()" class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor 
+                        px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded 
+                        dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                                                    + Add Key
+                                                </button>
+
+                                                <!-- SAVE -->
+                                                <button type="submit" class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor 
+                        px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded 
+                        dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
+                                                    Save
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <script>
+                                    function addImportantKey() {
+                                        const list = document.getElementById("importantKeyList");
+
+                                        list.insertAdjacentHTML("beforeend", `
+            <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+
+                <div class="mb-3">
+                    <label class="block font-semibold">Important Key</label>
+                    <input type="text" name="important_keys[]" placeholder="Enter key"
+                        class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
+                               border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                </div>
+
+                <!-- REMOVE BUTTON -->
+                <button type="button"
+                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                    onclick="this.closest('.group').remove()">
+                    Remove
+                </button>
+            </div>
+        `);
+                                    }
+                                </script>
+
+                            </div>
+
+
                             <!-- SUBJECT  -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
@@ -722,22 +818,22 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 </div>
 
-                                   <script>
-                                let addedInstructors = new Set();
+                                <script>
+                                    let addedInstructors = new Set();
 
-                                function addInstructorToList() {
-                                    const select = document.getElementById("instructorSelect");
-                                    const list = document.getElementById("instructorList");
+                                    function addInstructorToList() {
+                                        const select = document.getElementById("instructorSelect");
+                                        const list = document.getElementById("instructorList");
 
-                                    let id = select.value;
-                                    let name = select.options[select.selectedIndex].text;
+                                        let id = select.value;
+                                        let name = select.options[select.selectedIndex].text;
 
-                                    if (!id) return;
-                                    if (addedInstructors.has(id)) return;
+                                        if (!id) return;
+                                        if (addedInstructors.has(id)) return;
 
-                                    addedInstructors.add(id);
+                                        addedInstructors.add(id);
 
-                                    list.insertAdjacentHTML("beforeend", `
+                                        list.insertAdjacentHTML("beforeend", `
             <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
                         border-borderColor dark:border-borderColor-dark 
                         flex justify-between items-center">
@@ -753,26 +849,16 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 <input type="hidden" name="instructors[]" value="${id}">
             </div>
         `);
-                                }
+                                    }
 
-                                function removeInstructor(btn, id) {
-                                    addedInstructors.delete(id);
-                                    btn.closest('.group').remove();
-                                }
-                            </script>
+                                    function removeInstructor(btn, id) {
+                                        addedInstructors.delete(id);
+                                        btn.closest('.group').remove();
+                                    }
+                                </script>
 
 
                             </div>
-
-
-                         
-
-
-
-
-
-
-
 
 
 
