@@ -33,47 +33,48 @@ class Admin_Model extends CI_Model
     }
 
     // Save all features (insert + update + delete)
-  public function saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids = [])
-{
-    // DELETE
-    if(!empty($delete_ids)){
-        foreach($delete_ids as $del){
-            $this->deleteFeature($del);
+    public function saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids = [])
+    {
+        // DELETE
+        if (!empty($delete_ids)) {
+            foreach ($delete_ids as $del) {
+                $this->deleteFeature($del);
+            }
         }
+
+        // INSERT + UPDATE
+        for ($i = 0; $i < count($headings); $i++) {
+            if (empty($headings[$i]) && empty($values[$i]))
+                continue;
+
+            if ($ids[$i] == 0) {
+                $this->insertFeature([
+                    'course_unique_id' => $course_uid,
+                    'feature_heading' => $headings[$i],
+                    'feature_value' => $values[$i]
+                ]);
+            } else {
+                $this->updateFeature($ids[$i], [
+                    'feature_heading' => $headings[$i],
+                    'feature_value' => $values[$i]
+                ]);
+            }
+        }
+
+        // **Hamesha alert dikhaye, chahe arrays empty ho**
+        $this->sweetAlert(
+            "Success!",
+            "Features updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
     }
 
-    // INSERT + UPDATE
-    for($i = 0; $i < count($headings); $i++){
-        if(empty($headings[$i]) && empty($values[$i])) continue;
-
-        if($ids[$i] == 0){
-            $this->insertFeature([
-                'course_unique_id' => $course_uid,
-                'feature_heading' => $headings[$i],
-                'feature_value' => $values[$i]
-            ]);
-        } else {
-            $this->updateFeature($ids[$i], [
-                'feature_heading' => $headings[$i],
-                'feature_value' => $values[$i]
-            ]);
-        }
-    }
-
-    // **Hamesha alert dikhaye, chahe arrays empty ho**
-    $this->sweetAlert(
-        "Success!",
-        "Features updated successfully!",
-        "success",
-        base_url('admin_coursedetails?course_uid=' . $course_uid)
-    );
-}
 
 
 
 
-       
-   
+
 
 
 
