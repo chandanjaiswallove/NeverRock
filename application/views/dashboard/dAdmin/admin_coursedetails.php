@@ -69,7 +69,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         </svg>
                                     </div>
 
-                                    <div class="hidden px-6 pb-6">
+                                    <div class=" px-6 pb-6">
                                         <div
                                             class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 

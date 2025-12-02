@@ -20,15 +20,18 @@ class AdminDashboardControllers extends CI_Controller
             return;
         }
 
-        // Fetch features from model
+        // Fetch features data from coure_unique_id order to model in function by course_uid and
+        //  pass data in view page with key variable course_unique_id 
+        // features data come from databse help fetch from model and data pass now view page 
         $data['course_unique_id'] = $course_uid;
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
 
-        // Load view
+        // load view and data pass 
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
 
     // Handle form submit: insert, update, delete
+    //  taking data from ui form name field &  load model in function and model function in data passed for model function
     public function verifyCourseData()
     {
         $course_uid = $this->input->post('course_unique_id');

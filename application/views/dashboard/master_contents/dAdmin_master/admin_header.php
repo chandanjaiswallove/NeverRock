@@ -14,7 +14,6 @@ if (!isset($_SESSION['activeAdmin'])) {
     <!-- link stylesheet -->
     <link rel="stylesheet" href="modules/assets/css/icofont.min.css">
     <link rel="stylesheet" href="modules/assets/css/popup.css">
-
     <link rel="stylesheet" href="modules/assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="modules/assets/css/video-modal.css">
     <link rel="stylesheet" href="modules/assets/css/aos.css">
@@ -30,6 +29,7 @@ if (!isset($_SESSION['activeAdmin'])) {
         <div class="fixed-shadow left-[-250px]"></div>
         <div class="fixed-shadow right-[-250px]"></div>
     </div>
+
 
     <!-- theme controller -->
     <div class="fixed top-[100px] 2xl:top-[300px] transition-all duration-300 right-[-50px] hover:right-0 z-xl">
@@ -54,6 +54,18 @@ if (!isset($_SESSION['activeAdmin'])) {
             <span class="text-base hidden dark:block">Light</span>
         </button>
     </div>
+
+    <!-- preloader -->
+    <!-- <div
+        class="preloader flex fixed top-0 left-0 h-screen w-full items-center justify-center z-xxl bg-whiteColor opacity-100 visible transition-all duration-700">
+        <div
+            class="w-90px h-90px border-5px border-t-blue border-r-blue border-b-blue-light border-l-blue-light rounded-full animate-spin-infinit">
+        </div>
+        <div class="absolute  left-1/2 -translate-y-1/3 -translate-x-1/2">
+            <img src="modules/assets/images/pre.png" alt="Preloader" class="h-10 w-10 block">
+        </div>
+    </div> -->
+
     <!-- scroll up button -->
     <div>
         <button
