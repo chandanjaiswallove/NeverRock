@@ -69,7 +69,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         </svg>
                                     </div>
 
-                                    <div class=" px-6 pb-6">
+                                    <div class="hidden px-6 pb-6">
                                         <div
                                             class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
@@ -196,7 +196,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         const hidden = document.createElement("input");
                                         hidden.type = "hidden";
-                                        hidden.name = "delete_ids[]";
+                                        hidden.name = "deleteCode[]";
                                         hidden.value = id;
 
                                         document.forms[0].appendChild(hidden);
@@ -210,7 +210,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
                                 <!-- FULL FAQ FORM -->
-                                <form action="<?= base_url('verifyCourseFaq'); ?>" method="POST"
+                                <form action="<?= base_url('verifyCourseFaqs'); ?>" method="POST"
                                     enctype="multipart/form-data">
                                     <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
@@ -232,28 +232,28 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                             <!-- EXISTING FAQ IF DATABASE HAS DATA -->
                                             <?php if (!empty($faqs)): ?>
-                                                <?php foreach ($faqs as $f): ?>
+                                                <?php foreach ($faqs as $fast): ?>
                                                     <div
                                                         class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
-                                                        <input type="hidden" name="faq_id[]" value="<?= $f->id ?>">
+                                                        <input type="hidden" name="faqs_id[]" value="<?= $fast->id ?>">
 
                                                         <div class="mb-3">
                                                             <label class="block font-semibold">Question</label>
-                                                            <input type="text" name="faqQuestion[]" value="<?= $f->question ?>"
+                                                            <input type="text" name="faqQuestion[]" value="<?= $fast->faq_Question ?>"
                                                                 class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                                                         </div>
 
                                                         <div class="mb-3">
                                                             <label class="block font-semibold">Answer</label>
-                                                            <input type="text" name="faqAnswer[]" value="<?= $f->answer ?>"
+                                                            <input type="text" name="faqAnswer[]" value="<?= $fast->faq_Answer ?>"
                                                                 class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                                                         </div>
 
                                                         <!-- REMOVE button for existing DB entries (same as Features) -->
                                                         <button type="button"
                                                             class="text-red-600 font-semibold text-sm hover:text-primaryColor dark:hover:text-primaryColor"
-                                                            onclick="removeExistingFaq(this, <?= $f->id ?>)">
+                                                            onclick="removeExistingFaq(this, <?= $fast->id ?>)">
                                                             Remove
                                                         </button>
 
@@ -266,7 +266,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <div
                                                     class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
-                                                    <input type="hidden" name="faq_id[]" value="0">
+                                                    <input type="hidden" name="faqs_id[]" value="0">
 
                                                     <div class="mb-3">
                                                         <label class="block font-semibold">Question</label>
@@ -318,7 +318,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                         const html = `
                 <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-                    <input type="hidden" name="faq_id[]" value="0">
+                    <input type="hidden" name="faqs_id[]" value="0">
 
                     <div class="mb-3">
                         <label class="block font-semibold">Question</label>
@@ -345,7 +345,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     }
 
                                     // REMOVE EXISTING FAQ — mirrors removeExistingFeature exactly:
-                                    // removes DOM and appends a hidden input delete_faq_ids[] with the id (so backend will delete)
+                                    // removes DOM and appends a hidden input deleteRemove[] with the id (so backend will delete)
                                     function removeExistingFaq(el, id) {
                                         // remove the visual block
                                         el.closest('.group').remove();
@@ -353,7 +353,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         // create hidden input so server knows to delete this id from DB
                                         const hidden = document.createElement("input");
                                         hidden.type = "hidden";
-                                        hidden.name = "delete_faq_ids[]";
+                                        hidden.name = "deleteRemove[]";
                                         hidden.value = id;
 
                                         // append to the form (same behavior as features)

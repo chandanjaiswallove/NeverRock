@@ -71,9 +71,11 @@ $route['updateCourse'] = 'AdminDashboardControllers/loaDupdateCourse'; //  Cours
 $route['admin_coursework'] = 'AdminDashboardControllers/loaDadmin_coursework'; // All Course Listed Here and Add Edit $ Delte
 $route['admin_courseView'] = 'AdminDashboardControllers/loaDadmin_courseView'; // All Course Detials View Here 
 
-/// Testing here to url for feth edit remove insert
+/// Testing here to url for feth edit remove insert all table for here
 $route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails';
 $route['verifyCourseData'] = 'AdminDashboardControllers/verifyCourseData';
+$route['verifyCourseFaqs'] = 'AdminDashboardControllers/loaDverifyCourseFaqs';
+
 
 
 // Save Course Data (Insert + Update + Delete)

@@ -25,6 +25,8 @@ class AdminDashboardControllers extends CI_Controller
         // features data come from databse help fetch from model and data pass now view page 
         $data['course_unique_id'] = $course_uid;
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
+        $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
+
 
         // load view and data pass 
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
@@ -32,15 +34,27 @@ class AdminDashboardControllers extends CI_Controller
 
     // Handle form submit: insert, update, delete
     //  taking data from ui form name field &  load model in function and model function in data passed for model function
+    // all section input name store here 
     public function verifyCourseData()
     {
         $course_uid = $this->input->post('course_unique_id');
         $ids = $this->input->post('feature_id') ?? [];
         $headings = $this->input->post('featureHeading') ?? [];
         $values = $this->input->post('featureKey') ?? [];
-        $delete_ids = $this->input->post('delete_ids') ?? [];
+        $delete_ids = $this->input->post('deleteCode') ?? [];
 
         $this->admin->saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids);
+    }
+
+    public function loaDverifyCourseFaqs()
+    {
+        $course_uid = $this->input->post('course_unique_id');
+        $faq_id = $this->input->post('faqs_id') ?? [];
+        $faq_question = $this->input->post('faqQuestion') ?? [];
+        $faq_answer = $this->input->post('faqAnswer') ?? [];
+        $faq_remove = $this->input->post('deleteRemove') ?? [];
+
+        $this->admin->saveAllFaqs($course_uid, $faq_id, $faq_question, $faq_answer, $faq_remove);
     }
 
 

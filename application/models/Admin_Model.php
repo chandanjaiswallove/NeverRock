@@ -8,11 +8,12 @@ class Admin_Model extends CI_Model
         parent::__construct();
     }
 
-    // Fetch all features for a course
+    // Fetch all table features for a course
     public function getCourseFeatures($course_uid)
     {
         return $this->db->get_where('course_features', ['course_unique_id' => $course_uid])->result();
     }
+
 
     // Insert new feature
     public function insertFeature($data)
@@ -70,6 +71,72 @@ class Admin_Model extends CI_Model
         );
     }
 
+
+
+///==============FAQS=================////
+
+    // Fetch all table faqs for a course
+    public function getCourseFaqs($course_uid)
+    {
+        return $this->db->get_where('course_faqs', ['course_unique_id' => $course_uid])->result();
+    }
+
+    // Insert new feature
+    public function insertFaqs($data)
+    {
+        return $this->db->insert('course_faqs', $data);
+    }
+
+    // Update existing feature
+    public function updateFaqs($id, $data)
+    {
+        return $this->db->where('id', $id)->update('course_faqs', $data);
+    }
+
+    // Delete feature
+    public function deleteFaqs($id)
+    {
+        return $this->db->delete('course_faqs', ['id' => $id]);
+    }
+
+
+    // Save all faqs (insert + update + delete)
+    public function saveAllFaqs($course_uid, $faq_id, $faq_question, $faq_answer, $faq_remove = [])
+    {
+        // DELETE
+        if (!empty($faq_remove)) {
+            foreach ($faq_remove as $del) {
+                $this->deleteFaqs($del);
+            }
+        }
+
+        // INSERT + UPDATE
+        for ($i = 0; $i < count($faq_question); $i++) {
+            if (empty($faq_question[$i]) && empty($faq_answer[$i]))
+                continue;
+
+            if ($faq_id[$i] == 0) {
+                $this->insertFaqs([
+                    'course_unique_id' => $course_uid,
+                    'faq_Question' => $faq_question[$i],
+                    'faq_Answer' => $faq_answer[$i]
+                ]);
+            } else {
+                $this->updateFaqs($faq_id[$i], [
+                    'faq_Question' => $faq_question[$i],
+                    'faq_Answer' => $faq_answer[$i]
+                ]);
+            }
+        }
+
+        // **Hamesha alert dikhaye, chahe arrays empty ho**
+        $this->sweetAlert(
+            "Success!",
+            "Faqs updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
+    }
 
 
 

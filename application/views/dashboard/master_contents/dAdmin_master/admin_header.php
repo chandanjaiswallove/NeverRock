@@ -357,10 +357,6 @@ if (!isset($_SESSION['activeAdmin'])) {
                                     </div>
                                 </li>
 
-
-
-
-
                             </ul>
                         </div>
                     </div>
