@@ -75,6 +75,7 @@ $route['admin_courseView'] = 'AdminDashboardControllers/loaDadmin_courseView'; /
 $route['admin_coursedetails'] = 'AdminDashboardControllers/loaDadmin_coursedetails';
 $route['verifyCourseData'] = 'AdminDashboardControllers/verifyCourseData';
 $route['verifyCourseFaqs'] = 'AdminDashboardControllers/loaDverifyCourseFaqs';
+$route['verifyCourseHeadings'] = 'AdminDashboardControllers/loaDverifyCourseHeadings';
 
 
 

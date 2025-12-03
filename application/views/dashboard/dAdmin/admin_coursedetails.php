@@ -210,7 +210,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
                                 <!-- FULL FAQ FORM -->
-                                <form action="<?= base_url('verifyCourseFaqs'); ?>" method="POST"
+                                <form id="faqForm" action="<?= base_url('verifyCourseFaqs'); ?>" method="POST"
                                     enctype="multipart/form-data">
                                     <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
@@ -355,9 +355,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         hidden.type = "hidden";
                                         hidden.name = "deleteRemove[]";
                                         hidden.value = id;
+                                        // append to the form 
+                                       document.getElementById('faqForm').appendChild(hidden);
 
-                                        // append to the form (same behavior as features)
-                                        document.forms[0].appendChild(hidden);
                                     }
                                 </script>
 
@@ -368,11 +368,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
 
-                                <form action="<?= base_url('verifyCourseHeadings'); ?>" method="POST"
+                                <form id="headingForm" action="<?= base_url('verifyCourseHeadings'); ?>" method="POST"
                                     enctype="multipart/form-data">
-
                                     <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
-
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
                                         <span class="text-blackColor dark:text-whiteColor">Headings & Description</span>
@@ -384,14 +382,13 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             </path>
                                         </svg>
                                     </div>
-
                                     <div class="hidden px-6 pb-6">
                                         <div
                                             class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
                                             <!-- EXISTING ENTRIES -->
-                                            <?php if (!empty($headings)): ?>
-                                                <?php foreach ($headings as $h): ?>
+                                            <?php if (!empty($descripations)): ?>
+                                                <?php foreach ($descripations as $h): ?>
                                                     <div
                                                         class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
@@ -406,7 +403,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                                         <div class="mb-3">
                                                             <label class="block font-semibold">Description</label>
-                                                            <textarea name="headingDescription[]" rows="2"
+                                                            <textarea name="headingDescription[]" rows="2" value="<?= $h->dimpDescription ?>"
                                                                 class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"><?= $h->dimpDescription ?></textarea>
                                                         </div>
 
@@ -421,7 +418,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <?php endif; ?>
 
                                             <!-- EMPTY IF NO DATA -->
-                                            <?php if (empty($headings)): ?>
+                                            <?php if (empty($descripations)): ?>
                                                 <div
                                                     class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
@@ -446,27 +443,20 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                             <!-- Dynamic container -->
                                             <div id="dynamicHeadings" class="space-y-4"></div>
-
                                             <div
                                                 class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
-
                                                 <button type="button" onclick="addNewHeading()"
                                                     class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block">
                                                     + Add More
                                                 </button>
-
                                                 <button type="submit"
                                                     class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block">
                                                     Save Headings
                                                 </button>
-
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </form>
-
                                 <script>
                                     function addNewHeading() {
                                         const container = document.getElementById("dynamicHeadings");
@@ -477,7 +467,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                 <div class="mb-3">
                     <label class="block font-semibold">Heading</label>
-                    <input type="text" name="headingTitle[]" placeholder="Enter heading"
+                    <input type="text" name="headingTitle[]" placeholder="Enter heading" 
                         class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                 </div>
 
@@ -506,7 +496,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         hidden.name = "delete_heading_ids[]";
                                         hidden.value = id;
 
-                                        document.forms[0].appendChild(hidden);
+                                        document.getElementById('headingForm').appendChild(hidden);
+
                                     }
                                 </script>
 

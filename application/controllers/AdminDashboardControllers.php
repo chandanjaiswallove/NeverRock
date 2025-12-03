@@ -13,19 +13,18 @@ class AdminDashboardControllers extends CI_Controller
     // Load UI and fetch features
     public function loaDadmin_coursedetails()
     {
-        $course_uid = $this->input->get('course_uid'); // ?course_uid=ZIVJJC
+        $course_uid = $this->input->get('course_uid');  // get from page url after send from link
 
         if (!$course_uid) {
             echo "Invalid Course UID!";
             return;
         }
 
-        // Fetch features data from coure_unique_id order to model in function by course_uid and
-        //  pass data in view page with key variable course_unique_id 
-        // features data come from databse help fetch from model and data pass now view page 
+        // All Dat Table After Fetch Data Pass View Page & Data coming by course_uid 
         $data['course_unique_id'] = $course_uid;
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
         $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
+        $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
 
 
         // load view and data pass 
@@ -46,6 +45,7 @@ class AdminDashboardControllers extends CI_Controller
         $this->admin->saveAllFeatures($course_uid, $ids, $headings, $values, $delete_ids);
     }
 
+
     public function loaDverifyCourseFaqs()
     {
         $course_uid = $this->input->post('course_unique_id');
@@ -56,6 +56,40 @@ class AdminDashboardControllers extends CI_Controller
 
         $this->admin->saveAllFaqs($course_uid, $faq_id, $faq_question, $faq_answer, $faq_remove);
     }
+
+
+
+    ///=========== Headings DESCRIPTIONS ==================///
+    public function loaDverifyCourseHeadings()
+    {
+        $course_uid = $this->input->post('course_unique_id');
+
+        $heading_id = $this->input->post('heading_id');
+        $headingTitle = $this->input->post('headingTitle');
+        $headingDescription = $this->input->post('headingDescription');
+        $delete_heading_ids = $this->input->post('delete_heading_ids');
+
+
+
+        $this->admin->saveAllHeadings($course_uid, $heading_id, $headingTitle, $headingDescription, $delete_heading_ids);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

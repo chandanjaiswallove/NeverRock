@@ -73,7 +73,7 @@ class Admin_Model extends CI_Model
 
 
 
-///==============FAQS=================////
+    ///==============FAQS=================////
 
     // Fetch all table faqs for a course
     public function getCourseFaqs($course_uid)
@@ -140,6 +140,82 @@ class Admin_Model extends CI_Model
 
 
 
+
+    ///================= DESCRIPATIONS HEADINGS ========================///
+
+    // Fetch all table Descripations for a course
+    public function getCourseHeadings($course_uid)
+    {
+        return $this->db->get_where('course_headings', ['course_unique_id' => $course_uid])->result();
+    }
+
+    // Insert new descriptions
+    public function insertHeadings($data)
+    {
+        return $this->db->insert('course_headings', $data);
+    }
+
+    // Update existing descriptions
+    public function updateHeadings($id, $data)
+    {
+        return $this->db->where('id', $id)->update('course_headings', $data);
+    }
+
+    // Delete descriptions
+    public function deleteHeadings($id)
+    {
+        return $this->db->delete('course_headings', ['id' => $id]);
+    }
+
+
+    public function saveAllHeadings($course_uid, $heading_id, $headingTitle, $headingDescription, $delete_heading_ids = [])
+    {
+        // DELETE
+        if (!empty($delete_heading_ids)) {
+            foreach ($delete_heading_ids as $del) {
+                $this->deleteHeadings($del);
+            }
+        }
+
+        // INSERT + UPDATE
+        if (!empty($headingTitle)) {
+
+            for ($i = 0; $i < count($headingTitle); $i++) {
+
+                // Skip only if both empty
+                if (empty($headingTitle[$i]) && empty($headingDescription[$i]))
+                    continue;
+
+                // Insert new
+                if ($heading_id[$i] == 0) {
+                    $this->insertHeadings([
+                        'course_unique_id' => $course_uid,
+                        'dimpHeading' => $headingTitle[$i],
+                        'dimpDescription' => $headingDescription[$i]
+                    ]);
+                }
+                // Update old
+                else {
+                    $this->updateHeadings($heading_id[$i], [
+                        'dimpHeading' => $headingTitle[$i],
+                        'dimpDescription' => $headingDescription[$i]
+                    ]);
+                }
+            }
+        }
+
+        // 🔥 ALERT ALWAYS RUNS — चाहे सिर्फ delete हो, सिर्फ update हो, सिर्फ insert हो, या कुछ भी ना हो
+        $this->sweetAlert(
+            "Success!",
+            "Headings updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
+    }
+
+
+
+    ///================= DESCRIPATIONS HEADINGS ========================///
 
 
 
