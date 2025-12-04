@@ -214,120 +214,23 @@ class Admin_Model extends CI_Model
     ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV
 
 
-
-  ///  /================= IMPORTANT TOPIC AND KEYS  ========================///
-// Get Topic + Keys for a course
-public function getImportantTopics($course_uid)
+    ///  /================= IMPORTANT TOPIC AND KEYS  ========================///
+    public function getImportantTopics($course_uid)
 {
-    $topic = $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->row();
+    // Step 1: Fetch Topics
+    $this->db->where('course_unique_id', $course_uid);
+    $topics = $this->db->get('course_topics')->result_array();
 
-    if ($topic) {
-        $topic->keys = $this->db->get_where('course_keys', ['topic_id' => $topic->id])->result();
-    } else {
-        $topic = new stdClass();
-        $topic->id = 0;
-        $topic->importantTopic = '';
-        $topic->keys = [];
+    // Step 2: For each topic -> fetch keys
+    foreach ($topics as &$topic) {
+
+        $this->db->where('topic_id', $topic['id']);
+        $topic['keys'] = $this->db->get('course_keys')->result_array();
+
     }
 
-    return $topic;
+    return $topics;
 }
-
-// Insert new topic
-public function insertTopic($course_uid, $important_topic)
-{
-    $this->db->insert('course_topics', [
-        'course_unique_id' => $course_uid,
-        'importantTopic' => $important_topic
-    ]);
-    return $this->db->insert_id();
-}
-
-// Update existing topic
-public function updateTopic($topic_id, $important_topic)
-{
-    return $this->db->where('id', $topic_id)->update('course_topics', [
-        'importantTopic' => $important_topic
-    ]);
-}
-
-// Delete Topic + All Keys
-public function deleteTopic($topic_id)
-{
-    if($topic_id){
-        $this->db->where('topic_id', $topic_id)->delete('course_keys');
-        $this->db->where('id', $topic_id)->delete('course_topics');
-    }
-}
-
-// Delete individual keys
-public function deleteKeys($key_ids = [])
-{
-    if(!empty($key_ids)){
-        $this->db->where_in('id', $key_ids)->delete('course_keys');
-    }
-}
-
-// Insert new keys
-public function insertKeys($topic_id, $keys = [])
-{
-    if(!empty($keys)){
-        foreach($keys as $key){
-            if(!empty($key)){
-                $this->db->insert('course_keys', [
-                    'topic_id' => $topic_id,
-                    'dimpDescription' => $key
-                ]);
-            }
-        }
-    }
-}
-
-// Save/Update Topic + Keys
-public function saveAllTopicsKey($course_uid, $topic_id, $topic_name, $key_ids, $keys)
-{
-    // Topic insert / update
-    if ($topic_id == 0 && !empty($topic_name)) {
-        $this->db->insert('course_topics', [
-            'course_unique_id' => $course_uid,
-            'importantTopic' => $topic_name
-        ]);
-        $topic_id = $this->db->insert_id();
-    } elseif ($topic_id > 0) {
-        $this->db->where('id', $topic_id)->update('course_topics', [
-            'importantTopic' => $topic_name
-        ]);
-    }
-
-    // Keys Insert/Update/Delete
-    foreach ($keys as $i => $text) {
-
-        $kid = $key_ids[$i];
-
-        // DELETE
-        if ($kid == -1) {
-            $this->db->delete('course_keys', ['id' => $key_ids[$i]]);
-            continue;
-        }
-
-        // INSERT
-        if ($kid == 0 && !empty($text)) {
-            $this->db->insert('course_keys', [
-                'topic_id' => $topic_id,
-                'dimpDescription' => $text
-            ]);
-            continue;
-        }
-
-        // UPDATE
-        if ($kid > 0) {
-            $this->db->where('id', $kid)->update('course_keys', [
-                'dimpDescription' => $text
-            ]);
-        }
-    }
-}
-
 
 
 

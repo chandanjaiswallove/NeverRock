@@ -510,146 +510,204 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                             <!-- IMPORTANT TOPIC UI WRAPPER -->
                             <!-- IMPORTANT TOPIC UI WRAPPER -->
- <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4" data-aos="fade-up">
+                            <!-- IMPORTANT TOPIC UI WRAPPER -->
+                            <?php foreach ($important_topics as $topic): ?>
+                                <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
+                                    data-aos="fade-up">
+                                    <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST"
+                                        enctype="multipart/form-data">
 
-    <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
+                                        <input type="hidden" name="topic_id" value="<?= $topic['id'] ?>">
+                                        <input type="hidden" class="deleted_keys_box" name="deleted_key_ids">
 
-        <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
-        <input type="hidden" name="topic_id" id="topic_id" value="<?= $important_topics->id ?? 0 ?>">
+                                        <!-- HEADER -->
+                                        <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
+                                            onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                            <span class="text-blackColor dark:text-whiteColor">Topics & Keys</span>
+                                            <svg class="transition-all duration-500 rotate-0 w-5 h-5"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
+                                                <path fill-rule="evenodd"
+                                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
+                                                </path>
+                                            </svg>
+                                        </div>
 
-        <!-- HEADER -->
-        <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-            onclick="this.nextElementSibling.classList.toggle('hidden')">
-            <span class="text-blackColor dark:text-whiteColor">Important Topic</span>
-            <svg class="transition-all duration-500 rotate-0 w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                </path>
-            </svg>
-        </div>
+                                        <!-- BODY -->
+                                        <div class="hidden px-6 pb-6">
+                                            <div
+                                                class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-        <!-- BODY -->
-        <div class="hidden px-6 pb-6">
-            <div
-                class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+                                                <!-- TOPIC INPUT -->
+                                                <div
+                                                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                                    <label class="block font-semibold">Important Topic Name</label>
+                                                    <input type="text" name="important_topic"
+                                                        value="<?= $topic['importantTopic'] ?>"
+                                                        class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md topicInput">
+                                                </div>
 
-                <!-- TOPIC NAME -->
-                <div
-                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-                    <label class="block font-semibold">Important Topic Name</label>
-                    <input type="text" id="important_topic" name="important_topic"
-                        value="<?= $important_topics->importantTopic ?? '' ?>"
-                        placeholder="Enter Important Topic name"
-                        class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
-                        oninput="toggleKeyButton()">
-                </div>
+                                                <!-- REMOVE TOPIC -->
+                                                <button type="button"
+                                                    class="removeTopicBtn text-sm text-red-600 hover:text-primaryColor font-semibold mb-3">
+                                                    Remove All Topics & Keys
+                                                </button>
 
-                <!-- REMOVE TOPIC + ALL KEYS -->
-                <?php if (!empty($important_topics->id)): ?>
-                    <button type="button" id="removeTopicAllBtn"
-                        class="text-sm text-red-600 hover:text-primaryColor font-semibold mb-3">
-                        Remove Topic + All Keys
-                    </button>
-                <?php endif; ?>
+                                                <!-- KEY LIST -->
+                                                <div class="importantKeyList space-y-4">
+                                                    <?php foreach ($topic['keys'] as $key): ?>
+                                                        <div
+                                                            class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                                            <label class="block font-semibold">Important Key</label>
+                                                            <input type="hidden" class="key-id" value="<?= $key['id'] ?>">
+                                                            <input type="text" name="important_keys_existing[<?= $key['id'] ?>]"
+                                                                value="<?= $key['dimpDescription'] ?>"
+                                                                class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                                            <button type="button"
+                                                                class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor mt-3 block">
+                                                                Remove Key
+                                                            </button>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
 
-                <!-- KEYS LIST -->
-                <div id="importantKeyList" class="space-y-4">
-                    <?php if (!empty($important_topics->keys)): ?>
-                        <?php foreach ($important_topics->keys as $key): ?>
-                            <div
-                                class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                                <!-- ADD KEY + SAVE -->
+                                                <div
+                                                    class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
+                                                    <button type="button"
+                                                        class="addKeyBtn text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10 py-2 rounded hover:bg-whiteColor hover:text-primaryColor disabled:bg-gray-400 disabled:text-whiteColor disabled:cursor-not-allowed transition-colors duration-200">
+                                                        + Add Key
+                                                    </button>
 
-                                <label class="block font-semibold">Important Key</label>
+                                                    <button type="submit"
+                                                        class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10 py-2 rounded hover:bg-whiteColor hover:text-primaryColor transition-colors duration-200">
+                                                        Save
+                                                    </button>
+                                                </div>
 
-                                <input type="hidden" name="existing_key_ids[]" value="<?= $key->id ?>">
+                                            </div>
+                                        </div>
 
-                                <input type="text" name="important_keys[]" value="<?= $key->dimpDescription ?>"
-                                    class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                    </form>
+                                </div>
+                            <?php endforeach; ?>
 
-                                <button type="button"
-                                    class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor mt-3 block">
-                                    Remove Key
-                                </button>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
+                            <script>
+                                document.addEventListener('click', function (e) {
 
-                <!-- ADD KEY + SAVE -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
+                                    // REMOVE KEY
+                                    if (e.target.classList.contains('removeKeyBtn')) {
+                                        let box = e.target.closest('.keyBox');
+                                        let keyId = box.querySelector('.key-id').value;
+                                        let deletedBox = box.closest('form').querySelector('.deleted_keys_box');
 
-                    <button type="button" id="addKeyBtn" onclick="addImportantKey()"
-                        class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor disabled:bg-gray-400 disabled:text-whiteColor disabled:cursor-not-allowed">
-                        + Add Key
-                    </button>
+                                        if (keyId !== "0") {
+                                            let arr = JSON.parse(deletedBox.value || "[]");
+                                            arr.push(keyId);
+                                            deletedBox.value = JSON.stringify(arr);
+                                        }
+                                        box.remove();
+                                    }
 
-                    <button type="submit"
-                        class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
-                        Save
-                    </button>
+                                    // ADD KEY
+                                    if (e.target.classList.contains('addKeyBtn')) {
+                                        let topicInput = e.target.closest('form').querySelector('.topicInput');
 
-                </div>
+                                        if (topicInput.value.trim() === "") {
+                                            Swal.fire({
+                                                icon: "warning",
+                                                title: "Topic is empty!",
+                                                text: "Please enter Topic name before adding keys.",
+                                                showCancelButton: false,
+                                                confirmButtonText: "OK",
+                                                customClass: {
+                                                    confirmButton: 'text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md'
+                                                },
+                                                buttonsStyling: false
+                                            });
+                                            return;
+                                        }
 
+                                        let keyList = e.target.closest('form').querySelector('.importantKeyList');
+
+                                        keyList.insertAdjacentHTML("beforeend", `
+            <div class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                <label class="block font-semibold">Important Key</label>
+                <input type="hidden" class="key-id" value="0">
+                <input type="text" name="important_keys_new[]" class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                <button type="button" class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor mt-3 block">Remove Key</button>
             </div>
-        </div>
-
-    </form>
-</div>
-
-
-<script>
-    // Disable ADD KEY until topic is filled
-    function toggleKeyButton() {
-        const topic = document.getElementById("important_topic").value.trim();
-        document.getElementById("addKeyBtn").disabled = topic === "";
-    }
-    toggleKeyButton();
-
-    function addImportantKey() {
-        const topic = document.getElementById("important_topic").value.trim();
-        if (topic === "") {
-            alert("Please enter Topic name first!");
-            return;
-        }
-
-        const list = document.getElementById("importantKeyList");
-
-        list.insertAdjacentHTML("beforeend", `
-        <div class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-            <label class="block font-semibold">Important Key</label>
-
-            <input type="hidden" name="existing_key_ids[]" value="0">
-
-            <input type="text" name="important_keys[]" placeholder="Enter key"
-                class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-
-            <button type="button"
-                class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor mt-3 block">
-                Remove Key
-            </button>
-        </div>
         `);
-    }
+                                    }
 
-    // Remove individual key
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('removeKeyBtn')) {
-            e.target.closest('.keyBox').remove();
-        }
-    });
+                                    // REMOVE TOPIC + ALL KEYS
+                                    if (e.target.classList.contains('removeTopicBtn')) {
+                                        let form = e.target.closest('form');
 
-    // Remove Topic + All Keys
-    document.getElementById('removeTopicAllBtn')?.addEventListener('click', function() {
-        if (!confirm("Delete Topic + All Keys?")) return;
+                                        Swal.fire({
+                                            title: "Are you sure?",
+                                            text: "This will delete Topic and all its Keys!",
+                                            icon: "warning",
+                                            showCancelButton: true,
+                                            confirmButtonText: "Yes, delete it!",
+                                            cancelButtonText: "Cancel",
+                                            customClass: {
+                                                popup: 'swal2-popup',
+                                                actions: 'flex justify-center gap-4 mt-4', // gap between buttons
+                                                confirmButton: 'text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md',
+                                                cancelButton: 'text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md'
+                                            },
+                                            buttonsStyling: false
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                let deletedBox = form.querySelector('.deleted_keys_box');
+                                                let allKeyIds = [...form.querySelectorAll('.key-id')].map(e => e.value);
+                                                deletedBox.value = JSON.stringify(allKeyIds);
 
-        document.getElementById("important_topic").value = "";
-        document.getElementById("topic_id").value = 0;
-        document.getElementById("importantKeyList").innerHTML = "";
+                                                form.querySelector("input[name='important_topic']").value = "";
+                                                form.querySelector("input[name='topic_id']").value = 0;
+                                                form.querySelector(".importantKeyList").innerHTML = "";
 
-        toggleKeyButton();
-    });
-</script>
+                                                Swal.fire({
+                                                    icon: "success",
+                                                    title: "Deleted!",
+                                                    text: "Topic and all keys removed.",
+                                                    confirmButtonText: "OK",
+                                                    customClass: {
+                                                        confirmButton: 'text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md'
+                                                    },
+                                                    buttonsStyling: false,
+                                                    timer: 1500,
+                                                    showCancelButton: false
+                                                });
+                                            }
+                                        });
+                                    }
+
+                                });
+
+                                // ENABLE / DISABLE ADD KEY BUTTON
+                                document.addEventListener("input", function (e) {
+                                    if (e.target.classList.contains("topicInput")) {
+                                        let form = e.target.closest("form");
+                                        let addKeyBtn = form.querySelector(".addKeyBtn");
+
+                                        if (e.target.value.trim() === "") {
+                                            addKeyBtn.disabled = true;
+                                            addKeyBtn.style.opacity = "0.5";
+                                        } else {
+                                            addKeyBtn.disabled = false;
+                                            addKeyBtn.style.opacity = "1";
+                                        }
+                                    }
+                                });
+                            </script>
+
+
+
+
+
+
 
 
 

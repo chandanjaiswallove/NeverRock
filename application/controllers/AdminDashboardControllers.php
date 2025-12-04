@@ -23,7 +23,7 @@ class AdminDashboardControllers extends CI_Controller
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
         $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
         $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
-         $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
+        $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
 
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
@@ -73,30 +73,18 @@ class AdminDashboardControllers extends CI_Controller
     }
 
     ///=========== topics DESCRIPTIONS ==================///
-public function loaDverifyCourseImportantTopic()
-{
-    $course_uid = $this->input->post('course_unique_id');
-    $topic_id = $this->input->post('topic_id');
-    $topic_name = $this->input->post('important_topic');
+    // public function loaDverifyCourseImportantTopic()
+    // {
+    //     $course_uid = $this->input->post('course_unique_id');
+    //     $topic_id = $this->input->post('topic_id');
+    //     $topic_name = $this->input->post('important_topic');
 
-    $key_ids = $this->input->post('key_ids');      // existing ids (0 = new)
-    $keys = $this->input->post('important_keys');  // texts
+    //     $key_ids = $this->input->post('key_ids');      // existing ids (0 = new)
+    //     $keys = $this->input->post('important_keys');  // texts
 
-    $this->admin->saveAllTopicsKey($course_uid, $topic_id, $topic_name, $key_ids, $keys);
-}
+    //     $this->admin->saveAllTopicsKey($course_uid, $topic_id, $topic_name, $key_ids, $keys);
+    // }
 
-
-// AJAX Delete Topic + All Keys
-public function ajaxDeleteImportantTopic()
-{
-    $topic_id = $this->input->post('topic_id');
-    if ($topic_id) {
-        $this->admin->deleteTopic($topic_id);
-        echo json_encode(['status'=>'success']);
-    } else {
-        echo json_encode(['status'=>'error', 'message'=>'Invalid Topic ID']);
-    }
-}
 
 
 
