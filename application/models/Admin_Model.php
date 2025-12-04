@@ -142,7 +142,6 @@ class Admin_Model extends CI_Model
 
 
     ///================= DESCRIPATIONS HEADINGS ========================///
-
     // Fetch all table Descripations for a course
     public function getCourseHeadings($course_uid)
     {
@@ -166,7 +165,6 @@ class Admin_Model extends CI_Model
     {
         return $this->db->delete('course_headings', ['id' => $id]);
     }
-
 
     public function saveAllHeadings($course_uid, $heading_id, $headingTitle, $headingDescription, $delete_heading_ids = [])
     {
@@ -213,12 +211,32 @@ class Admin_Model extends CI_Model
         );
     }
 
-
-
-    ///================= DESCRIPATIONS HEADINGS ========================///
+    ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV
 
 
 
+  ///  /================= IMPORTANT TOPIC AND KEYS  ========================///
+
+    // Fetch all table TOPICS KEYS for a course
+    public function getImportantTopics($course_uid)
+    {
+        return $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+    }
+
+
+
+    public function saveAllTopicsKey($course_uid, $topics_ids, $delete_important_ids, $important_topic, $important_keys = [])
+    {
+
+
+        // **Hamesha alert dikhaye, chahe arrays empty ho**
+        $this->sweetAlert(
+            "Success!",
+            "Faqs updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
+    }
 
 
 

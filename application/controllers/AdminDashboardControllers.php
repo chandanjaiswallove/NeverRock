@@ -25,6 +25,7 @@ class AdminDashboardControllers extends CI_Controller
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
         $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
         $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
+        $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
 
 
         // load view and data pass 
@@ -34,6 +35,7 @@ class AdminDashboardControllers extends CI_Controller
     // Handle form submit: insert, update, delete
     //  taking data from ui form name field &  load model in function and model function in data passed for model function
     // all section input name store here 
+
     public function verifyCourseData()
     {
         $course_uid = $this->input->post('course_unique_id');
@@ -46,6 +48,7 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
+    ///=========== COURSE FAQS ==================///
     public function loaDverifyCourseFaqs()
     {
         $course_uid = $this->input->post('course_unique_id');
@@ -56,7 +59,6 @@ class AdminDashboardControllers extends CI_Controller
 
         $this->admin->saveAllFaqs($course_uid, $faq_id, $faq_question, $faq_answer, $faq_remove);
     }
-
 
 
     ///=========== Headings DESCRIPTIONS ==================///
@@ -74,6 +76,18 @@ class AdminDashboardControllers extends CI_Controller
         $this->admin->saveAllHeadings($course_uid, $heading_id, $headingTitle, $headingDescription, $delete_heading_ids);
     }
 
+    ///=========== topics DESCRIPTIONS ==================///
+    public function loaDverifyCourseImportantTopic()
+    {
+        $course_uid = $this->input->post('course_unique_id');
+
+        $topics_ids = $this->input->post('delete_heading_ids');
+        $delete_important_ids = $this->input->post('delete_heading_ids');
+        $important_topic = $this->input->post('important_topic');
+        $important_keys = $this->input->post('important_keys');
+
+        $this->admin->saveAllTopicsKey($course_uid, $topics_ids, $delete_important_ids, $important_topic, $important_keys);
+    }
 
 
 

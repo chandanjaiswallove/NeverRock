@@ -358,7 +358,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         // append to the form 
                                        document.getElementById('faqForm').appendChild(hidden);
 
-                                    }
+                                    } 
                                 </script>
 
                             </div>
@@ -511,15 +511,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST"
                                     enctype="multipart/form-data">
-
                                     <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
-
                                     <!-- HEADER -->
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
-
                                         <span class="text-blackColor dark:text-whiteColor">Important Topic</span>
-
                                         <svg class="transition-all duration-500 rotate-0 w-5 h-5"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                             <path fill-rule="evenodd"
@@ -527,7 +523,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             </path>
                                         </svg>
                                     </div>
-
                                     <!-- BODY -->
                                     <div class="hidden px-6 pb-6">
                                         <div
@@ -536,56 +531,43 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                             <!-- IMPORTANT TOPIC ONLY ONE FIELD -->
                                             <div
                                                 class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-
                                                 <label class="block font-semibold">Important Topic Name</label>
-
                                                 <input type="text" name="important_topic"
                                                     placeholder="Enter Important Topic name" class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
                                border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-
                                             </div>
-
                                             <!-- START IMPORTANT KEY LIST -->
                                             <div id="importantKeyList" class="space-y-4"></div>
-
                                             <!-- ADD MORE + SAVE BUTTON -->
                                             <div
                                                 class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
-
                                                 <!-- ADD MORE KEY -->
                                                 <button type="button" onclick="addImportantKey()" class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor 
                         px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded 
                         dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                                                     + Add Key
                                                 </button>
-
                                                 <!-- SAVE -->
                                                 <button type="submit" class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor 
                         px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded 
                         dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                                                     Save
                                                 </button>
-
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </form>
                                 <script>
                                     function addImportantKey() {
                                         const list = document.getElementById("importantKeyList");
-
                                         list.insertAdjacentHTML("beforeend", `
             <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-
                 <div class="mb-3">
                     <label class="block font-semibold">Important Key</label>
                     <input type="text" name="important_keys[]" placeholder="Enter key"
                         class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
                                border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                 </div>
-
                 <!-- REMOVE BUTTON -->
                 <button type="button"
                     class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
@@ -594,9 +576,8 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                 </button>
             </div>
         `);
-                                    }
+                                  }
                                 </script>
-
                             </div>
 
 
