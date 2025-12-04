@@ -214,27 +214,6 @@ class Admin_Model extends CI_Model
     ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV
 
 
-    ///  /================= IMPORTANT TOPIC AND KEYS  ========================///
-    public function getImportantTopics($course_uid)
-{
-    // Step 1: Fetch Topics
-    $this->db->where('course_unique_id', $course_uid);
-    $topics = $this->db->get('course_topics')->result_array();
-
-    // Step 2: For each topic -> fetch keys
-    foreach ($topics as &$topic) {
-
-        $this->db->where('topic_id', $topic['id']);
-        $topic['keys'] = $this->db->get('course_keys')->result_array();
-
-    }
-
-    return $topics;
-}
-
-
-
-
 
 
 
