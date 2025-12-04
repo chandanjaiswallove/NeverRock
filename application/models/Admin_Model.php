@@ -211,8 +211,98 @@ class Admin_Model extends CI_Model
         );
     }
 
-    ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV
+    ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV// Fetch all topics for a course
+// Fetch all topics for a course
+public function getImportantTopics($course_uid)
+{
+    return $this->db->get_where('course_topics', ['course_unique_id' => $course_uid])->result();
+}
 
+// Fetch all keys for a topic
+public function getTopicKeys($topic_id)
+{
+    return $this->db->get_where('course_keys', ['topic_id' => $topic_id])->result();
+}
+
+// Insert new topic
+public function insertTopic($course_uid, $topic_name)
+{
+    $this->db->insert('course_topics', [
+        'course_unique_id' => $course_uid,
+        'importantTopic' => $topic_name,
+        'registration_date' => date('Y-m-d H:i:s')
+    ]);
+    return $this->db->insert_id();
+}
+
+// Update existing topic
+public function updateTopic($topic_id, $topic_name)
+{
+    $this->db->where('id', $topic_id)->update('course_topics', [
+        'importantTopic' => $topic_name
+    ]);
+}
+
+// Delete a key
+public function deleteKey($key_id)
+{
+    $this->db->delete('course_keys', ['id' => $key_id]);
+}
+
+// Insert new key
+public function insertKey($topic_id, $course_uid, $key_value)
+{
+    $this->db->insert('course_keys', [
+        'topic_id' => $topic_id,
+        'course_unique_id' => $course_uid,
+        'dimpDescription' => $key_value,
+        'registration_date' => date('Y-m-d H:i:s')
+    ]);
+}
+
+// Update existing key
+public function updateKey($key_id, $key_value)
+{
+    $this->db->where('id', $key_id)->update('course_keys', [
+        'dimpDescription' => $key_value
+    ]);
+}
+
+// Save topic and keys (insert/update/delete)
+public function saveTopicAndKeys($course_uid, $topic_id, $topic_name, $existing_keys, $new_keys, $deleted_keys)
+{
+    // 1. Delete removed keys
+    if (!empty($deleted_keys)) {
+        foreach ($deleted_keys as $del) {
+            if ($del != '') $this->deleteKey($del);
+        }
+    }
+
+    // 2. Insert or update topic
+    if ($topic_id == 0) {
+        $topic_id = $this->insertTopic($course_uid, $topic_name);
+    } else {
+        $this->updateTopic($topic_id, $topic_name);
+    }
+
+    // 3. Update existing keys
+    if (!empty($existing_keys)) {
+        foreach ($existing_keys as $key_id => $key_value) {
+            $this->updateKey($key_id, $key_value);
+        }
+    }
+
+    // 4. Insert new keys
+    if (!empty($new_keys)) {
+        foreach ($new_keys as $k) {
+            if(trim($k) != '') {
+                $this->insertKey($topic_id, $course_uid, $k);
+            }
+        }
+    }
+
+    return true;
+}
 
 
 
