@@ -651,17 +651,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                             <!-- SUBJECT  -->
 
+                            <!-- SUBJECT UI WRAPPER -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
-                                <!-- FULL SUBJECT FORM -->
-                                <form action="<?= base_url('verifyCourseSubject'); ?>" method="POST"
-                                    enctype="multipart/form-data">
+
+                                <form id="courseSubjectsForm" action="<?= base_url('verifyCourseSubject'); ?>"
+                                    method="POST" enctype="multipart/form-data">
+
                                     <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
 
+                                    <!-- HEADER -->
                                     <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                         onclick="this.nextElementSibling.classList.toggle('hidden')">
                                         <span class="text-blackColor dark:text-whiteColor">Subjects</span>
-
                                         <svg class="transition-all duration-500 rotate-0 w-5 h-5"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                             <path fill-rule="evenodd"
@@ -674,24 +676,24 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         <div
                                             class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
 
-                                            <!-- EXISTING SUBJECT IF DATABASE HAS DATA -->
-                                            <?php if (!empty($subjects)): ?>
-                                                <?php foreach ($subjects as $s): ?>
-                                                    <div
+                                            <!-- ⭐ FETCHED SUBJECTS FROM DATABASE -->
+                                            <?php if (!empty($course_subjects)): ?>
+                                                <?php foreach ($course_subjects as $s): ?>
+                                                    <div id="subject_<?= $s->id ?>"
                                                         class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
 
                                                         <input type="hidden" name="subject_id[]" value="<?= $s->id ?>">
 
                                                         <div class="mb-3">
                                                             <label class="block font-semibold">Subject Name</label>
-                                                            <input type="text" name="subjectName[]" value="<?= $s->subject ?>"
+                                                            <input type="text" name="subjectName[]"
+                                                                value="<?= $s->subject_name ?>"
                                                                 class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
                                                         </div>
 
-                                                        <!-- REMOVE existing -->
                                                         <button type="button"
                                                             class="text-red-600 font-semibold text-sm hover:text-primaryColor dark:hover:text-primaryColor"
-                                                            onclick="removeExistingSubject(this, <?= $s->id ?>)">
+                                                            onclick="removeExistingSubject(<?= $s->id ?>)">
                                                             Remove
                                                         </button>
 
@@ -699,37 +701,18 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
 
-                                            <!-- EMPTY BLOCK IF NO SUBJECT -->
-                                            <?php if (empty($subjects)): ?>
-                                                <div
-                                                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-
-                                                    <input type="hidden" name="subject_id[]" value="0">
-
-                                                    <div class="mb-3">
-                                                        <label class="block font-semibold">Subject Name</label>
-                                                        <input type="text" name="subjectName[]"
-                                                            placeholder="Enter Subject Name"
-                                                            class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-                                                    </div>
-
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <!-- Dynamic SUBJECT container -->
+                                            <!-- DYNAMIC NEW SUBJECT -->
                                             <div id="dynamicSubject" class="space-y-4"></div>
 
-                                            <!-- ADD MORE + SAVE BUTTON ROW -->
+                                            <!-- BUTTONS -->
                                             <div
                                                 class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
 
-                                                <!-- ADD MORE SUBJECT -->
                                                 <button type="button" onclick="addNewSubject()"
                                                     class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                                                     + Add More Subject
                                                 </button>
 
-                                                <!-- SAVE SUBJECT -->
                                                 <button type="submit"
                                                     class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded inline-block dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
                                                     Save Subjects
@@ -737,53 +720,46 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                             </div>
 
-
                                         </div>
                                     </div>
 
                                 </form>
 
                                 <script>
-                                    // ADD NEW SUBJECT — exact same structure as FAQ (only Answer removed)
                                     function addNewSubject() {
                                         const container = document.getElementById("dynamicSubject");
-
                                         const html = `
-            <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-                <input type="hidden" name="subject_id[]" value="0">
-
-                <div class="mb-3">
-                    <label class="block font-semibold">Subject Name</label>
-                    <input type="text" name="subjectName[]" placeholder="Enter Subject Name"
-                        class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                <div class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                    <input type="hidden" name="subject_id[]" value="0">
+                    <div class="mb-3">
+                        <label class="block font-semibold">Subject Name</label>
+                        <input type="text" name="subjectName[]" placeholder="Enter Subject Name"
+                            class="w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                    </div>
+                    <button type="button"
+                        class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                        onclick="this.closest('.group').remove()">Remove</button>
                 </div>
-
-                <!-- Remove only removes this block -->
-                <button type="button"
-                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
-                    onclick="this.closest('.group').remove()">
-                    Remove
-                </button>
-            </div>
-        `;
-
+            `;
                                         container.insertAdjacentHTML("beforeend", html);
                                     }
 
-                                    // REMOVE EXISTING SUBJECT (DB delete)
-                                    function removeExistingSubject(el, id) {
-                                        el.closest('.group').remove();
+                                    function removeExistingSubject(id) {
+                                        const group = document.getElementById(`subject_${id}`);
+                                        if (group) group.remove();
 
+                                        const form = document.getElementById('courseSubjectsForm');
                                         const hidden = document.createElement("input");
                                         hidden.type = "hidden";
                                         hidden.name = "delete_subject_ids[]";
                                         hidden.value = id;
-
-                                        document.forms[0].appendChild(hidden);
+                                        form.appendChild(hidden);
                                     }
+
                                 </script>
 
                             </div>
+
 
 
                             <!-- INSTRUCTOR UI WRAPPER -->

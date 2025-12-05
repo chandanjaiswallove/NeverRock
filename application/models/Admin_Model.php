@@ -287,6 +287,58 @@ class Admin_Model extends CI_Model
     }
 
 
+    // ============================================================
+    // -------------- COURSE SUBJECTS -----------------------------
+    // ============================================================
+
+
+
+    public function getcourseSubjects($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->order_by('id', 'ASC')
+            ->get('course_subjects')
+            ->result();
+    }
+
+    public function saveSubjects($course_uid, $subject_ids, $subject_names, $deleted_subject_ids)
+    {
+        // Delete removed subjects
+        if (!empty($deleted_subject_ids)) {
+            $this->db->where_in('id', $deleted_subject_ids)->delete('course_subjects');
+        }
+
+        // Insert or Update subjects
+        foreach ($subject_names as $index => $name) {
+            $id = $subject_ids[$index];
+
+            if (trim($name) == "")
+                continue;
+
+            if (!$id || $id == "0") {
+                $this->db->insert('course_subjects', [
+                    'course_unique_id' => $course_uid,
+                    'subject_name' => $name
+                ]);
+            } else {
+                $this->db->where('id', $id)->update('course_subjects', [
+                    'subject_name' => $name
+                ]);
+            }
+        }
+
+        $this->sweetAlert(
+            "Success!",
+            "Subjects updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
+    }
+
+
+
+
 
 
 

@@ -12,6 +12,7 @@ class AdminDashboardControllers extends CI_Controller
 
     // Load UI and fetch features
     public function loaDadmin_coursedetails()
+    
     {
         $course_uid = $this->input->get('course_uid');
         if (!$course_uid) {
@@ -28,6 +29,8 @@ class AdminDashboardControllers extends CI_Controller
 
         // ⭐ Topic + Keys (combined)
         $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
+
+        $data['course_subjects'] = $this->admin->getcourseSubjects($course_uid);
 
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
@@ -73,8 +76,6 @@ class AdminDashboardControllers extends CI_Controller
         $headingDescription = $this->input->post('headingDescription');
         $delete_heading_ids = $this->input->post('delete_heading_ids');
 
-
-
         $this->admin->saveAllHeadings($course_uid, $heading_id, $headingTitle, $headingDescription, $delete_heading_ids);
     }
 
@@ -102,6 +103,28 @@ class AdminDashboardControllers extends CI_Controller
             $deleted_keys
         );
     }
+
+
+    ///=========== course subjects ==================///
+
+    public function verifyCourseSubject()
+    {
+        $course_uid = $this->input->post('course_unique_id');
+        $subject_ids = $this->input->post('subject_id');
+        $subject_names = $this->input->post('subjectName');
+        $deleted_subject_ids = $this->input->post('delete_subject_ids');
+
+        $this->load->model('Admin_Model', 'admin');
+
+        $this->admin->saveSubjects(
+            $course_uid,
+            $subject_ids,
+            $subject_names,
+            $deleted_subject_ids
+        );
+    }
+
+
 
 
 
