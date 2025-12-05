@@ -1,6 +1,4 @@
-
-<div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
-    data-aos="fade-up">
+<div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4" data-aos="fade-up">
 
     <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST" enctype="multipart/form-data">
 
@@ -32,8 +30,7 @@
                     class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
                     <label class="block font-semibold">Important Topic Name</label>
                     <input type="text" id="important_topic" name="important_topic"
-                        value="<?= $important_topics->importantTopic ?? '' ?>"
-                        placeholder="Enter Important Topic name"
+                        value="<?= $important_topics->importantTopic ?? '' ?>" placeholder="Enter Important Topic name"
                         class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
                         oninput="toggleKeyButton()">
                 </div>
@@ -129,7 +126,7 @@
         }
 
         // Remove Individual Key
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('removeKeyBtn')) {
 
                 let keyBox = e.target.closest('.keyBox');
@@ -145,7 +142,7 @@
         });
 
         // Remove Topic + All Keys
-        document.getElementById('removeTopicAllBtn')?.addEventListener('click', function() {
+        document.getElementById('removeTopicAllBtn')?.addEventListener('click', function () {
             if (!confirm("Delete Topic + All Keys?")) return;
 
             deletedKeyIds = JSON.stringify(
