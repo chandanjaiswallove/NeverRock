@@ -11,26 +11,26 @@ class AdminDashboardControllers extends CI_Controller
     }
 
     // Load UI and fetch features
- public function loaDadmin_coursedetails()
-{
-    $course_uid = $this->input->get('course_uid');
-    if (!$course_uid) {
-        echo "Invalid Course UID!";
-        return;
+    public function loaDadmin_coursedetails()
+    {
+        $course_uid = $this->input->get('course_uid');
+        if (!$course_uid) {
+            echo "Invalid Course UID!";
+            return;
+        }
+
+        $data['course_unique_id'] = $course_uid;
+
+        // Existing data
+        $data['features'] = $this->admin->getCourseFeatures($course_uid);
+        $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
+        $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
+
+        // ⭐ Topic + Keys (combined)
+        $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
+
+        $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
-
-    $data['course_unique_id'] = $course_uid;
-
-    // Existing data
-    $data['features'] = $this->admin->getCourseFeatures($course_uid);
-    $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
-    $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
-
-    // ⭐ Topic + Keys (combined)
-    $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
-
-    $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
-}
 
 
 
@@ -83,37 +83,25 @@ class AdminDashboardControllers extends CI_Controller
 
     ///=========== topics DESCRIPTIONS ==================///
     public function verifyCourseImportantTopic()
-{
-    $course_uid = $this->input->post('course_unique_id');
-    $topic_id = $this->input->post('topic_id');
-    $topic_name = $this->input->post('important_topic');
+    {
+        $course_uid = $this->input->post('course_unique_id');
+        $topic_id = $this->input->post('topic_id');
+        $topic_name = $this->input->post('important_topic');
 
-    $existing_keys = $this->input->post('important_keys_existing'); // [id => value]
-    $new_keys = $this->input->post('important_keys_new'); // array
-    $deleted_keys = json_decode($this->input->post('deleted_key_ids'));
+        $existing_keys = $this->input->post('important_keys_existing'); // [id => value]
+        $new_keys = $this->input->post('important_keys_new'); // array
+        $deleted_keys = json_decode($this->input->post('deleted_key_ids'));
 
-    // Load model
-    $this->load->model('Admin_Model', 'admin');
-
-    // Send to model
-    $result = $this->admin->saveImportantTopicAndKeys(
-        $course_uid,
-        $topic_id,
-        $topic_name,
-        $existing_keys,
-        $new_keys,
-        $deleted_keys
-    );
-
-    // Redirect with message
-    if ($result) {
-        $this->session->set_flashdata('success', 'Important Topic Saved Successfully!');
-    } else {
-        $this->session->set_flashdata('error', 'Something went wrong!');
+        // Send to model
+        $this->admin->saveImportantTopicAndKeys(
+            $course_uid,
+            $topic_id,
+            $topic_name,
+            $existing_keys,
+            $new_keys,
+            $deleted_keys
+        );
     }
-
-    redirect(base_url('loaDadmin_coursedetails?course_uid=' . $course_uid));
-}
 
 
 

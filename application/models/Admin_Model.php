@@ -211,8 +211,10 @@ class Admin_Model extends CI_Model
         );
     }
 
-    ///VVVVVVVVVVVVVV++++++++DESCRIPATIONS HEADINGS++++++++VVVVVVVVVVV// Fetch all topics for a course
 
+    // ============================================================
+    // -------------- IMPORTANT TOPICS & KEYS ---------------------
+    // ============================================================
 
     public function getImportantTopics($course_uid)
     {
@@ -232,53 +234,59 @@ class Admin_Model extends CI_Model
     }
 
 
-
-
     public function saveImportantTopicAndKeys($course_uid, $topic_id, $topic_name, $existing_keys, $new_keys, $deleted_keys)
-{
-    // ---- 1. INSERT OR UPDATE TOPIC ----
-    if ($topic_id == 0) {
-        // Insert new topic
-        $this->db->insert('course_topics', [
-            'course_unique_id' => $course_uid,
-            'importantTopic'   => $topic_name
-        ]);
-        $topic_id = $this->db->insert_id();
-    } else {
-        // Update existing topic
-        $this->db->where('id', $topic_id)->update('course_topics', [
-            'importantTopic' => $topic_name
-        ]);
-    }
-
-    // ---- 2. UPDATE EXISTING KEYS ----
-    if (!empty($existing_keys)) {
-        foreach ($existing_keys as $key_id => $value) {
-            $this->db->where('id', $key_id)->update('course_keys', [
-                'dimpDescription' => $value
+    {
+        // ---- 1. INSERT OR UPDATE TOPIC ----
+        if ($topic_id == 0) {
+            // Insert new topic
+            $this->db->insert('course_topics', [
+                'course_unique_id' => $course_uid,
+                'importantTopic' => $topic_name
+            ]);
+            $topic_id = $this->db->insert_id();
+        } else {
+            // Update existing topic
+            $this->db->where('id', $topic_id)->update('course_topics', [
+                'importantTopic' => $topic_name
             ]);
         }
-    }
 
-    // ---- 3. INSERT NEW KEYS ----
-    if (!empty($new_keys)) {
-        foreach ($new_keys as $value) {
-            if (trim($value) == "") continue;
-
-            $this->db->insert('course_keys', [
-                'topic_id'        => $topic_id,
-                'dimpDescription' => $value
-            ]);
+        // ---- 2. UPDATE EXISTING KEYS ----
+        if (!empty($existing_keys)) {
+            foreach ($existing_keys as $key_id => $value) {
+                $this->db->where('id', $key_id)->update('course_keys', [
+                    'dimpDescription' => $value
+                ]);
+            }
         }
+
+        // ---- 3. INSERT NEW KEYS ----
+        if (!empty($new_keys)) {
+            foreach ($new_keys as $value) {
+                if (trim($value) == "")
+                    continue;
+
+                $this->db->insert('course_keys', [
+                    'topic_id' => $topic_id,
+                    'dimpDescription' => $value
+                ]);
+            }
+        }
+
+        // ---- 4. DELETE REMOVED KEYS ----
+        if (!empty($deleted_keys)) {
+            $this->db->where_in('id', $deleted_keys)->delete('course_keys');
+        }
+        /// Succes Message 
+        $this->sweetAlert(
+            "Success!",
+            "Topics & Keys updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
     }
 
-    // ---- 4. DELETE REMOVED KEYS ----
-    if (!empty($deleted_keys)) {
-        $this->db->where_in('id', $deleted_keys)->delete('course_keys');
-    }
 
-    return true;
-}
 
 
 
@@ -859,10 +867,6 @@ class Admin_Model extends CI_Model
             );
         }
     }
-
-
-
-
 
 
 
