@@ -308,6 +308,8 @@ class Admin_Model extends CI_Model
         if (!empty($deleted_subject_ids)) {
             $this->db->where_in('id', $deleted_subject_ids)->delete('course_subjects');
         }
+        $subject_unique_id = "SUBJ_" . strtoupper(substr(md5(time() . rand()), 0, 7));
+
 
         // Insert or Update subjects
         foreach ($subject_names as $index => $name) {
@@ -319,6 +321,7 @@ class Admin_Model extends CI_Model
             if (!$id || $id == "0") {
                 $this->db->insert('course_subjects', [
                     'course_unique_id' => $course_uid,
+                    'subject_unique_id'  => $subject_unique_id,
                     'subject_name' => $name
                 ]);
             } else {
@@ -695,10 +698,13 @@ class Admin_Model extends CI_Model
 
             // ✅ 4. Hash password
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $teacherUniqueId = "INST_" . strtoupper(substr(md5(uniqid() . time()), 0, 10));
+
 
             // ✅ 5. Prepare data
             $instructorData = array(
                 'instructor_name' => $fullName,
+                'teacher_unique_id' => $teacherUniqueId,
                 'instructor_email' => $email,
                 'instructor_phone' => $contact,
                 'instructor_uid' => $uidPortal,
