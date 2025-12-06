@@ -112,3 +112,8 @@
 
 
 </div>
+
+
+
+
+$subject_unique_id = "SUBJ_" . strtoupper(substr(md5(time() . rand()), 0, 8));

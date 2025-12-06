@@ -829,14 +829,14 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     </form>
                                     <!-- FULL FORM END -->
-                                 <script>
-let addedInstructors = new Set();
+                                    <script>
+                                        let addedInstructors = new Set();
 
-// Page load par assigned instructors add karna
-<?php if(!empty($assignedInstructors)) : ?>
-<?php foreach($assignedInstructors as $ins): ?>
-addedInstructors.add('<?= $ins->teacher_unique_id ?>');
-document.getElementById('instructorList').insertAdjacentHTML('beforeend', `
+                                        // Page load par assigned instructors add karna
+                                        <?php if (!empty($assignedInstructors)): ?>
+                                            <?php foreach ($assignedInstructors as $ins): ?>
+                                                addedInstructors.add('<?= $ins->teacher_unique_id ?>');
+                                                document.getElementById('instructorList').insertAdjacentHTML('beforeend', `
     <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
                 border-borderColor dark:border-borderColor-dark 
                 flex justify-between items-center">
@@ -852,22 +852,22 @@ document.getElementById('instructorList').insertAdjacentHTML('beforeend', `
         <input type="hidden" name="instructors[]" value="<?= $ins->teacher_unique_id ?>">
     </div>
 `);
-<?php endforeach; ?>
-<?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
 
-function addInstructorToList() {
-    const select = document.getElementById("instructorSelect");
-    const list = document.getElementById("instructorList");
+                                        function addInstructorToList() {
+                                            const select = document.getElementById("instructorSelect");
+                                            const list = document.getElementById("instructorList");
 
-    let id = select.value;
-    let name = select.options[select.selectedIndex].text;
+                                            let id = select.value;
+                                            let name = select.options[select.selectedIndex].text;
 
-    if (!id) return;
-    if (addedInstructors.has(id)) return;
+                                            if (!id) return;
+                                            if (addedInstructors.has(id)) return;
 
-    addedInstructors.add(id);
+                                            addedInstructors.add(id);
 
-    list.insertAdjacentHTML("beforeend", `
+                                            list.insertAdjacentHTML("beforeend", `
         <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
                     border-borderColor dark:border-borderColor-dark 
                     flex justify-between items-center">
@@ -883,13 +883,13 @@ function addInstructorToList() {
             <input type="hidden" name="instructors[]" value="${id}">
         </div>
     `);
-}
+                                        }
 
-function removeInstructor(btn, id) {
-    addedInstructors.delete(id);
-    btn.closest('.group').remove();
-}
-</script>
+                                        function removeInstructor(btn, id) {
+                                            addedInstructors.delete(id);
+                                            btn.closest('.group').remove();
+                                        }
+                                    </script>
 
 
                                 </div>
