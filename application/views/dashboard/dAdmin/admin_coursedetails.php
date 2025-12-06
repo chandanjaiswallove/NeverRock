@@ -508,11 +508,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-
-
                             <!-- IMPORTANT TOPIC UI WRAPPER -->
-                            <!-- IMPORTANT TOPIC UI WRAPPER --><!-- IMPORTANT TOPIC UI WRAPPER -->
-
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"
                                 data-aos="fade-up">
 
@@ -645,11 +641,6 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             </div>
 
 
-
-
-
-
-                            <!-- SUBJECT  -->
 
                             <!-- SUBJECT UI WRAPPER -->
                             <div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4"

@@ -321,7 +321,7 @@ class Admin_Model extends CI_Model
             if (!$id || $id == "0") {
                 $this->db->insert('course_subjects', [
                     'course_unique_id' => $course_uid,
-                    'subject_unique_id'  => $subject_unique_id,
+                    'subject_unique_id' => $subject_unique_id,
                     'subject_name' => $name
                 ]);
             } else {
@@ -405,13 +405,18 @@ class Admin_Model extends CI_Model
 
 
 
+    // ============================================================
+    // -- GET subject_teacher_assign---
+    // ============================================================
 
-
-
-
-
-
-
+    public function getSubjectTeacher($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->order_by('id', 'ASC')
+            ->get('subject_teacher_assign')
+            ->result();
+    }
 
 
 

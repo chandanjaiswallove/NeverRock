@@ -26,12 +26,17 @@ class AdminDashboardControllers extends CI_Controller
         $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
         $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
         $data['important_topics'] = $this->admin->getImportantTopics($course_uid); // topics + keys
-        $data['course_subjects'] = $this->admin->getcourseSubjects($course_uid);
 
         // ⭐ Instructor list for dropdown
-        $data['instructors'] = $this->admin->getAllInstructors();
+        $data['instructors'] = $this->admin->getAllInstructors(); /// from instructors_diectory
 
-        $data['assignedInstructors'] = $this->admin->getCourseInstructors($course_uid);
+        $data['course_subjects'] = $this->admin->getcourseSubjects($course_uid); /// from course_subjects
+        $data['assignedInstructors'] = $this->admin->getCourseInstructors($course_uid); // from course_instructors
+        $data['subjectAssignTeacher'] = $this->admin->getSubjectTeacher($course_uid); // from subject_teacher_assign
+
+
+
+
 
 
         // Load View
@@ -129,31 +134,31 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
-        ///=========== course Instructor ==================///
+    ///=========== course Instructor ==================///
 
     public function saveCourseInstructors()
-{
-    $course_uid = $this->input->post('course_unique_id');
-    $selectedIds = $this->input->post('instructors'); // array of teacher_unique_id
+    {
+        $course_uid = $this->input->post('course_unique_id');
+        $selectedIds = $this->input->post('instructors'); // array of teacher_unique_id
 
-    // 1️⃣ Delete removed instructors
-    $this->admin->removeCourseInstructors($course_uid, $selectedIds);
+        // 1️⃣ Delete removed instructors
+        $this->admin->removeCourseInstructors($course_uid, $selectedIds);
 
-    // 2️⃣ Insert new instructors
-    if(!empty($selectedIds)){
-        foreach($selectedIds as $teacher_id){
-            $this->admin->addCourseInstructor($course_uid, $teacher_id);
+        // 2️⃣ Insert new instructors
+        if (!empty($selectedIds)) {
+            foreach ($selectedIds as $teacher_id) {
+                $this->admin->addCourseInstructor($course_uid, $teacher_id);
+            }
         }
-    }
         // 3️⃣ SweetAlert (controller me)
-    $this->sweetAlertC(
-        "Success!",
-        "Instructors updated successfully!",
-        "success",
-        base_url('admin_coursedetails?course_uid=' . $course_uid)
-    );
+        $this->sweetAlertC(
+            "Success!",
+            "Instructors updated successfully!",
+            "success",
+            base_url('admin_coursedetails?course_uid=' . $course_uid)
+        );
 
-}
+    }
 
 
 
