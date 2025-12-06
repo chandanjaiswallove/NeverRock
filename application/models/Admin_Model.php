@@ -337,6 +337,72 @@ class Admin_Model extends CI_Model
     }
 
 
+    // ============================================================
+    // -- fetch data from instructo_directory for teacher dropdwon ---
+    // ============================================================
+    public function getAllInstructors()
+    {
+        return $this->db
+            ->order_by('instructor_name', 'ASC')
+            ->get('instructor_directory')
+            ->result();
+    }
+
+    // -- --- fetch course_instructor ----------------------------
+
+    public function getCourseInstructors($course_uid)
+    {
+        return $this->db->where('course_unique_id', $course_uid)
+            ->get('course_instructors')
+            ->result();
+    }
+
+// -----------------------------
+// Insert teacher into course_instructors
+// -----------------------------
+public function addCourseInstructor($course_uid, $teacher_id)
+{
+    // 1️⃣ Check karo ki ye teacher already course me assigned hai ya nahi
+    $exists = $this->db->where('course_unique_id', $course_uid)
+                       ->where('teacher_unique_id', $teacher_id)
+                       ->get('course_instructors')
+                       ->row();
+
+    if (!$exists) {
+        // 2️⃣ Teacher ka data instructor_directory se fetch karo
+        $teacher = $this->db->where('teacher_unique_id', $teacher_id)
+                            ->get('instructor_directory')
+                            ->row();
+        if ($teacher) {
+            // 3️⃣ Agar teacher exist karta hai, to course_instructors me insert karo
+            $this->db->insert('course_instructors', [
+                'course_unique_id' => $course_uid,
+                'teacher_unique_id' => $teacher->teacher_unique_id,
+                'instructor_name' => $teacher->instructor_name,
+                'registration_date' => date('Y-m-d H:i:s') // current date-time
+            ]);
+        }
+    }
+
+    // // 4️⃣ Optional: Success alert after insert/update
+    // $this->sweetAlert(
+    //     "Success!",
+    //     "Instructor updated successfully!",
+    //     "success",
+    //     base_url('admin_coursedetails?course_uid=' . $course_uid)
+    // );
+}
+
+// -----------------------------
+// Remove teacher(s) from course_instructors
+// -----------------------------
+public function removeCourseInstructors($course_uid, $teacher_ids_to_keep)
+{
+    // 1️⃣ Delete all instructors for this course except jo teacher_ids_to_keep me hain
+    $this->db->where('course_unique_id', $course_uid)
+             ->where_not_in('teacher_unique_id', $teacher_ids_to_keep)
+             ->delete('course_instructors');
+}
 
 
 

@@ -769,9 +769,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <!-- HEADER -->
                                 <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
                                     onclick="this.nextElementSibling.classList.toggle('hidden')">
-
                                     <span class="text-blackColor dark:text-whiteColor">Instructors</span>
-
                                     <svg class="transition-all duration-500 rotate-0 w-5 h-5"
                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#212529">
                                         <path fill-rule="evenodd"
@@ -782,28 +780,27 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 <!-- BODY -->
                                 <div class="hidden px-6 pb-6">
-
                                     <!-- FULL FORM START -->
-                                    <form action="<?= base_url('verifyCourseInstructor'); ?>" method="POST">
-
+                                    <form action="<?= base_url('saveCourseInstructors'); ?>" method="POST">
                                         <div
                                             class="p-5 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-5">
 
                                             <!-- SELECT + ADD BUTTON (50/50) -->
                                             <div class="flex flex-col md:flex-row md:items-end gap-5">
-
+                                                <input type="hidden" name="course_unique_id"
+                                                    value="<?= $course_unique_id ?>">
                                                 <!-- LEFT 50% -->
                                                 <div class="w-full md:w-1/2">
                                                     <label class="font-semibold block mb-2">Select Instructor</label>
 
                                                     <select id="instructorSelect" class="overflow-x-visible overflow-y-visible w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
                                    border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-
-                                                        <option value="">Choose Instructor</option>
-                                                        <option value="1">Rahul Sharma</option>
-                                                        <option value="2">Priya Singh</option>
-                                                        <option value="3">Aman Verma</option>
-                                                        <option value="4">Neha Das</option>
+                                                        <?php foreach ($instructors as $ins): ?>
+                                                            <option value="<?= $ins->teacher_unique_id ?>">
+                                                                <?= $ins->instructor_name ?>
+                                                                <!-- &nbsp; (<?= $ins->instructor_email ?>) -->
+                                                            </option>
+                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
 
@@ -832,6 +829,68 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     </form>
                                     <!-- FULL FORM END -->
+                                 <script>
+let addedInstructors = new Set();
+
+// Page load par assigned instructors add karna
+<?php if(!empty($assignedInstructors)) : ?>
+<?php foreach($assignedInstructors as $ins): ?>
+addedInstructors.add('<?= $ins->teacher_unique_id ?>');
+document.getElementById('instructorList').insertAdjacentHTML('beforeend', `
+    <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
+                border-borderColor dark:border-borderColor-dark 
+                flex justify-between items-center">
+
+        <span class="font-semibold text-sm text-blackColor dark:text-whiteColor"><?= $ins->instructor_name ?></span>
+
+        <button type="button"
+            class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+            onclick="removeInstructor(this, '<?= $ins->teacher_unique_id ?>')">
+            Remove
+        </button>
+
+        <input type="hidden" name="instructors[]" value="<?= $ins->teacher_unique_id ?>">
+    </div>
+`);
+<?php endforeach; ?>
+<?php endif; ?>
+
+function addInstructorToList() {
+    const select = document.getElementById("instructorSelect");
+    const list = document.getElementById("instructorList");
+
+    let id = select.value;
+    let name = select.options[select.selectedIndex].text;
+
+    if (!id) return;
+    if (addedInstructors.has(id)) return;
+
+    addedInstructors.add(id);
+
+    list.insertAdjacentHTML("beforeend", `
+        <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
+                    border-borderColor dark:border-borderColor-dark 
+                    flex justify-between items-center">
+
+            <span class="font-semibold text-sm text-blackColor dark:text-whiteColor">${name}</span>
+
+            <button type="button"
+                class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
+                onclick="removeInstructor(this, '${id}')">
+                Remove
+            </button>
+
+            <input type="hidden" name="instructors[]" value="${id}">
+        </div>
+    `);
+}
+
+function removeInstructor(btn, id) {
+    addedInstructors.delete(id);
+    btn.closest('.group').remove();
+}
+</script>
+
 
                                 </div>
 
@@ -881,25 +940,20 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                         </div>
 
+
+
                         <!-- SUBJECT TEACHER ASSIGN -->
                         <div class="hidden transition-all duration-300">
-
                             <div
                                 class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-
                                 <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                                    Assign Subject to Teacher
-                                </h3>
-
+                                    Assign Subject to Teacher</h3>
                                 <!-- SUBJECT LIST -->
                                 <div id="subjectList" class="space-y-3"></div>
-
                             </div>
-
                             <!-- MANAGE TEACHER POPUP -->
                             <div id="teacherPopup"
                                 class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
-
                                 <div
                                     class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 

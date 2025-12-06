@@ -12,7 +12,6 @@ class AdminDashboardControllers extends CI_Controller
 
     // Load UI and fetch features
     public function loaDadmin_coursedetails()
-    
     {
         $course_uid = $this->input->get('course_uid');
         if (!$course_uid) {
@@ -22,18 +21,23 @@ class AdminDashboardControllers extends CI_Controller
 
         $data['course_unique_id'] = $course_uid;
 
-        // Existing data
+        // Existing Data
         $data['features'] = $this->admin->getCourseFeatures($course_uid);
         $data['faqs'] = $this->admin->getCourseFaqs($course_uid);
         $data['descripations'] = $this->admin->getCourseHeadings($course_uid);
-
-        // ⭐ Topic + Keys (combined)
-        $data['important_topics'] = $this->admin->getImportantTopics($course_uid);
-
+        $data['important_topics'] = $this->admin->getImportantTopics($course_uid); // topics + keys
         $data['course_subjects'] = $this->admin->getcourseSubjects($course_uid);
 
+        // ⭐ Instructor list for dropdown
+        $data['instructors'] = $this->admin->getAllInstructors();
+
+        $data['assignedInstructors'] = $this->admin->getCourseInstructors($course_uid);
+
+
+        // Load View
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
+
 
 
 
@@ -124,6 +128,58 @@ class AdminDashboardControllers extends CI_Controller
         );
     }
 
+
+        ///=========== course Instructor ==================///
+
+    public function saveCourseInstructors()
+{
+    $course_uid = $this->input->post('course_unique_id');
+    $selectedIds = $this->input->post('instructors'); // array of teacher_unique_id
+
+    // 1️⃣ Delete removed instructors
+    $this->admin->removeCourseInstructors($course_uid, $selectedIds);
+
+    // 2️⃣ Insert new instructors
+    if(!empty($selectedIds)){
+        foreach($selectedIds as $teacher_id){
+            $this->admin->addCourseInstructor($course_uid, $teacher_id);
+        }
+    }
+        // 3️⃣ SweetAlert (controller me)
+    $this->sweetAlertC(
+        "Success!",
+        "Instructors updated successfully!",
+        "success",
+        base_url('admin_coursedetails?course_uid=' . $course_uid)
+    );
+
+}
+
+
+
+
+
+
+
+
+    // ============================================================
+    // ✅ SWEETALERT HELPER FUNCTION
+    // ============================================================
+    private function sweetAlertC($title, $text, $icon, $redirect)
+    {
+        echo '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>';
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            swal({
+                title: "' . $title . '",
+                text: "' . $text . '",
+                icon: "' . $icon . '",
+            }).then(function() {
+                window.location.href = "' . $redirect . '";
+            });
+        });
+        </script>';
+    }
 
 
 
