@@ -1,119 +1,298 @@
-<!-- INSTRUCTOR UI WRAPPER -->
-<div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4 transition-all duration-300"
-    data-aos="fade-up">
 
-    <!-- HEADER -->
-    <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <!-- SUBJECT TEACHER ASSIGN -->
+                        <div class="hidden transition-all duration-300">
+                            <div
+                                class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                    Assign Subject to Teacher</h3>
+                                <!-- SUBJECT LIST -->
+                                <div id="subjectList" class="space-y-3"></div>
+                            </div>
+                            <form action="<?= base_url('assignSubjectTeacher'); ?>" method="POST">
+                                <!-- MANAGE TEACHER POPUP -->
+                                <div id="teacherPopup"
+                                    class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                                    <div
+                                        class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-        <span class="text-blackColor dark:text-whiteColor">Instructors</span>
+                                        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                            Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+                                        </h3>
 
-        <svg class="transition-all duration-500 rotate-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-            fill="#212529">
-            <path fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-            </path>
-        </svg>
-    </div>
+                                        <div id="teacherCheckboxList"
+                                            class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+                                        </div>
 
-    <!-- BODY -->
-    <div class="hidden px-6 pb-6">
+                                        <div class="flex justify-start gap-3">
+                                            <button type="button" onclick="closeTeacherPopup()"
+                                                class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
+                                                Cancel
+                                            </button>
 
-        <!-- FULL FORM START -->
-        <form action="<?= base_url('verifyCourseInstructor'); ?>" method="POST">
+                                            <button type="button" onclick="assignTeachers()"
+                                                class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                                                Assign
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
-            <div
-                class="p-5 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark space-y-5">
+                     <script>
+/*
+  FINAL integration script
+  - Uses PHP-provided arrays:
+      $course_subjects      -> list of subjects (subject_unique_id, subject_name, ...)
+      $all_teachers         -> list of teachers (teacher_unique_id, instructor_name, ...)
+      $subjectAssignTeacher -> rows from subject_teacher_assign (subject_unique_id, teacher_unique_id, instructor_name)
+      $course_unique_id     -> current course id
+  - Keeps your UI exactly as-is.
+*/
 
-                <!-- SELECT + ADD BUTTON (50/50) -->
-                <div class="flex flex-col md:flex-row md:items-end gap-5">
+let subjects = <?= json_encode($course_subjects ?? []); ?>;
+let teachers = <?= json_encode($all_teachers ?? $instructors ?? []); ?>;
+let assignedRecords = <?= json_encode($subjectAssignTeacher ?? []); ?>;
+let course_uid = "<?= $course_unique_id ?? '' ?>";
 
-                    <!-- LEFT 50% -->
-                    <div class="w-full md:w-1/2">
-                        <label class="font-semibold block mb-2">Select Instructor</label>
+// Build an "assigned" map keyed by subject_unique_id -> array of teacher_unique_id
+let assigned = {};
+assignedRecords.forEach(r => {
+    // r.subject_unique_id and r.teacher_unique_id expected
+    if (!assigned[r.subject_unique_id]) assigned[r.subject_unique_id] = [];
+    assigned[r.subject_unique_id].push(r.teacher_unique_id);
+});
 
-                        <select id="instructorSelect" class="overflow-x-visible overflow-y-visible w-full py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark 
-                                   border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+let currentSubjectID = "";
+let currentSubjectName = "";
 
-                            <option value="">Choose Instructor</option>
-                            <option value="1">Rahul Sharma</option>
-                            <option value="2">Priya Singh</option>
-                            <option value="3">Aman Verma</option>
-                            <option value="4">Neha Das</option>
-                        </select>
-                    </div>
+/* Render Subject List */
+function loadSubjects() {
+    const box = document.getElementById("subjectList");
+    if (!box) return;
+    box.innerHTML = "";
 
-                    <!-- RIGHT 50% -->
-                    <div class="w-full md:w-1/2 md:pt-6">
-                        <button type="button" onclick="addInstructorToList()" class="w-full text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor 
-                        px-10px py-10px rounded hover:text-primaryColor hover:bg-whiteColor 
-                        dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
-                            + Add Instructor
-                        </button>
-                    </div>
+    subjects.forEach(sub => {
+        // subject_unique_id and subject_name expected fields
+        const sid = sub.subject_unique_id ?? sub.subject_id ?? sub.id ?? "";
+        const sname = sub.subject_name ?? sub.name ?? "Unnamed Subject";
 
+        const assignedTeachers = assigned[sid] ?? [];
+
+        // Build chips of teacher names
+        let chips = "";
+        if (assignedTeachers.length > 0) {
+            chips = assignedTeachers.map(tid => {
+                const t = teachers.find(x => (x.teacher_unique_id ?? x.teacher_id ?? x.id) == tid);
+                const tname = t?.instructor_name ?? t?.name ?? "Teacher";
+                return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${escapeHtml(tname)}</span>`;
+            }).join("");
+        } else {
+            chips = `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`;
+        }
+
+        box.innerHTML += `
+            <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md mb-3">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">${escapeHtml(sname)}</span>
+                    <button onclick="openTeacherPopup('${sid}', '${escapeJs(sname)}')"
+                        class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-4 h-8 rounded-md">
+                        Assign
+                    </button>
                 </div>
 
-                <!-- INSTRUCTOR LIST -->
-                <div id="instructorList" class="space-y-4 mt-4"></div>
-
-                <!-- SAVE BUTTON -->
-                <button type="submit" class="w-full mt-6 py-3 text-whiteColor bg-primaryColor border border-primaryColor 
-                       rounded-md font-semibold hover:bg-whiteColor hover:text-primaryColor 
-                       dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
-                    Save
-                </button>
-
+                <div class="flex flex-wrap gap-2 mt-3">
+                    ${chips}
+                </div>
             </div>
+        `;
+    });
+}
 
-        </form>
-        <!-- FULL FORM END -->
+/* Open Popup */
+function openTeacherPopup(subject_id, subject_name) {
+    currentSubjectID = subject_id;
+    currentSubjectName = subject_name;
 
-    </div>
+    document.getElementById("popupSubjectName").innerText = subject_name;
 
-    <script>
-        let addedInstructors = new Set();
+    const list = document.getElementById("teacherCheckboxList");
+    list.innerHTML = "";
 
-        function addInstructorToList() {
-            const select = document.getElementById("instructorSelect");
-            const list = document.getElementById("instructorList");
+    let alreadyAssigned = assigned[subject_id] ?? [];
 
-            let id = select.value;
-            let name = select.options[select.selectedIndex].text;
+    // Build checkbox list from teachers array
+    teachers.forEach(t => {
+        const tid = t.teacher_unique_id ?? t.teacher_id ?? t.id ?? "";
+        const tname = t.instructor_name ?? t.name ?? "Teacher";
+        const isChecked = alreadyAssigned.includes(tid) ? "checked" : "";
 
-            if (!id) return;
-            if (addedInstructors.has(id)) return;
+        list.innerHTML += `
+            <label class="flex items-center mb-2 text-blackColor dark:text-whiteColor">
+                <input type="checkbox" class="teacherCheck mr-2" value="${escapeHtmlAttr(tid)}" ${isChecked}>
+                <span class="pl-1">${escapeHtml(tname)}</span>
+            </label>
+        `;
+    });
 
-            addedInstructors.add(id);
+    document.getElementById("teacherPopup").classList.remove("hidden");
+}
 
-            list.insertAdjacentHTML("beforeend", `
-            <div class="mb-2 group bg-gray-100 dark:bg-gray-800 p-5 rounded-md border
-                        border-borderColor dark:border-borderColor-dark 
-                        flex justify-between items-center">
+/* Close Popup */
+function closeTeacherPopup() {
+    document.getElementById("teacherPopup").classList.add("hidden");
+}
 
-                <span class="font-semibold text-sm text-blackColor dark:text-whiteColor">${name}</span>
+/* Assign Selected Teachers - send to controller API */
+function assignTeachers() {
+    // collect selected teacher IDs
+    const selected = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
 
-                <button type="button"
-                    class="text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor"
-                    onclick="removeInstructor(this, '${id}')">
-                    Remove
-                </button>
+    // Prepare POST body (FormData supports arrays)
+    const fd = new FormData();
+    fd.append('course_uid', course_uid);
+    fd.append('subject_unique_id', currentSubjectID);
+    fd.append('subject_name', currentSubjectName);
 
-                <input type="hidden" name="instructors[]" value="${id}">
-            </div>
-        `);
+    // append teachers[]
+    selected.forEach(t => fd.append('teachers[]', t));
+
+    // send to your route (route must point to controller->saveSubjectTeacher)
+    fetch("<?= base_url('assignSubjectTeacher'); ?>", {
+        method: 'POST',
+        body: fd,
+        credentials: 'same-origin',
+        headers: {
+            // no JSON header because using FormData
+            'X-Requested-With': 'XMLHttpRequest'
         }
+    })
+    .then(resp => resp.json ? resp.json() : resp.text())
+    .then(res => {
+        // If controller returns JSON {status:'success'}
+        if (res && (res.status === 'success' || res === 'success')) {
+            // Update local assigned map to reflect latest selection without reload
+            assigned[currentSubjectID] = selected;
 
-        function removeInstructor(btn, id) {
-            addedInstructors.delete(id);
-            btn.closest('.group').remove();
+            // Optionally update the subject list UI
+            closeTeacherPopup();
+            loadSubjects();
+        } else {
+            // handle failure (simple fallback)
+            alert('Save failed. Try again.');
         }
-    </script>
+    })
+    .catch(err => {
+        console.error('Assign request failed', err);
+        alert('Request failed. Check console.');
+    });
+}
+
+/* small helpers to avoid XSS when injecting server strings */
+function escapeHtml(str) {
+    if (!str && str !== 0) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+function escapeHtmlAttr(str) {
+    return escapeHtml(str).replace(/"/g, '&quot;');
+}
+// for passing into onclick as JS string param; replaces single quote and backslash
+function escapeJs(str) {
+    if (!str && str !== 0) return '';
+    return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+/* Initial load */
+document.addEventListener('DOMContentLoaded', function () {
+    loadSubjects();
+});
+</script>
 
 
-</div>
+                        </div>
 
 
 
 
-$subject_unique_id = "SUBJ_" . strtoupper(substr(md5(time() . rand()), 0, 8));
+
+
+
+
+
+
+
+
+
+
+                        
+// API: Return all teachers for popup
+    public function api_getTeachers()
+    {
+        $teachers = $this->admin->getAllInstructors();
+        echo json_encode($teachers);
+    }
+
+    // API: Return assigned teachers for a subject
+    public function api_getAssignedTeachers()
+    {
+        $subject_id = $this->input->get('subject_id');
+        $course_uid = $this->input->get('course_uid');
+
+        $data = $this->admin->getAssignedTeachers($course_uid, $subject_id);
+
+        echo json_encode($data);
+    }
+
+    // Save subject-teacher mapping
+    public function saveSubjectTeacher()
+    {
+        $course_uid = $this->input->post('course_uid');
+        $subject_id = $this->input->post('subject_unique_id');
+        $subject_name = $this->input->post('subject_name');
+        $teachers = $this->input->post('teachers'); // Array
+
+        $this->admin->assignSubjectTeacher($course_uid, $subject_id, $subject_name, $teachers);
+
+        echo json_encode(['status' => 'success']);
+    }
+
+
+
+
+
+
+    public function assignSubjectTeacher($course_uid, $subject_id, $subject_name, $teachers)
+{
+    // Delete old records
+    $this->db->where('course_unique_id', $course_uid)
+             ->where('subject_unique_id', $subject_id)
+             ->delete('subject_teacher_assign');
+
+    // Insert new
+    if (!empty($teachers)) {
+        foreach ($teachers as $t) {
+
+            $teacher = $this->db->where('teacher_unique_id', $t)
+                                ->get('course_instructors')
+                                ->row();
+
+            $insert = [
+                'course_unique_id' => $course_uid,
+                'subject_unique_id' => $subject_id,
+                'subject_name' => $subject_name,
+                'teacher_unique_id' => $t,
+                'instructor_name' => $teacher->instructor_name,
+                'assigned_date' => date('Y-m-d H:i:s')
+            ];
+
+            $this->db->insert('subject_teacher_assign', $insert);
+        }
+    }
+
+    return true;
+}
+

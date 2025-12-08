@@ -409,14 +409,14 @@ class Admin_Model extends CI_Model
     // -- GET subject_teacher_assign---
     // ============================================================
 
-    public function getSubjectTeacher($course_uid)
-    {
-        return $this->db
-            ->where('course_unique_id', $course_uid)
-            ->order_by('id', 'ASC')
-            ->get('subject_teacher_assign')
-            ->result();
-    }
+public function getSubjectTeacher($course_uid)
+{
+    return $this->db
+        ->where('course_unique_id', $course_uid)
+        ->get('subject_teacher_assign')
+        ->result();
+}
+
 
     // public function getCourseInstructors($course_uid)
     // {
@@ -437,10 +437,47 @@ class Admin_Model extends CI_Model
 
 
 
-    // public function assignSubjectTeacher($course_uid, $subject_name, $teacher_ids)
-    // {
-       
-    // }
+
+
+public function getAssignedTeachers($course_uid, $subject_id)
+{
+    return $this->db
+        ->where('course_unique_id', $course_uid)
+        ->where('subject_unique_id', $subject_id)
+        ->get('subject_teacher_assign')
+        ->result();
+}
+
+public function assignSubjectTeacher($course_uid, $subject_id, $subject_name, $teachers)
+{
+    // Delete old records
+    $this->db->where('course_unique_id', $course_uid)
+             ->where('subject_unique_id', $subject_id)
+             ->delete('subject_teacher_assign');
+
+    // Insert new
+    if (!empty($teachers)) {
+        foreach ($teachers as $t) {
+
+            $teacher = $this->db->where('teacher_unique_id', $t)
+                                ->get('course_instructors')
+                                ->row();
+
+            $insert = [
+                'course_unique_id' => $course_uid,
+                'subject_unique_id' => $subject_id,
+                'subject_name' => $subject_name,
+                'teacher_unique_id' => $t,
+                'instructor_name' => $teacher->instructor_name,
+                'assigned_date' => date('Y-m-d H:i:s')
+            ];
+
+            $this->db->insert('subject_teacher_assign', $insert);
+        }
+    }
+
+    return true;
+}
 
 
 

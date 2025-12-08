@@ -31,8 +31,10 @@ class AdminDashboardControllers extends CI_Controller
         $data['instructors'] = $this->admin->getAllInstructors(); /// from instructors_diectory
 
         $data['course_subjects'] = $this->admin->getcourseSubjects($course_uid); /// from course_subjects
-        $data['assignedInstructors'] = $this->admin->getCourseInstructors($course_uid); // from course_instructors
+        // $data['assignedInstructors'] = $this->admin->getCourseInstructors($course_uid); // from course_instructors
         $data['subjectAssignTeacher'] = $this->admin->getSubjectTeacher($course_uid); // from subject_teacher_assign
+          // All instructors
+        $data['all_teachers'] = $this->admin->getAllInstructors();
 
 
         // Load View
@@ -40,17 +42,37 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
-    // public function saveSubjectTeacher()
-    // {
-    //     $course_uid = $this->input->post('course_uid');
-    //     $subject_name = $this->input->post('subject');
-    //     $teachers = $this->input->post('teachers'); // array of teacher_unique_id
 
-    
-    //     // Call model to save
-    //     $this->admin->assignSubjectTeacher($course_uid, $subject_name, $teachers);
+// API: Return all teachers for popup
+    public function api_getTeachers()
+    {
+        $teachers = $this->admin->getAllInstructors();
+        echo json_encode($teachers);
+    }
 
-    // }
+    // API: Return assigned teachers for a subject
+    public function api_getAssignedTeachers()
+    {
+        $subject_id = $this->input->get('subject_id');
+        $course_uid = $this->input->get('course_uid');
+
+        $data = $this->admin->getAssignedTeachers($course_uid, $subject_id);
+
+        echo json_encode($data);
+    }
+
+    // Save subject-teacher mapping
+    public function saveSubjectTeacher()
+    {
+        $course_uid = $this->input->post('course_uid');
+        $subject_id = $this->input->post('subject_unique_id');
+        $subject_name = $this->input->post('subject_name');
+        $teachers = $this->input->post('teachers'); // Array
+
+        $this->admin->assignSubjectTeacher($course_uid, $subject_id, $subject_name, $teachers);
+
+        echo json_encode(['status' => 'success']);
+    }
 
 
 
