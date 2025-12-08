@@ -35,13 +35,31 @@ class AdminDashboardControllers extends CI_Controller
         $data['subjectAssignTeacher'] = $this->admin->getSubjectTeacher($course_uid); // from subject_teacher_assign
 
 
-
-
-
-
         // Load View
         $this->load->view('dashboard/dAdmin/admin_coursedetails', $data);
     }
+
+
+    // public function saveSubjectTeacher()
+    // {
+    //     $course_uid = $this->input->post('course_uid');
+    //     $subject_name = $this->input->post('subject');
+    //     $teachers = $this->input->post('teachers'); // array of teacher_unique_id
+
+    
+    //     // Call model to save
+    //     $this->admin->assignSubjectTeacher($course_uid, $subject_name, $teachers);
+
+    // }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -159,6 +177,31 @@ class AdminDashboardControllers extends CI_Controller
         );
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

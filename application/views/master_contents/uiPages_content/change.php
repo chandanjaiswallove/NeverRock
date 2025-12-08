@@ -1,160 +1,126 @@
-<div class="border border-borderColor dark:border-borderColor-dark rounded-md mb-4" data-aos="fade-up">
 
-    <form action="<?= base_url('verifyCourseImportantTopic'); ?>" method="POST" enctype="multipart/form-data">
 
-        <input type="hidden" name="course_unique_id" value="<?= $course_unique_id ?>">
-        <input type="hidden" name="topic_id" id="topic_id" value="<?= $important_topics->id ?? 0 ?>">
+                        <!-- SUBJECT TEACHER ASSIGN -->
+                        <div class="hidden transition-all duration-300">
+                            <!-- <form action="<?= base_url('assignSubjectTeacher'); ?>" method="POST"> -->
+                                <div
+                                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                    <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                        Assign Subject to Teacher</h3>
+                                    <!-- SUBJECT LIST -->
+                                    <div id="subjectList" class="space-y-3"></div>
+                                </div>
+                                <!-- MANAGE TEACHER POPUP -->
+                                <div id="teacherPopup"
+                                    class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                                    <div
+                                        class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-        <!-- deleted key ids here -->
-        <input type="hidden" id="deleted_keys" name="deleted_key_ids">
+                                        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                            Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+                                        </h3>
 
-        <!-- HEADER -->
-        <div class="cursor-pointer accordion-controller flex justify-between items-center text-lg font-semibold py-5 px-6"
-            onclick="this.nextElementSibling.classList.toggle('hidden')">
-            <span class="text-blackColor dark:text-whiteColor">Important Topic</span>
-            <svg class="transition-all duration-500 rotate-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16" fill="#212529">
-                <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z">
-                </path>
-            </svg>
-        </div>
+                                        <div id="teacherCheckboxList"
+                                            class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+                                        </div>
 
-        <!-- BODY -->
-        <div class="hidden px-6 pb-6">
-            <div
-                class="p-2 md:p-5 lg:p-5 2xl:p-6 bg-darkdeep3 dark:bg-transparent text-sm text-blackColor dark:text-blackColor-dark leading-1.8 space-y-4">
+                                        <div class="flex justify-start gap-3">
+                                            <button type="button" onclick="closeTeacherPopup()"
+                                                class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
+                                                Cancel
+                                            </button>
 
-                <!-- TOPIC NAME -->
-                <div
-                    class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-                    <label class="block font-semibold">Important Topic Name</label>
-                    <input type="text" id="important_topic" name="important_topic"
-                        value="<?= $important_topics->importantTopic ?? '' ?>" placeholder="Enter Important Topic name"
-                        class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md"
-                        oninput="toggleKeyButton()">
-                </div>
+                                            <button type="button" onclick="assignTeachers()"
+                                                class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                                                Assign
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                                /* Dummy Subjects */
+                                let subjects = ["Science"];
 
-                <!-- REMOVE TOPIC + ALL KEYS -->
-                <?php if (!empty($important_topics->id)): ?>
-                    <button type="button" id="removeTopicAllBtn"
-                        class="text-sm text-red-600 hover:text-primaryColor font-semibold mb-3">
-                        Remove Topic + All Keys
-                    </button>
-                <?php endif; ?>
+                                /* Dummy Teachers */
+                                let teachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D", "Teacher E"];
 
-                <!-- KEYS LIST -->
-                <div id="importantKeyList" class="space-y-4">
+                                /* Assigned List */
+                                let assigned = {
+                                    "English": [],
+                                    "Math": [],
+                                    "Science": []
+                                };
 
-                    <?php if (!empty($important_topics->keys)): ?>
-                        <?php foreach ($important_topics->keys as $key): ?>
-                            <div
-                                class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
+                                let currentSubject = "";
 
-                                <label class="block font-semibold">Important Key</label>
+                                /* Render Subject List */
+                                function loadSubjects() {
+                                    const box = document.getElementById("subjectList");
+                                    box.innerHTML = "";
 
-                                <input type="hidden" class="key-id" value="<?= $key->id ?>">
-                                <input type="text" name="important_keys_existing[<?= $key->id ?>]"
-                                    value="<?= $key->dimpDescription ?>"
-                                    class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+                                    subjects.forEach(sub => {
+                                        box.innerHTML += `
+<div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
 
-                                <button type="button"
-                                    class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor mt-3 block">
-                                    Remove Key
-                                </button>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+    <div class="flex justify-between items-center">
+        <span class="font-bold uppercase     text-contentColor dark:text-contentColor-dark">${sub}</span>
 
-                </div>
+        <button onclick="openTeacherPopup('${sub}')"
+            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
+            Assign
+        </button>
+    </div>
 
-                <!-- ADD KEY + SAVE -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full place-items-center mt-4">
-
-                    <button type="button" id="addKeyBtn" onclick="addImportantKey()"
-                        class="text-sm md:text-size-15 text-whiteColor bg-secondaryColor border border-secondaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor disabled:bg-gray-400 disabled:text-whiteColor disabled:cursor-not-allowed">
-                        + Add Key
-                    </button>
-
-                    <button type="submit"
-                        class="text-sm md:text-size-15 text-whiteColor bg-primaryColor border border-primaryColor px-10px py-10px hover:text-primaryColor hover:bg-whiteColor rounded dark:hover:bg-whiteColor-dark dark:hover:text-whiteColor">
-                        Save
-                    </button>
-
-                </div>
-
-            </div>
-        </div>
-
-    </form>
-
-    <!-- SCRIPT -->
-    <script>
-        let deletedKeyIds = [];
-
-        // Disable ADD KEY until topic is filled
-        function toggleKeyButton() {
-            const topic = document.getElementById("important_topic").value.trim();
-            document.getElementById("addKeyBtn").disabled = topic === "";
-        }
-        toggleKeyButton();
-
-        function addImportantKey() {
-            const topic = document.getElementById("important_topic").value.trim();
-            if (topic === "") {
-                alert("Please enter Topic name first!");
-                return;
-            }
-
-            const list = document.getElementById("importantKeyList");
-
-            list.insertAdjacentHTML("beforeend", `
-<div class="keyBox group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-    <label class="block font-semibold">Important Key</label>
-
-    <input type="hidden" class="key-id" value="0">
-
-    <input type="text" name="important_keys_new[]" placeholder="Enter key"
-        class="w-full mt-2 py-2 px-3 text-sm bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-
-    <button type="button"
-        class="removeKeyBtn text-red-600 text-sm font-semibold hover:text-primaryColor dark:hover:text-primaryColor mt-3 block">
-        Remove Key
-    </button>
+    <div class="flex flex-wrap gap-2 mt-3">
+        ${assigned[sub].length > 0 ?
+                                                assigned[sub].map(t =>
+                                                    `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t}</span>`
+                                                ).join("")
+                                                :
+                                                `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
+                                            }
+    </div>
 </div>
-`);
-        }
+`;
+                                    });
+                                }
 
-        // Remove Individual Key
-        document.addEventListener('click', function (e) {
-            if (e.target.classList.contains('removeKeyBtn')) {
+                                /* Open Popup */
+                                function openTeacherPopup(sub) {
+                                    currentSubject = sub;
+                                    document.getElementById("popupSubjectName").innerText = sub;
 
-                let keyBox = e.target.closest('.keyBox');
-                let keyId = keyBox.querySelector('.key-id').value;
+                                    const list = document.getElementById("teacherCheckboxList");
+                                    list.innerHTML = "";
 
-                if (keyId !== "0") {
-                    deletedKeyIds.push(keyId);
-                    document.getElementById("deleted_keys").value = JSON.stringify(deletedKeyIds);
-                }
+                                    teachers.forEach(t => {
+                                        const isChecked = assigned[sub].includes(t) ? "checked" : "";
+                                        list.innerHTML += `
+<label class="flex items-center mb-2 text-blackColor dark:text-whiteColor">
+    <input type="checkbox" class="teacherCheck mr-2" value="${t}" ${isChecked}>
+    <span class="pl-1">${t}</span>
+</label>
+`;
+                                    });
 
-                keyBox.remove();
-            }
-        });
+                                    document.getElementById("teacherPopup").classList.remove("hidden");
+                                }
 
-        // Remove Topic + All Keys
-        document.getElementById('removeTopicAllBtn')?.addEventListener('click', function () {
-            if (!confirm("Delete Topic + All Keys?")) return;
+                                /* Close Popup */
+                                function closeTeacherPopup() {
+                                    document.getElementById("teacherPopup").classList.add("hidden");
+                                }
 
-            deletedKeyIds = JSON.stringify(
-                [...document.querySelectorAll(".key-id")].map(e => e.value)
-            );
-            document.getElementById("deleted_keys").value = deletedKeyIds;
+                                /* Assign Selected Teachers */
+                                function assignTeachers() {
+                                    const selected = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
+                                    assigned[currentSubject] = selected; // overwrite
+                                    closeTeacherPopup();
+                                    loadSubjects();
+                                }
 
-            document.getElementById("important_topic").value = "";
-            document.getElementById("topic_id").value = 0;
-            document.getElementById("importantKeyList").innerHTML = "";
-
-            toggleKeyButton();
-        });
-    </script>
-</div>
+                                // Initial load
+                                loadSubjects();
+                            </script>
+                        </div>

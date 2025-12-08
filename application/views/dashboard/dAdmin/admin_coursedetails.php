@@ -928,8 +928,16 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             </div>
 
 
-
                         </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -942,34 +950,35 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 <!-- SUBJECT LIST -->
                                 <div id="subjectList" class="space-y-3"></div>
                             </div>
-                            <!-- MANAGE TEACHER POPUP -->
-                            <div id="teacherPopup"
-                                class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
-                                <div
-                                    class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
+                            <form action="<?= base_url('assignSubjectTeacher'); ?>" method="POST">
+                                <!-- MANAGE TEACHER POPUP -->
+                                <div id="teacherPopup"
+                                    class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                                    <div
+                                        class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-                                    <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                                        Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
-                                    </h3>
+                                        <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                            Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+                                        </h3>
 
-                                    <div id="teacherCheckboxList"
-                                        class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
-                                    </div>
+                                        <div id="teacherCheckboxList"
+                                            class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+                                        </div>
 
-                                    <div class="flex justify-start gap-3">
-                                        <button type="button" onclick="closeTeacherPopup()"
-                                            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
-                                            Cancel
-                                        </button>
+                                        <div class="flex justify-start gap-3">
+                                            <button type="button" onclick="closeTeacherPopup()"
+                                                class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
+                                                Cancel
+                                            </button>
 
-                                        <button type="button" onclick="assignTeachers()"
-                                            class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
-                                            Assign
-                                        </button>
+                                            <button type="button" onclick="assignTeachers()"
+                                                class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                                                Assign
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </form>
                             <script>
                                 /* Dummy Subjects */
                                 let subjects = ["Science"];
@@ -1055,8 +1064,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 // Initial load
                                 loadSubjects();
                             </script>
-
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

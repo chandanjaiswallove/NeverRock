@@ -418,12 +418,29 @@ class Admin_Model extends CI_Model
             ->result();
     }
 
+    // public function getCourseInstructors($course_uid)
+    // {
+    //     return $this->db->where('course_unique_id', $course_uid)
+    //         ->get('course_instructors')
+    //         ->result();
+    // }
+
+
+    // public function getcourseSubjects($course_uid)
+    // {
+    //     return $this->db
+    //         ->where('course_unique_id', $course_uid)
+    //         ->order_by('id', 'ASC')
+    //         ->get('course_subjects')
+    //         ->result();
+    // }
 
 
 
-
-
-
+    // public function assignSubjectTeacher($course_uid, $subject_name, $teacher_ids)
+    // {
+       
+    // }
 
 
 
