@@ -293,14 +293,14 @@ class Admin_Model extends CI_Model
 
 
 
-    public function getcourseSubjects($course_uid)
-    {
-        return $this->db
-            ->where('course_unique_id', $course_uid)
-            ->order_by('id', 'ASC')
-            ->get('course_subjects')
-            ->result();
-    }
+    // public function getcourseSubjects($course_uid)
+    // {
+    //     return $this->db
+    //         ->where('course_unique_id', $course_uid)
+    //         ->order_by('id', 'ASC')
+    //         ->get('course_subjects')
+    //         ->result();
+    // }
 
     public function saveSubjects($course_uid, $subject_ids, $subject_names, $deleted_subject_ids)
     {
@@ -351,14 +351,14 @@ class Admin_Model extends CI_Model
             ->result();
     }
 
-    // -- --- fetch course_instructor ----------------------------
+    // // -- --- fetch course_instructor ----------------------------
 
-    public function getCourseInstructors($course_uid)
-    {
-        return $this->db->where('course_unique_id', $course_uid)
-            ->get('course_instructors')
-            ->result();
-    }
+    // public function getCourseInstructors($course_uid)
+    // {
+    //     return $this->db->where('course_unique_id', $course_uid)
+    //         ->get('course_instructors')
+    //         ->result();
+    // }
 
     // -----------------------------
 // Insert teacher into course_instructors
@@ -405,79 +405,78 @@ class Admin_Model extends CI_Model
 
 
 
-    // ============================================================
-    // -- GET subject_teacher_assign---
-    // ============================================================
-
-public function getSubjectTeacher($course_uid)
-{
-    return $this->db
-        ->where('course_unique_id', $course_uid)
-        ->get('subject_teacher_assign')
-        ->result();
-}
-
-
-    // public function getCourseInstructors($course_uid)
-    // {
-    //     return $this->db->where('course_unique_id', $course_uid)
-    //         ->get('course_instructors')
-    //         ->result();
-    // }
-
-
-    // public function getcourseSubjects($course_uid)
-    // {
-    //     return $this->db
-    //         ->where('course_unique_id', $course_uid)
-    //         ->order_by('id', 'ASC')
-    //         ->get('course_subjects')
-    //         ->result();
-    // }
 
 
 
 
 
-public function getAssignedTeachers($course_uid, $subject_id)
-{
-    return $this->db
-        ->where('course_unique_id', $course_uid)
-        ->where('subject_unique_id', $subject_id)
-        ->get('subject_teacher_assign')
-        ->result();
-}
 
-public function assignSubjectTeacher($course_uid, $subject_id, $subject_name, $teachers)
-{
-    // Delete old records
-    $this->db->where('course_unique_id', $course_uid)
-             ->where('subject_unique_id', $subject_id)
-             ->delete('subject_teacher_assign');
 
-    // Insert new
-    if (!empty($teachers)) {
-        foreach ($teachers as $t) {
 
-            $teacher = $this->db->where('teacher_unique_id', $t)
-                                ->get('course_instructors')
-                                ->row();
 
-            $insert = [
-                'course_unique_id' => $course_uid,
-                'subject_unique_id' => $subject_id,
-                'subject_name' => $subject_name,
-                'teacher_unique_id' => $t,
-                'instructor_name' => $teacher->instructor_name,
-                'assigned_date' => date('Y-m-d H:i:s')
-            ];
 
-            $this->db->insert('subject_teacher_assign', $insert);
-        }
+
+
+    // ===========================================================================
+    // GET DATA FROM COURSE_SUBJECT , COURSE_INSTRUCTORS, SUBJECT_TEACHER_ASSIGN
+    // ===========================================================================
+
+    // -- --- fetch course_subjects ----------------------------
+    public function getcourseSubjects($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->order_by('id', 'ASC')
+            ->get('course_subjects')
+            ->result();
     }
 
-    return true;
-}
+
+    // -- --- fetch course_instructor ----------------------------
+    public function getCourseInstructors($course_uid)
+    {
+        return $this->db->where('course_unique_id', $course_uid)
+            ->get('course_instructors')
+            ->result();
+    }
+
+
+    // -- --- fetch subject_teacher_assign ----------------------------
+    public function getSubjectTeacher($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->get('subject_teacher_assign')
+            ->result();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
