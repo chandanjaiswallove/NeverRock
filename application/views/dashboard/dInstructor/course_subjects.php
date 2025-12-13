@@ -31,13 +31,110 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                             <h3 class="text-2xl font-semibold text-blackColor dark:text-blackColor-dark leading-38px">
                                 Computers Science
                             </h3>
-                            <a href="#" class="">
-                                <span
-                                    class="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-5px mb-5 rounded-standard inline-block aos-init aos-animate"
-                                    data-aos="fade-up">
-                                    + NEW CHAPTER
-                                </span>
-                            </a>
+                            <!-- Button to open modal -->
+                            <button id="openModal"
+                                class="text-sm font-semibold text-primaryColor bg-whitegrey3 px-6 py-1 mb-5 rounded-standard inline-block">
+                                + NEW CHAPTER
+                            </button>
+
+                            <!-- Modal structure -->
+                            <div id="myModal"
+                                class="fixed top-0 left-0 w-full h-full inset-0 transition-all duration-500 bg-lightBlack hidden items-center justify-center z-50">
+                                <div class="modal-close fixed md:absolute top-0 left-0 w-full h-full z-xsmall">
+                                </div>
+                                <div
+                                    class="modal-content transition-all duration-500 -translate-y-20 bg-whiteColor dark:bg-whiteColor-dark p-15px max-w-250 mx-15px md:mx-auto mb-50px mt-110px md:my-150px relative z-small rounded-lg">
+                                    <div class="grid ">
+                                        <!-- delails left -->
+                                        <div class="relative">
+                                            <div class="md:sticky md:top-[100px]">
+
+                                                <h2
+                                                    class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                                                    Create Chapter
+                                                </h2>
+
+
+                                                <form method="POST" action="http://localhost/NeverRock/passwordUpdate"
+                                                    class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
+                                                    data-aos="fade-up">
+
+                                                    <div class="grid grid-cols-1 mb-15px gap-y-15px gap-x-30px">
+
+
+
+                                                        <!-- New Password -->
+                                                        <div class="relative">
+                                                            <label class="mb-3 block font-semibold">Chapter Name</label>
+                                                            <input type="text" id="txss" name="txss"
+                                                                placeholder="Chapter Name" maxlength="25" required=""
+                                                                class="w-full py-10px px-5 pr-35px text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="mt-15px">
+                                                        <button type="submit" name="updatePassword"
+                                                            class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
+                                                            Add
+                                                        </button>
+                                                    </div>
+                                                </form>
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <!-- close button -->
+                                        <div class="absolute top-4 right-3 z-xxl">
+                                            <button id="closeModal"
+                                                class="modal-close group dark:bg-whiteColor rounded focus:shadow-select opacity-50 hover:opacity-75 p-1 inline-block">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                    class="w-4 h-4 fill-blackColor" fill="#000">
+                                                    <path
+                                                        d="M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                const openBtn = document.getElementById('openModal');
+                                const modal = document.getElementById('myModal');
+                                const closeBtn = document.getElementById('closeModal');
+
+                                // Open modal
+                                openBtn.addEventListener('click', () => {
+                                    modal.classList.remove('hidden');
+                                    modal.classList.add('flex');
+                                });
+
+                                // Close modal
+                                closeBtn.addEventListener('click', () => {
+                                    modal.classList.add('hidden');
+                                    modal.classList.remove('flex');
+                                });
+
+                                // Click outside modal to close
+                                window.addEventListener('click', (e) => {
+                                    if (e.target === modal) {
+                                        modal.classList.add('hidden');
+                                        modal.classList.remove('flex');
+                                    }
+                                });
+                            </script>
+
 
                         </div>
 
@@ -146,20 +243,8 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
                         </ul>
 
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
-
-
 
 
                 <!-- dashboard content -->
@@ -173,13 +258,14 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                 Chapter 1 - Introduction
                             </h2>
 
-                                <div class="text-primaryColor bg-whitegrey3 text-sm  rounded py-0.5 px-5 flex items-center justify-between gap-2 flex-wrap">
-                                    <button class=" ">Lecture</button>
-                                    <button class=" ">Quiz</button>
-                                    <button class="">Assignment</button>
-                                    <button class="">Materials</button>
-                                    <button class="">Test</button>
-                                </div>
+                            <div
+                                class="text-primaryColor bg-whitegrey3 text-sm  rounded py-0.5 px-5 flex items-center justify-between gap-2 flex-wrap">
+                                <button class=" ">Lecture</button>
+                                <button class=" ">Quiz</button>
+                                <button class="">Assignment</button>
+                                <button class="">Materials</button>
+                                <button class="">Test</button>
+                            </div>
                             </li>
                         </div>
 
@@ -459,27 +545,10 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
                 </div>
 
-
-
-
-
             </div>
         </div>
+
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
