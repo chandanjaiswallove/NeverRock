@@ -1012,11 +1012,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     subjects.forEach(sub => {
                                         box.innerHTML += `
-<div class="p-4 bg-white border rounded mb-3">
-    <div class="flex justify-between">
-        <span class="font-bold">${sub.subject_name}</span>
+<div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
+    <div class="flex justify-between items-center">
+        <span class="font-bold uppercase     text-contentColor dark:text-contentColor-dark">${sub.subject_name}</span>
         <button onclick="openTeacherPopup('${sub.subject_unique_id}','${sub.subject_name}')"
-            class="bg-green-600 text-white px-3 py-1 rounded">
+            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
             Assign
         </button>
     </div>
@@ -1025,9 +1025,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         ${assigned[sub.subject_unique_id]
                                                 ? assigned[sub.subject_unique_id].map(id => {
                                                     const t = teachers.find(x => x.teacher_unique_id === id);
-                                                    return `<span class="bg-blue-100 px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
+                                                    return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
                                                 }).join('')
-                                                : `<span class="italic text-sm">No teacher assigned</span>`
+                                                : `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
                                             }
     </div>
 </div>`;
