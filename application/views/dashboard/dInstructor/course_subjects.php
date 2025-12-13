@@ -61,9 +61,6 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
 
                                                     <div class="grid grid-cols-1 mb-15px gap-y-15px gap-x-30px">
 
-
-
-                                                        <!-- New Password -->
                                                         <div class="relative">
                                                             <label class="mb-3 block font-semibold">Chapter Name</label>
                                                             <input type="text" id="txss" name="txss"
@@ -71,12 +68,10 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                                 class="w-full py-10px px-5 pr-35px text-sm focus:outline-none text-contentColor dark:text-contentColor-dark bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark placeholder:text-placeholder placeholder:opacity-80 leading-23px rounded-md font-no">
 
                                                         </div>
-
-
                                                     </div>
 
                                                     <div class="mt-15px">
-                                                        <button type="submit" name="updatePassword"
+                                                        <button type="submit" name=""
                                                             class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
                                                             Add
                                                         </button>

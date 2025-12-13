@@ -990,90 +990,101 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                             </div>
                             </form>
                             <script>
-                                /* Dummy Subjects */
-                                let subjects = ["Science"];
+                                const courseUID = "<?= $course_uid ?>";
+                                const subjects = <?= json_encode($course_subjects); ?>;
+                                const teachers = <?= json_encode($assignedInstructors); ?>;
+                                const assignedRaw = <?= json_encode($subjectAssignTeacher); ?>;
 
-                                /* Dummy Teachers */
-                                let teachers = ["Teacher A", "Teacher B", "Teacher C", "Teacher D", "Teacher E"];
+                                let assigned = {};
+                                let currentSubjectUID = "";
+                                let currentSubjectName = "";
 
-                                /* Assigned List */
-                                let assigned = {
-                                    "English": [],
-                                    "Math": [],
-                                    "Science": []
-                                };
+                                /* build assigned map */
+                                assignedRaw.forEach(r => {
+                                    if (!assigned[r.subject_unique_id]) assigned[r.subject_unique_id] = [];
+                                    assigned[r.subject_unique_id].push(r.teacher_unique_id);
+                                });
 
-                                let currentSubject = "";
-
-                                /* Render Subject List */
+                                /* LOAD SUBJECTS */
                                 function loadSubjects() {
                                     const box = document.getElementById("subjectList");
                                     box.innerHTML = "";
 
                                     subjects.forEach(sub => {
                                         box.innerHTML += `
-<div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
-
-    <div class="flex justify-between items-center">
-        <span class="font-bold uppercase     text-contentColor dark:text-contentColor-dark">${sub}</span>
-
-        <button onclick="openTeacherPopup('${sub}')"
-            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
+<div class="p-4 bg-white border rounded mb-3">
+    <div class="flex justify-between">
+        <span class="font-bold">${sub.subject_name}</span>
+        <button onclick="openTeacherPopup('${sub.subject_unique_id}','${sub.subject_name}')"
+            class="bg-green-600 text-white px-3 py-1 rounded">
             Assign
         </button>
     </div>
 
-    <div class="flex flex-wrap gap-2 mt-3">
-        ${assigned[sub].length > 0 ?
-                                                assigned[sub].map(t =>
-                                                    `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t}</span>`
-                                                ).join("")
-                                                :
-                                                `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
+    <div class="mt-2 flex gap-2 flex-wrap">
+        ${assigned[sub.subject_unique_id]
+                                                ? assigned[sub.subject_unique_id].map(id => {
+                                                    const t = teachers.find(x => x.teacher_unique_id === id);
+                                                    return `<span class="bg-blue-100 px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
+                                                }).join('')
+                                                : `<span class="italic text-sm">No teacher assigned</span>`
                                             }
     </div>
-</div>
-`;
+</div>`;
                                     });
                                 }
 
-                                /* Open Popup */
-                                function openTeacherPopup(sub) {
-                                    currentSubject = sub;
-                                    document.getElementById("popupSubjectName").innerText = sub;
+                                /* POPUP OPEN */
+                                function openTeacherPopup(uid, name) {
+                                    currentSubjectUID = uid;
+                                    currentSubjectName = name;
 
+                                    document.getElementById("popupSubjectName").innerText = name;
                                     const list = document.getElementById("teacherCheckboxList");
                                     list.innerHTML = "";
 
                                     teachers.forEach(t => {
-                                        const isChecked = assigned[sub].includes(t) ? "checked" : "";
+                                        const checked = assigned[uid]?.includes(t.teacher_unique_id) ? "checked" : "";
                                         list.innerHTML += `
-<label class="flex items-center mb-2 text-blackColor dark:text-whiteColor">
-    <input type="checkbox" class="teacherCheck mr-2" value="${t}" ${isChecked}>
-    <span class="pl-1">${t}</span>
-</label>
-`;
+<label class="flex items-center mb-2">
+    <input type="checkbox" class="teacherCheck mr-2"
+        value="${t.teacher_unique_id}"
+        data-name="${t.instructor_name}" ${checked}>
+    ${t.instructor_name}
+</label>`;
                                     });
 
                                     document.getElementById("teacherPopup").classList.remove("hidden");
                                 }
 
-                                /* Close Popup */
                                 function closeTeacherPopup() {
                                     document.getElementById("teacherPopup").classList.add("hidden");
                                 }
 
-                                /* Assign Selected Teachers */
+                                /* SAVE */
                                 function assignTeachers() {
-                                    const selected = [...document.querySelectorAll(".teacherCheck:checked")].map(c => c.value);
-                                    assigned[currentSubject] = selected; // overwrite
-                                    closeTeacherPopup();
-                                    loadSubjects();
+                                    const selected = [...document.querySelectorAll(".teacherCheck:checked")]
+                                        .map(c => ({ uid: c.value, name: c.dataset.name }));
+
+                                    fetch("<?= base_url('assignSubjectTeacher') ?>", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({
+                                            course_uid: courseUID,
+                                            subject_uid: currentSubjectUID,
+                                            subject_name: currentSubjectName,
+                                            teachers: selected
+                                        })
+                                    }).then(() => {
+                                        assigned[currentSubjectUID] = selected.map(t => t.uid);
+                                        closeTeacherPopup();
+                                        loadSubjects();
+                                    });
                                 }
 
-                                // Initial load
                                 loadSubjects();
                             </script>
+
                         </div>
 
 

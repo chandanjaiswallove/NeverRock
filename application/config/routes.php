@@ -79,7 +79,8 @@ $route['verifyCourseHeadings'] = 'AdminDashboardControllers/loaDverifyCourseHead
 $route['verifyCourseImportantTopic'] = 'AdminDashboardControllers/verifyCourseImportantTopic';
 $route['verifyCourseSubject'] = 'AdminDashboardControllers/verifyCourseSubject';
 $route['saveCourseInstructors'] = 'AdminDashboardControllers/saveCourseInstructors';
-// $route['assign-subject-teacher'] = 'AdminDashboardControllers/saveSubjectTeacher';
+
+$route['assignSubjectTeacher'] = 'AdminDashboardControllers/assignSubjectTeacher';
 
 
 
