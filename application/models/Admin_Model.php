@@ -8,6 +8,73 @@ class Admin_Model extends CI_Model
         parent::__construct();
     }
 
+
+
+
+    // ===========================================================================
+    //  DATA FROM COURSE_SUBJECT , COURSE_INSTRUCTORS, SUBJECT_TEACHER_ASSIGN
+    // ===========================================================================
+
+    // -- --- fetch course_subjects ----------------------------
+    public function getcourseSubjects($course_uid)
+    {
+        return $this->db->where('course_unique_id', $course_uid)
+            ->order_by('id', 'ASC')
+            ->get('course_subjects')
+            ->result();
+    }
+
+    public function getCourseInstructors($course_uid)
+    {
+        return $this->db->where('course_unique_id', $course_uid)
+            ->get('course_instructors')
+            ->result();
+    }
+
+    public function getSubjectTeacher($course_uid)
+    {
+        return $this->db->where('course_unique_id', $course_uid)
+            ->get('subject_teacher_assign')
+            ->result();
+    }
+
+    ///========================== TEACHER ASSIGN SUBJECT =============================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///==============features=================////
+
     // Fetch all table features for a course
     public function getCourseFeatures($course_uid)
     {
@@ -412,57 +479,6 @@ class Admin_Model extends CI_Model
 
 
 
-
-
-
-
-
-    // ===========================================================================
-    // GET DATA FROM COURSE_SUBJECT , COURSE_INSTRUCTORS, SUBJECT_TEACHER_ASSIGN
-    // ===========================================================================
-
-    // -- --- fetch course_subjects ----------------------------
-    public function getcourseSubjects($course_uid)
-    {
-        return $this->db->where('course_unique_id', $course_uid)
-            ->order_by('id', 'ASC')
-            ->get('course_subjects')
-            ->result();
-    }
-
-    public function getCourseInstructors($course_uid)
-    {
-        return $this->db->where('course_unique_id', $course_uid)
-            ->get('course_instructors')
-            ->result();
-    }
-
-    public function getSubjectTeacher($course_uid)
-    {
-        return $this->db->where('course_unique_id', $course_uid)
-            ->get('subject_teacher_assign')
-            ->result();
-    }
-
-    /* SAVE ASSIGNMENT */
-    public function saveSubjectTeacher($course_uid, $subject_uid, $teachers)
-    {
-        $this->db->where([
-            'course_unique_id' => $course_uid,
-            'subject_unique_id' => $subject_uid
-        ])->delete('subject_teacher_assign');
-
-        foreach ($teachers as $t) {
-            $this->db->insert('subject_teacher_assign', [
-                'course_unique_id' => $course_uid,
-                'subject_unique_id' => $subject_uid,
-                'subject_name' => $t['subject_name'],
-                'teacher_unique_id' => $t['teacher_uid'],
-                'instructor_name' => $t['teacher_name'],
-                'assigned_date' => date('Y-m-d H:i:s')
-            ]);
-        }
-    }
 
 
 

@@ -10,6 +10,7 @@ class AdminDashboardControllers extends CI_Controller
         $this->load->database();
     }
 
+
     // Load UI and fetch features
     public function loaDadmin_coursedetails()
     {
@@ -42,33 +43,7 @@ class AdminDashboardControllers extends CI_Controller
     }
 
 
-public function assignSubjectTeacher()
-{
-    $data = json_decode(file_get_contents("php://input"), true);
 
-    $course_uid  = $data['course_uid'];
-    $subject_uid = $data['subject_uid'];
-    $subject_name = $data['subject_name'];
-    $teachers = $data['teachers'];
-
-    if (!$course_uid || !$subject_uid) {
-        echo json_encode(['status' => 'error']);
-        return;
-    }
-
-    $final = [];
-    foreach ($teachers as $t) {
-        $final[] = [
-            'teacher_uid' => $t['uid'],
-            'teacher_name' => $t['name'],
-            'subject_name' => $subject_name
-        ];
-    }
-
-    $this->admin->saveSubjectTeacher($course_uid, $subject_uid, $final);
-
-    echo json_encode(['status' => 'success']);
-}
 
 
 

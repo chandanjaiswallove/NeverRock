@@ -950,17 +950,19 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-
                         <!-- SUBJECT TEACHER ASSIGN -->
                         <div class="hidden transition-all duration-300">
-                            <!-- <form action="<?= base_url('assignSubjectTeacher'); ?>" method="POST"> -->
+
                             <div
                                 class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
                                 <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                                    Assign Subject to Teacher</h3>
+                                    Assign Subject to Teacher
+                                </h3>
+
                                 <!-- SUBJECT LIST -->
                                 <div id="subjectList" class="space-y-3"></div>
                             </div>
+
                             <!-- MANAGE TEACHER POPUP -->
                             <div id="teacherPopup"
                                 class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
@@ -977,7 +979,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                     <div class="flex justify-start gap-3">
                                         <button type="button" onclick="closeTeacherPopup()"
-                                            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-5 h-10 rounded-md">
+                                            class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md">
                                             Cancel
                                         </button>
 
@@ -988,7 +990,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     </div>
                                 </div>
                             </div>
-                            </form>
+
                             <script>
                                 const courseUID = "<?= $course_uid ?>";
                                 const subjects = <?= json_encode($course_subjects); ?>;
@@ -999,31 +1001,40 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                 let currentSubjectUID = "";
                                 let currentSubjectName = "";
 
-                                /* build assigned map */
+                                /* ===============================
+                                   BUILD ASSIGNED MAP (FIXED)
+                                =============================== */
                                 assignedRaw.forEach(r => {
-                                    if (!assigned[r.subject_unique_id]) assigned[r.subject_unique_id] = [];
-                                    assigned[r.subject_unique_id].push(r.teacher_unique_id);
+                                    const sid = r.subject_id; // 🔥 numeric unique id
+                                    if (!assigned[sid]) assigned[sid] = [];
+                                    assigned[sid].push(r.teacher_unique_id);
                                 });
 
-                                /* LOAD SUBJECTS */
+                                /* ===============================
+                                   LOAD SUBJECTS (FIXED)
+                                =============================== */
                                 function loadSubjects() {
                                     const box = document.getElementById("subjectList");
                                     box.innerHTML = "";
 
                                     subjects.forEach(sub => {
+                                        const sid = sub.id; // 🔥 numeric id only
+
                                         box.innerHTML += `
 <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
     <div class="flex justify-between items-center">
-        <span class="font-bold uppercase     text-contentColor dark:text-contentColor-dark">${sub.subject_name}</span>
-        <button onclick="openTeacherPopup('${sub.subject_unique_id}','${sub.subject_name}')"
-            class="text-sm font-bold text-whiteColor bg-secondaryColor  border border-secondaryColor px-4 h-8 rounded-md">
+        <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">
+            ${sub.subject_name}
+        </span>
+        <button onclick="openTeacherPopup('${sid}','${sub.subject_name}')"
+            class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-4 h-8 rounded-md">
             Assign
         </button>
     </div>
 
     <div class="mt-2 flex gap-2 flex-wrap">
-        ${assigned[sub.subject_unique_id]
-                                                ? assigned[sub.subject_unique_id].map(id => {
+        ${assigned[sid]
+                                                ? assigned[sid].map(id => {
                                                     const t = teachers.find(x => x.teacher_unique_id === id);
                                                     return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
                                                 }).join('')
@@ -1034,9 +1045,11 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     });
                                 }
 
-                                /* POPUP OPEN */
-                                function openTeacherPopup(uid, name) {
-                                    currentSubjectUID = uid;
+                                /* ===============================
+                                   POPUP OPEN (FIXED)
+                                =============================== */
+                                function openTeacherPopup(subjectId, name) {
+                                    currentSubjectUID = subjectId; // 🔥 numeric id
                                     currentSubjectName = name;
 
                                     document.getElementById("popupSubjectName").innerText = name;
@@ -1044,7 +1057,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     list.innerHTML = "";
 
                                     teachers.forEach(t => {
-                                        const checked = assigned[uid]?.includes(t.teacher_unique_id) ? "checked" : "";
+                                        const checked = assigned[subjectId]?.includes(t.teacher_unique_id) ? "checked" : "";
                                         list.innerHTML += `
 <label class="flex items-center mb-2">
     <input type="checkbox" class="teacherCheck mr-2"
@@ -1061,7 +1074,9 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                     document.getElementById("teacherPopup").classList.add("hidden");
                                 }
 
-                                /* SAVE */
+                                /* ===============================
+                                   SAVE ASSIGNMENT (FIXED)
+                                =============================== */
                                 function assignTeachers() {
                                     const selected = [...document.querySelectorAll(".teacherCheck:checked")]
                                         .map(c => ({ uid: c.value, name: c.dataset.name }));
@@ -1071,7 +1086,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
                                         headers: { "Content-Type": "application/json" },
                                         body: JSON.stringify({
                                             course_uid: courseUID,
-                                            subject_uid: currentSubjectUID,
+                                            subject_uid: currentSubjectUID, // numeric id
                                             subject_name: currentSubjectName,
                                             teachers: selected
                                         })
@@ -1084,9 +1099,7 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
                                 loadSubjects();
                             </script>
-
                         </div>
-
 
 
 
