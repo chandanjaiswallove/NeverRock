@@ -950,68 +950,68 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-                 
-<!-- SUBJECT TEACHER ASSIGN -->
-<div id="subjectAssignContainer" class="hidden transition-all duration-300">
 
-    <!-- SUBJECT LIST -->
-    <div id="subjectList" class="space-y-3"></div>
+                        <!-- SUBJECT TEACHER ASSIGN -->
+                        <div id="subjectAssignContainer" class="hidden transition-all duration-300">
 
-    <!-- TEACHER POPUP -->
-    <div id="teacherPopup"
-        class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
-        <div
-            class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
+                            <!-- SUBJECT LIST -->
+                            <div id="subjectList" class="space-y-3"></div>
 
-            <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
-            </h3>
+                            <!-- TEACHER POPUP -->
+                            <div id="teacherPopup"
+                                class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+                                <div
+                                    class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-            <div id="teacherCheckboxList"
-                class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
-            </div>
+                                    <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                                        Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+                                    </h3>
 
-            <div class="flex justify-start gap-3">
-                <button type="button" onclick="closeTeacherPopup()"
-                    class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md">
-                    Cancel
-                </button>
+                                    <div id="teacherCheckboxList"
+                                        class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+                                    </div>
 
-                <button type="button" onclick="assignTeachers()"
-                    class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
-                    Assign
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+                                    <div class="flex justify-start gap-3">
+                                        <button type="button" onclick="closeTeacherPopup()"
+                                            class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md">
+                                            Cancel
+                                        </button>
 
-<script>
-const courseUID = "<?= $course_unique_id ?>";
-const subjects = <?= json_encode($course_subjects); ?>;
-const teachers = <?= json_encode($assignedInstructors); ?>;
-const assignedRaw = <?= json_encode($subjectAssignTeacher); ?>;
+                                        <button type="button" onclick="assignTeachers()"
+                                            class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                                            Assign
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-let assigned = {};
-let currentSubjectUID = null;
-let currentSubjectName = "";
+                        <script>
+                            const courseUID = "<?= $course_unique_id ?>";
+                            const subjects = <?= json_encode($course_subjects); ?>;
+                            const teachers = <?= json_encode($assignedInstructors); ?>;
+                            const assignedRaw = <?= json_encode($subjectAssignTeacher); ?>;
 
-/* BUILD ASSIGNED MAP */
-assignedRaw.forEach(r => {
-    const sid = r.subject_unique_id; // numeric id
-    if (!assigned[sid]) assigned[sid] = [];
-    assigned[sid].push(r.teacher_unique_id);
-});
+                            let assigned = {};
+                            let currentSubjectUID = null;
+                            let currentSubjectName = "";
 
-/* LOAD SUBJECTS LIST */
-function loadSubjects() {
-    const box = document.getElementById("subjectList");
-    box.innerHTML = "";
+                            /* BUILD ASSIGNED MAP */
+                            assignedRaw.forEach(r => {
+                                const sid = r.subject_unique_id; // numeric id
+                                if (!assigned[sid]) assigned[sid] = [];
+                                assigned[sid].push(r.teacher_unique_id);
+                            });
 
-    subjects.forEach(sub => {
-        const sid = sub.id;
+                            /* LOAD SUBJECTS LIST */
+                            function loadSubjects() {
+                                const box = document.getElementById("subjectList");
+                                box.innerHTML = "";
 
-        box.innerHTML += `
+                                subjects.forEach(sub => {
+                                    const sid = sub.id;
+
+                                    box.innerHTML += `
 <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
     <div class="flex justify-between items-center">
         <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">
@@ -1025,80 +1025,93 @@ function loadSubjects() {
 
 <div class="mt-2 flex gap-2 flex-wrap">
     ${assigned[sid] && assigned[sid].length > 0
-        ? assigned[sid].map(id => {
-            const t = teachers.find(x => x.teacher_unique_id === id);
-            return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
-        }).join('')
-        : `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
-    }
+                                            ? assigned[sid].map(id => {
+                                                const t = teachers.find(x => x.teacher_unique_id === id);
+                                                return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
+                                            }).join('')
+                                            : `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
+                                        }
 </div>
 
 </div>`;
-    });
-}
+                                });
+                            }
 
-/* OPEN POPUP */
-function openTeacherPopup(subjectId, name) {
-    currentSubjectUID = subjectId;
-    currentSubjectName = name;
+                            /* OPEN POPUP */
+                            function openTeacherPopup(subjectId, name) {
+                                currentSubjectUID = subjectId;
+                                currentSubjectName = name;
 
-    document.getElementById("popupSubjectName").innerText = name;
-    const list = document.getElementById("teacherCheckboxList");
-    list.innerHTML = "";
+                                document.getElementById("popupSubjectName").innerText = name;
+                                const list = document.getElementById("teacherCheckboxList");
+                                list.innerHTML = "";
 
-    teachers.forEach(t => {
-        const checked = assigned[subjectId]?.includes(t.teacher_unique_id) ? "checked" : "";
-        list.innerHTML += `
+                                teachers.forEach(t => {
+                                    const checked = assigned[subjectId]?.includes(t.teacher_unique_id) ? "checked" : "";
+                                    list.innerHTML += `
 <label class="flex items-center mb-2">
     <input type="checkbox" class="teacherCheck mr-2"
         value="${t.teacher_unique_id}"
         data-name="${t.instructor_name}" ${checked}>
     ${t.instructor_name}
 </label>`;
-    });
+                                });
 
-    document.getElementById("teacherPopup").classList.remove("hidden");
-}
+                                document.getElementById("teacherPopup").classList.remove("hidden");
+                            }
 
-/* CLOSE POPUP */
-function closeTeacherPopup() {
-    document.getElementById("teacherPopup").classList.add("hidden");
-}
+                            /* CLOSE POPUP */
+                            function closeTeacherPopup() {
+                                document.getElementById("teacherPopup").classList.add("hidden");
+                            }
 
-/* ASSIGN TEACHERS */
-function assignTeachers() {
-    if (!currentSubjectUID) {
-        alert("Subject not selected!");
-        return;
-    }
+                            /* ASSIGN TEACHERS */
+                            function assignTeachers() {
+                                if (!currentSubjectUID) {
+                                    alert("Subject not selected!");
+                                    return;
+                                }
 
-    const selected = [...document.querySelectorAll(".teacherCheck:checked")]
-        .map(c => ({ uid: c.value, name: c.dataset.name }));
+                                const selected = [...document.querySelectorAll(".teacherCheck:checked")]
+                                    .map(c => ({ uid: c.value, name: c.dataset.name }));
 
-    fetch("<?= base_url('assignSubjectTeacher') ?>", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            course_uid: courseUID,
-            subject_uid: currentSubjectUID,
-            subject_name: currentSubjectName,
-            teachers: selected
-        })
-    }).then(res => res.json())
-      .then(data => {
-          if(data.status === 'success') {
-              assigned[currentSubjectUID] = selected.map(t => t.uid);
-              closeTeacherPopup();
-              loadSubjects();
-              alert(data.msg);
-          } else {
-              alert(data.msg);
-          }
-      });
-}
+                                fetch("<?= base_url('assignSubjectTeacher') ?> ", {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        course_uid: courseUID,
+                                        subject_uid: currentSubjectUID,
+                                        subject_name: currentSubjectName,
+                                        teachers: selected
+                                    })
+                                }).then(res => res.json())
+                                    .then(data => {
+                                        if (data.status === 'success') {
+                                            assigned[currentSubjectUID] = selected.map(t => t.uid);
+                                            closeTeacherPopup();
+                                            loadSubjects();
 
-loadSubjects();
-</script>
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success',
+                                                text: data.msg,
+                                                timer: 2000,
+                                                showConfirmButton: false
+                                            });
+
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Error',
+                                                text: data.msg
+                                            });
+                                        }
+                                    });
+
+                            }
+
+                            loadSubjects();
+                        </script>
 
 
 
