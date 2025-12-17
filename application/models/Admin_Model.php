@@ -31,16 +31,53 @@ class Admin_Model extends CI_Model
             ->result();
     }
 
-    public function getSubjectTeacher($course_uid)
-    {
-        return $this->db->where('course_unique_id', $course_uid)
-            ->get('subject_teacher_assign')
-            ->result();
-    }
+
+    // Course ke liye sabhi subject-teacher assignments fetch karna
+// Agar subject_unique_id diya hai, to sirf us subject ka data aayega
 
     ///========================== TEACHER ASSIGN SUBJECT =============================
 
 
+
+// Course ke liye assignments fetch karna
+public function getSubjectTeacher($course_uid, $subject_uid = null)
+{
+    $this->db->where('course_unique_id', $course_uid);
+    if ($subject_uid) $this->db->where('subject_unique_id', $subject_uid);
+    return $this->db->order_by('subject_name', 'ASC')->get('subject_teacher_assign')->result();
+}
+
+public function assignTeachersToSubject($course_uid, $subject_uid, $subject_name, $teachers)
+{
+    // Pehle existing assignment delete karo
+    $this->db->where('course_unique_id', $course_uid);
+    $this->db->where('subject_unique_id', $subject_uid);
+    $this->db->delete('subject_teacher_assign');
+
+    // Agar teachers array empty hai to insert na karo (sirf delete ho gaya)
+    if(empty($teachers)) {
+        return true;
+    }
+
+    // Insert new assignments
+    $insert_data = [];
+    $now = date('Y-m-d H:i:s');
+
+    foreach ($teachers as $t) {
+        $insert_data[] = [
+            'course_unique_id' => $course_uid,
+            'subject_unique_id' => $subject_uid,
+            'subject_name' => $subject_name,
+            'teacher_unique_id' => $t['uid'],
+            'instructor_name' => $t['name'],
+            'assigned_date' => $now
+        ];
+    }
+
+    $this->db->insert_batch('subject_teacher_assign', $insert_data);
+
+    return true;
+}
 
 
 

@@ -950,77 +950,68 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
 
 
 
-                        <!-- SUBJECT TEACHER ASSIGN -->
-                        <div class="hidden transition-all duration-300">
+                 
+<!-- SUBJECT TEACHER ASSIGN -->
+<div id="subjectAssignContainer" class="hidden transition-all duration-300">
 
-                            <div
-                                class="group mb-2 bg-gray-100 dark:bg-gray-800 p-5 rounded-md border border-borderColor dark:border-borderColor-dark">
-                                <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                                    Assign Subject to Teacher
-                                </h3>
+    <!-- SUBJECT LIST -->
+    <div id="subjectList" class="space-y-3"></div>
 
-                                <!-- SUBJECT LIST -->
-                                <div id="subjectList" class="space-y-3"></div>
-                            </div>
+    <!-- TEACHER POPUP -->
+    <div id="teacherPopup"
+        class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
+        <div
+            class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
 
-                            <!-- MANAGE TEACHER POPUP -->
-                            <div id="teacherPopup"
-                                class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 hidden">
-                                <div
-                                    class="py-5 px-6 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md shadow-md w-96">
+            <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
+                Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
+            </h3>
 
-                                    <h3 class="text-lg font-semibold mb-4 text-blackColor dark:text-whiteColor">
-                                        Manage Teachers for <span id="popupSubjectName" class="font-bold"></span>
-                                    </h3>
+            <div id="teacherCheckboxList"
+                class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
+            </div>
 
-                                    <div id="teacherCheckboxList"
-                                        class="max-h-56 overflow-y-auto text-blackColor dark:text-whiteColor border border-borderColor dark:border-borderColor-dark rounded-md py-4 px-4 mb-4">
-                                    </div>
+            <div class="flex justify-start gap-3">
+                <button type="button" onclick="closeTeacherPopup()"
+                    class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md">
+                    Cancel
+                </button>
 
-                                    <div class="flex justify-start gap-3">
-                                        <button type="button" onclick="closeTeacherPopup()"
-                                            class="text-sm font-bold text-whiteColor bg-secondaryColor border border-secondaryColor px-5 h-10 rounded-md">
-                                            Cancel
-                                        </button>
+                <button type="button" onclick="assignTeachers()"
+                    class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
+                    Assign
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                        <button type="button" onclick="assignTeachers()"
-                                            class="text-sm font-bold text-white bg-primaryColor hover:bg-primaryColor-dark px-5 h-10 rounded-md">
-                                            Assign
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+<script>
+const courseUID = "<?= $course_unique_id ?>";
+const subjects = <?= json_encode($course_subjects); ?>;
+const teachers = <?= json_encode($assignedInstructors); ?>;
+const assignedRaw = <?= json_encode($subjectAssignTeacher); ?>;
 
-                            <script>
-                                const courseUID = "<?= $course_uid ?>";
-                                const subjects = <?= json_encode($course_subjects); ?>;
-                                const teachers = <?= json_encode($assignedInstructors); ?>;
-                                const assignedRaw = <?= json_encode($subjectAssignTeacher); ?>;
+let assigned = {};
+let currentSubjectUID = null;
+let currentSubjectName = "";
 
-                                let assigned = {};
-                                let currentSubjectUID = "";
-                                let currentSubjectName = "";
+/* BUILD ASSIGNED MAP */
+assignedRaw.forEach(r => {
+    const sid = r.subject_unique_id; // numeric id
+    if (!assigned[sid]) assigned[sid] = [];
+    assigned[sid].push(r.teacher_unique_id);
+});
 
-                                /* ===============================
-                                   BUILD ASSIGNED MAP (FIXED)
-                                =============================== */
-                                assignedRaw.forEach(r => {
-                                    const sid = r.subject_id; // 🔥 numeric unique id
-                                    if (!assigned[sid]) assigned[sid] = [];
-                                    assigned[sid].push(r.teacher_unique_id);
-                                });
+/* LOAD SUBJECTS LIST */
+function loadSubjects() {
+    const box = document.getElementById("subjectList");
+    box.innerHTML = "";
 
-                                /* ===============================
-                                   LOAD SUBJECTS (FIXED)
-                                =============================== */
-                                function loadSubjects() {
-                                    const box = document.getElementById("subjectList");
-                                    box.innerHTML = "";
+    subjects.forEach(sub => {
+        const sid = sub.id;
 
-                                    subjects.forEach(sub => {
-                                        const sid = sub.id; // 🔥 numeric id only
-
-                                        box.innerHTML += `
+        box.innerHTML += `
 <div class="w-full py-3 px-4 bg-whiteColor dark:bg-whiteColor-dark border-2 border-borderColor dark:border-borderColor-dark rounded-md">
     <div class="flex justify-between items-center">
         <span class="font-bold uppercase text-contentColor dark:text-contentColor-dark">
@@ -1032,76 +1023,82 @@ $this->load->view('dashboard/master_contents/dAdmin_master/admin_header');
         </button>
     </div>
 
-    <div class="mt-2 flex gap-2 flex-wrap">
-        ${assigned[sid]
-                                                ? assigned[sid].map(id => {
-                                                    const t = teachers.find(x => x.teacher_unique_id === id);
-                                                    return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
-                                                }).join('')
-                                                : `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
-                                            }
-    </div>
+<div class="mt-2 flex gap-2 flex-wrap">
+    ${assigned[sid] && assigned[sid].length > 0
+        ? assigned[sid].map(id => {
+            const t = teachers.find(x => x.teacher_unique_id === id);
+            return `<span class="bg-blue-100 text-blackColor dark:text-whiteColor px-2 py-1 rounded text-sm">${t?.instructor_name}</span>`;
+        }).join('')
+        : `<span class="text-blackColor dark:text-whiteColor text-sm italic">No teacher assigned</span>`
+    }
+</div>
+
 </div>`;
-                                    });
-                                }
+    });
+}
 
-                                /* ===============================
-                                   POPUP OPEN (FIXED)
-                                =============================== */
-                                function openTeacherPopup(subjectId, name) {
-                                    currentSubjectUID = subjectId; // 🔥 numeric id
-                                    currentSubjectName = name;
+/* OPEN POPUP */
+function openTeacherPopup(subjectId, name) {
+    currentSubjectUID = subjectId;
+    currentSubjectName = name;
 
-                                    document.getElementById("popupSubjectName").innerText = name;
-                                    const list = document.getElementById("teacherCheckboxList");
-                                    list.innerHTML = "";
+    document.getElementById("popupSubjectName").innerText = name;
+    const list = document.getElementById("teacherCheckboxList");
+    list.innerHTML = "";
 
-                                    teachers.forEach(t => {
-                                        const checked = assigned[subjectId]?.includes(t.teacher_unique_id) ? "checked" : "";
-                                        list.innerHTML += `
+    teachers.forEach(t => {
+        const checked = assigned[subjectId]?.includes(t.teacher_unique_id) ? "checked" : "";
+        list.innerHTML += `
 <label class="flex items-center mb-2">
     <input type="checkbox" class="teacherCheck mr-2"
         value="${t.teacher_unique_id}"
         data-name="${t.instructor_name}" ${checked}>
     ${t.instructor_name}
 </label>`;
-                                    });
+    });
 
-                                    document.getElementById("teacherPopup").classList.remove("hidden");
-                                }
+    document.getElementById("teacherPopup").classList.remove("hidden");
+}
 
-                                function closeTeacherPopup() {
-                                    document.getElementById("teacherPopup").classList.add("hidden");
-                                }
+/* CLOSE POPUP */
+function closeTeacherPopup() {
+    document.getElementById("teacherPopup").classList.add("hidden");
+}
 
-                                /* ===============================
-                                   SAVE ASSIGNMENT (FIXED)
-                                =============================== */
-                                function assignTeachers() {
-                                    const selected = [...document.querySelectorAll(".teacherCheck:checked")]
-                                        .map(c => ({ uid: c.value, name: c.dataset.name }));
+/* ASSIGN TEACHERS */
+function assignTeachers() {
+    if (!currentSubjectUID) {
+        alert("Subject not selected!");
+        return;
+    }
 
-                                    fetch("<?= base_url('assignSubjectTeacher') ?>", {
-                                        method: "POST",
-                                        headers: { "Content-Type": "application/json" },
-                                        body: JSON.stringify({
-                                            course_uid: courseUID,
-                                            subject_uid: currentSubjectUID, // numeric id
-                                            subject_name: currentSubjectName,
-                                            teachers: selected
-                                        })
-                                    }).then(() => {
-                                        assigned[currentSubjectUID] = selected.map(t => t.uid);
-                                        closeTeacherPopup();
-                                        loadSubjects();
-                                    });
-                                }
+    const selected = [...document.querySelectorAll(".teacherCheck:checked")]
+        .map(c => ({ uid: c.value, name: c.dataset.name }));
 
-                                loadSubjects();
-                            </script>
-                        </div>
+    fetch("<?= base_url('assignSubjectTeacher') ?>", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            course_uid: courseUID,
+            subject_uid: currentSubjectUID,
+            subject_name: currentSubjectName,
+            teachers: selected
+        })
+    }).then(res => res.json())
+      .then(data => {
+          if(data.status === 'success') {
+              assigned[currentSubjectUID] = selected.map(t => t.uid);
+              closeTeacherPopup();
+              loadSubjects();
+              alert(data.msg);
+          } else {
+              alert(data.msg);
+          }
+      });
+}
 
-
+loadSubjects();
+</script>
 
 
 
