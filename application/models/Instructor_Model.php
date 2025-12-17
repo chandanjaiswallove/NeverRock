@@ -10,6 +10,19 @@ class Instructor_Model extends CI_Model
 
 
 
+   // ============================================================
+    // ✅ get all data from course_directory 
+    // ============================================================
+    public function getCourseFromDirectory($course_uid)
+{
+    return $this->db
+        ->where('course_unique_id', $course_uid)
+        ->get('course_directory')
+        ->row(); // single course
+}
+
+
+
     // ============================================================
     // ✅ Instructor profile Update Here 
     // ============================================================

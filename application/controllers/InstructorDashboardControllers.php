@@ -11,6 +11,25 @@ class InstructorDashboardControllers extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model('Instructor_Model', 'instructor'); // Load model
+        $this->load->database();
+    }
+    
+    
+    public function loaDcourse_subjects()
+    {
+        $course_uid = $this->input->get('course_uid');
+
+        if (!$course_uid) {
+            echo "Invalid Course UID!";
+            return;
+        }
+
+        $data['course_unique_id'] = $course_uid;
+
+        $data['courseDirectory'] = $this->instructor->getCourseFromDirectory($course_uid);
+
+        $this->load->view('dashboard/dInstructor/course_subjects', $data);
     }
 
 
@@ -31,10 +50,8 @@ class InstructorDashboardControllers extends CI_Controller
         $this->load->view('dashboard/dInstructor/instructor_myCourse');
     }
 
-    public function loaDcourse_subjects()
-    {
-        $this->load->view('dashboard/dInstructor/course_subjects');
-    }
+
+
 
     public function loaDinstructor_courseV()
     {
