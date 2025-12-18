@@ -55,7 +55,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                 </h2>
 
 
-                                                <form method="POST" action="http://localhost/NeverRock/passwordUpdate"
+                                                <form method="POST" action="#"
                                                     class="text-sm text-blackColor dark:text-blackColor-dark leading-1.8 aos-init aos-animate"
                                                     data-aos="fade-up">
 
@@ -73,7 +73,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                     <div class="mt-15px">
                                                         <button type="submit" name=""
                                                             class="w-full text-size-15 text-whiteColor bg-primaryColor px-25px py-10px border border-primaryColor hover:text-primaryColor hover:bg-whiteColor inline-block rounded group dark:hover:text-whiteColor dark:hover:bg-whiteColor-dark">
-                                                            Add
+                                                            Add Chapter
                                                         </button>
                                                     </div>
                                                 </form>
@@ -164,7 +164,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                             <div>
                                                                 <h4
                                                                     class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                    <a href="lesson-quiz.html"
+                                                                    <a href="#"
                                                                         class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                                                                         <?= htmlspecialchars($chapter->chapter_name); ?>
                                                                     </a>
@@ -212,7 +212,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                                             <div>
                                                                 <h4
                                                                     class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                                    <a href="lesson-quiz.html"
+                                                                    <a href="#"
                                                                         class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
                                                                         <?= htmlspecialchars($subject->subject_name); ?>
                                                                     </a>
@@ -532,7 +532,6 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                         </div>
 
                     </div>
-
 
                 </div>
 

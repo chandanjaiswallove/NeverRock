@@ -568,3 +568,299 @@
         </div>
     </div>
 </section>
+
+
+
+<!-- penidng code in chapter Introduction code dashboard section -->
+        <!-- counter -->
+                    <div
+                        class="p-10px md:px-10 md:py-50px mb-30px bg-whiteColor dark:bg-whiteColor-dark shadow-accordion dark:shadow-accordion-dark rounded-standard">
+                        <div
+                            class="mb-6 pb-5 border-b-2 border-borderColor dark:border-borderColor-dark flex items-center justify-between gap-2 flex-wrap">
+                            <h2 class="text-2xl font-bold text-blackColor dark:text-blackColor-dark">
+                                Chapter 1 - Introduction
+                            </h2>
+
+                            <div
+                                class="text-primaryColor bg-whitegrey3 text-sm  rounded py-0.5 px-5 flex items-center justify-between gap-2 flex-wrap">
+                                <button class=" ">Lecture</button>
+                                <button class=" ">Quiz</button>
+                                <button class="">Assignment</button>
+                                <button class="">Materials</button>
+                                <button class="">Test</button>
+                            </div>
+                            </li>
+                        </div>
+
+                        <!-- counter area -->
+                        <div class="tab">
+                            <div class="tab-links grid grid-cols-2 md:grid-cols-5 gap-11px text-blackColor text-lg lg:text-size-22 font-semibold font-hind bg-transparent mt-30px md:mt-0 mb-43px aos-init aos-animate"
+                                data-aos="fade-up">
+                                <button
+                                    class="py-9px lg:py-6 hover:text-primaryColor dark:text-whiteColor dark:hover:text-primaryColor dark:bg-whiteColor-dark dark:hover:bg-whiteColor-dark hover:bg-white relative group/btn dark:shadow-standard-dark hover:shadow-bottom disabled:cursor-pointer rounded-standard bg-lightGrey7 dark:bg-lightGrey7-dark inActive">
+                                    <span
+                                        class="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+
+                                    Lectures
+                                </button>
+                                <button
+                                    class="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard dark:bg-whiteColor-dark bg-white shadow-bottom"
+                                    disabled="">
+                                    <span
+                                        class="absolute w-full h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+
+                                    Quiz
+                                </button>
+                                <button
+                                    class="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard dark:bg-whiteColor-dark bg-lightGrey7 dark:bg-lightGrey7-dark inActive">
+                                    <span
+                                        class="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+
+                                    Assigment
+                                </button>
+                                <button
+                                    class="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard dark:bg-whiteColor-dark bg-lightGrey7 dark:bg-lightGrey7-dark inActive">
+                                    <span
+                                        class="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+                                    Materials
+                                </button>
+                                <button
+                                    class="py-9px lg:py-6 hover:text-primaryColor dark:hover:text-primaryColor dark:text-whiteColor hover:bg-white dark:hover:bg-whiteColor-dark relative group/btn hover:shadow-bottom dark:shadow-standard-dark disabled:cursor-pointer rounded-standard dark:bg-whiteColor-dark bg-lightGrey7 dark:bg-lightGrey7-dark inActive">
+                                    <span
+                                        class="absolute w-0 h-1 bg-primaryColor top-0 left-0 group-hover/btn:w-full"></span>
+                                    Test
+                                </button>
+                            </div>
+
+                            <div class="tab-contents">
+                                <!-- Monday Event-->
+                                <div class="transition-opacity duration-150 ease-linear opacity-100 hidden">
+                                    <div class="flex flex-col gap-y-6">
+                                        <!-- event 1 -->
+                                        <div class="flex flex-col md:flex-row md:gap-30px lg:gap-10 items-center md:items-star bg-whiteColor dark:whiteColor-dark p-15px md:p-5 transition-all duration-300 group hover:text-whiteColor hover:bg-primaryColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor shadow-experience rounded aos-init aos-animate"
+                                            data-aos="fade-up">
+                                            <!-- event thumb -->
+                                            <div class="flex-shrink-0">
+                                                <img src="modules/assets/images/event/event__1.png" alt=""
+                                                    class="w-170px">
+                                            </div>
+                                            <!-- event content -->
+                                            <div class="py-18px">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-blackColor mb-10px group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                        <i
+                                                            class="icofont-clock-time text-primaryColor pr-1 group-hover:text-whiteColor dark:hover:text-whiteColor"></i>
+                                                        <span class="pr-2">10.00Am - 11.00 am</span>
+                                                        <span
+                                                            class="text-primaryColor group-hover:text-whiteColor dark:group-hover:text-whiteColor">Mirnsdo
+                                                            .H </span><span>- Event Speaker</span>
+                                                    </p>
+                                                </div>
+                                                <h3
+                                                    class="text-size-15 md:text-lg lg:text-2xl text-contentColor dark: font-semibold pb-18px group-hover:text-whiteColor dark:text-contentColor-dark dark:group-hover:text-whiteColor">
+                                                    <a href="event-details.html"
+                                                        class="hover:text-secondaryColor dark:hover:text-secondaryColor">Forging
+                                                        relationships between multi to national
+                                                        governments and global.
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-base md:text-sm lg:text-base text-blackColor group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                    <a class="hover:text-secondaryColor dark:hover:text-secondaryColor"
+                                                        href="home-4.html#">Read More
+                                                        <i class="icofont-simple-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!-- Tuesday Event-->
+                                <div class="transition-opacity duration-150 ease-linear block opacity-100">
+                                    <div class="flex flex-col gap-y-6">
+                                        <!-- event 1 -->
+                                        <div class="flex flex-col md:flex-row md:gap-30px lg:gap-10 items-center md:items-star bg-whiteColor dark:whiteColor-dark p-15px md:p-5 transition-all duration-300 group hover:text-whiteColor hover:bg-primaryColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor shadow-experience rounded aos-init aos-animate"
+                                            data-aos="fade-up">
+                                            <!-- event thumb -->
+                                            <div class="flex-shrink-0">
+                                                <img src="modules/assets/images/event/event__1.png" alt=""
+                                                    class="w-170px">
+                                            </div>
+                                            <!-- event content -->
+                                            <div class="py-18px">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-blackColor mb-10px group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                        <i
+                                                            class="icofont-clock-time text-primaryColor pr-1 group-hover:text-whiteColor dark:hover:text-whiteColor"></i>
+                                                        <span class="pr-2">10.00Am - 11.00 am</span>
+                                                        <span
+                                                            class="text-primaryColor group-hover:text-whiteColor dark:group-hover:text-whiteColor">Mirnsdo
+                                                            .H </span><span>- Event Speaker</span>
+                                                    </p>
+                                                </div>
+                                                <h3
+                                                    class="text-size-15 md:text-lg lg:text-2xl text-contentColor dark: font-semibold pb-18px group-hover:text-whiteColor dark:text-contentColor-dark dark:group-hover:text-whiteColor">
+                                                    <a href="event-details.html"
+                                                        class="hover:text-secondaryColor dark:hover:text-secondaryColor">Forging
+                                                        relationships between multi to national
+                                                        governments and global.
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-base md:text-sm lg:text-base text-blackColor group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                    <a class="hover:text-secondaryColor dark:hover:text-secondaryColor"
+                                                        href="home-4.html#">Read More
+                                                        <i class="icofont-simple-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!-- Wednesday Event-->
+                                <div class="transition-opacity duration-150 ease-linear opacity-100 hidden">
+                                    <div class="flex flex-col gap-y-6">
+                                        <!-- event 1 -->
+                                        <div class="flex flex-col md:flex-row md:gap-30px lg:gap-10 items-center md:items-star bg-whiteColor dark:whiteColor-dark p-15px md:p-5 transition-all duration-300 group hover:text-whiteColor hover:bg-primaryColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor shadow-experience rounded aos-init aos-animate"
+                                            data-aos="fade-up">
+                                            <!-- event thumb -->
+                                            <div class="flex-shrink-0">
+                                                <img src="modules/assets/images/event/event__1.png" alt=""
+                                                    class="w-170px">
+                                            </div>
+                                            <!-- event content -->
+                                            <div class="py-18px">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-blackColor mb-10px group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                        <i
+                                                            class="icofont-clock-time text-primaryColor pr-1 group-hover:text-whiteColor dark:hover:text-whiteColor"></i>
+                                                        <span class="pr-2">10.00Am - 11.00 am</span>
+                                                        <span
+                                                            class="text-primaryColor group-hover:text-whiteColor dark:group-hover:text-whiteColor">Mirnsdo
+                                                            .H </span><span>- Event Speaker</span>
+                                                    </p>
+                                                </div>
+                                                <h3
+                                                    class="text-size-15 md:text-lg lg:text-2xl text-contentColor dark: font-semibold pb-18px group-hover:text-whiteColor dark:text-contentColor-dark dark:group-hover:text-whiteColor">
+                                                    <a href="event-details.html"
+                                                        class="hover:text-secondaryColor dark:hover:text-secondaryColor">Forging
+                                                        relationships between multi to national
+                                                        governments and global.
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-base md:text-sm lg:text-base text-blackColor group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                    <a class="hover:text-secondaryColor dark:hover:text-secondaryColor"
+                                                        href="home-4.html#">Read More
+                                                        <i class="icofont-simple-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!-- Thursday Event-->
+                                <div class="transition-opacity duration-150 ease-linear opacity-100 hidden">
+                                    <div class="flex flex-col gap-y-6">
+
+                                        <!-- event 4 -->
+                                        <div class="flex flex-col md:flex-row md:gap-30px lg:gap-10 items-center md:justify-between bg-whiteColor dark:whiteColor-dark p-15px md:p-5 md:pl-45px transition-all duration-300 group hover:text-whiteColor hover:bg-primaryColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor shadow-experience rounded aos-init aos-animate"
+                                            data-aos="fade-up">
+                                            <div class="py-18px">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-blackColor mb-10px group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                        <i
+                                                            class="icofont-clock-time text-primaryColor pr-1 group-hover:text-whiteColor dark:hover:text-whiteColor"></i>
+                                                        <span class="pr-2">10.00Am - 11.00 am</span>
+                                                        <span
+                                                            class="text-primaryColor group-hover:text-whiteColor dark:group-hover:text-whiteColor">Mirnsdo
+                                                            .H </span><span>- Event Speaker</span>
+                                                    </p>
+                                                </div>
+                                                <h3
+                                                    class="text-size-15 md:text-lg lg:text-2xl text-contentColor dark: font-semibold pb-18px group-hover:text-whiteColor dark:text-contentColor-dark dark:group-hover:text-whiteColor">
+                                                    <a href="event-details.html"
+                                                        class="hover:text-secondaryColor dark:hover:text-secondaryColor">Forging
+                                                        relationships between multi to national
+                                                        governments and global.
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-base md:text-sm lg:text-base text-blackColor group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                    <a class="hover:text-secondaryColor dark:hover:text-secondaryColor"
+                                                        href="home-4.html#">Read More
+                                                        <i class="icofont-simple-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <!-- event thumb -->
+                                            <div class="flex-shrink-0 flex flex-col items-center md:items-end">
+                                                <img src="modules/assets/images/event/event__1.png" alt=""
+                                                    class="w-170px">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Friday Event-->
+                                <div class="transition-opacity duration-150 ease-linear opacity-100 hidden">
+                                    <div class="flex flex-col gap-y-6">
+
+                                        <!-- event 4 -->
+                                        <div class="flex flex-col md:flex-row md:gap-30px lg:gap-10 items-center md:justify-between bg-whiteColor dark:whiteColor-dark p-15px md:p-5 md:pl-45px transition-all duration-300 group hover:text-whiteColor hover:bg-primaryColor dark:bg-whiteColor-dark dark:hover:bg-primaryColor shadow-experience rounded aos-init aos-animate"
+                                            data-aos="fade-up">
+                                            <div class="py-18px">
+                                                <div>
+                                                    <p
+                                                        class="text-sm text-blackColor mb-10px group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                        <i
+                                                            class="icofont-clock-time text-primaryColor pr-1 group-hover:text-whiteColor dark:hover:text-whiteColor"></i>
+                                                        <span class="pr-2">10.00Am - 11.00 am</span>
+                                                        <span
+                                                            class="text-primaryColor group-hover:text-whiteColor dark:group-hover:text-whiteColor">Mirnsdo
+                                                            .H </span><span>- Event Speaker</span>
+                                                    </p>
+                                                </div>
+                                                <h3
+                                                    class="text-size-15 md:text-lg lg:text-2xl text-contentColor dark: font-semibold pb-18px group-hover:text-whiteColor dark:text-contentColor-dark dark:group-hover:text-whiteColor">
+                                                    <a href="event-details.html"
+                                                        class="hover:text-secondaryColor dark:hover:text-secondaryColor">Forging
+                                                        relationships between multi to national
+                                                        governments and global.
+                                                    </a>
+                                                </h3>
+                                                <p
+                                                    class="text-base md:text-sm lg:text-base text-blackColor group-hover:text-whiteColor dark:text-blackColor-dark dark:group-hover:text-whiteColor">
+                                                    <a class="hover:text-secondaryColor dark:hover:text-secondaryColor"
+                                                        href="home-4.html#">Read More
+                                                        <i class="icofont-simple-right"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <!-- event thumb -->
+                                            <div class="flex-shrink-0 flex flex-col items-center md:items-end">
+                                                <img src="modules/assets/images/event/event__1.png" alt=""
+                                                    class="w-170px">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
