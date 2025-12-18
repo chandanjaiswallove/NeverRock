@@ -29,7 +29,7 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                         <div
                             class="p-5 mb-25px  bg-lightGrey5 dark:bg-whiteColor-dark rounded-lg2 shadow-accordion-dark">
                             <h3 class="text-2xl font-semibold text-blackColor dark:text-blackColor-dark leading-38px">
-  <?= isset($courseDirectory->course_name) ? $courseDirectory->course_name : 'Course Not Found'; ?>                                
+                                <?= isset($courseDirectory->course_name) ? $courseDirectory->course_name : 'Course Not Found'; ?>
                             </h3>
                             <!-- Button to open modal -->
                             <button id="openModal"
