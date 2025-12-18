@@ -10,16 +10,57 @@ class Instructor_Model extends CI_Model
 
 
 
-   // ============================================================
+    // ============================================================
     // ✅ get all data from course_directory 
     // ============================================================
     public function getCourseFromDirectory($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->get('course_directory')
+            ->row(); // single course
+    }
+
+    // ============================================================
+// ✅ get subjects by course_unique_id
+// ============================================================
+    public function getCourseSubjects($course_uid)
+    {
+        return $this->db
+            ->where('course_unique_id', $course_uid)
+            ->order_by('id', 'ASC')
+            ->get('course_subjects')
+            ->result();   // multiple subjects
+    }
+
+
+// ============================================================
+// ✅ get chapters by course + subject
+// ============================================================
+public function getSubjectChapters($course_uid, $subject_uid)
 {
     return $this->db
         ->where('course_unique_id', $course_uid)
-        ->get('course_directory')
-        ->row(); // single course
+        ->where('subject_unique_id', $subject_uid)
+        ->order_by('id', 'ASC')
+        ->get('course_subjects_chapters')
+        ->result();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

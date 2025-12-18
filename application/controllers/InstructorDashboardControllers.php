@@ -16,28 +16,39 @@ class InstructorDashboardControllers extends CI_Controller
     }
 
 
-    public function loaDcourse_subjects()
-    {
-        $course_uid = $this->input->get('course_uid');
+public function loaDcourse_subjects()
+{
+    $course_uid = $this->input->get('course_uid');
 
-        if (empty($course_uid)) {
-            show_error('Invalid Course UID');
-            return;
-        }
-
-        $data['course_unique_id'] = $course_uid;
-
-        // course_directory se single course
-        $data['courseDirectory'] = $this->instructor->getCourseFromDirectory($course_uid);
-
-        // optional safety
-        if (empty($data['courseDirectory'])) {
-            show_error('Course not found');
-            return;
-        }
-
-        $this->load->view('dashboard/dInstructor/course_subjects', $data);
+    if (empty($course_uid)) {
+        show_error('Invalid Course UID');
+        return;
     }
+
+    // course
+    $data['courseDirectory'] = $this->instructor->getCourseFromDirectory($course_uid);
+
+    if (empty($data['courseDirectory'])) {
+        show_error('Course not found');
+        return;
+    }
+
+    // subjects
+    $subjects = $this->instructor->getCourseSubjects($course_uid);
+
+    // 🔥 chapters subject ke through
+    foreach ($subjects as $subject) {
+        $subject->chapters = $this->instructor->getSubjectChapters(
+            $course_uid,
+            $subject->subject_unique_id
+        );
+    }
+
+    $data['courseSubjects'] = $subjects;
+    $data['course_unique_id'] = $course_uid;
+
+    $this->load->view('dashboard/dInstructor/course_subjects', $data);
+}
 
 
 

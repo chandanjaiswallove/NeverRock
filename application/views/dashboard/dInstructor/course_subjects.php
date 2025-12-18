@@ -155,33 +155,31 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     <!-- content -->
                                     <div class="accordion-content transition-all duration-500">
                                         <div class="content-wrapper p-10px md:px-30px">
+
                                             <ul>
-
-
-                                                <li
-                                                    class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                    <div>
-                                                        <h4
-                                                            class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                            <a href="lesson-quiz.html"
-                                                                class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
-                                                                Chapter 1 - Introduction
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                </li>
-                                                <li class="py-4 flex items-center justify-between flex-wrap">
-                                                    <div>
-                                                        <h4
-                                                            class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                            <a href="lesson-assignment.html"
-                                                                class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
-                                                                Chapter 2 - Variables
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                </li>
+                                                <?php if (!empty($subject->chapters)): ?>
+                                                    <?php foreach ($subject->chapters as $chapter): ?>
+                                                        <li
+                                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                                            <div>
+                                                                <h4
+                                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                                    <a href="lesson-quiz.html"
+                                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                                                        <?= htmlspecialchars($chapter->chapter_name); ?>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <li class="py-4 text-gray-400">
+                                                        No chapters found
+                                                    </li>
+                                                <?php endif; ?>
                                             </ul>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -207,30 +205,28 @@ $this->load->view('dashboard/master_contents/dInstructor_master/instructor_heade
                                     <div class="accordion-content transition-all duration-500 h-0">
                                         <div class="content-wrapper p-10px md:px-30px">
                                             <ul>
-                                                <li
-                                                    class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
-                                                    <div>
-                                                        <h4
-                                                            class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                            <a href="lesson-quiz.html"
-                                                                class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
-                                                                MATH
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                </li>
-                                                <li class="py-4 flex items-center justify-between flex-wrap">
-                                                    <div>
-                                                        <h4
-                                                            class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
-                                                            <a href="lesson-assignment.html"
-                                                                class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover;text-primaryColor">
-                                                                SCIENCE
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                </li>
+                                                <?php if (!empty($courseSubjects)): ?>
+                                                    <?php foreach ($courseSubjects as $subject): ?>
+                                                        <li
+                                                            class="py-4 flex items-center justify-between flex-wrap border-b border-borderColor dark:border-borderColor-dark">
+                                                            <div>
+                                                                <h4
+                                                                    class="text-blackColor dark:text-blackColor-dark leading-1 font-light">
+                                                                    <a href="lesson-quiz.html"
+                                                                        class="font-medium text-contentColor dark:text-contentColor-dark hover:text-primaryColor dark:hover:text-primaryColor">
+                                                                        <?= htmlspecialchars($subject->subject_name); ?>
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <li class="py-4 text-gray-400">
+                                                        No subjects found
+                                                    </li>
+                                                <?php endif; ?>
                                             </ul>
+
                                         </div>
                                     </div>
                                 </div>
